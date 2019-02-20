@@ -1,10 +1,10 @@
 package io.github.ilaborie.slides2.kt.engine
 
 
-interface Renderer {
+interface Renderer<T:Content> {
     val mode: RenderMode
 
-    fun render(): String
+    fun render(content: T): String
 
     companion object {
 

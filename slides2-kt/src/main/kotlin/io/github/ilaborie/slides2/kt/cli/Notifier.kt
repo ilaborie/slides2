@@ -5,31 +5,35 @@ import kotlin.system.measureNanoTime
 
 class Notifier(private val stopWatch: StopWatch) {
 
-    private fun display(level: Int, message: String) {
+    var level = 0
+
+    private fun display(message: String, level: Int = this.level) {
         println(" ".repeat(level) + message)
     }
 
     fun debug(label: String? = null, message: () -> String) {
-        display(0, Styles.debug(label ?: "Debug") + message())
+        display(Styles.debug(label ?: "Debug") + " " + message())
     }
 
     fun info(label: String? = null, message: () -> String) {
-        display(0, Styles.info(label ?: "Info ") + message())
+        display(Styles.info(label ?: "Info ") + " " + message())
     }
 
     fun warning(label: String? = null, message: () -> String) {
-        display(0, Styles.warn(label ?: "warn ") + message())
+        display(Styles.warn(label ?: "warn ") + " " + message())
     }
 
     fun error(label: String? = null, cause: Exception? = null, message: () -> String) {
-        display(0, Styles.error(label ?: "error") + message())
-        cause?.stackTrace?.forEach { display(1, Styles.stacktrace(it.toString())) }
+        display(Styles.error(label ?: "error") + " " + message())
+        cause?.stackTrace?.forEach { display(Styles.stacktrace(it.toString()), level + 1) }
     }
 
     fun <T> time(label: String, supplier: () -> T): T {
-        display(1, Styles.time(">>> ") + label)
+        display(Styles.time(">>> ") + label, level)
+        level++
         val (result, time) = stopWatch.time(supplier)
-        display(1, Styles.time("<<< ") + label + " took " + Styles.time(time))
+        level--
+        display(Styles.time("<<< ") + label + " took " + Styles.time(time), level)
         return result;
     }
 

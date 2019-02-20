@@ -19,10 +19,11 @@ Kotlin DSL
 * Figure
 * List (ul, li, def)
 * Paragraph
-* StyledText (strong, emphasis, block, notice)
+* StyledText (strong, emphasis, block)
 * Link
 * Table
 * Theme & Custom CSSmod
+* Notice
 * BasicJs (allow Js Plugin)
   * JS keyboard navigation
   * Navbar (part, slides, nb)
