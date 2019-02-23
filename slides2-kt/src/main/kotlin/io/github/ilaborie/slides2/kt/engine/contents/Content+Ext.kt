@@ -52,3 +52,10 @@ val <T : Content> T.kbd: StyledText
 
 val <T : Content> T.pre: StyledText
     get() = StyledText(Pre, this)
+
+
+val <T : List<Content>> T.ul: UnorderedList
+    get() = UnorderedList(this)
+
+val <T : List<Content>> T.ol: OrderedList
+    get() = OrderedList(this)

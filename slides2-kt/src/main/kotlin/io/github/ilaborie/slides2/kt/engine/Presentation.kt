@@ -10,7 +10,6 @@ import io.github.ilaborie.slides2.kt.jvm.asKey
 data class Presentation(
     val title: Content,
     val theme: Theme = Theme.base,
-    val style: String? = null,
     val scripts: Set<String> = emptySet(),
     val content: List<Content> = emptyList(),
     val lang: String = "en"

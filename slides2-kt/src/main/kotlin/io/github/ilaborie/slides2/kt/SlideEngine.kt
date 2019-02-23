@@ -2,12 +2,11 @@ package io.github.ilaborie.slides2.kt
 
 import io.github.ilaborie.slides2.kt.cli.Notifier
 import io.github.ilaborie.slides2.kt.cli.Styles
-import io.github.ilaborie.slides2.kt.engine.Content
-import io.github.ilaborie.slides2.kt.engine.Presentation
-import io.github.ilaborie.slides2.kt.engine.Renderer
+import io.github.ilaborie.slides2.kt.engine.*
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
+import io.github.ilaborie.slides2.kt.engine.renderers.*
 
 object SlideEngine {
 
@@ -15,6 +14,19 @@ object SlideEngine {
 
     val rendererMap: MutableMap<String, MutableMap<RenderMode, Renderer<*>>> = mutableMapOf()
     private val contentPlugins: MutableList<ContentPlugin> = mutableListOf()
+
+    init {
+        // Base
+        registerRenderers(TextTextRenderer, TextHtmlRenderer)
+        registerRenderers(TitleTextRenderer, TitleHtmlRenderer)
+        registerRenderers(ParagraphTextRenderer, ParagraphHtmlRenderer)
+        registerRenderers(StyledTextTextRenderer, StyledTextHtmlRenderer)
+
+        // Presentation, Part, Slide
+        registerRenderer(PresentationHtmlRenderer)
+        registerRenderer(PartHtmlRenderer)
+        registerRenderer(SlideHtmlRenderer)
+    }
 
     inline fun <reified T : Content> registerRenderer(renderer: Renderer<T>): SlideEngine {
         val map = rendererMap.computeIfAbsent(T::class.java.name) { mutableMapOf() }
@@ -37,7 +49,6 @@ object SlideEngine {
         rendererMap[content.javaClass.name]
             ?.get(mode) as? Renderer<T>?
 
-//    contentPlugins.fold(content) { acc, plugin -> plugin(acc) }
 
     inline fun <reified T : Content> render(mode: RenderMode, content: T): String =
         findRenderer(mode, content)
@@ -55,5 +66,32 @@ object SlideEngine {
                 }
             } ?: notifier.error { "No renderer found for $this" }
     }
+
+    fun applyPlugins(function: () -> Presentation): Presentation =
+        plugContent(function()) as Presentation
+
+    private fun plugContent(content: Content): Content =
+        when (content) {
+            is Presentation -> content.copy(
+                title = plug(content.title),
+                content = content.content
+                    .map(this::plugContent)
+            )
+            is Part         -> content.copy(
+                title = plug(content.title),
+                slides = content.slides
+                    .map(this::plugContent)
+                    .filterIsInstance<Slide>()
+            )
+            is Slide        -> content.copy(
+                title = plug(content.title),
+                content = content.content
+                    .map(this::plugContent)
+            )
+            else            -> plug(content)
+        }
+
+    private fun plug(content: Content): Content =
+        contentPlugins.fold(content) { acc, plugin -> plugin(acc) }
 
 }

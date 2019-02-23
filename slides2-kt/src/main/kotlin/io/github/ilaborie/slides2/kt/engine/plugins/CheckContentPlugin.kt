@@ -17,9 +17,6 @@ class CheckContentPlugin(private val notifier: Notifier) : ContentPlugin {
                 check(content)
             else            ->
                 content
-                    .also {
-                        notifier.debug { "No check for $content" }
-                    }
         }
 
     private fun check(presentation: Presentation): Presentation {
