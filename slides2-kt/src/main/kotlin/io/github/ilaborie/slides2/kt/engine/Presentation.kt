@@ -16,12 +16,16 @@ data class Presentation(
     val lang: String = "en"
 ) : Content {
 
-     val sTitle: String by lazy {
+    val sTitle: String by lazy {
         with(SlideEngine) {
             render(Text, title)
         }
     }
+
     val key: String by lazy {
         sTitle.asKey()
     }
+
+    operator fun plus(part: Part): Presentation =
+        copy(content = content + part)
 }

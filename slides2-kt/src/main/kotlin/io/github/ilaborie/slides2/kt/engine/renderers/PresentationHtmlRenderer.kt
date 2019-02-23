@@ -14,7 +14,6 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
     override fun render(content: Presentation): String =
         with(SlideEngine) {
             // FIXME Themes
-            // FIXME content
             """<!doctype html>
             |<html lang="${content.lang}">
             |<head>
@@ -27,7 +26,10 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
             |    ${render(mode, content.title)}
             |  </header>
             |  <main>
-            |${content.content.joinToString { render(mode, it) }.padStart(4)}
+            |    <section id="cover">
+            |${render(mode, content.title).prependIndent("      ")}
+            |    </section>
+            |${content.content.joinToString { render(mode, it) }.prependIndent("    ")}
             |  </main>
             |</body>
             |</html>

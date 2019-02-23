@@ -33,6 +33,8 @@ internal enum class Color(baseCode: Int) {
 }
 
 object Styles {
+
+    val highlight: Style = Color.LIGHT_BLUE.fg
     val debug: Style = Color.GREEN.fg
     val info: Style = Color.BLUE.fg
     val warn: Style = Color.YELLOW.fg
