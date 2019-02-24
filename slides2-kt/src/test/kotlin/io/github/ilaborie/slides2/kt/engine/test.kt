@@ -26,7 +26,7 @@ fun main() {
     val presentation = pres("Test") {
         part("A part") {
             slide("A slide") { p("lorem ipsum") }
-//            roadmap("Roadmap")
+            roadmap("Roadmap")
         }
         part("Another part") {
             slide("Slide 1") { p("lorem ipsum") }

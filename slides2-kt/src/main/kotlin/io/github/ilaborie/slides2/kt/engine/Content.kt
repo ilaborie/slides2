@@ -6,3 +6,6 @@ interface Content
 interface ContainerContent : Content {
     val inner: List<Content>
 }
+
+
+inline class Id(val id: String)

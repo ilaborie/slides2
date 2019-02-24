@@ -18,18 +18,18 @@ object SlideHtmlRenderer : Renderer<Slide> {
             }
 
             """
-                |<section id="${content.key}"${if (classes == "") "" else """ class="$classes""""}>
+                |<section id="${content.id.id}"${if (classes == "") "" else """ class="$classes""""}>
                 |  <header>
-                |  ${render(mode, content.title).prependIndent("  ")}
+                |${render(mode, content.title).prependIndent("    ")}
                 |  </header>
-                |  <nav>
-                |    <a href="#previous" class="previous"></a>
+                |  <nav class="previous">
+                |    ${content.previous?.let { """<a href="#${it.id}" aria-label="previous slide"></a>""" } ?: ""}
                 |  </nav>
                 |  <div class="body">
                 |${body.prependIndent("    ")}
                 |  </div>
-                |  <nav>
-                |    <a href="#previous" class="next"></a>
+                |  <nav class="next">
+                |    ${content.next?.let { """<a href="#${it.id}" aria-label="next slide"></a>""" } ?: ""}
                 |  </nav>
                 |  <footer></footer>
                 |</section>

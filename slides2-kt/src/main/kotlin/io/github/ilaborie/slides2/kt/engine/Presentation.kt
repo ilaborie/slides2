@@ -11,7 +11,7 @@ data class Presentation(
     val title: Content,
     val theme: Theme = Theme.base,
     val scripts: Set<String> = emptySet(),
-    val content: List<Content> = emptyList(),
+    val parts: List<Part> = emptyList(),
     val lang: String = "en"
 ) : Content {
 
@@ -21,10 +21,17 @@ data class Presentation(
         }
     }
 
-    val key: String by lazy {
-        sTitle.asKey()
+    val id: Id by lazy {
+        Id(sTitle.asKey())
     }
 
+    val coverSlide: Slide = Slide(
+        id = Id("${id.id}_cover"),
+        title = title,
+        styles = setOf("header-hidden"),
+        content = listOf(title)
+    )
+
     operator fun plus(part: Part): Presentation =
-        copy(content = content + part)
+        copy(parts = parts + part)
 }

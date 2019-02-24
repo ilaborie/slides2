@@ -21,11 +21,13 @@ object SlideEngine {
         registerRenderers(TitleTextRenderer, TitleHtmlRenderer)
         registerRenderers(ParagraphTextRenderer, ParagraphHtmlRenderer)
         registerRenderers(StyledTextTextRenderer, StyledTextHtmlRenderer)
+        registerRenderers(OrderedListHtmlRenderer, OrderedListHtmlRenderer)
+        registerRenderers(UnorderedListHtmlRenderer, UnorderedListHtmlRenderer)
 
         // Presentation, Part, Slide
         registerRenderer(PresentationHtmlRenderer)
-        registerRenderer(PartHtmlRenderer)
         registerRenderer(SlideHtmlRenderer)
+//        registerRenderer(PartHtmlRenderer)
     }
 
     inline fun <reified T : Content> registerRenderer(renderer: Renderer<T>): SlideEngine {
@@ -58,9 +60,9 @@ object SlideEngine {
     fun Presentation.render(config: Config, mode: RenderMode = Html) {
         findRenderer(mode, this)
             ?.let { renderer ->
-                val filename = "$key.html"
+                val filename = "${id.id}.html"
                 notifier.time("Write to ${Styles.highlight(filename)}") {
-                    config.output.writeFile(key, filename) {
+                    config.output.writeFile(id.id, filename) {
                         renderer.render(this)
                     }
                 }
@@ -74,8 +76,9 @@ object SlideEngine {
         when (content) {
             is Presentation -> content.copy(
                 title = plug(content.title),
-                content = content.content
+                parts = content.parts
                     .map(this::plugContent)
+                    .filterIsInstance<Part>()
             )
             is Part         -> content.copy(
                 title = plug(content.title),

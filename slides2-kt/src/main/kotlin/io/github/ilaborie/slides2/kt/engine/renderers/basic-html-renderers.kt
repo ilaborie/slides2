@@ -3,17 +3,15 @@ package io.github.ilaborie.slides2.kt.engine.renderers
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Renderer
+import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
-import io.github.ilaborie.slides2.kt.engine.contents.Paragraph
-import io.github.ilaborie.slides2.kt.engine.contents.StyledText
-import io.github.ilaborie.slides2.kt.engine.contents.Text
+import io.github.ilaborie.slides2.kt.engine.contents.*
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Emphasis
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Keyboard
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Mark
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Pre
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Strong
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.UnderLine
-import io.github.ilaborie.slides2.kt.engine.contents.Title
 
 
 abstract class HtmlTagRenderer<T : Content> : Renderer<T> {
@@ -70,3 +68,38 @@ object StyledTextHtmlRenderer : HtmlTagRenderer<StyledText>() {
         content.content
 }
 
+
+object OrderedListHtmlRenderer : Renderer<OrderedList> {
+    override val mode: RenderMode = Html
+
+    override fun render(content: OrderedList): String {
+        val body = with(SlideEngine) {
+            content.inner
+                .joinToString("\n") {
+                    """<li>
+                            |${render(mode, it).prependIndent("  ")}
+                            |</li>""".trimMargin()
+                }
+        }
+        return """<ol>
+                |${body.prependIndent("  ")}
+                |</ol>""".trimMargin()
+    }
+}
+object UnorderedListHtmlRenderer : Renderer<UnorderedList> {
+    override val mode: RenderMode = Html
+
+    override fun render(content: UnorderedList): String {
+        val body = with(SlideEngine) {
+            content.inner
+                .joinToString("\n") {
+                    """<li>
+                            |${render(mode, it).prependIndent("  ")}
+                            |</li>""".trimMargin()
+                }
+        }
+        return """<ul>
+                |${body.prependIndent("  ")}
+                |</ul>""".trimMargin()
+    }
+}

@@ -1,14 +1,13 @@
 package io.github.ilaborie.slides2.kt.dsl
 
-import io.github.ilaborie.slides2.kt.engine.Content
-import io.github.ilaborie.slides2.kt.engine.Presentation
-import io.github.ilaborie.slides2.kt.engine.Theme
+import io.github.ilaborie.slides2.kt.engine.*
 import io.github.ilaborie.slides2.kt.engine.contents.h2
+import io.github.ilaborie.slides2.kt.jvm.asKey
 
 @PresentationMarker
 class PresentationBuilder {
 
-    internal val parts: MutableList<LazyPart> = mutableListOf()
+    internal val parts: MutableList<LazyBuilder<Part>> = mutableListOf()
 
     fun part(
         title: String,
@@ -16,10 +15,12 @@ class PresentationBuilder {
         block: PartBuilder.() -> Unit
     ) {
         val partTitle = title.h2
-        parts.add(Info(partTitle) to {
-            PartBuilder(this)
+        val partIndex = parts.size + 1
+        val partId = Id("${partIndex}_${title.asKey()}")
+        parts.add(LazyBuilder(partId, partTitle) {
+            PartBuilder(partIndex, this)
                 .apply(block)
-                .build(partTitle, style)
+                .build(partId, partTitle, style)
         })
     }
 
@@ -33,7 +34,7 @@ class PresentationBuilder {
             title = title,
             theme = theme,
             scripts = scripts,
-            content = parts.map { it.second() },
+            parts = parts.map { it.builder() },
             lang = lang
         )
 

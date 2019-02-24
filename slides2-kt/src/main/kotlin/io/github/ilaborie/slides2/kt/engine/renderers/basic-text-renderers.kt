@@ -2,10 +2,8 @@ package io.github.ilaborie.slides2.kt.engine.renderers
 
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.Renderer
-import io.github.ilaborie.slides2.kt.engine.contents.Paragraph
-import io.github.ilaborie.slides2.kt.engine.contents.StyledText
-import io.github.ilaborie.slides2.kt.engine.contents.Text
-import io.github.ilaborie.slides2.kt.engine.contents.Title
+import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
+import io.github.ilaborie.slides2.kt.engine.contents.*
 
 
 object TextTextRenderer : Renderer<Text> {
@@ -38,3 +36,23 @@ object StyledTextTextRenderer : Renderer<StyledText> {
         }
 }
 
+
+object OrderedListTextRenderer : Renderer<OrderedList> {
+    override val mode: RenderMode = Renderer.Companion.RenderMode.Text
+
+    override fun render(content: OrderedList): String =
+        with(SlideEngine) {
+            content.inner
+                .joinToString("\n") { render(mode, it) }
+        }
+}
+
+object UnorderedListTextRenderer : Renderer<UnorderedList> {
+    override val mode: RenderMode = Renderer.Companion.RenderMode.Html
+
+    override fun render(content: UnorderedList): String =
+        with(SlideEngine) {
+            content.inner
+                .joinToString("\n") { render(mode, it) }
+        }
+}
