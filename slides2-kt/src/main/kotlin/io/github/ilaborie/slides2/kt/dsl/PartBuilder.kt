@@ -37,9 +37,11 @@ class PartBuilder(internal val index: Int, internal val presentationDsl: Present
 
     fun roadmap(title: String) {
         slide(title) {
-            val content = this@PartBuilder.presentationDsl.parts
-                .map { it.title }
-            ol(content)
+            ol {
+                this@PartBuilder.presentationDsl
+                    .parts
+                    .map { it.title }
+            }
         }
     }
 }

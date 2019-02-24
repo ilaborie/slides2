@@ -1,11 +1,13 @@
 [package]
-name = "test-rust-ffi"
+name = "slides2-md-to-str"
 version = "0.1.0"
 authors = ["Igor Laborie <ilaborie@gmail.com>"]
 edition = "2018"
 
 [dependencies]
 jni = "0.10.2"
+pulldown-cmark = "0.2.0"
+
 
 [lib]
 crate_type = ["cdylib"]

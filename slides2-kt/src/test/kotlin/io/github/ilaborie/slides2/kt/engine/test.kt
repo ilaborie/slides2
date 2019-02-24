@@ -29,7 +29,7 @@ fun main() {
             roadmap("Roadmap")
         }
         part("Another part") {
-            slide("Slide 1") { p("lorem ipsum") }
+            slide("Slide with Markdown") { markdown("lorem **ipsum**") }
             slide("Slide 2") { p("lorem ipsum") }
             slide("Slide 3") { p("lorem ipsum") }
             slide("Slide 4") { p("lorem ipsum") }
