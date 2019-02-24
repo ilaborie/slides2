@@ -15,7 +15,7 @@ fun main() {
 
     val config = Config(
         notifier = Notifier(JvmStopWatch),
-        output = JvmFolder(File("src/main/web"), notifier = notifier)
+        output = JvmFolder(File("public/web"), notifier = notifier)
     )
 
     // Configure engine

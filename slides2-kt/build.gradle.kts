@@ -20,6 +20,7 @@ val vKotlintest: String by project
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("script-runtime"))
     testImplementation("io.kotlintest:kotlintest-runner-junit5:$vKotlintest")
 }
 

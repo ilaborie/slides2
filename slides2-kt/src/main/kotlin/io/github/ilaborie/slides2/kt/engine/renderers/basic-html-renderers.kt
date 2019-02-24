@@ -12,6 +12,7 @@ import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Mark
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Pre
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Strong
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.UnderLine
+import io.github.ilaborie.slides2.kt.jvm.esccapeHtml
 
 
 abstract class HtmlTagRenderer<T : Content> : Renderer<T> {
@@ -34,7 +35,7 @@ abstract class HtmlTagRenderer<T : Content> : Renderer<T> {
 object TextHtmlRenderer : Renderer<Text> {
     override val mode = Html
     override fun render(content: Text): String =
-        content.text // FIXME escape
+        if (content.escape) content.text.esccapeHtml() else content.text
 }
 
 object TitleHtmlRenderer : HtmlTagRenderer<Title>() {
@@ -86,6 +87,7 @@ object OrderedListHtmlRenderer : Renderer<OrderedList> {
                 |</ol>""".trimMargin()
     }
 }
+
 object UnorderedListHtmlRenderer : Renderer<UnorderedList> {
     override val mode: RenderMode = Html
 

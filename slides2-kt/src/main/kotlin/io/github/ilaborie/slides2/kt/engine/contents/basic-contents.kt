@@ -3,8 +3,7 @@ package io.github.ilaborie.slides2.kt.engine.contents
 import io.github.ilaborie.slides2.kt.engine.ContainerContent
 import io.github.ilaborie.slides2.kt.engine.Content
 
-
-data class Text(val text: String) : Content
+data class Text(val text: String, val escape: Boolean = true) : Content
 
 data class Title(val level: Int, val content: Content) : ContainerContent {
     init {

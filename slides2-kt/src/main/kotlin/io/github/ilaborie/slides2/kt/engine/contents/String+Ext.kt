@@ -8,6 +8,9 @@ import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Strong
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.UnderLine
 
 
+val String.raw: Text
+    get() = Text(this, escape = false)
+
 fun String.header(level: Int): Title =
     Title(level, Text(this))
 

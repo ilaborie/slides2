@@ -9,3 +9,13 @@ fun String.asKey(): String =
         .replace(Regex("[\\s]"), "-")
         .replace(Regex("[^\\p{ASCII}]"), "")
         .replace(Regex("[\\W]"), "_")
+
+fun String.esccapeHtml(): String =
+    map { ch ->
+        when (ch) {
+            '<'  -> "&lt;"
+            '>'  -> "&gt;"
+            '&'  -> "&amp;"
+            else -> ch.toString()
+        }
+    }.joinToString("")
