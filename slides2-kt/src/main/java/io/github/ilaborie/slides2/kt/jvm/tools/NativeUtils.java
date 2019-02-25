@@ -41,6 +41,15 @@ import java.nio.file.*;
 // @see https://github.com/adamheinrich/native-utils
 public class NativeUtils {
 
+    public static void loadLib(String libname) {
+        String lib = System.mapLibraryName(libname);
+        try {
+            NativeUtils.loadLibraryFromJar("/native/" + lib);
+        } catch (IOException e) {
+            throw new IllegalStateException("Cannot find library " + lib, e);
+        }
+    }
+
     /**
      * The minimum length a prefix for a file has to have according to {@link File#createTempFile(String, String)}}.
      */

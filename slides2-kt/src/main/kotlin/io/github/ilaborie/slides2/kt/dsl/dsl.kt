@@ -1,5 +1,6 @@
 package io.github.ilaborie.slides2.kt.dsl
 
+import io.github.ilaborie.slides2.kt.Folder
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Id
@@ -18,6 +19,7 @@ internal data class LazyBuilder<T>(
 )
 
 fun pres(
+    input: Folder,
     title: String,
     theme: Theme = Theme.base,
     scripts: Set<String> = emptySet(),
@@ -25,8 +27,8 @@ fun pres(
     block: PresentationBuilder.() -> Unit
 ): Presentation =
     SlideEngine.applyPlugins {
-    PresentationBuilder()
-        .apply(block)
-        .build(title = title.h1, theme = theme, scripts = scripts, lang = lang)
+        PresentationBuilder(input)
+            .apply(block)
+            .build(title = title.h1, theme = theme, scripts = scripts, lang = lang)
     }
 

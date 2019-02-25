@@ -1,13 +1,15 @@
 extern crate jni;
+extern crate sass_rs;
 
 use jni::JNIEnv;
 use jni::objects::{JClass, JString};
 use jni::sys::jstring;
-use pulldown_cmark::{html, Parser};
+use sass_rs::{compile_file, Options};
+use sass_rs::OutputStyle;
 
 #[no_mangle]
 #[allow(non_snake_case)]
-pub extern "system" fn Java_io_github_ilaborie_slides2_kt_jvm_tools_MarkdownToHtml_markdownToHtml(
+pub extern "system" fn Java_io_github_ilaborie_slides2_kt_jvm_tools_ScssToCss_scssFileToCss(
     env: JNIEnv,
     _class: JClass,
     input: JString,
@@ -17,13 +19,14 @@ pub extern "system" fn Java_io_github_ilaborie_slides2_kt_jvm_tools_MarkdownToHt
         .expect("Couldn't get java string!")
         .into();
 
-    let parser = Parser::new(&input);
+    let mut options = Options::default();
+    options.output_style = OutputStyle::Compressed;
 
-    let mut html_buf = String::new();
-    html::push_html(&mut html_buf, parser);
+    let compiled = compile_file(&input, options)
+        .expect("Could not compile SCSS");
 
     env
-        .new_string(html_buf)
+        .new_string(compiled)
         .expect("Couldn't create java string!")
         .into_inner()
 }

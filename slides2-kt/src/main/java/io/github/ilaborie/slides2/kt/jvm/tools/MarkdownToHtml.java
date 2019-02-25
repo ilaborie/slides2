@@ -1,17 +1,11 @@
 package io.github.ilaborie.slides2.kt.jvm.tools;
 
-import java.io.IOException;
+import static io.github.ilaborie.slides2.kt.jvm.tools.NativeUtils.loadLib;
 
 public class MarkdownToHtml {
 
     static {
-        String libname = "slides2_md_to_str";
-        String lib = System.mapLibraryName(libname);
-        try {
-            NativeUtils.loadLibraryFromJar("/native/" + lib);
-        } catch (IOException e) {
-            throw new IllegalStateException("Cannot find library " + lib, e);
-        }
+        loadLib("slides2_md_to_str");
     }
 
     public static native String markdownToHtml(String markdown);

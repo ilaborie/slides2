@@ -5,12 +5,11 @@ import io.github.ilaborie.slides2.kt.cli.Notifier
 import java.io.File
 
 
-class JvmFolder(val file: File, val notifier: Notifier) : Folder {
+class JvmFolder(private val file: File, val notifier: Notifier) : Folder {
 
     init {
         require(file.isDirectory || !file.exists()) { "Expected a folder, and $file already exists" }
     }
-
 
     private fun resolve(vararg path: String): File =
         path.fold(file) { acc, elt -> acc.resolve(elt) }
@@ -20,9 +19,22 @@ class JvmFolder(val file: File, val notifier: Notifier) : Folder {
                 }
             }
 
-    override fun writeFile(parent: String, filename: String, block: () -> String) {
-        resolve(parent, filename)
+    override fun writeFile(filename: String, block: () -> String) {
+        resolve(filename)
             .also { if (it.exists()) notifier.info("FS") { "Override file $it" } }
             .writeText(block())
     }
+
+    override fun readFileAsString(filename: String): String =
+        resolve(filename)
+            .also { notifier.info("FS") { "Read file ${it.absolutePath}" } }
+            .readText()
+
+    override fun resolveAbsolutePath(filename: String): String =
+        resolve(filename)
+            .absolutePath
+
+    override fun div(name: String): Folder =
+        JvmFolder(file.resolve(name), notifier)
+
 }

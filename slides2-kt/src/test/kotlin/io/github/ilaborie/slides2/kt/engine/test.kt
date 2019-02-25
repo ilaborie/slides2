@@ -8,6 +8,7 @@ import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.plugins.CheckContentPlugin
 import io.github.ilaborie.slides2.kt.jvm.JvmFolder
 import io.github.ilaborie.slides2.kt.jvm.JvmStopWatch
+import io.github.ilaborie.slides2.kt.jvm.tools.HtmlToPdf
 import java.io.File
 
 
@@ -15,7 +16,8 @@ fun main() {
 
     val config = Config(
         notifier = Notifier(JvmStopWatch),
-        output = JvmFolder(File("public/web"), notifier = notifier)
+        output = JvmFolder(File("public/web"), notifier = notifier),
+        input = JvmFolder(File("src/main/presentation/samples/test"), notifier = notifier)
     )
 
     // Configure engine
@@ -23,13 +25,13 @@ fun main() {
         .apply { notifier = config.notifier }
         .registerContentPlugin(CheckContentPlugin(config.notifier))
 
-    val presentation = pres("Test") {
+    val presentation = pres(config.input, "Test") {
         part("A part") {
             slide("A slide") { p("lorem ipsum") }
             roadmap("Roadmap")
         }
         part("Another part") {
-            slide("Slide with Markdown") { markdown("lorem **ipsum**") }
+            slide("Slide with Markdown") { markdownFile("content/test.md") }
             slide("Slide 2") { p("lorem ipsum") }
             slide("Slide 3") { p("lorem ipsum") }
             slide("Slide 4") { p("lorem ipsum") }
@@ -43,6 +45,7 @@ fun main() {
 
     with(SlideEngine) {
         presentation.render(config)
+        presentation.renderPdf(config)
     }
 
 }

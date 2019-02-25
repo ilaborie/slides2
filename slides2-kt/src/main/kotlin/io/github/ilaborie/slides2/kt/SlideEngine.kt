@@ -7,6 +7,7 @@ import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
+import io.github.ilaborie.slides2.kt.jvm.tools.HtmlToPdf
 
 object SlideEngine {
 
@@ -14,6 +15,8 @@ object SlideEngine {
 
     val rendererMap: MutableMap<String, MutableMap<RenderMode, Renderer<*>>> = mutableMapOf()
     private val contentPlugins: MutableList<ContentPlugin> = mutableListOf()
+
+    private val cache: MutableMap<Pair<RenderMode, Presentation>, String> = mutableMapOf()
 
     init {
         // Base
@@ -62,11 +65,26 @@ object SlideEngine {
             ?.let { renderer ->
                 val filename = "${id.id}.html"
                 notifier.time("Write to ${Styles.highlight(filename)}") {
-                    config.output.writeFile(id.id, filename) {
-                        renderer.render(this)
+                    (config.output / id.id).writeFile(filename) {
+                        cache.computeIfAbsent(mode to this) {
+                            renderer.render(this)
+                        }
                     }
                 }
             } ?: notifier.error { "No renderer found for $this" }
+    }
+
+    fun Presentation.renderPdf(config: Config) {
+        val output = (config.output / id.id)
+        val filename = "${id.id}.pdf"
+        val content = cache.computeIfAbsent(Html to this) {
+            findRenderer(Html, this)
+                ?.render(this)
+                ?: throw IllegalStateException("No HTML renderer found for $this")
+        }
+        notifier.time("Write to ${Styles.highlight(filename)}") {
+            HtmlToPdf.htmlToPdf(sTitle, content, output.resolveAbsolutePath(filename))
+        }
     }
 
     fun applyPlugins(function: () -> Presentation): Presentation =

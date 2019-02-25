@@ -27,6 +27,11 @@ class SlideBuilder(internal val index: Int, internal val partDsl: PartBuilder) {
         content.add { Text(html, escape = false) }
     }
 
+    fun markdownFile(filename: String) {
+        val md = partDsl.presentationDsl.input.readFileAsString(filename)
+        markdown(md)
+    }
+
     fun p(text: String) {
         content.add { text.p }
     }
