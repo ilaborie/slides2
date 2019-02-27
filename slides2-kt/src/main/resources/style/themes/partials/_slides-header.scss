@@ -13,15 +13,10 @@ main > section > header {
   &::after {
     counter-increment: section;
     content: "#" counter(section);
-
-    display: flex;
-    align-content: center;
-    justify-content: center;
-
     background: var(--counterBg);
     color: var(--counterFg);
     font-family: var(--font-counter);
-    margin-right: .5em;
-    line-height: 2;
+    margin: .25em 1em;
+    font-size: 1.25em;
   }
 }
