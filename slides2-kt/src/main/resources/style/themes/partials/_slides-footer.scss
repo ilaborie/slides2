@@ -2,6 +2,7 @@
 main > section > footer {
   background: var(--footerBg);
   color: var(--footerFg);
+  box-shadow: inset 0 0.1em 0.1em rgba(0, 0, 0, .25);
 
   &::before {
     margin-left: .25em;

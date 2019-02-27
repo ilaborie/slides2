@@ -63,6 +63,10 @@ h5, h6 {
   font-size: 1em;
 }
 
+p {
+  margin: .25em 0;
+}
+
 .visually-hidden { // https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
   position: absolute !important;
   height: 1px;

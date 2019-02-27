@@ -40,7 +40,7 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
             |  <title>${content.sTitle}</title>
             |</head>
             |<body>
-            |  <header>
+            |  <header class="no-print">
             |    ${render(mode, content.title)}
             |    <a href="#${content.coverSlide.id.id}">▶️</a>
             |  </header>

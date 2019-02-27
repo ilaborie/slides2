@@ -1,15 +1,42 @@
 @media print {
+
+  @page {
+    size: landscape;
+  }
+
+
   .no-print {
     display: none;
   }
 
+  body {
+    overflow-y: scroll;
+  }
+
+
   main {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
   }
 
   main > section {
     margin: 1em;
+    width: calc(100vw - 2em);
+    height: calc(100vh - 2em);
 
+    position: relative;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .5);
+    page-break-before: always;
+    page-break-after: always;
+    page-break-inside: avoid;
+
+    & > nav {
+      display: none;
+    }
+
+    & > article {
+      overflow: hidden;
+    }
   }
 }
