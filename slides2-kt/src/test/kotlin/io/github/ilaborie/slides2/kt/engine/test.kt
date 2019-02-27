@@ -8,7 +8,6 @@ import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.plugins.CheckContentPlugin
 import io.github.ilaborie.slides2.kt.jvm.JvmFolder
 import io.github.ilaborie.slides2.kt.jvm.JvmStopWatch
-import io.github.ilaborie.slides2.kt.jvm.tools.HtmlToPdf
 import java.io.File
 
 
@@ -44,8 +43,8 @@ fun main() {
     }
 
     with(SlideEngine) {
-        presentation.render(config)
-        presentation.renderPdf(config)
+        presentation.renderHtml(config)
+//        presentation.renderPdf(config)
     }
 
 }

@@ -18,3 +18,4 @@ done
 pushd slides2-kt
 ./gradlew clean assemble
 popd
+

@@ -1,4 +1,12 @@
+@import "root";
 
-body {
-  color: #222;
-}
+@import "partials/base";
+
+@import "partials/slides";
+@import "partials/slides-header";
+@import "partials/slides-footer";
+@import "partials/slides-navigation";
+@import "partials/slides-sliding";
+@import "partials/slides-gridview";
+
+@import "partials/print";

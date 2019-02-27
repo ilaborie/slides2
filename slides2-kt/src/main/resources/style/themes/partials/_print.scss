@@ -1,0 +1,10 @@
+@media print {
+  .no-print {
+    display: none;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+}

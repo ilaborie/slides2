@@ -1,21 +1,19 @@
 package io.github.ilaborie.slides2.kt.engine
 
+import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss
 
-interface Theme {
-    val compiled: String
+
+data class Theme(val name: String) {
+    val compiled by lazy {
+        ScssToCss.scssFileToCss("src/main/resources/style/themes/$name.scss")
+    }
 
     companion object {
-        data class ScssResource(val path: String) : Theme {
-            override val compiled by lazy {
-                "/* TODO */"
-            }
-        }
 
-        val base: Theme = ScssResource("style/themes/base.scss")
-
-        val tlsJug: Theme = ScssResource("style/themes/tls-jug.scss")
-
-        val mixit19: Theme = ScssResource("style/themes/mixit-19.scss")
+        val base = Theme("base")
+        val tlsJug = Theme("tls-jug")
+        val mixit19 = Theme("mixit-19")
+        val sunnyTech19 = Theme("sunnytech-19")
 
         // tlsGdg, xxxDevfestYy, frDevoxxYY, voxxed, ...
     }

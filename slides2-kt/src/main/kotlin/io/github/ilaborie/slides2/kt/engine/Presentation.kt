@@ -2,6 +2,7 @@ package io.github.ilaborie.slides2.kt.engine
 
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
+import io.github.ilaborie.slides2.kt.engine.Theme.Companion.base
 import io.github.ilaborie.slides2.kt.jvm.asKey
 
 /**
@@ -9,7 +10,7 @@ import io.github.ilaborie.slides2.kt.jvm.asKey
  */
 data class Presentation(
     val title: Content,
-    val theme: Theme = Theme.base,
+    val theme: Theme = base,
     val scripts: Set<String> = emptySet(),
     val parts: List<Part> = emptyList(),
     val lang: String = "en"
@@ -28,7 +29,7 @@ data class Presentation(
     val coverSlide: Slide = Slide(
         id = Id("${id.id}_cover"),
         title = title,
-        styles = setOf("header-hidden"),
+        styles = setOf("cover", "header-hidden"),
         content = listOf(title)
     )
 

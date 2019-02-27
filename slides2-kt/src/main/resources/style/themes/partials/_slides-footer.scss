@@ -1,0 +1,11 @@
+
+main > section > footer {
+  background: salmon;
+
+  // TODO logo
+  // TODO tags
+
+  &::after {
+    content: ' ';
+  }
+}

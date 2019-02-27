@@ -1,4 +1,6 @@
-package io.github.ilaborie.slides2.kt
+package io.github.ilaborie.slides2.kt.jvm
+
+import io.github.ilaborie.slides2.kt.Config
 
 
 fun main() {

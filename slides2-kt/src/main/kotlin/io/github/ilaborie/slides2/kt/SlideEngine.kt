@@ -5,6 +5,7 @@ import io.github.ilaborie.slides2.kt.cli.Styles
 import io.github.ilaborie.slides2.kt.engine.*
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
+import io.github.ilaborie.slides2.kt.engine.contents.pre
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
 import io.github.ilaborie.slides2.kt.jvm.tools.HtmlToPdf
@@ -60,17 +61,40 @@ object SlideEngine {
             ?.render(content)
             ?: throw IllegalStateException("No renderer found for $content")
 
-    fun Presentation.render(config: Config, mode: RenderMode = Html) {
-        findRenderer(mode, this)
+    fun Presentation.renderHtml(config: Config) {
+        findRenderer(Html, this)
             ?.let { renderer ->
-                val filename = "${id.id}.html"
+                val folder = config.output / id.id
+                // Slides
+                val filename = "index-${theme.name}.html"
                 notifier.time("Write to ${Styles.highlight(filename)}") {
-                    (config.output / id.id).writeFile(filename) {
-                        cache.computeIfAbsent(mode to this) {
+                    folder.writeFile(filename) {
+                        cache.computeIfAbsent(Html to this) {
                             renderer.render(this)
                         }
                     }
                 }
+                // Style
+                val themeFile = "${theme.name}.css"
+                notifier.time("Write to ${Styles.highlight(themeFile)}") {
+                    folder.writeFile(themeFile) {
+                        theme.compiled
+                    }
+                }
+                if (scripts.isNotEmpty()) {
+                    scripts
+                        .filterNot { it.startsWith("http") } // do not copy external scripts
+                        .forEach { script ->
+                            notifier.time("Copy ${Styles.highlight(script)}") {
+                                folder.writeFile(script) {
+                                    // lookup in current folder
+                                    // lookup in src/resources/script folder
+                                    TODO()
+                                }
+                            }
+                        }
+                }
+                // TODO Script ?
             } ?: notifier.error { "No renderer found for $this" }
     }
 

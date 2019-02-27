@@ -13,7 +13,8 @@ data class Part(
     val headerSlide: Slide = Slide(
         id = Id("${id.id}_part"),
         title = title,
-        styles = setOf("header-hidden", "part")
+        styles = setOf("header-hidden", "part"),
+        content = listOf(title)
     )
 
     val allSlides: List<Slide> by lazy {
