@@ -37,9 +37,9 @@ object SlideHtmlRenderer : Renderer<Slide> {
                 |${render(mode, content.title).prependIndent("    ")}
                 |  </header>
                 |${previous.prependIndent("  ")}
-                |  <div class="body">
+                |  <article>
                 |${body.prependIndent("    ")}
-                |  </div>
+                |  </article>
                 |${next.prependIndent("  ")}
                 |  <footer></footer>
                 |</section>

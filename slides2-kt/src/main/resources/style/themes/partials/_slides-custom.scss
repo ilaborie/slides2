@@ -1,0 +1,43 @@
+
+main > section {
+
+  &.header-hidden {
+    grid-template-rows: 1fr auto;
+
+    & > header {
+      display: none;
+    }
+  }
+
+  &.footer-hidden {
+    grid-template-rows: auto 1fr;
+
+    & > header {
+      display: none;
+    }
+  }
+
+  &.two-columns {
+    article {
+      ul, ol {
+        column-count: 2;
+        column-gap: 2em;
+      }
+    }
+  }
+
+  // Cover, Part
+  &.cover, &.part {
+    & > article {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &.part {
+    background: var(--partBg);
+    color: var(--partFg);
+  }
+
+}

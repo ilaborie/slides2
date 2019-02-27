@@ -40,15 +40,15 @@
   --partFg: var(--colDark);
 
   // Header
-  --headerBg: var(--col2);
+  --headerBg: linear-gradient(to right, transparent, hsla(0,100%,100%,.125)) var(--col2);
   --headerFg: var(--colDark);
-  --counterBg: linear-gradient(to left, transparent, transparent);
+  --counterBg: transparent;
   --counterFg: var(--headerFg);
 
   // Footer
-  --footerLogo: linear-gradient(to left, transparent, transparent);
+  --footerLogo: transparent;
   --footerText: '@ilaborie';
-  --footerBg: var(--col4);
+  --footerBg: linear-gradient(to left, transparent, hsla(0,100%,100%,.125)) var(--col4);
   --footerFg: var(--colLight);
 
 }

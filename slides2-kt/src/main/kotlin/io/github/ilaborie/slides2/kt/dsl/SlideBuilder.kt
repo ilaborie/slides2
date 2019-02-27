@@ -22,14 +22,24 @@ class SlideBuilder(internal val index: Int, internal val partDsl: PartBuilder) {
             content = content.map { it() }
         )
 
-    fun markdown(md: String) {
-        val html = MarkdownToHtml.markdownToHtml(md)
-        content.add { Text(html, escape = false) }
+    fun file(file: String) {
+        val extension = file.split(".").last()
+        val content = partDsl.presentationDsl.input.readFileAsString(file)
+        when (extension) {
+            "md" -> markdown(content)
+            "html" -> html(content)
+            else ->
+                throw IllegalArgumentException("Unexpected file type, only *.{md,html} are supported yet, got $file")
+        }
     }
 
-    fun markdownFile(filename: String) {
-        val md = partDsl.presentationDsl.input.readFileAsString(filename)
-        markdown(md)
+    fun markdown(md: String) {
+        val html = MarkdownToHtml.markdownToHtml(md)
+        html(html)
+    }
+
+    fun html(html: String) {
+        content.add { Text(html, escape = false) }
     }
 
     fun p(text: String) {

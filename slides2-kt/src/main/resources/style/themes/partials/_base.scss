@@ -39,6 +39,30 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: .0625rem .0625rem rgba(0, 0, 0, 0.5);
 }
 
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.25em;
+}
+
+h4 {
+  font-size: 1.125em;
+}
+
+h4 {
+  font-size: 1.0625em;
+}
+
+h5, h6 {
+  font-size: 1em;
+}
+
 .visually-hidden { // https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
   position: absolute !important;
   height: 1px;

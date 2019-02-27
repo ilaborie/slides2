@@ -8,6 +8,7 @@ import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.plugins.CheckContentPlugin
 import io.github.ilaborie.slides2.kt.jvm.JvmFolder
 import io.github.ilaborie.slides2.kt.jvm.JvmStopWatch
+import io.kotlintest.properties.Gen.Companion.file
 import java.io.File
 
 
@@ -30,7 +31,7 @@ fun main() {
             roadmap("Roadmap")
         }
         part("Another part") {
-            slide("Slide with Markdown") { markdownFile("content/test.md") }
+            slide("Slide with Markdown", styles= setOf("two-columns")) { file("content/test.md") }
             slide("Slide 2") { p("lorem ipsum") }
             slide("Slide 3") { p("lorem ipsum") }
             slide("Slide 4") { p("lorem ipsum") }
