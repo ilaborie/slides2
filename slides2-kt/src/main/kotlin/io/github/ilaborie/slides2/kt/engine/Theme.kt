@@ -14,6 +14,7 @@ data class Theme(val name: String) {
         val tlsJug = Theme("tls-jug")
         val mixit19 = Theme("mixit-19")
         val sunnyTech19 = Theme("sunnytech-19")
+        val rivieraDev19 = Theme("rivieradev-19")
 
         // tlsGdg, xxxDevfestYy, frDevoxxYY, voxxed, ...
     }

@@ -1,6 +1,5 @@
 
 main > section {
-  background: lightblue;
 
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -36,6 +35,11 @@ main > section {
   & > .body {
     grid-column: 2 / 3;
     overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   // Custom slides
@@ -62,6 +66,11 @@ main > section {
       justify-content: center;
       align-items: center;
     }
+  }
+
+  &.part {
+    background: var(--partBg);
+    color: var(--partFg);
   }
 
 }

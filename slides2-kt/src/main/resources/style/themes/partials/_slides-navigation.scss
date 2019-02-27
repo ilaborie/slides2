@@ -1,15 +1,22 @@
 
 main > section > nav {
-  color: rgba(0, 0, 0, .1);
-  background: rgba(0, 0, 0, .1);
+  color: rgba(0, 0, 0, .05);
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 1rem;
+  align-items: stretch;
+
+
+  &:hover {
+    background: rgba(0, 0, 0, .05);
+  }
 
   a {
+    padding: 1rem;
     font-size: 2rem;
     color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   a, a:hover {
@@ -21,11 +28,22 @@ main > section > nav {
   }
 
   a::before {
-    content: '☞';
+    //content: '☞';
+    content: '›';
   }
 
   &.previous {
     transform: scaleX(-1);
+
+    a:hover {
+      cursor: w-resize;
+    }
+  }
+
+  &.next {
+    a:hover {
+      cursor: e-resize;
+    }
   }
 
 }

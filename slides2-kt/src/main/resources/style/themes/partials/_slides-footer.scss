@@ -1,11 +1,16 @@
 
 main > section > footer {
-  background: salmon;
+  background: var(--footerBg);
+  color: var(--footerFg);
 
-  // TODO logo
-  // TODO tags
+  &::before {
+    margin-left: .25em;
+    content: var(--footerText);
+    text-shadow: .05em .05em rgba(0, 0, 0, 0.5);
+  }
 
   &::after {
-    content: ' ';
+    content: '';
+    background: var(--footerLogo);
   }
 }

@@ -24,7 +24,7 @@ fun main() {
         .apply { notifier = config.notifier }
         .registerContentPlugin(CheckContentPlugin(config.notifier))
 
-    val presentation = pres(config.input, "Test") {
+    val presentation = pres(config.input, "Demo Presentation") {
         part("A part") {
             slide("A slide") { p("lorem ipsum") }
             roadmap("Roadmap")
