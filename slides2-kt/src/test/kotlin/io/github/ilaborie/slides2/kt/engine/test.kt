@@ -22,8 +22,12 @@ fun main() {
 
     // Configure engine
     SlideEngine
-        .apply { notifier = config.notifier }
         .registerContentPlugin(CheckContentPlugin(config.notifier))
+        .apply {
+            notifier = config.notifier
+            globalScripts += listOf("navigate.js", "toc.js")
+        }
+
 
     val presentation = pres("Demo Presentation") {
         part("A part") {

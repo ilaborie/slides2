@@ -6,12 +6,7 @@ import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.contents.*
-import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Emphasis
-import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Keyboard
-import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Mark
-import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Pre
-import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Strong
-import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.UnderLine
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.*
 import io.github.ilaborie.slides2.kt.jvm.esccapeHtml
 
 
@@ -32,9 +27,9 @@ abstract class HtmlTagRenderer<T : Content> : Renderer<T> {
         }
 }
 
-object TextHtmlRenderer : Renderer<Text> {
+object TextHtmlRenderer : Renderer<TextContent> {
     override val mode = Html
-    override fun render(content: Text): String =
+    override fun render(content: TextContent): String =
         if (content.escape) content.text.esccapeHtml() else content.text
 }
 
@@ -63,6 +58,10 @@ object StyledTextHtmlRenderer : HtmlTagRenderer<StyledText>() {
             Mark      -> "mark"
             Keyboard  -> "kbd"
             Pre       -> "pre"
+            Ins       -> "ins"
+            Del       -> "del"
+            Sub       -> "sub"
+            Sup       -> "sup"
         }
 
     override fun innerContent(content: StyledText): Content? =

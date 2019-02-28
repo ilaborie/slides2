@@ -8,11 +8,11 @@ import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Strong
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.UnderLine
 
 
-val String.raw: Text
-    get() = Text(this, escape = false)
+val String.raw: TextContent
+    get() = TextContent(this, escape = false)
 
 fun String.header(level: Int): Title =
-    Title(level, Text(this))
+    Title(level, TextContent(this))
 
 val String.h1: Title
     get() = header(1)
@@ -34,23 +34,23 @@ val String.h6: Title
 
 
 val String.p: Paragraph
-    get() = Paragraph(Text(this))
+    get() = Paragraph(TextContent(this))
 
 
 val String.strong: StyledText
-    get() = StyledText(Strong, Text(this))
+    get() = StyledText(Strong, TextContent(this))
 
 val String.em: StyledText
-    get() = StyledText(Emphasis, Text(this))
+    get() = StyledText(Emphasis, TextContent(this))
 
 val String.u: StyledText
-    get() = StyledText(UnderLine, Text(this))
+    get() = StyledText(UnderLine, TextContent(this))
 
 val String.mark: StyledText
-    get() = StyledText(Mark, Text(this))
+    get() = StyledText(Mark, TextContent(this))
 
 val String.kbd: StyledText
-    get() = StyledText(Keyboard, Text(this))
+    get() = StyledText(Keyboard, TextContent(this))
 
 val String.pre: StyledText
-    get() = StyledText(Pre, Text(this))
+    get() = StyledText(Pre, TextContent(this))

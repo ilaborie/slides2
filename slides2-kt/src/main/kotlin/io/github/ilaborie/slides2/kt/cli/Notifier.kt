@@ -33,7 +33,7 @@ class Notifier(private val stopWatch: StopWatch) {
         level++
         val (result, time) = stopWatch.time(supplier)
         level--
-        display(Styles.time("<<< ") + label + " took " + Styles.time(time), level)
+        display(Styles.time("<<< ⏱ ") + label + " took " + Styles.time(time), level)
         return result;
     }
 

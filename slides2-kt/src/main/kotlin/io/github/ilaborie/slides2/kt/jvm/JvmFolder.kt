@@ -15,7 +15,7 @@ class JvmFolder(private val file: File, val notifier: Notifier) : Folder {
         path.fold(file) { acc, elt -> acc.resolve(elt) }
             .also { parent ->
                 if (parent.parentFile.mkdirs()) {
-                    notifier.debug("FS") { "Create folder ${parent.parentFile}" }
+                    notifier.debug("💾: FS") { "Create folder ${parent.parentFile}" }
                 }
             }
 
@@ -24,13 +24,13 @@ class JvmFolder(private val file: File, val notifier: Notifier) : Folder {
 
     override fun writeFile(filename: String, block: () -> String) {
         resolve(filename)
-            .also { if (it.exists()) notifier.info("FS") { "Override file $it" } }
+            .also { if (it.exists()) notifier.info("💾: FS") { "Override file $it" } }
             .writeText(block())
     }
 
     override fun readFileAsString(filename: String): String =
         resolve(filename)
-            .also { notifier.info("FS") { "Read file ${it.absolutePath}" } }
+            .also { notifier.info("💾: FS") { "Read file ${it.absolutePath}" } }
             .readText()
 
     override fun resolveAbsolutePath(filename: String): String =

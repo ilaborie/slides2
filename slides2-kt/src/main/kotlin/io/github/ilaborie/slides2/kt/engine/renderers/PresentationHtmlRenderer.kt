@@ -6,6 +6,8 @@ import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 
+
+// FIXME add global progess
 open class PresentationHtmlRenderer(
     private val scripts: List<String> = emptyList(),
     private val stylesheets: List<String> = emptyList()
@@ -13,7 +15,7 @@ open class PresentationHtmlRenderer(
     override val mode: RenderMode = Html
 
     open fun head(presentation: Presentation): String {
-        val scripts = (listOf("./navigate.js") + scripts)
+        val scripts = (SlideEngine.globalScripts.map { "./$it" } + scripts)
             .joinToString("\n") {
                 """<script async type="module" src="$it"></script>"""
             }

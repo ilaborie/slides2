@@ -18,6 +18,8 @@ object SlideEngine {
 
     private val cache: MutableMap<Pair<RenderMode, Presentation>, String> = mutableMapOf()
 
+    val globalScripts: MutableList<String> = mutableListOf()
+
     init {
         // Base
         registerRenderers(TextTextRenderer, TextHtmlRenderer)
@@ -81,11 +83,12 @@ object SlideEngine {
                     }
                 }
                 // Scripts
-                val navScript = "navigate.js"
-                notifier.time("Write to ${Styles.highlight(navScript)}") {
-                    folder.writeFile(navScript) {
-                        javaClass.getResource("/scripts/$navScript").readText()
-                    }
+                notifier.time("Write to ${globalScripts.joinToString(", ") { Styles.highlight(it)} }}") {
+                        globalScripts.forEach { script ->
+                            folder.writeFile(script) {
+                                javaClass.getResource("/scripts/$script").readText()
+                            }
+                        }
                 }
             } ?: notifier.error { "No renderer found for $this" }
     }

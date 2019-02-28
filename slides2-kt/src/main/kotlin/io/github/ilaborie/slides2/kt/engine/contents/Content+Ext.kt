@@ -1,11 +1,15 @@
 package io.github.ilaborie.slides2.kt.engine.contents
 
 import io.github.ilaborie.slides2.kt.engine.Content
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Del
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Emphasis
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Ins
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Keyboard
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Mark
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Pre
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Strong
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sub
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sup
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.UnderLine
 
 
@@ -52,6 +56,18 @@ val <T : Content> T.kbd: StyledText
 
 val <T : Content> T.pre: StyledText
     get() = StyledText(Pre, this)
+
+val <T : Content> T.ins: StyledText
+    get() = StyledText(Ins, this)
+
+val <T : Content> T.del: StyledText
+    get() = StyledText(Del, this)
+
+val <T : Content> T.sub: StyledText
+    get() = StyledText(Sub, this)
+
+val <T : Content> T.sup: StyledText
+    get() = StyledText(Sup, this)
 
 
 val <T : List<Content>> T.ul: UnorderedList

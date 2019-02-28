@@ -4,7 +4,7 @@ import io.github.ilaborie.slides2.kt.cli.Styles
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Id
 import io.github.ilaborie.slides2.kt.engine.Slide
-import io.github.ilaborie.slides2.kt.engine.contents.Text
+import io.github.ilaborie.slides2.kt.engine.contents.TextContent
 import io.github.ilaborie.slides2.kt.engine.contents.ol
 import io.github.ilaborie.slides2.kt.engine.contents.p
 import io.github.ilaborie.slides2.kt.engine.contents.ul
@@ -48,7 +48,7 @@ class SlideBuilder(internal val index: Int, private val partDsl: PartBuilder) {
     }
 
     fun html(html: () -> String) {
-        content.add { Text(html(), escape = false) }
+        content.add { TextContent(html(), escape = false) }
     }
 
     fun p(text: () -> String) {

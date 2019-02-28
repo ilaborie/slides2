@@ -3,17 +3,18 @@ package io.github.ilaborie.slides2.kt.engine.renderers
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
+import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
 import io.github.ilaborie.slides2.kt.engine.contents.*
 
 
-object TextTextRenderer : Renderer<Text> {
-    override val mode = Renderer.Companion.RenderMode.Text
-    override fun render(content: Text): String =
+object TextTextRenderer : Renderer<TextContent> {
+    override val mode = Text
+    override fun render(content: TextContent): String =
         content.text
 }
 
 object TitleTextRenderer : Renderer<Title> {
-    override val mode = Renderer.Companion.RenderMode.Text
+    override val mode = Text
     override fun render(content: Title): String =
         with(SlideEngine) {
             render(mode, content.content)
@@ -21,7 +22,7 @@ object TitleTextRenderer : Renderer<Title> {
 }
 
 object ParagraphTextRenderer : Renderer<Paragraph> {
-    override val mode = Renderer.Companion.RenderMode.Text
+    override val mode = Text
     override fun render(content: Paragraph): String =
         with(SlideEngine) {
             render(mode, content.content)
@@ -29,7 +30,7 @@ object ParagraphTextRenderer : Renderer<Paragraph> {
 }
 
 object StyledTextTextRenderer : Renderer<StyledText> {
-    override val mode = Renderer.Companion.RenderMode.Text
+    override val mode = Text
     override fun render(content: StyledText): String =
         with(SlideEngine) {
             render(mode, content.content)
@@ -38,7 +39,7 @@ object StyledTextTextRenderer : Renderer<StyledText> {
 
 
 object OrderedListTextRenderer : Renderer<OrderedList> {
-    override val mode: RenderMode = Renderer.Companion.RenderMode.Text
+    override val mode: RenderMode = Text
 
     override fun render(content: OrderedList): String =
         with(SlideEngine) {
@@ -48,7 +49,7 @@ object OrderedListTextRenderer : Renderer<OrderedList> {
 }
 
 object UnorderedListTextRenderer : Renderer<UnorderedList> {
-    override val mode: RenderMode = Renderer.Companion.RenderMode.Html
+    override val mode: RenderMode = Text
 
     override fun render(content: UnorderedList): String =
         with(SlideEngine) {

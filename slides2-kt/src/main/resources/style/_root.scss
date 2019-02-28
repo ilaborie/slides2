@@ -12,8 +12,8 @@
 
   // Color
   // Help for color: https://colorhunt.co/palettes
-  --colDark: #000;
-  --colLight: #fff;
+  --colDark: #222;
+  --colLight: #fefefe;
 
   // Blue
   //--col1: #f9f7f7;
@@ -57,6 +57,10 @@
   --footerText: '@ilaborie';
   --footerBg: linear-gradient(to left, transparent, hsla(0,100%,100%,.125)) var(--col4);
   --footerFg: var(--colLight);
+
+  // TOC
+  --tocBg: var(--col3);
+  --tocFg: var(--colDark);
 
 }
 
