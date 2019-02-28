@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit.NANOSECONDS
 import java.util.concurrent.TimeUnit.SECONDS
 
 object JvmStopWatch : StopWatch {
-
+    // FIXME remove JVM dependencies
     override fun <T> time(supplier: () -> T): Pair<T, String> =
         Try { nanoTime() to supplier() }
             .map { (start, result) ->
