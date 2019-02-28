@@ -40,4 +40,14 @@ main > section {
     color: var(--partFg);
   }
 
+  // Roadmap
+  .roadmap {
+    header h3::before {
+      content: '🗺 ';
+    }
+    article {
+      font-size: 66%;
+    }
+  }
+
 }

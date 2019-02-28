@@ -19,6 +19,9 @@ class JvmFolder(private val file: File, val notifier: Notifier) : Folder {
                 }
             }
 
+    override fun exists(filename: String): Boolean =
+        resolve(filename).exists()
+
     override fun writeFile(filename: String, block: () -> String) {
         resolve(filename)
             .also { if (it.exists()) notifier.info("FS") { "Override file $it" } }

@@ -4,6 +4,7 @@ import io.github.ilaborie.slides2.kt.cli.Notifier
 
 
 interface Folder {
+    fun exists(filename: String):Boolean
     fun writeFile(filename: String, block: () -> String)
     fun readFileAsString(filename: String): String
     fun resolveAbsolutePath(filename: String): String

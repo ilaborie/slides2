@@ -29,6 +29,10 @@ Kotlin DSL
   * Navbar (part, slides, nb)
   * Welcome View
 
+
+// Quote, Figure, dl, Table, Notice
+// SourceCode,
+
 [P1]
 
 * Source Code
@@ -52,6 +56,11 @@ Kotlin DSL
 * Embedded Terminal ?
 * Figure Effect <https://bennettfeely.com/image-effects/>
 * Marker Highlight with Houdini <https://css-houdini.rocks/highlighter-marker-annotations>
+
+[P3]
+
+* UML with <http://plantuml.com/fr/>
+* Giphy
 
 ### [P1] CLI Usage
 

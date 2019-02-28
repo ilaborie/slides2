@@ -1,12 +1,13 @@
 package io.github.ilaborie.slides2.kt.dsl
 
 import io.github.ilaborie.slides2.kt.Folder
+import io.github.ilaborie.slides2.kt.cli.Notifier
 import io.github.ilaborie.slides2.kt.engine.*
 import io.github.ilaborie.slides2.kt.engine.contents.h2
 import io.github.ilaborie.slides2.kt.jvm.asKey
 
 @PresentationMarker
-class PresentationBuilder(internal val input: Folder) {
+class PresentationBuilder(internal val input: Folder, internal val notifier: Notifier) {
 
     internal val parts: MutableList<LazyBuilder<Part>> = mutableListOf()
 

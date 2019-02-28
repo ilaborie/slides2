@@ -5,10 +5,11 @@ import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.SlideEngine.notifier
 import io.github.ilaborie.slides2.kt.cli.Notifier
 import io.github.ilaborie.slides2.kt.dsl.pres
+import io.github.ilaborie.slides2.kt.engine.contents.p
+import io.github.ilaborie.slides2.kt.engine.contents.raw
 import io.github.ilaborie.slides2.kt.engine.plugins.CheckContentPlugin
 import io.github.ilaborie.slides2.kt.jvm.JvmFolder
 import io.github.ilaborie.slides2.kt.jvm.JvmStopWatch
-import io.kotlintest.properties.Gen.Companion.file
 import java.io.File
 
 
@@ -31,10 +32,43 @@ fun main() {
             roadmap("Roadmap")
         }
         part("Another part") {
-            slide("Slide with Markdown", styles= setOf("two-columns")) { file("content/test.md") }
-            slide("Slide 2") { p("lorem ipsum") }
-            slide("Slide 3") { p("lorem ipsum") }
-            slide("Slide 4") { p("lorem ipsum") }
+            slide("Slide with Markdown", styles = setOf("two-columns")) { file("content/test.md") }
+            slide("Slide 2") {
+                p("A simple list")
+                ul {
+                    listOf(
+                        "lorem".raw,
+                        "ipsum".raw,
+                        "dolor".raw,
+                        "sit".raw,
+                        "amet".raw
+                    )
+                }
+            }
+            slide("Slide 3", styles = setOf("two-columns")) {
+                markdown("A simple list with `two-columns` class")
+                ul {
+                    listOf(
+                        "lorem".raw,
+                        "ipsum".raw,
+                        "dolor".raw,
+                        "sit".raw,
+                        "amet".raw
+                    )
+                }
+            }
+            slide("Slide 4") {
+                p("A simple ordered list")
+                ol {
+                    listOf(
+                        "lorem".raw,
+                        "ipsum".raw,
+                        "dolor".raw,
+                        "sit".raw,
+                        "amet".raw
+                    )
+                }
+            }
             slide("Slide 5") { p("lorem ipsum") }
         }
         part("Last part") {

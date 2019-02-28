@@ -1,5 +1,6 @@
 package io.github.ilaborie.slides2.kt.dsl
 
+import io.github.ilaborie.slides2.kt.cli.Styles
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Id
 import io.github.ilaborie.slides2.kt.engine.Slide
@@ -7,10 +8,12 @@ import io.github.ilaborie.slides2.kt.engine.contents.Text
 import io.github.ilaborie.slides2.kt.engine.contents.ol
 import io.github.ilaborie.slides2.kt.engine.contents.p
 import io.github.ilaborie.slides2.kt.engine.contents.ul
-import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml
+import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml.markdownToHtml
 
 @PresentationMarker
-class SlideBuilder(internal val index: Int, internal val partDsl: PartBuilder) {
+class SlideBuilder(internal val index: Int, private val partDsl: PartBuilder) {
+
+    private val input = partDsl.presentationDsl.input
 
     private val content: MutableList<() -> Content> = mutableListOf()
 
@@ -24,26 +27,31 @@ class SlideBuilder(internal val index: Int, internal val partDsl: PartBuilder) {
 
     fun file(file: String) {
         val extension = file.split(".").last()
-        val content = partDsl.presentationDsl.input.readFileAsString(file)
+        if (!input.exists(file)) {
+            input.writeFile(file) { "TODO fill the slide [$index]" }
+            partDsl.presentationDsl.notifier.warning {
+                "No file ${Styles.highlight(file)}, it has been created with dummy content"
+            }
+        }
+        val content = { input.readFileAsString(file) }
         when (extension) {
             "md" -> markdown(content)
             "html" -> html(content)
-            else ->
+            else -> // FIXME handle code
                 throw IllegalArgumentException("Unexpected file type, only *.{md,html} are supported yet, got $file")
         }
     }
 
-    fun markdown(md: String) {
-        val html = MarkdownToHtml.markdownToHtml(md)
-        html(html)
+    fun markdown(md: () -> String) {
+        html { markdownToHtml(md()) }
     }
 
-    fun html(html: String) {
-        content.add { Text(html, escape = false) }
+    fun html(html: () -> String) {
+        content.add { Text(html(), escape = false) }
     }
 
-    fun p(text: String) {
-        content.add { text.p }
+    fun p(text: () -> String) {
+        content.add { text().p }
     }
 
     fun ol(list: () -> List<Content>) {

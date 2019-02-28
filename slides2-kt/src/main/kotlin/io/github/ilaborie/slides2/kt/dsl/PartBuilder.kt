@@ -8,9 +8,9 @@ import io.github.ilaborie.slides2.kt.engine.contents.h3
 import io.github.ilaborie.slides2.kt.jvm.asKey
 
 @PresentationMarker
-class PartBuilder(internal val index: Int, internal val presentationDsl: PresentationBuilder) {
+class PartBuilder(private val index: Int, internal val presentationDsl: PresentationBuilder) {
 
-    internal val slides: MutableList<LazyBuilder<Slide>> = mutableListOf()
+    private val slides: MutableList<LazyBuilder<Slide>> = mutableListOf()
 
     internal fun build(id: Id, title: Title, style: String?): Part =
         Part(
@@ -36,7 +36,7 @@ class PartBuilder(internal val index: Int, internal val presentationDsl: Present
     }
 
     fun roadmap(title: String) {
-        slide(title) {
+        slide(title,styles = setOf("roadmap")) {
             ol {
                 this@PartBuilder.presentationDsl
                     .parts

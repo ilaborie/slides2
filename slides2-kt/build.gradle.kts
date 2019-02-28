@@ -21,9 +21,9 @@ val vKotlintest: String by project
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("script-runtime"))
+    implementation("com.github.ajalt:clikt:1.6.0")
     testImplementation("io.kotlintest:kotlintest-runner-junit5:$vKotlintest")
 }
-
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
