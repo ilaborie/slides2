@@ -11,7 +11,6 @@ import io.github.ilaborie.slides2.kt.jvm.asKey
 data class Presentation(
     val title: Content,
     val theme: Theme = base,
-    val scripts: Set<String> = emptySet(),
     val parts: List<Part> = emptyList(),
     val lang: String = "en"
 ) : Content {
@@ -32,6 +31,17 @@ data class Presentation(
         styles = setOf("cover", "header-hidden"),
         content = listOf(title)
     )
+
+    val allSlides: List<Slide> by lazy {
+        (listOf(coverSlide) + parts.flatMap { it.allSlides })
+            .windowed(2, 1, true)
+            .fold(emptyList<Slide>()) { acc, list ->
+                val previous = if (acc.isEmpty()) null else acc.last().id
+                val next = list.getOrNull(1)?.id
+                val slide = list.first().copy(previous = previous, next = next)
+                acc + slide
+            }
+    }
 
     operator fun plus(part: Part): Presentation =
         copy(parts = parts + part)

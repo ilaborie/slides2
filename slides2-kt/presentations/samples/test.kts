@@ -1,7 +1,7 @@
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.contents.*
 
-pres(config.input, "Demo Presentation") {
+pres("Demo Presentation") {
     part("A part") {
         slide("A slide") { p { "lorem ipsum" } }
         roadmap("Roadmap")

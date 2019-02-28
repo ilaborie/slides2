@@ -1,8 +1,7 @@
 package io.github.ilaborie.slides2.kt.dsl
 
-import io.github.ilaborie.slides2.kt.Folder
+import io.github.ilaborie.slides2.kt.Config
 import io.github.ilaborie.slides2.kt.SlideEngine
-import io.github.ilaborie.slides2.kt.cli.Notifier
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Id
 import io.github.ilaborie.slides2.kt.engine.Presentation
@@ -19,18 +18,18 @@ internal data class LazyBuilder<T>(
     internal val builder: () -> T
 )
 
+typealias ConfigToPresentation = (Config) -> Presentation
+
 fun pres(
-    input: Folder,
     title: String,
     theme: Theme = Theme.base,
-    scripts: Set<String> = emptySet(),
     lang: String = "en",
-    notifier: Notifier = Notifier.withoutTime(),
     block: PresentationBuilder.() -> Unit
-): Presentation =
+): ConfigToPresentation = { config ->
     SlideEngine.applyPlugins {
-        PresentationBuilder(input,notifier)
+        PresentationBuilder(config.input, config.notifier)
             .apply(block)
-            .build(title = title.h1, theme = theme, scripts = scripts, lang = lang)
+            .build(title = title.h1, theme = theme, lang = lang)
     }
+}
 

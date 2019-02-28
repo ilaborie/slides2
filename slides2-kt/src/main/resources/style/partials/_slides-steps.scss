@@ -1,0 +1,19 @@
+
+.steps {
+  opacity: 0;
+  transition-duration: .2s;
+  transition-timing-function: ease-out;
+  transform: scale(.5);
+
+  .step {
+    &.step-current {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    &.step-done {
+      opacity: .8;
+      transform: scale(1);
+    }
+  }
+}

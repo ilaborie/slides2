@@ -5,7 +5,6 @@ import io.github.ilaborie.slides2.kt.cli.Styles
 import io.github.ilaborie.slides2.kt.engine.*
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
-import io.github.ilaborie.slides2.kt.engine.contents.pre
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
 import io.github.ilaborie.slides2.kt.jvm.tools.HtmlToPdf
@@ -29,7 +28,7 @@ object SlideEngine {
         registerRenderers(UnorderedListHtmlRenderer, UnorderedListHtmlRenderer)
 
         // Presentation, Part, Slide
-        registerRenderer(PresentationHtmlRenderer)
+        registerRenderer(PresentationHtmlRenderer())
         registerRenderer(SlideHtmlRenderer)
 //        registerRenderer(PartHtmlRenderer)
     }
@@ -81,20 +80,13 @@ object SlideEngine {
                         theme.compiled
                     }
                 }
-                if (scripts.isNotEmpty()) {
-                    scripts
-                        .filterNot { it.startsWith("http") } // do not copy external scripts
-                        .forEach { script ->
-                            notifier.time("Copy ${Styles.highlight(script)}") {
-                                folder.writeFile(script) {
-                                    // lookup in current folder
-                                    // lookup in src/resources/script folder
-                                    TODO()
-                                }
-                            }
-                        }
+                // Scripts
+                val navScript = "navigate.js"
+                notifier.time("Write to ${Styles.highlight(navScript)}") {
+                    folder.writeFile(navScript) {
+                        javaClass.getResource("/scripts/$navScript").readText()
+                    }
                 }
-                // TODO Script ?
             } ?: notifier.error { "No renderer found for $this" }
     }
 

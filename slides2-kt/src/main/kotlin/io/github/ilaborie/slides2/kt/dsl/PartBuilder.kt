@@ -20,11 +20,7 @@ class PartBuilder(private val index: Int, internal val presentationDsl: Presenta
             slides = slides.map { it.builder() }
         )
 
-    fun slide(
-        title: String,
-        styles: Set<String> = emptySet(),
-        block: SlideBuilder.() -> Unit
-    ) {
+    fun slide(title: String, styles: Set<String> = emptySet(), block: SlideBuilder.() -> Unit) {
         val slideTitle = title.h3
         val slideIndex = slides.size + 1
         val id = Id("${index}_${slideIndex}_${title.asKey()}")
@@ -36,7 +32,7 @@ class PartBuilder(private val index: Int, internal val presentationDsl: Presenta
     }
 
     fun roadmap(title: String) {
-        slide(title,styles = setOf("roadmap")) {
+        slide(title, styles = setOf("roadmap")) {
             ol {
                 this@PartBuilder.presentationDsl
                     .parts

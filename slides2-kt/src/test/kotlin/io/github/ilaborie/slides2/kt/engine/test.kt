@@ -16,8 +16,8 @@ fun main() {
 
     val config = Config(
         notifier = Notifier(JvmStopWatch),
-        output = JvmFolder(File("public/web"), notifier = notifier),
-        input = JvmFolder(File("src/main/presentation/samples/test"), notifier = notifier)
+        output = JvmFolder(File("public"), notifier = notifier),
+        input = JvmFolder(File("presentations/samples"), notifier = notifier)
     )
 
     // Configure engine
@@ -25,7 +25,7 @@ fun main() {
         .apply { notifier = config.notifier }
         .registerContentPlugin(CheckContentPlugin(config.notifier))
 
-    val presentation = pres(config.input, "Demo Presentation") {
+    val presentation = pres("Demo Presentation") {
         part("A part") {
             slide("A slide") { p { "lorem ipsum" } }
             roadmap("Roadmap")
@@ -77,8 +77,7 @@ fun main() {
     }
 
     with(SlideEngine) {
-        presentation.renderHtml(config)
-//        presentation.renderPdf(config)
+        presentation(config).renderHtml(config)
     }
 
 }

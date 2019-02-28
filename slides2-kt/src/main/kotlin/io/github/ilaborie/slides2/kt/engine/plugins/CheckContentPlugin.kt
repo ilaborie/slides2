@@ -7,7 +7,7 @@ import io.github.ilaborie.slides2.kt.engine.Presentation
 import io.github.ilaborie.slides2.kt.engine.contents.Title
 
 
-// FIXME do an composable functionsal checker
+// FIXME do a composable functional checker
 class CheckContentPlugin(private val notifier: Notifier) : ContentPlugin {
 
     override val name: String = "Check content plugin"

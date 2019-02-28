@@ -11,11 +11,7 @@ class PresentationBuilder(internal val input: Folder, internal val notifier: Not
 
     internal val parts: MutableList<LazyBuilder<Part>> = mutableListOf()
 
-    fun part(
-        title: String,
-        style: String? = null,
-        block: PartBuilder.() -> Unit
-    ) {
+    fun part(title: String, style: String? = null, block: PartBuilder.() -> Unit) {
         val partTitle = title.h2
         val partIndex = parts.size + 1
         val partId = Id("${partIndex}_${title.asKey()}")
@@ -26,16 +22,10 @@ class PresentationBuilder(internal val input: Folder, internal val notifier: Not
         })
     }
 
-    fun build(
-        title: Content,
-        theme: Theme,
-        scripts: Set<String>,
-        lang: String
-    ): Presentation =
+    fun build(title: Content, theme: Theme, lang: String): Presentation =
         Presentation(
             title = title,
             theme = theme,
-            scripts = scripts,
             parts = parts.map { it.builder() },
             lang = lang
         )

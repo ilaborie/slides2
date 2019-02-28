@@ -37,7 +37,8 @@ class SlideBuilder(internal val index: Int, private val partDsl: PartBuilder) {
         when (extension) {
             "md" -> markdown(content)
             "html" -> html(content)
-            else -> // FIXME handle code
+            "svg" -> html(content)
+            else ->
                 throw IllegalArgumentException("Unexpected file type, only *.{md,html} are supported yet, got $file")
         }
     }
