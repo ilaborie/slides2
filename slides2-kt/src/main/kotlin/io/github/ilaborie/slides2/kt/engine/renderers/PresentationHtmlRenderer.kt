@@ -7,10 +7,10 @@ import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 
 
-// FIXME add global progess
+// FIXME add global progress
 open class PresentationHtmlRenderer(
-    private val scripts: List<String> = emptyList(),
-    private val stylesheets: List<String> = emptyList()
+    open val scripts: List<String> = emptyList(),
+    open val stylesheets: List<String> = emptyList()
 ) : Renderer<Presentation> {
     override val mode: RenderMode = Html
 

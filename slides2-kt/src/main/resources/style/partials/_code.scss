@@ -1,12 +1,22 @@
 main > section > article {
 
-  pre {
-    box-shadow: .25em .25em .5em currentColor;
+  pre[class*=language-] {
+    box-shadow: .25em .25em .5em rgba(0, 0, 0, .5);
     padding: .25em;
     border-radius: .25em;
+    font-size: 75%;
 
-    // TODO logo top left
-    code {
+    code[class*=language-] {
+      font-family: var(--font-mono);
+
+      span {
+        height: 1.2em;
+      }
+
+      .token.operator {
+        background: none;
+      }
     }
+    // TODO logo top left
   }
 }
