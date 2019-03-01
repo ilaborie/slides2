@@ -17,6 +17,7 @@ import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sub
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sup
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.UnderLine
 import io.github.ilaborie.slides2.kt.jvm.esccapeHtml
+import kotlin.text.Typography.copyright
 
 
 abstract class HtmlTagRenderer<T : Content> : Renderer<T> {
@@ -156,5 +157,35 @@ object QuoteHtmlRenderer : Renderer<Quote> {
                 |  <p>${render(mode, content.content)}</p>
                 |  $subBlock
                 |</blockquote>""".trimMargin()
+        }
+}
+
+object NoticeHtmlRenderer : Renderer<Notice> {
+
+    override val mode: RenderMode = Html
+
+    override fun render(content: Notice): String =
+        with(SlideEngine) {
+            """<div class="notice notice-${content.kind.name.toLowerCase()}>
+                |${render(mode, content.content).prependIndent("  ")}
+                |</div>""".trimMargin()
+        }
+}
+
+object FigureHtmlRenderer : Renderer<Figure> {
+    override val mode: RenderMode = Html
+
+    override fun render(content: Figure): String =
+        with(SlideEngine) {
+            val copyright = content.copyright?.let {
+                """
+                |  <div class="copyright">
+                |${render(mode, it).prependIndent("    ")}
+                |  </div>""".trimMargin()
+            }?:""
+            """<figure>
+                |  <img src="${content.url}" alt="${content.title}">$copyright
+                |  <figcaption>${content.title}</figcaption>
+                |</figure>""".trimMargin()
         }
 }

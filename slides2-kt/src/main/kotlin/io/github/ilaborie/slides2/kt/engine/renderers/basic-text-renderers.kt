@@ -99,3 +99,26 @@ object QuoteTextRenderer : Renderer<Quote> {
                 .prependIndent("> ")
         }
 }
+
+object NoticeTextRenderer : Renderer<Notice> {
+
+    override val mode: RenderMode = Text
+
+    override fun render(content: Notice): String =
+        with(SlideEngine) {
+            """${content.kind.name.toLowerCase()}:
+                |${render(mode, content.content).prependIndent("  ")}
+                |""".trimMargin()
+        }
+}
+
+object FigureTextRenderer : Renderer<Figure> {
+    override val mode: RenderMode = Text
+
+    override fun render(content: Figure): String =
+        with(SlideEngine) {
+            """![${content.title}](${content.url})
+                |${content.copyright?.let { "\n" + render(mode, it) } ?: ""}
+                |""".trimMargin()
+        }
+}

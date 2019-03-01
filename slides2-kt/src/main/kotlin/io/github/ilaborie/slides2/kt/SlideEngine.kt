@@ -31,11 +31,12 @@ object SlideEngine {
         registerRenderers(CodeTextRenderer, CodeHtmlRenderer)
         registerRenderers(LinkTextRenderer, LinkHtmlRenderer)
         registerRenderers(QuoteTextRenderer, QuoteHtmlRenderer)
+        registerRenderers(NoticeTextRenderer, NoticeHtmlRenderer)
+        registerRenderers(FigureTextRenderer, FigureHtmlRenderer)
 
         // Presentation, Part, Slide
         registerRenderer(PresentationHtmlRenderer())
         registerRenderer(SlideHtmlRenderer)
-//        registerRenderer(PartHtmlRenderer)
     }
 
     inline fun <reified T : Content> registerRenderer(renderer: Renderer<T>): SlideEngine {
