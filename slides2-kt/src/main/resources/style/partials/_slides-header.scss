@@ -8,15 +8,4 @@ main > section > header {
   display: flex;
   justify-content: space-between;
   align-content: center;
-
-  // Counter
-  &::after {
-    counter-increment: section;
-    content: "#" counter(section);
-    background: var(--counterBg);
-    color: var(--counterFg);
-    font-family: var(--font-counter);
-    margin: .25em 1em;
-    font-size: 1.25em;
-  }
 }

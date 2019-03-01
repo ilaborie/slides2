@@ -117,7 +117,7 @@ object FigureTextRenderer : Renderer<Figure> {
 
     override fun render(content: Figure): String =
         with(SlideEngine) {
-            """![${content.title}](${content.url})
+            """![${content.title}](${content.src})
                 |${content.copyright?.let { "\n" + render(mode, it) } ?: ""}
                 |""".trimMargin()
         }

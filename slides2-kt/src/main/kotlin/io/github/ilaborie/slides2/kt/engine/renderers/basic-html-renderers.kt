@@ -17,7 +17,6 @@ import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sub
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sup
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.UnderLine
 import io.github.ilaborie.slides2.kt.jvm.esccapeHtml
-import kotlin.text.Typography.copyright
 
 
 abstract class HtmlTagRenderer<T : Content> : Renderer<T> {
@@ -144,9 +143,9 @@ object QuoteHtmlRenderer : Renderer<Quote> {
         with(SlideEngine) {
             val subBlock = when {
                 content.author != null && content.cite != null ->
-                    "<footer>⏤ ${content.author} in <cite>${content.cite}</cite></footer>"
+                    """<footer>⏤ <span class="author">${content.author}</span> in <cite>${content.cite}</cite></footer>"""
                 content.author != null                         ->
-                    "<footer>⏤ ${content.author}</footer>"
+                    """<footer>⏤ <span class="author">${content.author}</span></footer>"""
                 content.cite != null                           ->
                     "<footer>in <cite>${content.cite}</cite></footer>"
                 else                                           ->
@@ -166,7 +165,7 @@ object NoticeHtmlRenderer : Renderer<Notice> {
 
     override fun render(content: Notice): String =
         with(SlideEngine) {
-            """<div class="notice notice-${content.kind.name.toLowerCase()}>
+            """<div class="notice notice-${content.kind.name.toLowerCase()}">
                 |${render(mode, content.content).prependIndent("  ")}
                 |</div>""".trimMargin()
         }
@@ -184,7 +183,7 @@ object FigureHtmlRenderer : Renderer<Figure> {
                 |  </div>""".trimMargin()
             }?:""
             """<figure>
-                |  <img src="${content.url}" alt="${content.title}">$copyright
+                |  <img src="${content.src}" alt="${content.title}">$copyright
                 |  <figcaption>${content.title}</figcaption>
                 |</figure>""".trimMargin()
         }

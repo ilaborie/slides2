@@ -1,0 +1,14 @@
+
+main > section > article {
+  grid-column: 2 / 3;
+  overflow: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > p::first-letter {
+    margin-left: 2ch;
+  }
+}

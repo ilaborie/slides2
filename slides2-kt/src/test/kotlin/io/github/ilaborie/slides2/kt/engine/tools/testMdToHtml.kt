@@ -1,4 +1,4 @@
-package io.github.ilaborie.slides2.kt.engine
+package io.github.ilaborie.slides2.kt.engine.tools
 
 import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml
 

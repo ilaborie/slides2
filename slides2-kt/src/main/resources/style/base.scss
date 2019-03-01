@@ -4,15 +4,22 @@
 
 @import "partials/slides";
 @import "partials/slides-custom";
+@import "partials/slides-counter";
 @import "partials/slides-header";
 @import "partials/slides-footer";
 @import "partials/slides-navigation";
 @import "partials/slides-sliding";
 @import "partials/slides-gridview";
 @import "partials/slides-steps";
-
-@import "partials/toc";
+@import "partials/slides-article";
 
 @import "partials/code";
+@import "partials/figure";
+@import "partials/quote";
+@import "partials/link";
+@import "partials/notice";
+
+
+@import "partials/toc";
 
 @import "partials/print";

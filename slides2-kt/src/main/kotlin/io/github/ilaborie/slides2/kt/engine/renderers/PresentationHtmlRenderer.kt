@@ -53,7 +53,7 @@ open class PresentationHtmlRenderer(
             |<body class="${content.theme.name}">
             |${beforeMain(content).prependIndent("  ")}
             |  <main>
-            |${body.prependIndent("    ")}
+            |$body
             |  </main>
             |${afterMain(content).prependIndent("  ")}
             |</body>

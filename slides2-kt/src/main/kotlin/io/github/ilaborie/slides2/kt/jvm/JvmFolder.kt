@@ -31,7 +31,14 @@ class JvmFolder(private val file: File, val notifier: Notifier) : Folder {
     override fun readFileAsString(filename: String): String =
         resolve(filename)
             .also { notifier.info("💾: FS") { "Read file ${it.absolutePath}" } }
-            .readText()
+            .let { file ->
+                when (file.extension) {
+                    "svg"  -> "data:image/svg+xml;utf8,${file.readText().singleLine()}"
+                    "png" -> "data:image/png;base64,${file.readBytes().readAsBase64()}"
+                    "jpg" -> "data:image/jpeg;base64,${file.readBytes().readAsBase64()}"
+                    else   -> file.readText()
+                }
+            }
 
     override fun resolveAbsolutePath(filename: String): String =
         resolve(filename)

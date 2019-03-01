@@ -1,0 +1,15 @@
+
+main > section {
+  counter-increment: section;
+
+  header::after {
+    content: "#" counter(section);
+    background: var(--counterBg);
+    color: var(--counterFg);
+    font-family: var(--font-counter);
+    margin: .25em 1em;
+    font-size: 1.25em;
+    float: right;
+  }
+
+}

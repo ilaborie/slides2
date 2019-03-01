@@ -8,6 +8,7 @@
   --base-font: Andika, sans-serif;
   --header-font: 'Amatic SC', sans-serif;
   --font-counter: var(--header-font);
+  --font-mono: "Fira Code", Menlo, Monaco, "DejaVu Sans Mono", monospace;
 
 
   // Color
@@ -59,7 +60,7 @@
   --footerFg: var(--colLight);
 
   // TOC
-  --tocBg: var(--col3);
+  --tocBg: var(--col1);
   --tocFg: var(--colDark);
 
 }

@@ -1,0 +1,29 @@
+main > section > article {
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .5) 50%, transparent 0);
+    background-size: .25em .1em;
+    background-position: 0 bottom;
+    background-repeat: repeat-x;
+
+    &:hover {
+      text-shadow: .05em .05em .1em rgba(0, 0, 0, .5);
+      animation: borderAnim 4s linear infinite;
+    }
+
+    &::before {
+      content: '➼ ';
+    }
+  }
+}
+
+@keyframes borderAnim {
+  from {
+    background-position: 0 bottom;
+  }
+  to {
+    background-position: 100% bottom;
+  }
+}

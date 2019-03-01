@@ -6,21 +6,21 @@ body > nav.toc-menu {
   z-index: 10;
 
   & > ul {
-    font-size: 33%;
     display: none;
+    padding: .25em;
     flex-direction: column;
-    background: var(--baseBg);
+    max-height: calc(100vh - 3rem);
+    overflow: auto;
+
     border: thin solid currentColor;
     border-radius: .25em;
     box-shadow: .25em .25em .5em currentColor;
 
-    color: var(--tocFg);
+    font-size: 33%;
     background: var(--tocBg);
+    color: var(--tocFg);
 
-    max-height: calc(100vh - 3rem);
-    overflow: auto;
     list-style: none;
-    padding: .25em;
 
     li {
       margin: .25em 0;
@@ -51,7 +51,7 @@ body > nav.toc-menu {
     }
 
     &::before {
-      content: '☸︎';
+      content: '⎈';
       line-height: 1;
       transform: scale(1.1);
     }

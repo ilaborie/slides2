@@ -97,4 +97,16 @@ class SlideBuilder(internal val index: Int, private val partDsl: PartBuilder) {
         content.add { Quote(author = author, cite = cite, content = block()) }
     }
 
+    fun notice(kind: NoticeKind, block: () -> Content) {
+        content.add { Notice(kind = kind, content = block()) }
+    }
+
+    fun figure(src: String, title: String, copyrightBlock: Content? = null) {
+        content.add {
+            val folder = partDsl.presentationDsl.input
+            val figSrc = if (folder.exists(src)) folder.readFileAsString(src) else src
+            Figure(src = figSrc, title = title, copyright = copyrightBlock)
+        }
+    }
+
 }

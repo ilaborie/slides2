@@ -27,7 +27,7 @@ data class Link(val href: String, override val content: Content) : SingleContent
 data class Quote(val author: String?, val cite: String?, override val content: Content) : SingleContent
 enum class NoticeKind { Tips, Info, Warning, Danger }
 data class Notice(val kind: NoticeKind, override val content: Content) : SingleContent
-data class Figure(val title: String, val url: String, val copyright: Content?) : Content
+data class Figure(val title: String, val src: String, val copyright: Content?) : Content
 // TODO
 
 data class DefinitionsList(val definitions: Map<Content, Content>, override val steps: Boolean = false) :
