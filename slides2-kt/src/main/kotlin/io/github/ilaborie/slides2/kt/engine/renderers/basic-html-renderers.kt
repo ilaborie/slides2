@@ -83,9 +83,10 @@ object OrderedListHtmlRenderer : Renderer<OrderedList> {
 
     override fun render(content: OrderedList): String {
         val body = with(SlideEngine) {
+            val step = if (content.steps) """  class="step"""" else ""
             content.inner
                 .joinToString("\n") {
-                    """<li>
+                    """<li$step>
                             |${render(mode, it).prependIndent("  ")}
                             |</li>""".trimMargin()
                 }
@@ -101,9 +102,10 @@ object UnorderedListHtmlRenderer : Renderer<UnorderedList> {
 
     override fun render(content: UnorderedList): String {
         val body = with(SlideEngine) {
+            val step = if (content.steps) """  class="step"""" else ""
             content.inner
                 .joinToString("\n") {
-                    """<li>
+                    """<li$step>
                             |${render(mode, it).prependIndent("  ")}
                             |</li>""".trimMargin()
                 }

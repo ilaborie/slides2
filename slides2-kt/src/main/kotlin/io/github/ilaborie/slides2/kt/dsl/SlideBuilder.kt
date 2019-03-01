@@ -14,13 +14,15 @@ class SlideBuilder(internal val index: Int, private val partDsl: PartBuilder) {
 
     private val content: MutableList<() -> Content> = mutableListOf()
 
-    internal fun build(id: Id, title: Content, styles: Set<String>): Slide =
-        Slide(
+    internal fun build(id: Id, title: Content, styles: Set<String>): Slide {
+        val contents = content.map { it() }
+        return Slide(
             id = id,
             title = title,
-            styles = styles,
-            content = content.map { it() }
+            styles = styles + (if (contents.any { it.steps }) setOf("steps") else emptySet()),
+            content = contents
         )
+    }
 
     fun file(file: String) {
         val extension = file.split(".").last()
@@ -32,10 +34,10 @@ class SlideBuilder(internal val index: Int, private val partDsl: PartBuilder) {
         }
         val content = { input.readFileAsString(file) }
         when (extension) {
-            "md" -> markdown(content)
+            "md"   -> markdown(content)
             "html" -> html(content)
-            "svg" -> html(content)
-            else ->
+            "svg"  -> html(content)
+            else   ->
                 throw IllegalArgumentException("Unexpected file type, only *.{md,html} are supported yet, got $file")
         }
     }
@@ -79,12 +81,12 @@ class SlideBuilder(internal val index: Int, private val partDsl: PartBuilder) {
         content.add { text().p }
     }
 
-    fun ol(list: () -> List<Content>) {
-        content.add { list().ol }
+    fun ol(steps: Boolean = false, list: () -> List<Content>) {
+        content.add { list().ol.copy(steps = steps) }
     }
 
-    fun ul(list: () -> List<Content>) {
-        content.add { list().ul }
+    fun ul(steps: Boolean = false, list: () -> List<Content>) {
+        content.add { list().ul.copy(steps = steps) }
     }
 
     fun link(href: String, block: () -> Content) {

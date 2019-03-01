@@ -86,7 +86,7 @@ object SlideEngine {
                     }
                 }
                 // Scripts
-                notifier.time("Write to ${globalScripts.joinToString(", ") { Styles.highlight(it)} }}") {
+                notifier.time("Write to ${globalScripts.joinToString(", ") { Styles.highlight(it)} }") {
                         globalScripts.forEach { script ->
                             folder.writeFile(script) {
                                 javaClass.getResource("/scripts/$script").readText()

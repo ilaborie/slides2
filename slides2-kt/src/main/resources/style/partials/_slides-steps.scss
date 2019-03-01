@@ -1,11 +1,13 @@
 
 .steps {
-  opacity: 0;
-  transition-duration: .2s;
-  transition-timing-function: ease-out;
-  transform: scale(.5);
 
   .step {
+    opacity: 0;
+    transition-duration: .2s;
+    transition-timing-function: ease-out;
+    transform: scale(.5);
+
+
     &.step-current {
       opacity: 1;
       transform: scale(1);
