@@ -25,7 +25,7 @@ fun main() {
         .registerContentPlugin(CheckContentPlugin(config.notifier))
         .apply {
             notifier = config.notifier
-            globalScripts += listOf("navigate.js", "toc.js")
+            globalScripts += listOf("navigate.js", "toc.js", "line-numbers.js")
             registerRenderer(usePrismJs())
         }
 

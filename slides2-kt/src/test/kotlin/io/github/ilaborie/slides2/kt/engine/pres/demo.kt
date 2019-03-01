@@ -95,7 +95,6 @@ val demo = pres("Demo Presentation") {
             notice(Info) { "block info".raw }
             notice(Warning) { "block warn".raw }
             notice(Danger) { "block danger".raw }
-            notice(Danger) { "block danger".raw }
         }
         slide("Slide Figure") {
             figure("content/figure.png", title = "A chart")

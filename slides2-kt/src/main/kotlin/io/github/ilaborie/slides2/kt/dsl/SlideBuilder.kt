@@ -104,7 +104,16 @@ class SlideBuilder(internal val index: Int, private val partDsl: PartBuilder) {
     fun figure(src: String, title: String, copyrightBlock: Content? = null) {
         content.add {
             val folder = partDsl.presentationDsl.input
-            val figSrc = if (folder.exists(src)) folder.readFileAsString(src) else src
+            val figSrc = if (folder.exists(src)) {
+                val extension = src.split(".").last()
+                val mimeType = when (extension) {
+                    "svg" -> "image/svg+xml;utf8"
+                    "png" -> "image/png;base64"
+                    "jpg" -> "image/jpeg;base64"
+                    else  -> throw IllegalArgumentException("Unsupported file extension: $extension")
+                }
+                "data:$mimeType,${folder.readFileAsString(src)}"
+            } else src
             Figure(src = figSrc, title = title, copyright = copyrightBlock)
         }
     }

@@ -1,22 +1,40 @@
 main > section > article {
 
   pre[class*=language-] {
+    position: relative;
     box-shadow: .25em .25em .5em rgba(0, 0, 0, .5);
-    padding: .25em;
     border-radius: .25em;
     font-size: 75%;
+    padding: 1.5em .5em .5em .5em;
+    margin-right: .75em;
+
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      content: '';
+      width: 6ch;
+      height: 1em;
+      margin: .25em;
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4NCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDg0IDI0Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIgZmlsbD0iI2ZmNWY1NiIvPjxjaXJjbGUgY3g9IjQyIiBjeT0iMTIiIHI9IjEwIiBmaWxsPSIjZmZjNjJlIi8+PGNpcmNsZSBjeD0iNzIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IiMyN2M5M2YiLz48L3N2Zz4=");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: top left;
+      background-origin: content-box;
+    }
+
+    align-self: stretch;
 
     code[class*=language-] {
       font-family: var(--font-mono);
-
-      span {
-        height: 1.2em;
-      }
 
       .token.operator {
         background: none;
       }
     }
+
     // TODO logo top left
   }
 }

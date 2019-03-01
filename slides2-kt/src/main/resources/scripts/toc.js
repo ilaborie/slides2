@@ -18,7 +18,7 @@ const getToc = () => {
 const buildToc = () => {
     const tocMenu = getToc();
     let slides = Array.from(document.querySelectorAll("main > section"));
-    if (slides.length) {
+    // if (slides.length) {
         tocMenu.querySelector('ul').innerHTML =
             slides.map(elt => `<li><a href="#${elt.id}">${elt.querySelector("header").innerHTML}</a></li>`)
                 .join("\n");
@@ -27,9 +27,9 @@ const buildToc = () => {
             .forEach(a =>
                 a.addEventListener('click', () =>
                     document.getElementById("toc-toggle").checked = false));
-    } else {
-        setTimeout(buildToc, 300);
-    }
+    // } else {
+    //     setTimeout(buildToc, 300);
+    // }
 };
 
 buildToc();

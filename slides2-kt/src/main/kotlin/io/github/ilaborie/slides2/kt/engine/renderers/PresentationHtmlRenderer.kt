@@ -6,19 +6,34 @@ import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 
+data class Script(
+    val src: String,
+    val defer: Boolean = true,
+    val module: Boolean = true,
+    val async: Boolean = false
+) {
+    private val tags: String =
+        ((if (defer) listOf("defer") else emptyList()) +
+                (if (async) listOf("async") else emptyList()))
+            .joinToString(separator = " ") +
+                (if (module) " type=\"module\"" else "")
+
+    fun asHtml(): String =
+        """<script $tags src="$src"></script>"""
+}
 
 // FIXME add global progress
 open class PresentationHtmlRenderer(
-    open val scripts: List<String> = emptyList(),
+    open val scripts: List<Script> = emptyList(),
     open val stylesheets: List<String> = emptyList()
 ) : Renderer<Presentation> {
     override val mode: RenderMode = Html
 
     open fun head(presentation: Presentation): String {
-        val scripts = (SlideEngine.globalScripts.map { "./$it" } + scripts)
-            .joinToString("\n") {
-                """<script async type="module" src="$it"></script>"""
-            }
+        val scripts = (SlideEngine.globalScripts.map { Script("./$it") } + scripts)
+            .filter { it.module }
+            .joinToString("\n") { it.asHtml() }
+
         val stylesheets = (listOf("./${presentation.theme.name}.css") + stylesheets)
             .joinToString("\n") {
                 """<link rel="stylesheet" href="$it" media="all">"""
@@ -39,7 +54,9 @@ open class PresentationHtmlRenderer(
             |</header>""".trimMargin()
 
     open fun afterMain(presentation: Presentation): String =
-        ""
+        scripts
+            .filterNot { it.module }
+            .joinToString("\n") { it.asHtml() }
 
     override fun render(content: Presentation): String =
         with(SlideEngine) {
