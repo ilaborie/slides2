@@ -8,7 +8,7 @@ import io.github.ilaborie.slides2.kt.engine.contents.h3
 import io.github.ilaborie.slides2.kt.jvm.asKey
 
 @PresentationMarker
-class PartBuilder(private val index: Int, internal val presentationDsl: PresentationBuilder) {
+ class PartBuilder(private val index: Int, internal val presentationDsl: PresentationBuilder) {
 
     private val slides: MutableList<LazyBuilder<Slide>> = mutableListOf()
 
@@ -25,7 +25,7 @@ class PartBuilder(private val index: Int, internal val presentationDsl: Presenta
         val slideIndex = slides.size + 1
         val id = Id("${index}_${slideIndex}_${title.asKey()}")
         slides.add(LazyBuilder(id, slideTitle) {
-            SlideBuilder(slideIndex, this)
+            SlideBuilder(this)
                 .apply(block)
                 .build(id, slideTitle, styles)
         })

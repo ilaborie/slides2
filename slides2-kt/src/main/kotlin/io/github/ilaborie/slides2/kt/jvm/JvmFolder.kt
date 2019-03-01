@@ -33,9 +33,9 @@ class JvmFolder(private val file: File, val notifier: Notifier) : Folder {
             .also { notifier.info("💾: FS") { "Read file ${it.absolutePath}" } }
             .let { file ->
                 when (file.extension) {
-                    "svg"        -> file.readText().singleLine().replace('"', '\'')
-                    "png", "jpg" -> file.readBytes().readAsBase64()
-                    else         -> file.readText()
+                    "svg"               -> file.readText().singleLine().replace('"', '\'')
+                    "png", "jpg", "gif" -> file.readBytes().readAsBase64()
+                    else                -> file.readText()
                 }
             }
 
