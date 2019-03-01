@@ -30,8 +30,8 @@ Kotlin DSL
   * Welcome View
 
 
-// Quote, Figure, dl, Table, Notice
-// SourceCode,
+// Table
+// Welcome View
 
 [P1]
 
@@ -39,7 +39,7 @@ Kotlin DSL
   * PrismJS <https://prismjs.com/>
   * CarbonNow <https://github.com/mixn/carbon-now-cli#readme>
   * highlight.js <https://highlightjs.org/>
-* Embedded Code Editor 
+* Embedded Code Editor
   * Web <https://stackblitz.com>
   * Scala <https://scastie.scala-lang.org/>
   * Kotlin <https://github.com/JetBrains/kotlin-playground>, <https://jetbrains.github.io/kotlin-playground/examples/>

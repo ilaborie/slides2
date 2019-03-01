@@ -10,7 +10,7 @@ fun String.asKey(): String =
         .replace(Regex("[^\\p{ASCII}]"), "")
         .replace(Regex("[\\W]"), "_")
 
-fun String.esccapeHtml(): String =
+fun String.escapeHtml(): String =
     map { ch ->
         when (ch) {
             '<'  -> "&lt;"

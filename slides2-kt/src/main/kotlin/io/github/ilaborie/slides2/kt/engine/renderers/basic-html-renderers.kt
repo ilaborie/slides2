@@ -16,7 +16,7 @@ import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Strong
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sub
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sup
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.UnderLine
-import io.github.ilaborie.slides2.kt.jvm.esccapeHtml
+import io.github.ilaborie.slides2.kt.jvm.escapeHtml
 
 
 abstract class HtmlTagRenderer<T : Content> : Renderer<T> {
@@ -39,7 +39,7 @@ abstract class HtmlTagRenderer<T : Content> : Renderer<T> {
 object TextHtmlRenderer : Renderer<TextContent> {
     override val mode = Html
     override fun render(content: TextContent): String =
-        if (content.escape) content.text.esccapeHtml() else content.text
+        if (content.escape) content.text.escapeHtml() else content.text
 }
 
 object TitleHtmlRenderer : HtmlTagRenderer<Title>() {

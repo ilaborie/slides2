@@ -5,7 +5,7 @@ const getToc = () => {
     }
 
     const tocMenu = document.createElement("nav");
-    tocMenu.classList.add("toc-menu");
+    tocMenu.classList.add("toc-menu", "no-print");
     tocMenu.innerHTML = `
 <input id="toc-toggle" type="checkbox" class="visually-hidden">
 <label for="toc-toggle"></label>

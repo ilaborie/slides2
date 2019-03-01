@@ -21,7 +21,6 @@
   }
 
   main > section {
-    margin: 1em;
     width: calc(100vw - 2em);
     height: calc(100vh - 2em);
 
@@ -37,6 +36,7 @@
 
     & > article {
       overflow: hidden;
+      padding: .5em;
     }
   }
 }
