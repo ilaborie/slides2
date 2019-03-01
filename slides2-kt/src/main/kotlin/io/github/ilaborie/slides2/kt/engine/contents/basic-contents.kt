@@ -20,11 +20,12 @@ data class StyledText(val style: TextStyle, override val content: Content) : Sin
 data class UnorderedList(override val inner: List<Content>, override val steps: Boolean = false) : ContainerContent
 data class OrderedList(override val inner: List<Content>, override val steps: Boolean = false) : ContainerContent
 
-
-// TODO
 data class Code(val language: String?, val code: String) : Content
+
 data class Link(val href: String, override val content: Content) : SingleContent
+
 data class Quote(val author: String?, val cite: String?, override val content: Content) : SingleContent
+// TODO
 enum class NoticeKind { Tips, Info, Warning, Danger }
 data class Notice(val kind: NoticeKind, override val content: Content) : SingleContent
 data class Figure(val title: String, val url: String, val copyright: Content?) : Content

@@ -4,10 +4,7 @@ import io.github.ilaborie.slides2.kt.cli.Styles
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Id
 import io.github.ilaborie.slides2.kt.engine.Slide
-import io.github.ilaborie.slides2.kt.engine.contents.TextContent
-import io.github.ilaborie.slides2.kt.engine.contents.ol
-import io.github.ilaborie.slides2.kt.engine.contents.p
-import io.github.ilaborie.slides2.kt.engine.contents.ul
+import io.github.ilaborie.slides2.kt.engine.contents.*
 import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml.markdownToHtml
 
 @PresentationMarker
@@ -51,6 +48,33 @@ class SlideBuilder(internal val index: Int, private val partDsl: PartBuilder) {
         content.add { TextContent(html(), escape = false) }
     }
 
+    fun sourceCode(file: String) {
+        val extension = file.split(".").last()
+        val language = when (extension) {
+            "class.txt" -> "java"
+            "dex.dump"  -> "java"
+            "smali"     -> "java"
+            "kt"        -> "kotlin"
+            "ts"        -> "typescript"
+            "js"        -> "javascript"
+            "sh"        -> "bash"
+            "re"        -> "reason"
+            else        -> extension
+        }
+
+        if (!input.exists(file)) {
+            input.writeFile(file) { "TODO fill the source file [$index] $language" }
+            partDsl.presentationDsl.notifier.warning {
+                "No file ${Styles.highlight(file)}, it has been created with dummy content"
+            }
+        }
+        code(language) { input.readFileAsString(file) }
+    }
+
+    fun code(language: String, codeBlock: () -> String) {
+        content.add { Code(language, codeBlock()) }
+    }
+
     fun p(text: () -> String) {
         content.add { text().p }
     }
@@ -61,6 +85,14 @@ class SlideBuilder(internal val index: Int, private val partDsl: PartBuilder) {
 
     fun ul(list: () -> List<Content>) {
         content.add { list().ul }
+    }
+
+    fun link(href: String, block: () -> Content) {
+        content.add { Link(href = href, content = block()) }
+    }
+
+    fun quote(author: String? = null, cite: String? = null, block: () -> Content) {
+        content.add { Quote(author = author, cite = cite, content = block()) }
     }
 
 }

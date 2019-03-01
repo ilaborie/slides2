@@ -6,7 +6,16 @@ import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.contents.*
-import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.*
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Del
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Emphasis
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Ins
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Keyboard
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Mark
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Pre
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Strong
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sub
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sup
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.UnderLine
 import io.github.ilaborie.slides2.kt.jvm.esccapeHtml
 
 
@@ -103,4 +112,47 @@ object UnorderedListHtmlRenderer : Renderer<UnorderedList> {
                 |${body.prependIndent("  ")}
                 |</ul>""".trimMargin()
     }
+}
+
+object CodeHtmlRenderer : Renderer<Code> {
+    override val mode: RenderMode = Html
+
+    override fun render(content: Code): String =
+        """<pre>
+            |<code class="lang-${content.language}">${content.code}</code>
+            |</pre>""".trimMargin()
+}
+
+object LinkHtmlRenderer : Renderer<Link> {
+
+    override val mode: RenderMode = Html
+
+    override fun render(content: Link): String =
+        with(SlideEngine) {
+            """<a href="${content.href}">${render(mode, content.content)}</a>"""
+        }
+}
+
+object QuoteHtmlRenderer : Renderer<Quote> {
+
+    override val mode: RenderMode = Html
+
+    override fun render(content: Quote): String =
+        with(SlideEngine) {
+            val subBlock = when {
+                content.author != null && content.cite != null ->
+                    "<footer>⏤ ${content.author} in <cite>${content.cite}</cite></footer>"
+                content.author != null                         ->
+                    "<footer>⏤ ${content.author}</footer>"
+                content.cite != null                           ->
+                    "<footer>in <cite>${content.cite}</cite></footer>"
+                else                                           ->
+                    "<footer></footer>"
+            }
+
+            """<blockquote>
+                |  <p>${render(mode, content.content)}</p>
+                |  $subBlock
+                |</blockquote>""".trimMargin()
+        }
 }

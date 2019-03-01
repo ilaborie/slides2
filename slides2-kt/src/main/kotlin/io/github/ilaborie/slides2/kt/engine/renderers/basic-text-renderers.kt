@@ -57,3 +57,45 @@ object UnorderedListTextRenderer : Renderer<UnorderedList> {
                 .joinToString("\n") { render(mode, it) }
         }
 }
+
+object CodeTextRenderer : Renderer<Code> {
+    override val mode: RenderMode = Text
+
+    override fun render(content: Code): String =
+        """```${content.language}"
+            |${content.code}
+            |```""".trimMargin()
+}
+
+
+object LinkTextRenderer : Renderer<Link> {
+
+    override val mode: RenderMode = Text
+
+    override fun render(content: Link): String =
+        with(SlideEngine) {
+            """[${render(mode, content.content)}](${content.href})"""
+        }
+}
+
+object QuoteTextRenderer : Renderer<Quote> {
+
+    override val mode: RenderMode = Text
+
+    override fun render(content: Quote): String =
+        with(SlideEngine) {
+            val subBlock = when {
+                content.author != null && content.cite != null ->
+                    "> ⏤ in ${content.author} ${content.cite}"
+                content.author != null                         ->
+                    "> ⏤ ${content.author}"
+                content.cite != null                           ->
+                    "> in ${content.cite}"
+                else                                           ->
+                    ""
+            }
+
+            (render(mode, content.content) + "\n" + subBlock)
+                .prependIndent("> ")
+        }
+}

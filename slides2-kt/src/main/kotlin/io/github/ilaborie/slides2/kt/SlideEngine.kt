@@ -26,8 +26,11 @@ object SlideEngine {
         registerRenderers(TitleTextRenderer, TitleHtmlRenderer)
         registerRenderers(ParagraphTextRenderer, ParagraphHtmlRenderer)
         registerRenderers(StyledTextTextRenderer, StyledTextHtmlRenderer)
-        registerRenderers(OrderedListHtmlRenderer, OrderedListHtmlRenderer)
-        registerRenderers(UnorderedListHtmlRenderer, UnorderedListHtmlRenderer)
+        registerRenderers(OrderedListTextRenderer, OrderedListHtmlRenderer)
+        registerRenderers(UnorderedListTextRenderer, UnorderedListHtmlRenderer)
+        registerRenderers(CodeTextRenderer, CodeHtmlRenderer)
+        registerRenderers(LinkTextRenderer, LinkHtmlRenderer)
+        registerRenderers(QuoteTextRenderer, QuoteHtmlRenderer)
 
         // Presentation, Part, Slide
         registerRenderer(PresentationHtmlRenderer())
