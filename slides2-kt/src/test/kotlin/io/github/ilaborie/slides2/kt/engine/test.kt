@@ -11,7 +11,7 @@ import io.github.ilaborie.slides2.kt.engine.Theme.Companion.rivieraDev19
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.sunnyTech19
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.tlsJug
 import io.github.ilaborie.slides2.kt.engine.plugins.CheckContentPlugin
-import io.github.ilaborie.slides2.kt.engine.renderers.usePrismJs
+import io.github.ilaborie.slides2.kt.engine.extra.usePrismJs
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 import webComponents
 

@@ -4,19 +4,30 @@ import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss
 
 
 data class Theme(val name: String) {
-    val compiled by lazy {
+    val compiled: String by lazy {
         ScssToCss.scssFileToCss("src/main/resources/style/$name.scss")
     }
 
     companion object {
 
-        val base = Theme("base")
-        val tlsJug = Theme("tls-jug")
-        val devoxxFr19 = Theme("devoxxfr-19")
-        val mixit19 = Theme("mixit-19")
-        val sunnyTech19 = Theme("sunnytech-19")
-        val rivieraDev19 = Theme("rivieradev-19")
+        private val all: Map<String, Theme> = listOf(
+            "base",
+            "jug-tls",
+            "devoxxfr-19", "mixit-19", "sunnytech-19", "rivieradev-19"
+        )
+            .map { it to Theme(it) }
+            .toMap()
 
-        // tlsGdg, xxxDevfestYy, frDevoxxYY, voxxed, ...
+        operator fun get(name: String): Theme =
+            all[name] ?: throw IllegalStateException("Missing theme $name")
+
+        val base = get("base")
+        val tlsJug = get("jug-tls")
+        val devoxxFr19 = get("devoxxfr-19")
+        val mixit19 = get("mixit-19")
+        val sunnyTech19 = get("sunnytech-19")
+        val rivieraDev19 = get("rivieradev-19")
+
+        // tlsGdg, devfestXXyy, voxxedXXyy, ...
     }
 }

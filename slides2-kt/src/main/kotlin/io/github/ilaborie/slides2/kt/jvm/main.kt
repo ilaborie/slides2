@@ -1,36 +1,40 @@
 package io.github.ilaborie.slides2.kt.jvm
 
 import com.github.ajalt.clikt.core.CliktCommand
-import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.parameters.arguments.argument
 import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.flag
+import com.github.ajalt.clikt.parameters.options.multiple
 import com.github.ajalt.clikt.parameters.options.option
 import io.github.ilaborie.slides2.kt.Config
+import io.github.ilaborie.slides2.kt.Folder
 import io.github.ilaborie.slides2.kt.SlideEngine
+import io.github.ilaborie.slides2.kt.cli.Notifier
 import io.github.ilaborie.slides2.kt.dsl.ConfigToPresentation
+import io.github.ilaborie.slides2.kt.engine.Presentation
+import io.github.ilaborie.slides2.kt.engine.Theme
 import io.github.ilaborie.slides2.kt.engine.plugins.CheckContentPlugin
+import io.github.ilaborie.slides2.kt.engine.extra.usePrismJs
 import io.github.ilaborie.slides2.kt.utils.Try
 import java.io.File
 import javax.script.ScriptEngineManager
 
 
-fun main(args: Array<String>) = Slides()
-    .subcommands(Build(), Watch())
-    .main(args)
+fun main(args: Array<String>) =
+    Slides.main(args)
 
-class Slides : CliktCommand() {
-    override fun run() = Unit
-}
-
-class Build : CliktCommand(help = "Build slides") {
+object Slides : CliktCommand(name = "build", help = "Build slides") {
 
     private val script by argument("script", help = "the Kotlin script file (*.kts)")
 
     private val output by option("-o", "--output", help = "the output folder, (default: `public`)")
         .default("public")
 
-    private val pdf by option("--pdf", help = "Also render as PDF, (default: false)").flag(default = false)
+    private val themes by option("-t", "--themes", help = "list of themes, (default: `base`)")
+        .multiple(listOf("base"))
+
+    private val prism by option("--prism", help = "Toggle the PrismJs syntax coloring")
+        .flag()
 
     private val engine by lazy {
         ScriptEngineManager().getEngineByExtension("kts")
@@ -50,30 +54,40 @@ class Build : CliktCommand(help = "Build slides") {
             input = JvmFolder(scriptFile.parentFile)
         )
 
-        val presentation = scriptFile.reader().use {
-            Try {
-                val eval = engine.eval(it)
-                (eval as? ConfigToPresentation)
-                    ?.let { it(config.input) }
-                    ?: throw IllegalStateException("Expected a Presentation, got $eval")
-            }.unwrap()
-        }
-
         // Configure engine
         SlideEngine
             .registerContentPlugin(CheckContentPlugin)
+            .apply {
+                globalScripts += listOf("navigate.js", "toc.js")
+                if (prism) {
+                    globalScripts += "line-numbers.js"
+                    registerRenderer(usePrismJs())
+                }
+            }
 
-        with(SlideEngine) {
-            presentation.renderHtml(config)
-            if (pdf) {
-                presentation.renderPdf(config)
+        val allThemes = themes.map { Theme[it] }
+
+        scriptFile.reader().use {
+            Try {
+                val eval = engine.eval(it)
+                (eval as? ConfigToPresentation)
+                    ?: throw IllegalStateException("Expected a Presentation, got $eval")
+            }
+        }.map { run(config, it, allThemes) }
+    }
+
+    private fun run(
+        config: Config,
+        presentation: (Folder) -> Presentation,
+        themes: List<Theme>
+    ) {
+        val pres = presentation(config.input)
+        Notifier.time("Generate all ${pres.sTitle}") {
+            with(SlideEngine) {
+                themes
+                    .map { pres.copy(theme = it) }
+                    .forEach { it.renderHtml(config) }
             }
         }
-    }
-}
-
-class Watch : CliktCommand(help = "Build and Watch slides") {
-    override fun run() {
-        echo("TODO")
     }
 }

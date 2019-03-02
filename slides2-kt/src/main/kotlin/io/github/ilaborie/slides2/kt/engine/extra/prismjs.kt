@@ -1,4 +1,4 @@
-package io.github.ilaborie.slides2.kt.engine.renderers
+package io.github.ilaborie.slides2.kt.engine.extra
 
 import io.github.ilaborie.slides2.kt.SlideEngine.findRenderer
 import io.github.ilaborie.slides2.kt.cli.Notifier.warning
@@ -6,6 +6,8 @@ import io.github.ilaborie.slides2.kt.engine.Presentation
 import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.contents.raw
+import io.github.ilaborie.slides2.kt.engine.renderers.PresentationHtmlRenderer
+import io.github.ilaborie.slides2.kt.engine.renderers.Script
 
 const val cloudfare = "https://cdnjs.cloudflare.com/ajax/libs"
 
@@ -19,7 +21,12 @@ fun usePrismJs(
     findRenderer(Html, Presentation("dummy".raw))
         ?.let {
             fun String.script(): Script =
-                Script(this, async = false, module = false, defer = false)
+                Script(
+                    this,
+                    async = false,
+                    module = false,
+                    defer = false
+                )
 
             val scripts =
                 listOf("$cloudfare/prism/$prismVersion/prism.min.js") +
@@ -38,7 +45,7 @@ fun usePrismJs(
                                 else emptyList()) +
                                 if (showLines) listOf("$cloudfare/prism/$prismVersion/plugins/line-numbers/prism-line-numbers.min.css") else emptyList()
                     )
-                else                        ->
+                else                                                                       ->
                     it.also {
                         warning {
                             "Cannot add PrismJS, expected a `PresentationHtmlRenderer`, got $it"

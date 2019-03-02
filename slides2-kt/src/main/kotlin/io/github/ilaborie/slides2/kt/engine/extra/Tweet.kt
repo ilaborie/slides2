@@ -1,4 +1,4 @@
-package io.github.ilaborie.slides2.kt.engine.content
+package io.github.ilaborie.slides2.kt.engine.extra
 
 
 //TODO
