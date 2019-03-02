@@ -1,6 +1,7 @@
 package io.github.ilaborie.slides2.kt.engine.renderers
 
 import io.github.ilaborie.slides2.kt.SlideEngine
+import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
@@ -120,5 +121,33 @@ object FigureTextRenderer : Renderer<Figure> {
             """![${content.title}](${content.src})
                 |${content.copyright?.let { "\n" + render(mode, it) } ?: ""}
                 |""".trimMargin()
+        }
+}
+
+object TableTextRenderer : Renderer<Table> {
+    override val mode: RenderMode = Renderer.Companion.RenderMode.Html
+
+    override fun render(content: Table): String =
+        with(SlideEngine) {
+            val headValues = content.data.keys
+                .map { (_, v) -> v }
+
+            val thead = "| |" + headValues.joinToString("|", postfix = "|") { render(mode, it) }
+
+            val bodyValues = content.data.keys
+                .map { (_, v) -> v }
+
+
+            val tbodyRow = { k: Content ->
+                "|${render(mode, k)}|${headValues.joinToString("|", postfix = "|") { v ->
+                    content.data[k to v]
+                        ?.let { render(mode, it) }
+                        ?: " "
+                }}"
+            }
+
+            """$thead
+            ${"-".repeat(thead.length)}
+            ${bodyValues.joinToString("\n") { tbodyRow(it) }}""".trimMargin()
         }
 }

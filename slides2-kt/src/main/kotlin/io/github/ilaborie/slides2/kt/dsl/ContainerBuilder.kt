@@ -1,11 +1,11 @@
 package io.github.ilaborie.slides2.kt.dsl
 
 import io.github.ilaborie.slides2.kt.Folder
-import io.github.ilaborie.slides2.kt.term.Notifier
-import io.github.ilaborie.slides2.kt.term.Styles
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.contents.*
 import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml.markdownToHtml
+import io.github.ilaborie.slides2.kt.term.Notifier
+import io.github.ilaborie.slides2.kt.term.Styles
 
 @PresentationMarker
 open class ContainerBuilder(private val input: Folder) {
@@ -15,8 +15,10 @@ open class ContainerBuilder(private val input: Folder) {
     fun build(): List<Content> =
         content.map { it() }
 
-    fun buildSingle(): Content =
-        content.asSequence()
+    fun single(block: ContainerBuilder.() -> Unit): Content =
+        ContainerBuilder(input)
+            .apply(block)
+            .content.asSequence()
             .map { it() }
             .firstOrNull() ?: throw IllegalStateException("No content")
 
@@ -133,6 +135,41 @@ open class ContainerBuilder(private val input: Folder) {
     fun title(level: Int, block: () -> Content) {
         content.add {
             Title(level = level, content = block())
+        }
+    }
+
+    fun table(
+        caption: String,
+        rows: List<String>,
+        columns: List<String>,
+        values: Map<Pair<String, String>, String>,
+        rowsFn: (String) -> Content = { it.raw },
+        columnFn: (String) -> Content = { it.raw },
+        valueFn: (String) -> Content = { it.raw }
+    ) {
+        val valuesFunction = { row: String, col: String -> values[row to col] }
+        table(caption, rows, columns, valuesFunction, rowsFn, columnFn, valueFn)
+    }
+
+    fun table(
+        caption: String,
+        rows: List<String>,
+        columns: List<String>,
+        values: (String, String) -> String?,
+        rowsFn: (String) -> Content = { it.raw },
+        columnFn: (String) -> Content = { it.raw },
+        valueFn: (String) -> Content = { it.raw }
+    ) {
+        content.add {
+            val data = rows
+                .flatMap { row -> columns.map { col -> row to col } }
+                .map { (row, col) -> (row to col) to values(row, col) }
+                .filter { (_, v) -> v != null }
+                .toMap()
+                .mapKeys { (p, _) -> rowsFn(p.first) to columnFn(p.second) }
+                .mapValues { (_, v) -> valueFn(v!!) }
+
+            Table(caption.raw, data)
         }
     }
 

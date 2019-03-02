@@ -181,10 +181,49 @@ object FigureHtmlRenderer : Renderer<Figure> {
                 |  <div class="copyright">
                 |${render(mode, it).prependIndent("    ")}
                 |  </div>""".trimMargin()
-            }?:""
+            } ?: ""
             """<figure>
                 |  <img src="${content.src}" alt="${content.title}">$copyright
                 |  <figcaption>${content.title}</figcaption>
                 |</figure>""".trimMargin()
+        }
+}
+
+object TableHtmlRenderer : Renderer<Table> {
+    override val mode: RenderMode = Html
+
+    override fun render(content: Table): String =
+        with(SlideEngine) {
+            val headValues = content.data.keys
+                .map { (_, v) -> v }
+                .distinct()
+
+            val thead = "<td></td>" + headValues.joinToString("") { "<th>${render(mode, it)}</th>" }
+
+            val bodyValues = content.data.keys
+                .map { (_, v) -> v }
+                .distinct()
+
+
+            val tbodyRow = { k: Content ->
+                """
+                  |<th>${render(mode, k)}</th>
+                  |${headValues.joinToString("") { v ->
+                    content.data[k to v]
+                        ?.let { "<td>${render(mode, it)}</td>" }
+                        ?: "<td></td>"
+                }}
+                """.trimMargin()
+            }
+
+            """<table>
+                |  <thead>
+                |    <tr>$thead</tr>
+                |  </thead>
+                |  <tbody>
+                |    ${bodyValues.joinToString("</tr><tr>", "<tr>", "</tr>") { tbodyRow(it) }}</tr>
+                |  </tbody>
+                |  <caption>${render(mode, content.caption)}</caption>
+                |</table>""".trimMargin()
         }
 }

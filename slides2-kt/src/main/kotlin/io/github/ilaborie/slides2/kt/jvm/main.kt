@@ -49,7 +49,6 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
             error { "File '$scriptFile' is not a kotlin script file (*.kts) !" }
         }
 
-
         // Configure engine
         SlideEngine
             .registerContentPlugin(CheckContentPlugin)

@@ -1,14 +1,14 @@
 package io.github.ilaborie.slides2.kt
 
-import io.github.ilaborie.slides2.kt.term.Notifier
-import io.github.ilaborie.slides2.kt.term.Notifier.time
-import io.github.ilaborie.slides2.kt.term.Styles
 import io.github.ilaborie.slides2.kt.engine.*
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
 import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss.scssFileToCss
+import io.github.ilaborie.slides2.kt.term.Notifier
+import io.github.ilaborie.slides2.kt.term.Notifier.time
+import io.github.ilaborie.slides2.kt.term.Styles
 
 object SlideEngine {
 
@@ -32,6 +32,7 @@ object SlideEngine {
         registerRenderers(QuoteTextRenderer, QuoteHtmlRenderer)
         registerRenderers(NoticeTextRenderer, NoticeHtmlRenderer)
         registerRenderers(FigureTextRenderer, FigureHtmlRenderer)
+        registerRenderers(TableTextRenderer, TableHtmlRenderer)
 
         // Presentation, Part, Slide
         registerRenderer(PresentationHtmlRenderer())

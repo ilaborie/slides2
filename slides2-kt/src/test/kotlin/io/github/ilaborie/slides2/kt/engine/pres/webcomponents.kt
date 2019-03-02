@@ -171,7 +171,46 @@ val webComponents = pres(
             markdown { "StencilJS is a **compiler** that generates **web components**" }
         }
         slide("StencilJS is a **set** of **great tools**") {
-            file("stencil/stencil-tools.html")
+            table(
+                "StencilJS is a set of great tools",
+                rows = listOf("JSX / Virtual DOM", "TypeScript", "Decorators", "Prerendering SSR"),
+                columns = listOf("Web Components", "Angular", "React", "Stencil"),
+                values = mapOf(
+                    ("JSX / Virtual DOM" to "Web Components") to "n",
+                    ("JSX / Virtual DOM" to "Angular") to "n",
+                    ("JSX / Virtual DOM" to "React") to "y︎",
+                    ("JSX / Virtual DOM" to "Stencil") to "y︎",
+
+                    ("TypeScript" to "Web Components") to "n",
+                    ("TypeScript" to "Angular") to "y︎",
+                    ("TypeScript" to "React") to "n",
+                    ("TypeScript" to "Stencil") to "y︎",
+
+                    ("Decorators" to "Web Components") to "n",
+                    ("Decorators" to "Angular") to "y︎",
+                    ("Decorators" to "React") to "n",
+                    ("Decorators" to "Stencil") to "y︎",
+
+                    ("Prerendering SSR" to "Web Components") to "n",
+                    ("Prerendering SSR" to "Angular") to "n",
+                    ("Prerendering SSR" to "React") to "n",
+                    ("Prerendering SSR" to "Stencil") to "y"
+                ),
+                columnFn = { col ->
+                    val key = when (col) {
+                        "Web Components" -> "webcomponents"
+                        "Angular"        -> "angular"
+                        "React"          -> "react"
+                        "Stencil"        -> "stencil"
+                        else             -> throw IllegalArgumentException("Unexpected value $col")
+                    }
+                    single { figure("logos/$key.svg", col) }
+                },
+                valueFn = { value ->
+                    if (value == "y") """<span class="yes">✔︎</span>""".raw
+                    else """<span class="no">✘︎</span>""".raw
+                }
+            )
         }
         slide("StencilJS **works everywhere**") {
             title(4) { "Loads polyfills on-demand".raw }
