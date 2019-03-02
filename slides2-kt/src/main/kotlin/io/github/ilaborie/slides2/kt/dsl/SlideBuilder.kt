@@ -5,7 +5,7 @@ import io.github.ilaborie.slides2.kt.engine.Id
 import io.github.ilaborie.slides2.kt.engine.Slide
 
 @PresentationMarker
-class SlideBuilder(partDsl: PartBuilder) : ContainerBuilder(partDsl.presentationDsl) {
+class SlideBuilder(partDsl: PartBuilder) : ContainerBuilder(partDsl.presentationDsl.input) {
 
     internal fun build(id: Id, title: Content, styles: Set<String>): Slide {
         val contents = super.build()

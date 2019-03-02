@@ -34,7 +34,10 @@ open class PresentationHtmlRenderer(
             .filter { it.module }
             .joinToString("\n") { it.asHtml() }
 
-        val stylesheets = (listOf("./${presentation.theme.name}.css") + stylesheets)
+        val innerStyle = (listOf(presentation.theme.name, presentation.extraStyle))
+            .filterNotNull()
+            .map { "./$it.css" }
+        val stylesheets = (innerStyle + stylesheets)
             .joinToString("\n") {
                 """<link rel="stylesheet" href="$it" media="all">"""
             }

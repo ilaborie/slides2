@@ -1,9 +1,7 @@
 package io.github.ilaborie.slides2.kt.cli
 
-import kotlin.system.measureNanoTime
 
-
-class Notifier(private val stopWatch: StopWatch) {
+object Notifier {
 
     var level = 0
 
@@ -31,30 +29,10 @@ class Notifier(private val stopWatch: StopWatch) {
     fun <T> time(label: String, supplier: () -> T): T {
         display(Styles.time(">>> ") + label, level)
         level++
-        val (result, time) = stopWatch.time(supplier)
+        val (result, time) = StopWatch.time(supplier)
         level--
         display(Styles.time("<<< ⏱ ") + label + " took " + Styles.time(time), level)
         return result;
     }
 
-    companion object {
-
-        interface StopWatch {
-            fun <T> time(supplier: () -> T): Pair<T, String>
-        }
-
-        private val noTime = object : StopWatch {
-            override fun <T> time(supplier: () -> T): Pair<T, String> {
-                var result: T? = null
-                val nanos = measureNanoTime {
-                    result = supplier()
-                }
-                return result!! to "$nanos ns"
-            }
-        }
-
-        fun withoutTime(): Notifier =
-            Notifier(noTime)
-
-    }
 }

@@ -1,31 +1,46 @@
 package io.github.ilaborie.slides2.kt.dsl
 
 import io.github.ilaborie.slides2.kt.Folder
-import io.github.ilaborie.slides2.kt.cli.Notifier
+import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.*
+import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
 import io.github.ilaborie.slides2.kt.engine.contents.h2
 import io.github.ilaborie.slides2.kt.jvm.asKey
 
 @PresentationMarker
-class PresentationBuilder(internal val input: Folder, internal val notifier: Notifier) {
+class PresentationBuilder(internal val input: Folder) {
 
     internal val parts: MutableList<LazyBuilder<Part>> = mutableListOf()
 
-    fun part(title: String, style: String? = null, block: PartBuilder.() -> Unit) {
-        val partTitle = title.h2
-        val partIndex = parts.size + 1
-        val partId = Id("${partIndex}_${title.asKey()}")
+    fun part(
+        title: String,
+        id: String = title.asKey(),
+        style: String? = null,
+        block: PartBuilder.() -> Unit
+    ) {
+        part(partTitle = title.h2, id = id, style = style, block = block)
+    }
+
+    fun part(
+        partTitle: Content,
+        id: String = with(SlideEngine) { render(Text, partTitle) },
+        style: String? = null,
+        block: PartBuilder.() -> Unit
+    ) {
+        val partId = Id(id)
         parts.add(LazyBuilder(partId, partTitle) {
-            PartBuilder(partIndex, this)
+            PartBuilder(this)
                 .apply(block)
                 .build(partId, partTitle, style)
         })
     }
 
-    fun build(title: Content, theme: Theme, lang: String): Presentation =
+    fun build(id: Id, title: Content, theme: Theme, extraStyle: String?, lang: String): Presentation =
         Presentation(
+            id = id,
             title = title,
             theme = theme,
+            extraStyle = extraStyle,
             parts = parts.map { it.builder() },
             lang = lang
         )

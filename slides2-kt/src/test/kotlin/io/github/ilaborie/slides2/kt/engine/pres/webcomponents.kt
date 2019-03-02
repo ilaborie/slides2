@@ -3,7 +3,13 @@ import io.github.ilaborie.slides2.kt.engine.contents.p
 import io.github.ilaborie.slides2.kt.engine.contents.raw
 
 // https://shprink.github.io/talks/2018/web_component_native_vs_stenciljs
-val webComponents = pres(" Web Component : du natif à Stencil.js ou lit-element") {
+
+
+val webComponents = pres(
+    title = "Web Components : du natif à Stencil.js ou lit-element", // TODO
+    id = "webComponents-19",
+    extraStyle = "style"
+) {
     part("Introduction") {
         slide("Speakers") {
             file("speakers/julien.html")
@@ -22,7 +28,7 @@ val webComponents = pres(" Web Component : du natif à Stencil.js ou lit-element
                 figure("logos/angular.svg", "Angular")
             }
         }
-        slide("Style", setOf("header-hidden", "two-columns")) {
+        slide("Style", styles = setOf("two-columns")) {
             p { "Now let's select how to write our style" }
             ul(steps = true) {
                 html { "CSS" }
@@ -198,6 +204,6 @@ val webComponents = pres(" Web Component : du natif à Stencil.js ou lit-element
                 html { "..." }
             }
         }
-        slide("End") { p { "lorem ipsum" } }
+        slide("End") { p { "Thanks" } }
     }
 }

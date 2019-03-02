@@ -1,26 +1,30 @@
 package io.github.ilaborie.slides2.kt.dsl
 
+import io.github.ilaborie.slides2.kt.Folder
+import io.github.ilaborie.slides2.kt.cli.Notifier
 import io.github.ilaborie.slides2.kt.cli.Styles
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.contents.*
 import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml.markdownToHtml
 
 @PresentationMarker
-open class ContainerBuilder(private val presentationDsl: PresentationBuilder) {
-
-    private val input = presentationDsl.input
-    private val notifier = presentationDsl.notifier
+open class ContainerBuilder(private val input: Folder) {
 
     private val content: MutableList<() -> Content> = mutableListOf()
 
     fun build(): List<Content> =
         content.map { it() }
 
+    fun buildSingle(): Content =
+        content.asSequence()
+            .map { it() }
+            .firstOrNull() ?: throw IllegalStateException("No content")
+
     fun file(file: String) {
         val extension = file.split(".").last()
         if (!input.exists(file)) {
             input.writeFile(file) { "TODO fill" }
-            notifier.warning {
+            Notifier.warning {
                 "No file ${Styles.highlight(file)}, it has been created with dummy content"
             }
         }
@@ -58,7 +62,7 @@ open class ContainerBuilder(private val presentationDsl: PresentationBuilder) {
 
         if (!input.exists(file)) {
             input.writeFile(file) { "TODO fill the source file $language" }
-            notifier.warning {
+            Notifier.warning {
                 "No file ${Styles.highlight(file)}, it has been created with dummy content"
             }
         }
@@ -75,7 +79,7 @@ open class ContainerBuilder(private val presentationDsl: PresentationBuilder) {
 
     fun ol(steps: Boolean = false, block: ContainerBuilder.() -> Unit) {
         content.add {
-            ContainerBuilder(presentationDsl)
+            ContainerBuilder(input)
                 .apply(block)
                 .build()
                 .ol
@@ -85,7 +89,7 @@ open class ContainerBuilder(private val presentationDsl: PresentationBuilder) {
 
     fun ul(steps: Boolean = false, block: ContainerBuilder.() -> Unit) {
         content.add {
-            ContainerBuilder(presentationDsl)
+            ContainerBuilder(input)
                 .apply(block)
                 .build()
                 .ul
@@ -126,15 +130,14 @@ open class ContainerBuilder(private val presentationDsl: PresentationBuilder) {
         }
     }
 
-
     fun title(level: Int, block: () -> Content) {
         content.add {
             Title(level = level, content = block())
         }
     }
 
-
     fun barChart(title: String, data: Map<String, Double>, unit: String) {
+        // FIXME Table
         html {
             val rows = data.map { (title, value) ->
                 """<tr>
@@ -145,13 +148,10 @@ open class ContainerBuilder(private val presentationDsl: PresentationBuilder) {
                 |</tr>"""
             }.joinToString("\n")
 
-            """a
-                |<table class="table-charts bar" style="--scale: 3000">
-                |  <caption id="caption-1">$title</caption>
-                |  <tbody>
-                |$rows
-                |  </tbody>
-                |</table>""".trimMargin()
+            """<table class="table-charts bar" style="--scale: ${data.values.max()}">
+               |  <caption>$title</caption>
+               |  <tbody>$rows</tbody>
+               |</table>""".trimMargin()
         }
     }
 

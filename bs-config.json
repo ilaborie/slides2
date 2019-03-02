@@ -1,0 +1,8 @@
+{
+  "server": {
+    "baseDir": "slides2-kt/public",
+    "directory": true
+  },
+  "notify": false,
+  "open": false
+}

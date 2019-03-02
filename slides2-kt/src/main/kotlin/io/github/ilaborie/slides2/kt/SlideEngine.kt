@@ -1,6 +1,7 @@
 package io.github.ilaborie.slides2.kt
 
 import io.github.ilaborie.slides2.kt.cli.Notifier
+import io.github.ilaborie.slides2.kt.cli.Notifier.time
 import io.github.ilaborie.slides2.kt.cli.Styles
 import io.github.ilaborie.slides2.kt.engine.*
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
@@ -8,10 +9,9 @@ import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
 import io.github.ilaborie.slides2.kt.jvm.tools.HtmlToPdf
+import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss.scssFileToCss
 
 object SlideEngine {
-
-    var notifier: Notifier = Notifier.withoutTime()
 
     val rendererMap: MutableMap<String, MutableMap<RenderMode, Renderer<*>>> = mutableMapOf()
     private val contentPlugins: MutableList<ContentPlugin> = mutableListOf()
@@ -72,7 +72,7 @@ object SlideEngine {
                 val folder = config.output / id.id
                 // Slides
                 val filename = "index-${theme.name}.html"
-                notifier.time("Write to ${Styles.highlight(filename)}") {
+                time("Write to ${Styles.highlight(filename)}") {
                     folder.writeFile(filename) {
                         cache.computeIfAbsent(Html to this) {
                             renderer.render(this)
@@ -81,20 +81,29 @@ object SlideEngine {
                 }
                 // Style
                 val themeFile = "${theme.name}.css"
-                notifier.time("Write to ${Styles.highlight(themeFile)}") {
+                time("Write to ${Styles.highlight(themeFile)}") {
                     folder.writeFile(themeFile) {
                         theme.compiled
                     }
                 }
-                // Scripts
-                notifier.time("Write to ${globalScripts.joinToString(", ") { Styles.highlight(it)} }") {
-                        globalScripts.forEach { script ->
-                            folder.writeFile(script) {
-                                javaClass.getResource("/scripts/$script").readText()
-                            }
+                if (extraStyle != null) {
+                    val outputFilename = "$extraStyle.css"
+                    time("Write to ${Styles.highlight(outputFilename)}") {
+                        folder.writeFile(outputFilename) {
+                            val path = config.input.resolveAbsolutePath("$extraStyle.scss")
+                            scssFileToCss(path)
                         }
+                    }
                 }
-            } ?: notifier.error { "No renderer found for $this" }
+                // Scripts
+                time("Write to ${globalScripts.joinToString(", ") { Styles.highlight(it) }}") {
+                    globalScripts.forEach { script ->
+                        folder.writeFile(script) {
+                            javaClass.getResource("/scripts/$script").readText()
+                        }
+                    }
+                }
+            } ?: Notifier.error { "No renderer found for $this" }
     }
 
     fun Presentation.renderPdf(config: Config) {
@@ -105,7 +114,7 @@ object SlideEngine {
                 ?.render(this)
                 ?: throw IllegalStateException("No HTML renderer found for $this")
         }
-        notifier.time("Write to ${Styles.highlight(filename)}") {
+        time("Write to ${Styles.highlight(filename)}") {
             HtmlToPdf.htmlToPdf(sTitle, content, output.resolveAbsolutePath(filename))
         }
     }

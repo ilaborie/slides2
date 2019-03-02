@@ -1,11 +1,12 @@
 package io.github.ilaborie.slides2.kt.jvm
 
 import io.github.ilaborie.slides2.kt.Folder
-import io.github.ilaborie.slides2.kt.cli.Notifier
+import io.github.ilaborie.slides2.kt.cli.Notifier.debug
+import io.github.ilaborie.slides2.kt.cli.Notifier.info
 import java.io.File
 
 
-class JvmFolder(private val file: File, val notifier: Notifier) : Folder {
+class JvmFolder(private val file: File) : Folder {
 
     init {
         require(file.isDirectory || !file.exists()) { "Expected a folder, and $file already exists" }
@@ -15,7 +16,7 @@ class JvmFolder(private val file: File, val notifier: Notifier) : Folder {
         path.fold(file) { acc, elt -> acc.resolve(elt) }
             .also { parent ->
                 if (parent.parentFile.mkdirs()) {
-                    notifier.debug("💾: FS") { "Create folder ${parent.parentFile}" }
+                    debug("💾: FS") { "Create folder ${parent.parentFile}" }
                 }
             }
 
@@ -24,13 +25,13 @@ class JvmFolder(private val file: File, val notifier: Notifier) : Folder {
 
     override fun writeFile(filename: String, block: () -> String) {
         resolve(filename)
-            .also { if (it.exists()) notifier.info("💾: FS") { "Override file $it" } }
+            .also { if (it.exists()) info("💾: FS") { "Override file $it" } }
             .writeText(block())
     }
 
     override fun readFileAsString(filename: String): String =
         resolve(filename)
-            .also { notifier.info("💾: FS") { "Read file ${it.absolutePath}" } }
+            .also { info("💾: FS") { "Read file $filename" } }
             .let { file ->
                 when (file.extension) {
                     "svg"               -> file.readText().singleLine().replace('"', '\'')
@@ -44,6 +45,6 @@ class JvmFolder(private val file: File, val notifier: Notifier) : Folder {
             .absolutePath
 
     override fun div(name: String): Folder =
-        JvmFolder(file.resolve(name), notifier)
+        JvmFolder(file.resolve(name))
 
 }

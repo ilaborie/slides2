@@ -10,20 +10,13 @@ import io.github.ilaborie.slides2.kt.jvm.asKey
  */
 data class Presentation(
     val title: Content,
+    val sTitle: String = with(SlideEngine) { render(Text, title) },
+    val id: Id = Id(sTitle.asKey()),
     val theme: Theme = base,
+    val extraStyle: String? =null,
     val parts: List<Part> = emptyList(),
     val lang: String = "en"
 ) : Content {
-
-    val sTitle: String by lazy {
-        with(SlideEngine) {
-            render(Text, title)
-        }
-    }
-
-    val id: Id by lazy {
-        Id(sTitle.asKey())
-    }
 
     val coverSlide: Slide = Slide(
         id = Id("${id.id}_cover"),

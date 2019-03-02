@@ -5,7 +5,7 @@ import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Tips
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Warning
 import io.github.ilaborie.slides2.kt.engine.contents.raw
 
-val demo = pres("Demo Presentation") {
+val demo = pres("Demo Presentation", extraStyle = "demo") {
     part("A part") {
         slide("A slide") { p { "lorem ipsum" } }
         roadmap("Roadmap")
