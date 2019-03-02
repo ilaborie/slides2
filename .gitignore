@@ -7,3 +7,10 @@ build/
 
 target/
 **/*.rs.bk
+
+node_modules/
+.cache/
+dist/
+
+slides2-kt/public/*/
+

@@ -10,11 +10,22 @@ import io.github.ilaborie.slides2.kt.engine.Theme.Companion.mixit19
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.rivieraDev19
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.sunnyTech19
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.tlsJug
+import io.github.ilaborie.slides2.kt.engine.plugins.CheckContentPlugin
+import io.github.ilaborie.slides2.kt.engine.renderers.usePrismJs
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 import webComponents
 
 
 fun main() {
+
+    // Configure engine
+    SlideEngine
+        .registerContentPlugin(CheckContentPlugin)
+        .apply {
+            globalScripts += listOf("navigate.js", "toc.js", "line-numbers.js")
+            registerRenderer(usePrismJs())
+        }
+
     run(demo, "presentations/samples" to "public", base, tlsJug, devoxxFr19, mixit19, sunnyTech19, rivieraDev19)
     run(webComponents, "presentations/WebComponents2019" to "public", devoxxFr19)
 }
