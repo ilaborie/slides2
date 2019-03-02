@@ -52,7 +52,7 @@ val webComponents = pres(
         slide("Not Easy") {
             p { "Developing an app in JS in not easy anymore..." }
         }
-        slide("Not Easy") {
+        slide("Moving too fast") {
             p { "The industry is moving too fast..." }
             // TODO tweet
             html {
@@ -124,22 +124,22 @@ val webComponents = pres(
         }
         slide("Components") {
             ul(steps = true) {
-                figure("/img/webcomponents/custom-elements.svg", "Custom Elements")
-                figure("/img/webcomponents/shadow-DOM.svg", "Shadow DOM")
-                figure("/img/webcomponents/HTML-templates.svg", "HTML templates")
-                figure("/img/webcomponents/HTML-imports.svg", "HTML imports")
+                figure("img/webcomponents/custom-elements.svg", "Custom Elements")
+                figure("img/webcomponents/shadow-DOM.svg", "Shadow DOM")
+                figure("img/webcomponents/HTML-templates.svg", "HTML templates")
+                figure("img/webcomponents/HTML-imports.svg", "HTML imports")
             }
         }
         slide("Custom Elements") {
-            figure("/img/webcomponents/custom-elements.svg", "Custom Elements")
+            figure("img/webcomponents/custom-elements.svg", "Custom Elements")
             quote { "Custom Elements is a capability for creating your own custom HTML elements with its own methods and properties".p }
         }
         slide("Shadow DOM") {
-            figure("/img/webcomponents/shadow-DOM.svg", "Shadow DOM")
+            figure("img/webcomponents/shadow-DOM.svg", "Shadow DOM")
             quote { "Shadow DOM provides encapsulation for DOM and CSS".p }
         }
         slide("HTML templates") {
-            figure("/img/webcomponents/HTML-templates.svg", "HTML templates")
+            figure("img/webcomponents/HTML-templates.svg", "HTML templates")
             quote { "Give the ability to create reusable piece of HTML that can be used at runtime".p }
         }
         slide("Browser support") {
@@ -149,7 +149,7 @@ val webComponents = pres(
             file("img/caniuse/polyfill-support.html")
             link("https://github.com/webcomponents/webcomponentsjs")
         }
-        slide("Interoperability") {
+        slide("Framework Interoperability") {
             file("img/caniuse/frameworks-support.html")
             link("https://custom-elements-everywhere.com/")
         }

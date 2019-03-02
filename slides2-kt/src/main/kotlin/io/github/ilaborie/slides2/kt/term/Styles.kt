@@ -1,4 +1,4 @@
-package io.github.ilaborie.slides2.kt.cli
+package io.github.ilaborie.slides2.kt.term
 
 
 object Styles {

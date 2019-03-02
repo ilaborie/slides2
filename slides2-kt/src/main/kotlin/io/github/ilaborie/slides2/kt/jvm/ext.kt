@@ -31,7 +31,7 @@ fun String.singleLine(): String =
     replace("\n", "")
 
 
-fun jvmConfig(from: String, to: String): Config =
+fun jvmConfig(from: String, to: String="public"): Config =
     Config(
         input = JvmFolder(File(from)),
         output = JvmFolder(File(to))

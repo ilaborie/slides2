@@ -1,7 +1,7 @@
 package io.github.ilaborie.slides2.kt.engine.extra
 
 import io.github.ilaborie.slides2.kt.SlideEngine.findRenderer
-import io.github.ilaborie.slides2.kt.cli.Notifier.warning
+import io.github.ilaborie.slides2.kt.term.Notifier.warning
 import io.github.ilaborie.slides2.kt.engine.Presentation
 import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html

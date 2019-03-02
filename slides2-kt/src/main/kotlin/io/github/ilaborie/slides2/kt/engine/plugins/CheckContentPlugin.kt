@@ -1,7 +1,8 @@
 package io.github.ilaborie.slides2.kt.engine.plugins
 
-import io.github.ilaborie.slides2.kt.cli.Notifier.warning
-import io.github.ilaborie.slides2.kt.cli.Styles
+import io.github.ilaborie.slides2.kt.term.Notifier
+import io.github.ilaborie.slides2.kt.term.Notifier.warning
+import io.github.ilaborie.slides2.kt.term.Styles
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Presentation
 import io.github.ilaborie.slides2.kt.engine.contents.Title
@@ -32,6 +33,16 @@ object CheckContentPlugin : ContentPlugin {
                     "Expected a `${Styles.highlight("Title")}` for presentation title, got $title"
                 }
         }
+
+        presentation.allSlides
+            .groupBy({ it.id.id }) { it }
+            .filterValues { it.size > 1 }
+            .mapValues { (_, list) -> list.map { it.sTitle } }
+            .forEach { (id, list) ->
+                Notifier.error {
+                    "Duplicate id `$id` for ${list.joinToString()}"
+                }
+            }
 
         return presentation
     }

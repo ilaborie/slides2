@@ -1,4 +1,4 @@
-package io.github.ilaborie.slides2.kt.cli
+package io.github.ilaborie.slides2.kt.term
 sealed class TimeUnit {
     abstract val unit: String
     abstract fun fromNanos(value: Double): Double

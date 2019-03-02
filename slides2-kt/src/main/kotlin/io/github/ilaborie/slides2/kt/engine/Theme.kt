@@ -10,7 +10,7 @@ data class Theme(val name: String) {
 
     companion object {
 
-        private val all: Map<String, Theme> = listOf(
+         val all: Map<String, Theme> = listOf(
             "base",
             "jug-tls",
             "devoxxfr-19", "mixit-19", "sunnytech-19", "rivieradev-19"

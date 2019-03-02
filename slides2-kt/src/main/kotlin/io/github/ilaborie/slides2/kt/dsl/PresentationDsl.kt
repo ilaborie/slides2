@@ -1,7 +1,6 @@
 package io.github.ilaborie.slides2.kt.dsl
 
 import io.github.ilaborie.slides2.kt.Folder
-import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Id
 import io.github.ilaborie.slides2.kt.engine.Presentation
@@ -19,7 +18,9 @@ internal data class LazyBuilder<T>(
     internal val builder: () -> T
 )
 
-typealias ConfigToPresentation = (Folder) -> Presentation
+interface PresentationDsl {
+    operator fun invoke(input: Folder): Presentation
+}
 
 fun pres(
     title: String,
@@ -28,11 +29,11 @@ fun pres(
     extraStyle: String? = null,
     lang: String = "en",
     block: PresentationBuilder.() -> Unit
-): ConfigToPresentation = { input ->
-    SlideEngine.applyPlugins {
+): PresentationDsl = object : PresentationDsl {
+    override fun invoke(input: Folder): Presentation =
         PresentationBuilder(input)
             .apply(block)
             .build(id = Id(id), title = title.h1, theme = theme, extraStyle = extraStyle, lang = lang)
-    }
+
 }
 

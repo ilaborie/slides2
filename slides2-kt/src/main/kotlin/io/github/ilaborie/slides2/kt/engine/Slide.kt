@@ -1,5 +1,8 @@
 package io.github.ilaborie.slides2.kt.engine
 
+import io.github.ilaborie.slides2.kt.SlideEngine
+import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
+
 /**
  * A Slide
  */
@@ -12,8 +15,12 @@ data class Slide(
     val next: Id? = null
 ) : Content {
 
-    operator fun plus(c: Content): Slide =
-        copy(content = content + c)
+    val sTitle: String by lazy {
+        with(SlideEngine) {
+            render(Text, title)
+        }
+    }
+
 
 }
 

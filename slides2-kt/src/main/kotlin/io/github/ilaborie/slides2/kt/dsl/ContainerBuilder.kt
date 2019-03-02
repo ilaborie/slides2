@@ -1,8 +1,8 @@
 package io.github.ilaborie.slides2.kt.dsl
 
 import io.github.ilaborie.slides2.kt.Folder
-import io.github.ilaborie.slides2.kt.cli.Notifier
-import io.github.ilaborie.slides2.kt.cli.Styles
+import io.github.ilaborie.slides2.kt.term.Notifier
+import io.github.ilaborie.slides2.kt.term.Styles
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.contents.*
 import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml.markdownToHtml

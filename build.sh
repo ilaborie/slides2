@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 declare -a RUST_LIBS=("slides2-md-to-str"
-                      "slides2-compile-scss"
-                      "slides2-html-to-pdf")
+                      "slides2-compile-scss")
 
 
 for RUST_LIB in "${RUST_LIBS[@]}"

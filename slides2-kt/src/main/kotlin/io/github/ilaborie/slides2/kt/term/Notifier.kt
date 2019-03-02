@@ -1,4 +1,4 @@
-package io.github.ilaborie.slides2.kt.cli
+package io.github.ilaborie.slides2.kt.term
 
 
 object Notifier {
@@ -21,7 +21,7 @@ object Notifier {
         display(Styles.warn(label ?: "warn ") + " " + message())
     }
 
-    fun error(label: String? = null, cause: Exception? = null, message: () -> String) {
+    fun error(label: String? = null, cause: Throwable? = null, message: () -> String) {
         display(Styles.error(label ?: "error") + " " + message())
         cause?.stackTrace?.forEach { display(Styles.stacktrace(it.toString()), level + 1) }
     }

@@ -1,12 +1,12 @@
-package io.github.ilaborie.slides2.kt.cli
+package io.github.ilaborie.slides2.kt.term
 
-import io.github.ilaborie.slides2.kt.cli.TimeUnit.Companion.Days
-import io.github.ilaborie.slides2.kt.cli.TimeUnit.Companion.Hours
-import io.github.ilaborie.slides2.kt.cli.TimeUnit.Companion.Micros
-import io.github.ilaborie.slides2.kt.cli.TimeUnit.Companion.Millis
-import io.github.ilaborie.slides2.kt.cli.TimeUnit.Companion.Minutes
-import io.github.ilaborie.slides2.kt.cli.TimeUnit.Companion.Nanos
-import io.github.ilaborie.slides2.kt.cli.TimeUnit.Companion.Seconds
+import io.github.ilaborie.slides2.kt.term.TimeUnit.Companion.Days
+import io.github.ilaborie.slides2.kt.term.TimeUnit.Companion.Hours
+import io.github.ilaborie.slides2.kt.term.TimeUnit.Companion.Micros
+import io.github.ilaborie.slides2.kt.term.TimeUnit.Companion.Millis
+import io.github.ilaborie.slides2.kt.term.TimeUnit.Companion.Minutes
+import io.github.ilaborie.slides2.kt.term.TimeUnit.Companion.Nanos
+import io.github.ilaborie.slides2.kt.term.TimeUnit.Companion.Seconds
 import kotlin.system.measureNanoTime
 
 

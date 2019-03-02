@@ -1,8 +1,8 @@
 package io.github.ilaborie.slides2.kt.jvm
 
 import io.github.ilaborie.slides2.kt.Folder
-import io.github.ilaborie.slides2.kt.cli.Notifier.debug
-import io.github.ilaborie.slides2.kt.cli.Notifier.info
+import io.github.ilaborie.slides2.kt.term.Notifier.debug
+import io.github.ilaborie.slides2.kt.term.Notifier.info
 import java.io.File
 
 

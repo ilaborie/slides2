@@ -1,14 +1,13 @@
 package io.github.ilaborie.slides2.kt
 
-import io.github.ilaborie.slides2.kt.cli.Notifier
-import io.github.ilaborie.slides2.kt.cli.Notifier.time
-import io.github.ilaborie.slides2.kt.cli.Styles
+import io.github.ilaborie.slides2.kt.term.Notifier
+import io.github.ilaborie.slides2.kt.term.Notifier.time
+import io.github.ilaborie.slides2.kt.term.Styles
 import io.github.ilaborie.slides2.kt.engine.*
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
-import io.github.ilaborie.slides2.kt.jvm.tools.HtmlToPdf
 import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss.scssFileToCss
 
 object SlideEngine {
@@ -106,43 +105,32 @@ object SlideEngine {
             } ?: Notifier.error { "No renderer found for $this" }
     }
 
-    fun Presentation.renderPdf(config: Config) {
-        val output = (config.output / id.id)
-        val filename = "${id.id}.pdf"
-        val content = cache.computeIfAbsent(Html to this) {
-            findRenderer(Html, this)
-                ?.render(this)
-                ?: throw IllegalStateException("No HTML renderer found for $this")
-        }
-        time("Write to ${Styles.highlight(filename)}") {
-            HtmlToPdf.htmlToPdf(sTitle, content, output.resolveAbsolutePath(filename))
-        }
-    }
-
     fun applyPlugins(function: () -> Presentation): Presentation =
         plugContent(function()) as Presentation
 
     private fun plugContent(content: Content): Content =
-        when (content) {
-            is Presentation -> content.copy(
-                title = plug(content.title),
-                parts = content.parts
-                    .map(this::plugContent)
-                    .filterIsInstance<Part>()
-            )
-            is Part         -> content.copy(
-                title = plug(content.title),
-                slides = content.slides
-                    .map(this::plugContent)
-                    .filterIsInstance<Slide>()
-            )
-            is Slide        -> content.copy(
-                title = plug(content.title),
-                content = content.content
-                    .map(this::plugContent)
-            )
-            else            -> plug(content)
-        }
+        plug(
+            when (content) {
+                is Presentation -> content.copy(
+                    title = plug(content.title),
+                    parts = content.parts
+                        .map(this::plugContent)
+                        .filterIsInstance<Part>()
+                )
+                is Part         -> content.copy(
+                    title = plug(content.title),
+                    slides = content.slides
+                        .map(this::plugContent)
+                        .filterIsInstance<Slide>()
+                )
+                is Slide        -> content.copy(
+                    title = plug(content.title),
+                    content = content.content
+                        .map(this::plugContent)
+                )
+                else            -> plug(content)
+            }
+        )
 
     private fun plug(content: Content): Content =
         contentPlugins.fold(content) { acc, plugin -> plugin(acc) }
