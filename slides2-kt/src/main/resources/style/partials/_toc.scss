@@ -14,7 +14,7 @@ body > nav.toc-menu {
 
     border: thin solid currentColor;
     border-radius: .25em;
-    box-shadow: .25em .25em .5em currentColor;
+    box-shadow: .25em .25em .5em rgba(0, 0, 0, .5);
 
     font-size: 33%;
     background: var(--tocBg);
@@ -24,8 +24,21 @@ body > nav.toc-menu {
 
     li {
       margin: .25em 0;
+      padding-left: 1ch;
+
+      &.cover {
+        padding-left: 0;
+        font-weight: bold;
+      }
+
+      &.part {
+        padding-left: .5ch;
+        font-weight: bold;
+      }
+
       a {
         color: inherit;
+
         h1, h2, h3, h4, h5, h6 {
           margin: 0;
           font-family: var(--system-font);

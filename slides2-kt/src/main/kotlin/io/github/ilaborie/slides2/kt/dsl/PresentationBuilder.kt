@@ -16,22 +16,24 @@ class PresentationBuilder(internal val input: Folder) {
         title: String,
         id: String = title.asKey(),
         style: String? = null,
+        skipHeader: Boolean = false,
         block: PartBuilder.() -> Unit
     ) {
-        part(partTitle = title.h2, id = id, style = style, block = block)
+        part(partTitle = title.h2, id = id, skipHeader = skipHeader, style = style, block = block)
     }
 
     fun part(
         partTitle: Content,
         id: String = with(SlideEngine) { render(Text, partTitle) },
         style: String? = null,
+        skipHeader: Boolean = false,
         block: PartBuilder.() -> Unit
     ) {
         val partId = Id(id)
         parts.add(LazyBuilder(partId, partTitle) {
             PartBuilder(this)
                 .apply(block)
-                .build(partId, partTitle, style)
+                .build(partId, partTitle, style, skipHeader)
         })
     }
 

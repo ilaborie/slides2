@@ -13,7 +13,7 @@ data class Presentation(
     val sTitle: String = with(SlideEngine) { render(Text, title) },
     val id: Id = Id(sTitle.asKey()),
     val theme: Theme = base,
-    val extraStyle: String? =null,
+    val extraStyle: String? = null,
     val parts: List<Part> = emptyList(),
     val lang: String = "en"
 ) : Content {
@@ -38,4 +38,7 @@ data class Presentation(
 
     operator fun plus(part: Part): Presentation =
         copy(parts = parts + part)
+
+    override fun toString(): String =
+        sTitle
 }

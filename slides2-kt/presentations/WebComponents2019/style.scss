@@ -6,14 +6,17 @@
   --monkeyBof: #00b0ff;
   --toptal: #3863a0;
 
-  // Base
-  --baseBg: #212529;
-  --baseFg: #fff;
+  // Colors
+  --colDark: #212529;
+  --col1: #212529;
+
+  --baseFg: var(--colLight);
+  --partFg: var(--colLight);
+  --headerFg: var(--colLight);
+  --tocFg: var(--colLight);
 
   // Footer
   --footerText: '@julienrenaux @ilaborie #DevoxxFR #webcomponents';
-  --footerFg: var(--baseBg);
-  --footerBg: var(--baseFg);
 }
 
 .cover {

@@ -9,19 +9,23 @@ import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
 data class Part(
     val id: Id,
     val title: Content,
+    val skipHeader: Boolean = false,
     val style: String? = null,
     val slides: List<Slide> = emptyList()
 ) : Content {
 
-    val headerSlide: Slide = Slide(
-        id = Id("${id.id}_part"),
-        title = title,
-        styles = setOf("header-hidden", "part"),
-        content = listOf(title)
-    )
+    private val headerSlide: Slide by lazy {
+        Slide(
+            id = Id("${id.id}_part"),
+            title = title,
+            styles = setOf("header-hidden", "part"),
+            content = listOf(title)
+        )
+    }
 
     val allSlides: List<Slide> by lazy {
-        listOf(headerSlide) + slides
+        if (skipHeader) slides
+        else listOf(headerSlide) + slides
     }
 
     val sTitle: String by lazy {
@@ -29,4 +33,7 @@ data class Part(
             render(Text, title)
         }
     }
+
+    override fun toString(): String =
+            sTitle
 }

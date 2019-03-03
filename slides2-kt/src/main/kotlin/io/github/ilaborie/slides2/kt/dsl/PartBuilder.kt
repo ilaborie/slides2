@@ -14,11 +14,12 @@ class PartBuilder(internal val presentationDsl: PresentationBuilder) {
 
     private val slides: MutableList<LazyBuilder<Slide>> = mutableListOf()
 
-    internal fun build(id: Id, title: Content, style: String?): Part =
+    internal fun build(id: Id, title: Content, style: String?, skipHeader: Boolean): Part =
         Part(
             id = id,
             title = title,
             style = style,
+            skipHeader = skipHeader,
             slides = slides.map { it.builder() }
         )
 

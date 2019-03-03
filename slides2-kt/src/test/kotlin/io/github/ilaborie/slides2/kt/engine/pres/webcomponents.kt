@@ -19,7 +19,7 @@ val webComponents = pres(
         }
     }
 ) {
-    part("Introduction") {
+    part("Introduction", skipHeader = true) {
         slide("Speakers") {
             file("speakers/julien.html")
             file("speakers/igor.html")
@@ -28,7 +28,10 @@ val webComponents = pres(
         }
         roadmap("Roadmap")
     }
-    part("I want to build a Web app in 2019") {
+    part("Problem") {
+        slide("I want to build a Web app in 2019") {
+            p { "I want to build a Web app in 2019" }
+        }
         slide("Framework") {
             p { "Let's start by picking up a Framework" }
             ul(steps = true) {
