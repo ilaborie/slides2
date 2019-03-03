@@ -1,0 +1,48 @@
+main > section > article {
+
+  .charts.bar {
+    display: flex;
+    flex-direction: column;
+
+    .body {
+      width: 80vw;
+      margin-right: 2ch;
+      display: inline-grid;
+      grid-gap: .5rem;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+
+      .label {
+        grid-column: 1 / 1;
+        text-align: right;
+      }
+
+      .value {
+        background-color: currentColor;
+        margin: 0;
+        padding: 0;
+        grid-column-start: 2;
+        grid-column-end: -2;
+        height: .66em;
+        width: calc(100% * var(--value) / var(--scale));
+
+        &::before {
+          content: '';
+        }
+      }
+
+      .info {
+        grid-column-start: -2;
+        grid-column-end: -1;
+        font-size: 66%;
+        white-space: nowrap;
+        font-family: var(--font-mono);
+      }
+    }
+
+    .caption {
+      text-align: center;
+    }
+  }
+}
+

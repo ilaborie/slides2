@@ -8,6 +8,9 @@ import java.io.File
 
 class JvmFolder(private val file: File) : Folder {
 
+    private val stringCache: MutableMap<String, String> = mutableMapOf()
+    private val bytesCache: MutableMap<String, ByteArray> = mutableMapOf()
+
     constructor(path: String) : this(File(path))
 
     init {
@@ -33,13 +36,22 @@ class JvmFolder(private val file: File) : Folder {
 
     override fun readFileAsString(filename: String): String =
         resolve(filename)
-            .also { info("💾: FS") { "Read file $filename)" } }
-            .let { it.readText() }
+            .let { file ->
+                stringCache.computeIfAbsent(filename) {
+                    info("💾: FS") { "Read file $filename" }
+                    file.readText()
+                }
+            }
 
     override fun readFileAsBase64(filename: String): String =
         resolve(filename)
-            .also { info("💾: FS") { "Read file $filename as Base64" } }
-            .let { it.readBytes().readAsBase64() }
+            .let { file ->
+                bytesCache.computeIfAbsent(filename) {
+                    info("💾: FS") { "Read file $filename as Base64" }
+                    file.readBytes()
+                }
+                    .readAsBase64()
+            }
 
     override fun resolveAbsolutePath(filename: String): String =
         resolve(filename)

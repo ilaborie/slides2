@@ -3,10 +3,8 @@ package io.github.ilaborie.slides2.kt
 import io.github.ilaborie.slides2.kt.engine.*
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
-import io.github.ilaborie.slides2.kt.engine.extra.SpeakerHtmlRenderer
-import io.github.ilaborie.slides2.kt.engine.extra.SpeakerTextRenderer
-import io.github.ilaborie.slides2.kt.engine.extra.TableHtmlRenderer
-import io.github.ilaborie.slides2.kt.engine.extra.TableTextRenderer
+import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
+import io.github.ilaborie.slides2.kt.engine.extra.*
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
 import io.github.ilaborie.slides2.kt.jvm.extra.TweetHtmlRenderer
@@ -41,11 +39,9 @@ object SlideEngine {
         registerRenderers(FigureTextRenderer, FigureHtmlRenderer)
         registerRenderers(TableTextRenderer, TableHtmlRenderer)
         // Extra
-        registerRenderers(
-            SpeakerTextRenderer,
-            SpeakerHtmlRenderer
-        )
+        registerRenderers(SpeakerTextRenderer, SpeakerHtmlRenderer)
         registerRenderers(TweetTextRenderer, TweetHtmlRenderer)
+        registerRenderers(BarChartTextRenderer, BarChartHtmlRenderer)
 
         // Presentation, Part, Slide
         registerRenderer(PresentationHtmlRenderer())
@@ -79,6 +75,12 @@ object SlideEngine {
             ?.render(content)
             ?: throw IllegalStateException("No renderer found for $content")
 
+    fun asText(content: Content): String =
+        findRenderer(Text, content)
+            ?.render(content)
+            ?.replace('\n', ' ')
+            ?: throw IllegalStateException("No Text renderer found for $content")
+
     fun Presentation.renderHtml(config: Config): PresentationOutputInstance =
         findRenderer(Html, this)
             ?.let { renderer ->
@@ -101,7 +103,7 @@ object SlideEngine {
                     writePresentationScripts(config)
                 }
                 PresentationOutputInstance(label = theme.name, path = "${id.id}/$filename")
-            } ?: throw IllegalStateException("No renderer found for $this")
+            } ?: throw IllegalStateException("No Html renderer found for $this")
 
     private fun Presentation.writePresentationScripts(config: Config) {
         val folder = config.output / id.id

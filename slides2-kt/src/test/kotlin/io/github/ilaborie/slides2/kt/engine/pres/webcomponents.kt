@@ -1,6 +1,7 @@
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.dsl.raw
-import io.github.ilaborie.slides2.kt.jvm.extra.tweet
+import io.github.ilaborie.slides2.kt.engine.extra.barChart
+import io.github.ilaborie.slides2.kt.engine.extra.speaker
 
 
 // https://shprink.github.io/talks/2018/web_component_native_vs_stenciljs
@@ -99,7 +100,7 @@ val webComponents = pres(
         }
         slide("Industry Moving too Fast", setOf("header-hidden")) {
             h4("The industry is moving too fast...")
-            tweet("540481335362875392")
+//            tweet("540481335362875392")
         }
         slide("Interoperability", setOf("header-hidden")) {
             h4("...Interoperability is not available out of the box...")
@@ -127,28 +128,29 @@ val webComponents = pres(
             ul(steps = true) {
                 barChart(
                     "Size matters (Gzipped)",
-                    mapOf(
+                    mapOf( // TODO icon
                         "Angular" to 59.0,
                         "Stencil" to 11.0,
                         "Native" to 2.5
                     ),
-                    unit = "kb"
+                    unit = "kb",
+                    factor = { (it * 2).toInt() }
                 )
                 html { "😨 Stencil is 5 times smaller than Angular" } // TODO icon
-                html { "😱 Native is 23 times smaller than Angular" }// TODO icon
+                html { "😱 Native is 23 times smaller than Angular" } // TODO icon
             }
         }
-        slide("Time matters (FMP 3G \uD83D\uDCF1 in ms)", setOf("header-hidden")) {
+        slide("Time matters", setOf("header-hidden")) {
             ul(steps = true) {
                 barChart(
-                    "Time matters (FMP 3G \uD83D\uDCF1 in ms)", mapOf(
+                    "Time matters (FMP 3G 📱 in ms)", mapOf(
                         "Angular" to 3000.0,
                         "Stencil" to 1070.0,
                         "Native" to 1030.0,
                         "Stencil Pre Rendered" to 980.0
                     ), unit = "ms"
                 )
-                html { "Native & Stencil 3 times faster than Angular" }
+                html { "😨 Native & Stencil 3 times faster than Angular" }
             }
         }
     }

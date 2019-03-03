@@ -252,13 +252,21 @@ main > section {
 }
 
 
-#size_matters article {
+#size_matters article, #time_matters article {
 
   ul {
     list-style: none;
   }
 
-  table {
+  .step-done {
+    opacity: 1;
+  }
+
+  .charts.bar {
     margin-bottom: 1em;
+
+    .caption {
+      opacity: .75;
+    }
   }
 }

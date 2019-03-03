@@ -28,12 +28,6 @@ data class Part(
         else listOf(headerSlide) + slides
     }
 
-    val sTitle: String by lazy {
-        with(SlideEngine) {
-            render(Text, title)
-        }
-    }
-
     override fun toString(): String =
-            sTitle
+            SlideEngine.asText(title)
 }

@@ -1,5 +1,6 @@
 package io.github.ilaborie.slides2.kt.engine.extra
 
+import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
@@ -14,6 +15,26 @@ data class Speaker(
     val links: Map<String, String> = emptyMap(),
     val classes: Set<String> = emptySet()
 ) : Content
+
+
+fun ContainerBuilder.speaker(
+    fullName: String,
+    src: String,
+    info: String,
+    links: Map<String, String>,
+    classes: Set<String>
+) {
+    content.add {
+        val img = input.readFileAsDataUri(src)
+        Speaker(
+            fullName = fullName,
+            info = info,
+            img = img,
+            links = links,
+            classes = classes
+        )
+    }
+}
 
 
 object SpeakerHtmlRenderer : Renderer<Speaker> {

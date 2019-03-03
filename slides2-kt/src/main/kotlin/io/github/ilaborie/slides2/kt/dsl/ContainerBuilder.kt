@@ -10,7 +10,7 @@ import io.github.ilaborie.slides2.kt.term.Notifier
 import io.github.ilaborie.slides2.kt.term.Styles
 
 @PresentationMarker
-open class ContainerBuilder(private val input: Folder) {
+open class ContainerBuilder(internal val input: Folder) {
 
     internal val content: MutableList<() -> Content> = mutableListOf()
 
@@ -315,38 +315,6 @@ open class ContainerBuilder(private val input: Folder) {
                 .mapValues { (_, v) -> valueFn(v!!) }
 
             Table(caption.raw, data)
-        }
-    }
-
-    fun barChart(title: String, data: Map<String, Double>, unit: String) {
-        // FIXME Table
-        html {
-            val rows = data.map { (title, value) ->
-                """<tr>
-                |  <th scope="row">$title</th>
-                |  <td style="--value: $value">
-                |    <span>$value $unit</span>
-                |  </td>
-                |</tr>"""
-            }.joinToString("\n")
-
-            """<table class="table-charts bar" style="--scale: ${data.values.max()}">
-               |  <caption>$title</caption>
-               |  <tbody>$rows</tbody>
-               |</table>""".trimMargin()
-        }
-    }
-
-    fun speaker(fullName: String, src: String, info: String, links: Map<String, String>, classes: Set<String>) {
-        content.add {
-            val img = input.readFileAsDataUri(src)
-            Speaker(
-                fullName = fullName,
-                info = info,
-                img = img,
-                links = links,
-                classes = classes
-            )
         }
     }
 

@@ -37,7 +37,7 @@ object CheckContentPlugin : ContentPlugin {
         presentation.allSlides
             .groupBy({ it.id.id }) { it }
             .filterValues { it.size > 1 }
-            .mapValues { (_, list) -> list.map { it.sTitle } }
+            .mapValues { (_, list) -> list.map { it.toString() } }
             .forEach { (id, list) ->
                 Notifier.error {
                     "Duplicate id `$id` for ${list.joinToString()}"
