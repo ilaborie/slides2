@@ -8,7 +8,7 @@ import java.io.File
 
 class JvmFolder(private val file: File) : Folder {
 
-    constructor(path:String): this(File(path))
+    constructor(path: String) : this(File(path))
 
     init {
         require(file.isDirectory || !file.exists()) { "Expected a folder, and $file already exists" }
@@ -36,9 +36,8 @@ class JvmFolder(private val file: File) : Folder {
             .also { info("💾: FS") { "Read file $filename" } }
             .let { file ->
                 when (file.extension) {
-                    "svg"               -> file.readText().singleLine().replace('"', '\'')
-                    "png", "jpg", "gif" -> file.readBytes().readAsBase64()
-                    else                -> file.readText()
+                    "svg", "png", "jpg", "gif" -> file.readBytes().readAsBase64()
+                    else                       -> file.readText()
                 }
             }
 

@@ -32,7 +32,6 @@ abstract class HtmlTagRenderer<T : Content> : Renderer<T> {
             innerContent(content)
                 ?.let { inner -> "<$t$tagClass>${render(mode, inner)}</$t>" }
                 ?: "<$t$tagClass/>"
-
         }
 }
 
@@ -40,6 +39,15 @@ object TextHtmlRenderer : Renderer<TextContent> {
     override val mode = Html
     override fun render(content: TextContent): String =
         if (content.escape) content.text.escapeHtml() else content.text
+}
+
+object CompoundHtmlRenderer : Renderer<CompoundContent> {
+    override val mode = Html
+    override fun render(content: CompoundContent): String =
+        with(SlideEngine) {
+            content.inner
+                .joinToString("\n") { render(mode, it) }
+        }
 }
 
 object TitleHtmlRenderer : HtmlTagRenderer<Title>() {

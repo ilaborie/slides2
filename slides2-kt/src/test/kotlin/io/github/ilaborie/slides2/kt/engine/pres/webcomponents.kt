@@ -6,9 +6,18 @@ import io.github.ilaborie.slides2.kt.engine.contents.raw
 
 
 val webComponents = pres(
-    title = "Web Components : du natif à Stencil.js ou lit-element", // TODO
     id = "webComponents-19",
-    extraStyle = "style"
+    extraStyle = "style",
+    title = {
+        title(1, "Web Components")
+        ul {
+            listOf(
+                figure("logos/web-components.svg", "Natif"),
+                figure("logos/stencil.svg", "StencilJS"),
+                figure("logos/lit-element.png", "LitElement")
+            )
+        }
+    }
 ) {
     part("Introduction") {
         slide("Speakers") {
@@ -176,29 +185,29 @@ val webComponents = pres(
                 rows = listOf("JSX / Virtual DOM", "TypeScript", "Decorators", "Prerendering SSR"),
                 columns = listOf("Web Components", "Angular", "React", "Stencil"),
                 values = mapOf(
-                    ("JSX / Virtual DOM" to "Web Components") to "n",
-                    ("JSX / Virtual DOM" to "Angular") to "n",
-                    ("JSX / Virtual DOM" to "React") to "y︎",
-                    ("JSX / Virtual DOM" to "Stencil") to "y︎",
+                    ("JSX / Virtual DOM" to "Web Components") to "no",
+                    ("JSX / Virtual DOM" to "Angular") to "no",
+                    ("JSX / Virtual DOM" to "React") to "y︎es",
+                    ("JSX / Virtual DOM" to "Stencil") to "y︎es",
 
-                    ("TypeScript" to "Web Components") to "n",
-                    ("TypeScript" to "Angular") to "y︎",
-                    ("TypeScript" to "React") to "n",
-                    ("TypeScript" to "Stencil") to "y︎",
+                    ("TypeScript" to "Web Components") to "no",
+                    ("TypeScript" to "Angular") to "y︎es",
+                    ("TypeScript" to "React") to "no",
+                    ("TypeScript" to "Stencil") to "y︎es",
 
-                    ("Decorators" to "Web Components") to "n",
-                    ("Decorators" to "Angular") to "y︎",
-                    ("Decorators" to "React") to "n",
-                    ("Decorators" to "Stencil") to "y︎",
+                    ("Decorators" to "Web Components") to "no",
+                    ("Decorators" to "Angular") to "y︎es",
+                    ("Decorators" to "React") to "no",
+                    ("Decorators" to "Stencil") to "y︎es",
 
-                    ("Prerendering SSR" to "Web Components") to "n",
-                    ("Prerendering SSR" to "Angular") to "n",
-                    ("Prerendering SSR" to "React") to "n",
-                    ("Prerendering SSR" to "Stencil") to "y"
+                    ("Prerendering SSR" to "Web Components") to "no",
+                    ("Prerendering SSR" to "Angular") to "no",
+                    ("Prerendering SSR" to "React") to "no",
+                    ("Prerendering SSR" to "Stencil") to "yes"
                 ),
                 columnFn = { col ->
                     val key = when (col) {
-                        "Web Components" -> "webcomponents"
+                        "Web Components" -> "web-components"
                         "Angular"        -> "angular"
                         "React"          -> "react"
                         "Stencil"        -> "stencil"
@@ -206,10 +215,7 @@ val webComponents = pres(
                     }
                     single { figure("logos/$key.svg", col) }
                 },
-                valueFn = { value ->
-                    if (value == "y") """<span class="yes">✔︎</span>""".raw
-                    else """<span class="no">✘︎</span>""".raw
-                }
+                valueFn = { value -> """<span class="$value">︎</span>""".raw }
             )
         }
         slide("StencilJS **works everywhere**") {

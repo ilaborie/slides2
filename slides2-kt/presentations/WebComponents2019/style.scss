@@ -16,12 +16,31 @@
   --footerBg: var(--baseFg);
 }
 
-h1 {
-  font-size: 2em;
+.cover {
+  h1 {
+    font-size: 2em;
+
+    &::after {
+      content: ':'
+    }
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-self: stretch;
+
+    figure {
+      img {
+        height: 4em;
+      }
+    }
+  }
 }
 
 
-main> section > footer {
+main > section > footer {
   &::before {
     text-shadow: none;
   }

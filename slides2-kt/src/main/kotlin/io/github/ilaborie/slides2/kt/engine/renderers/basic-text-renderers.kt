@@ -14,6 +14,15 @@ object TextTextRenderer : Renderer<TextContent> {
         content.text
 }
 
+object CompoundTextRenderer : Renderer<CompoundContent> {
+    override val mode = Text
+    override fun render(content: CompoundContent): String =
+        with(SlideEngine) {
+            content.inner
+                .joinToString("\n") { render(mode, it) }
+        }
+}
+
 object TitleTextRenderer : Renderer<Title> {
     override val mode = Text
     override fun render(content: Title): String =
@@ -117,11 +126,7 @@ object FigureTextRenderer : Renderer<Figure> {
     override val mode: RenderMode = Text
 
     override fun render(content: Figure): String =
-        with(SlideEngine) {
-            """![${content.title}](${content.src})
-                |${content.copyright?.let { "\n" + render(mode, it) } ?: ""}
-                |""".trimMargin()
-        }
+        content.title
 }
 
 object TableTextRenderer : Renderer<Table> {

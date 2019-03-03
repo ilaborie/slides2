@@ -20,7 +20,7 @@ const buildToc = () => {
     let slides = Array.from(document.querySelectorAll("main > section"));
     // if (slides.length) {
         tocMenu.querySelector('ul').innerHTML =
-            slides.map(elt => `<li><a href="#${elt.id}">${elt.querySelector("header").innerHTML}</a></li>`)
+            slides.map(elt => `<li><a href="#${elt.id}">${elt.querySelector("header").textContent}</a></li>`)
                 .join("\n");
 
         tocMenu.querySelectorAll("a")

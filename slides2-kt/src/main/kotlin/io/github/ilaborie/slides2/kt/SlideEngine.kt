@@ -21,6 +21,7 @@ object SlideEngine {
     init {
         // Base
         registerRenderers(TextTextRenderer, TextHtmlRenderer)
+        registerRenderers(CompoundTextRenderer, CompoundHtmlRenderer)
         registerRenderers(TitleTextRenderer, TitleHtmlRenderer)
         registerRenderers(ParagraphTextRenderer, ParagraphHtmlRenderer)
         registerRenderers(StyledTextTextRenderer, StyledTextHtmlRenderer)

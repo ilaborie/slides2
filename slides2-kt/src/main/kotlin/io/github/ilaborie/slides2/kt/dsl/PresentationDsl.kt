@@ -5,7 +5,6 @@ import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Id
 import io.github.ilaborie.slides2.kt.engine.Presentation
 import io.github.ilaborie.slides2.kt.engine.Theme
-import io.github.ilaborie.slides2.kt.engine.contents.h1
 import io.github.ilaborie.slides2.kt.jvm.asKey
 
 
@@ -23,8 +22,8 @@ interface PresentationDsl {
 }
 
 fun pres(
-    title: String,
-    id: String = title.asKey(),
+    title: ContainerBuilder.() -> Unit,
+    id: String,
     theme: Theme = Theme.base,
     extraStyle: String? = null,
     lang: String = "en",
@@ -33,7 +32,29 @@ fun pres(
     override fun invoke(input: Folder): Presentation =
         PresentationBuilder(input)
             .apply(block)
-            .build(id = Id(id), title = title.h1, theme = theme, extraStyle = extraStyle, lang = lang)
-
+            .build(
+                id = Id(id),
+                title = ContainerBuilder(input).compound(title),
+                theme = theme,
+                extraStyle = extraStyle,
+                lang = lang
+            )
 }
 
+
+fun pres(
+    title: String,
+    id: String = title.asKey(),
+    theme: Theme = Theme.base,
+    extraStyle: String? = null,
+    lang: String = "en",
+    block: PresentationBuilder.() -> Unit
+): PresentationDsl =
+    pres(
+        title = { title(1, title) },
+        id = id,
+        theme = theme,
+        extraStyle = extraStyle,
+        lang = lang,
+        block = block
+    )

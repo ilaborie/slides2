@@ -12,37 +12,32 @@ object SlideHtmlRenderer : Renderer<Slide> {
 
     override fun render(content: Slide): String =
         with(SlideEngine) {
-
             val classes = content.styles.joinToString(" ")
 
             val body = content.content.joinToString("\n") {
                 render(mode, it)
             }
 
-            val previous = content.previous?.let {
+            val previous =
                 """<nav class="previous">
-                        |  <a href="#${it.id}" aria-label="previous slide"></a>
-                        |</nav>""".trimMargin()
-            } ?: ""
+                  |  ${content.previous?.let { """<a href="#${it.id}" aria-label="previous slide"></a>""" } ?: ""}
+                  |</nav>""".trimMargin()
 
-            val next = content.next?.let {
+            val next =
                 """<nav class="next">
-                        |  <a href="#${it.id}" aria-label="next slide"></a>
-                        |</nav>""".trimMargin()
-            } ?: ""
+                  |  ${content.next?.let { """<a href="#${it.id}" aria-label="next slide"></a>""" } ?: ""}
+                  |</nav>""".trimMargin()
 
-            """
-                |<section id="${content.id.id}"${if (classes == "") "" else """ class="$classes""""}>
-                |  <header>
-                |${render(mode, content.title).prependIndent("    ")}
-                |  </header>
-                |${previous.prependIndent("  ")}
-                |  <article>
-                |$body
-                |  </article>
-                |${next.prependIndent("  ")}
-                |  <footer></footer>
-                |</section>
-            """.trimMargin()
+            """<section id="${content.id.id}"${if (classes == "") "" else """ class="$classes""""}>
+              |  <header>
+              |${render(mode, content.title).prependIndent("    ")}
+              |  </header>
+              |${previous.prependIndent("  ")}
+              |  <article>
+              |$body
+              |  </article>
+              |${next.prependIndent("  ")}
+              |  <footer></footer>
+              |</section>""".trimMargin()
         }
 }

@@ -5,6 +5,7 @@ import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.SingleContent
 
 data class TextContent(val text: String, val escape: Boolean = true) : Content
+data class CompoundContent(override val inner: List<Content>) :ContainerContent
 
 data class Title(val level: Int, override val content: Content) : SingleContent {
     init {
@@ -29,7 +30,6 @@ enum class NoticeKind { Tips, Info, Warning, Danger }
 data class Notice(val kind: NoticeKind, val title: String?, override val content: Content) : SingleContent
 data class Figure(val title: String, val src: String, val copyright: Content?) : Content
 
-
 data class Table(val caption: Content, val data: Map<Pair<Content, Content>, Content>): Content
 
 // TODO
@@ -39,5 +39,3 @@ data class DefinitionsList(val definitions: Map<Content, Content>, override val 
     override val inner: List<Content>
         get() = definitions.flatMap { (k, v) -> listOf(k, v) }
 }
-
-// TODO: abbr, ...

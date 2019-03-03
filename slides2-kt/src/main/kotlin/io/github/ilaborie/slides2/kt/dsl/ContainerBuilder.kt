@@ -22,6 +22,13 @@ open class ContainerBuilder(private val input: Folder) {
             .map { it() }
             .firstOrNull() ?: throw IllegalStateException("No content")
 
+    fun compound(block: ContainerBuilder.() -> Unit): Content =
+        ContainerBuilder(input)
+            .apply(block)
+            .content
+            .map { it() }
+            .let { CompoundContent(it) }
+
     fun file(file: String) {
         val extension = file.split(".").last()
         if (!input.exists(file)) {
@@ -120,7 +127,7 @@ open class ContainerBuilder(private val input: Folder) {
             val figSrc = if (input.exists(src)) {
                 val extension = src.split(".").last()
                 val mimeType = when (extension) {
-                    "svg" -> "image/svg+xml;utf8"
+                    "svg" -> "image/svg+xml;base64"
                     "png" -> "image/png;base64"
                     "gif" -> "image/gif;base64"
                     "jpg" -> "image/jpeg;base64"
@@ -136,6 +143,10 @@ open class ContainerBuilder(private val input: Folder) {
         content.add {
             Title(level = level, content = block())
         }
+    }
+
+    fun title(level: Int, text: String) {
+        title(level) { text.raw }
     }
 
     fun table(
