@@ -11,7 +11,7 @@ import io.github.ilaborie.slides2.kt.term.Styles
 @PresentationMarker
 open class ContainerBuilder(private val input: Folder) {
 
-    private val content: MutableList<() -> Content> = mutableListOf()
+    internal val content: MutableList<() -> Content> = mutableListOf()
 
     fun build(): List<Content> =
         content.map { it() }
@@ -52,8 +52,108 @@ open class ContainerBuilder(private val input: Folder) {
         html { markdownToHtml(md()) }
     }
 
+
+    fun todo(html: () -> String) {
+        html {
+            """<span class="todo">${html()}</span>"""
+        }
+    }
+
+
     fun html(html: () -> String) {
         content.add { TextContent(html(), escape = false) }
+    }
+
+    fun h1(classes: Set<String> = emptySet(), title: String) {
+        title(1, classes) { title.raw }
+    }
+
+    fun h1(classes: Set<String> = emptySet(), block: () -> Content) {
+        title(1, classes, block)
+    }
+
+    fun h2(classes: Set<String> = emptySet(), title: String) {
+        title(2, classes) { title.raw }
+    }
+
+    fun h2(classes: Set<String> = emptySet(), block: () -> Content) {
+        title(2, classes, block)
+    }
+
+    fun h3(classes: Set<String> = emptySet(), title: String) {
+        title(3, classes) { title.raw }
+    }
+
+    fun h3(classes: Set<String> = emptySet(), block: () -> Content) {
+        title(3, classes, block)
+    }
+
+    fun h4(classes: Set<String> = emptySet(), title: String) {
+        title(4, classes) { title.raw }
+    }
+
+    fun h4(classes: Set<String> = emptySet(), block: () -> Content) {
+        title(4, classes, block)
+    }
+
+    fun h5(classes: Set<String> = emptySet(), title: String) {
+        title(5, classes) { title.raw }
+    }
+
+    fun h5(classes: Set<String> = emptySet(), block: () -> Content) {
+        title(5, classes, block)
+    }
+
+    fun h6(classes: Set<String> = emptySet(), title: String) {
+        title(6, classes) { title.raw }
+    }
+
+    fun h6(classes: Set<String> = emptySet(), block: () -> Content) {
+        title(6, classes, block)
+    }
+
+
+    fun strong(classes: Set<String> = emptySet(), block: () -> Content) {
+        content.add { StyledText(TextStyle.Strong, block(), classes) }
+    }
+
+    fun em(classes: Set<String> = emptySet(), block: () -> Content) {
+        content.add { StyledText(TextStyle.Emphasis, block(), classes) }
+    }
+
+    fun u(classes: Set<String> = emptySet(), block: () -> Content) {
+        content.add { StyledText(TextStyle.UnderLine, block(), classes) }
+    }
+
+    fun mark(classes: Set<String> = emptySet(), block: () -> Content) {
+        content.add { StyledText(TextStyle.Mark, block(), classes) }
+    }
+
+    fun kbd(classes: Set<String> = emptySet(), block: () -> Content) {
+        content.add { StyledText(TextStyle.Keyboard, block(), classes) }
+    }
+
+    fun pre(classes: Set<String> = emptySet(), block: () -> Content) {
+        content.add { StyledText(TextStyle.Pre, block(), classes) }
+    }
+
+    fun ins(classes: Set<String> = emptySet(), block: () -> Content) {
+        content.add { StyledText(TextStyle.Ins, block(), classes) }
+    }
+
+    fun del(classes: Set<String> = emptySet(), block: () -> Content) {
+        content.add { StyledText(TextStyle.Del, block(), classes) }
+    }
+
+    fun sub(classes: Set<String> = emptySet(), block: () -> Content) {
+        content.add { StyledText(TextStyle.Sub, block(), classes) }
+    }
+
+    fun sup(classes: Set<String> = emptySet(), block: () -> Content) {
+        content.add { StyledText(TextStyle.Sup, block(), classes) }
+    }
+    fun span(inner: String) {
+        html { """<span>$inner</span>""" }
     }
 
     fun sourceCode(file: String) {
@@ -89,21 +189,21 @@ open class ContainerBuilder(private val input: Folder) {
 
     fun ol(steps: Boolean = false, classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         content.add {
-            ContainerBuilder(input)
-                .apply(block)
-                .build()
-                .ol
-                .copy(steps = steps, classes = classes)
+            OrderedList(
+                steps = steps,
+                classes = classes,
+                inner = ContainerBuilder(input).apply(block).build()
+            )
         }
     }
 
     fun ul(steps: Boolean = false, classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         content.add {
-            ContainerBuilder(input)
-                .apply(block)
-                .build()
-                .ul
-                .copy(steps = steps,classes = classes)
+            UnorderedList(
+                steps = steps,
+                classes = classes,
+                inner = ContainerBuilder(input).apply(block).build()
+            )
         }
     }
 
@@ -130,7 +230,7 @@ open class ContainerBuilder(private val input: Folder) {
         }
     }
 
-    fun title(level: Int, classes: Set<String> = emptySet(), block: () -> Content) {
+    private fun title(level: Int, classes: Set<String> = emptySet(), block: () -> Content) {
         content.add {
             Title(level = level, classes = classes, content = block())
         }
@@ -139,6 +239,7 @@ open class ContainerBuilder(private val input: Folder) {
     fun title(level: Int, text: String) {
         title(level) { text.raw }
     }
+
 
     fun table(
         caption: String,

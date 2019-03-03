@@ -6,6 +6,7 @@ import io.github.ilaborie.slides2.kt.engine.Id
 import io.github.ilaborie.slides2.kt.engine.Part
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
 import io.github.ilaborie.slides2.kt.engine.Slide
+import io.github.ilaborie.slides2.kt.engine.contents.OrderedList
 import io.github.ilaborie.slides2.kt.engine.contents.h3
 import io.github.ilaborie.slides2.kt.jvm.asKey
 
@@ -47,11 +48,10 @@ class PartBuilder(internal val presentationDsl: PresentationBuilder) {
     }
 
     fun roadmap(title: String) {
+        val dsl = presentationDsl
         slide(title, styles = setOf("roadmap")) {
-            ol {
-                this@PartBuilder.presentationDsl
-                    .parts
-                    .map { it.title }
+            content.add {
+                OrderedList(inner = dsl.parts.map { it.title }, classes = emptySet())
             }
         }
     }

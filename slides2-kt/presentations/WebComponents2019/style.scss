@@ -37,6 +37,8 @@ main > section > footer {
   }
 }
 
+
+// Slides
 .cover {
   h1 {
     font-size: 2em;
@@ -52,7 +54,6 @@ main > section > footer {
 }
 
 #speakers {
-
   .previous {
     @extend .toptal;
     // Fix a glitch on Chrome
@@ -71,6 +72,76 @@ main > section > footer {
     grid-column-gap: 2em;
     //background: linear-gradient(to right, white 50%, var(--monkeyBof) 0);
     background: linear-gradient(92deg, white 50%, var(--monkeyBof) 0);
+  }
+}
+
+.roadmap article {
+
+  li {
+    color: white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3em .5em;
+
+    &::before, &::after {
+      position: absolute;
+      font-family: var(--font-mono);
+    }
+
+    &::before {
+      content: var(--startAt);
+      top: -1.2em;
+      left: 0;
+      transform: translateX(-50%);
+    }
+
+    &::after {
+      content: var(--endAt);
+      bottom: -1.2em;
+      right: 0;
+      transform: translateX(50%);
+    }
+  }
+
+  li:nth-child(1) {
+    margin-left: 3ch;
+    background: green;
+    --startAt: '09h00';
+    --endAt: '09h15';
+  }
+
+  li:nth-child(2) {
+    flex-grow: 1;
+    background: purple;
+    //--startAt: '09h15';
+    //--endAt: '10h30';
+  }
+
+  li:nth-child(3) {
+    --startAt: '10h30';
+    --endAt: '10h40';
+  }
+
+  li:nth-child(4) {
+    flex-grow: 1;
+    background: purple;
+    //--startAt: '10h40';
+    //--endAt: '11h50';
+  }
+
+  li:nth-child(5) {
+    background: green;
+    --startAt: '11h50';
+    --endAt: '12h00';
+  }
+
+  li:nth-child(6) {
+    background: linear-gradient(to right, purple, purple 60%, transparent 100%);
+    min-width: 5rem;
+    margin-left: .5rem;
+    //--startAt: '12h00';
   }
 
 }

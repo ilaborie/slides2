@@ -44,21 +44,33 @@ val webComponents = pres(
             file("logos/toptal.svg")
             file("logos/monkeypatch.svg")
         }
-        roadmap("Roadmap")
+        slide("Roadmap", setOf("roadmap")) {
+            ul(classes = setOf("list-inline")) {
+                span("Slides & Installation")
+                span("Workshop")
+                span("⏸")
+                span("Workshop")
+                span("Conclusion")
+                span("...")
+            }
+        }
+        slide("Instructions") {
+            todo { "Installation instructions" } // TODO
+        }
     }
-    part("Problem") {
-        slide("I want to build a Web app in 2019") {
+    part("Modern Web Development Issues") {
+        slide("I want to build a Web app in 2019", setOf("header-hidden")) {
             p { "I want to build a Web app in 2019" }
         }
-        slide("Framework") {
+        slide("Choose Framework", setOf("header-hidden")) {
             p { "Let's start by picking up a Framework" }
-            ul(steps = true) {
+            ul(steps = true, classes = setOf("list-inline")) {
                 figure("logos/react.svg", "React")
                 figure("logos/vuejs.svg", "VueJs")
                 figure("logos/angular.svg", "Angular")
             }
         }
-        slide("Style", styles = setOf("two-columns")) {
+        slide("Choose Style", styles = setOf("two-columns", "header-hidden")) {
             p { "Now let's select how to write our style" }
             ul(steps = true) {
                 html { "CSS" }
@@ -70,7 +82,7 @@ val webComponents = pres(
                 html { "NextCSS" }
             }
         }
-        slide("Transpile") {
+        slide("Choose JavaScript Transpiler", setOf("header-hidden")) {
             p { "Now let's transpile our code" }
             ul(steps = true) {
                 html { "Webpack" }
@@ -79,10 +91,10 @@ val webComponents = pres(
                 html { "Bazel" }
             }
         }
-        slide("Not Easy") {
+        slide("Development Not Easy", setOf("header-hidden")) {
             p { "Developing an app in JS in not easy anymore..." }
         }
-        slide("Moving too fast") {
+        slide("Industry Moving too Fast", setOf("header-hidden")) {
             p { "The industry is moving too fast..." }
             // TODO tweet
             html {
@@ -240,7 +252,7 @@ val webComponents = pres(
             )
         }
         slide("StencilJS **works everywhere**") {
-            title(4) { "Loads polyfills on-demand".raw }
+            h4 { "Loads polyfills on-demand".raw }
         }
         slide("Stencil Syntax is short") {
             figure("stencil/stencil-syntax.png", "Stencil Syntax is short")

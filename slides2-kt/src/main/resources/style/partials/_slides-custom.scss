@@ -41,10 +41,11 @@ main > section {
   }
 
   // Roadmap
-  .roadmap {
+  &.roadmap {
     header h3::before {
       content: '🗺 ';
     }
+
     article {
       font-size: 66%;
     }
