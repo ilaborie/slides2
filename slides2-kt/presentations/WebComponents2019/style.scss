@@ -8,7 +8,9 @@
 
   // Colors
   --colDark: #212529;
-  --col1: #212529;
+  --col1: var(--colDark);
+  --col2: var(--colDark);
+  --col3: var(--colDark);
 
   --baseFg: var(--colLight);
   --partFg: var(--colLight);
@@ -17,6 +19,22 @@
 
   // Footer
   --footerText: '@julienrenaux @ilaborie #DevoxxFR #webcomponents';
+}
+
+.toptal {
+  background: white;
+  color: var(--toptal);
+}
+
+.monkeyPatch {
+  background: var(--monkeyBof);
+  color: white;
+}
+
+main > section > footer {
+  &::before {
+    text-shadow: none;
+  }
 }
 
 .cover {
@@ -42,9 +60,52 @@
   }
 }
 
+#speakers {
 
-main > section > footer {
-  &::before {
-    text-shadow: none;
+  .previous {
+    @extend .toptal;
   }
+
+  .next {
+    @extend .monkeyPatch;
+  }
+
+  article {
+    display: grid;
+    grid-row: 1 / - 1;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: stretch;
+    grid-column-gap: 2em;
+    background: linear-gradient(to right, white 50%, var(--monkeyBof) 0);
+
+    .igor, .julien {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        border-radius: 50%;
+        border: medium solid currentColor;
+        box-shadow: .125em .125em .25em rgba(0, 0, 0, .5);
+        height: 4em;
+        width: 4em;
+        object-fit: cover;
+      }
+
+      p {
+        font-size: 75%;
+      }
+       a {
+         background: none;
+
+         &::before {
+           content: '';
+         }
+       }
+    }
+
+  }
+
 }

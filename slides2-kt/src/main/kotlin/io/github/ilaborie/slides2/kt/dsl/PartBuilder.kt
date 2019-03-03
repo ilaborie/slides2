@@ -25,8 +25,8 @@ class PartBuilder(internal val presentationDsl: PresentationBuilder) {
 
     fun slide(
         title: String,
-        id: String = title.asKey(),
         styles: Set<String> = emptySet(),
+        id: String = title.asKey(),
         block: SlideBuilder.() -> Unit
     ) {
         slide(slideTitle = title.h3, id = id, styles = styles, block = block)
@@ -34,8 +34,8 @@ class PartBuilder(internal val presentationDsl: PresentationBuilder) {
 
     fun slide(
         slideTitle: Content,
-        id: String = with(SlideEngine) { render(Text, slideTitle) },
         styles: Set<String> = emptySet(),
+        id: String = with(SlideEngine) { render(Text, slideTitle) },
         block: SlideBuilder.() -> Unit
     ) {
         val slideId = Id(id)

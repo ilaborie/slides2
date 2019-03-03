@@ -1,4 +1,3 @@
-
 // Navigation
 const clickOn = selector => {
     const btn = document.querySelector(selector);
@@ -52,3 +51,11 @@ document.addEventListener('keydown', event => {
         }
     }
 });
+
+// Current page
+setTimeout(() => {
+    const currentSlide = document.querySelector(document.location.hash);
+    if (currentSlide) {
+        currentSlide.scrollIntoView({behavior: "instant"});
+    }
+}, 1000);

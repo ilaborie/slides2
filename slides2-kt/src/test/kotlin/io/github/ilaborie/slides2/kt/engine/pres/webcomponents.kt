@@ -20,7 +20,7 @@ val webComponents = pres(
     }
 ) {
     part("Introduction", skipHeader = true) {
-        slide("Speakers") {
+        slide("Speakers", setOf("header-hidden")) {
             file("speakers/julien.html")
             file("speakers/igor.html")
             file("logos/toptal.svg")

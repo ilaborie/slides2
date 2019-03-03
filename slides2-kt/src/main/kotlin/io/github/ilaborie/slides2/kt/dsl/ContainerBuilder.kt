@@ -133,7 +133,7 @@ open class ContainerBuilder(private val input: Folder) {
                     "jpg" -> "image/jpeg;base64"
                     else  -> throw IllegalArgumentException("Unsupported file extension: $extension")
                 }
-                "data:$mimeType,${input.readFileAsString(src)}"
+                "data:$mimeType,${input.readFileAsBase64(src)}"
             } else src
             Figure(src = figSrc, title = title, copyright = copyrightBlock)
         }

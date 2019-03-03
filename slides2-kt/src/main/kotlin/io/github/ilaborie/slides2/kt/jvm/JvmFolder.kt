@@ -33,13 +33,13 @@ class JvmFolder(private val file: File) : Folder {
 
     override fun readFileAsString(filename: String): String =
         resolve(filename)
-            .also { info("💾: FS") { "Read file $filename" } }
-            .let { file ->
-                when (file.extension) {
-                    "svg", "png", "jpg", "gif" -> file.readBytes().readAsBase64()
-                    else                       -> file.readText()
-                }
-            }
+            .also { info("💾: FS") { "Read file $filename)" } }
+            .let { it.readText() }
+
+    override fun readFileAsBase64(filename: String): String =
+        resolve(filename)
+            .also { info("💾: FS") { "Read file $filename as Base64" } }
+            .let { it.readBytes().readAsBase64() }
 
     override fun resolveAbsolutePath(filename: String): String =
         resolve(filename)
