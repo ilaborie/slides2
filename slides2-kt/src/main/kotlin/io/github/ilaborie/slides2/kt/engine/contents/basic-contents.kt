@@ -72,8 +72,6 @@ data class Notice(
 
 data class Figure(val title: String, val src: String, val copyright: Content?) : Content
 
-data class Table(val caption: Content, val data: Map<Pair<Content, Content>, Content>) : Content
-
 // TODO
 
 data class DefinitionsList(

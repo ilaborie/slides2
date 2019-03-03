@@ -11,6 +11,7 @@ import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.SlideEngine.applyPlugins
 import io.github.ilaborie.slides2.kt.dsl.PresentationDsl
 import io.github.ilaborie.slides2.kt.engine.PresentationOutput
+import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Theme
 import io.github.ilaborie.slides2.kt.engine.extra.usePrismJs
 import io.github.ilaborie.slides2.kt.engine.plugins.CheckContentPlugin
@@ -54,10 +55,14 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
         SlideEngine
             .registerContentPlugin(CheckContentPlugin)
             .apply {
-                globalScripts += listOf("navigate.js", "toc.js")
+                globalScripts += listOf(
+                    Script("./navigate.js"),
+                    Script("./toc.js"),
+                    Script("./line-numbers.js")
+                )
+
                 if (prism) {
-                    globalScripts += "line-numbers.js"
-                    registerRenderer(usePrismJs())
+                    usePrismJs(showLines = true)
                 }
             }
 

@@ -37,6 +37,10 @@ main > section > footer {
   }
 }
 
+.list-inline li > figure > img {
+  height: 4em;
+}
+
 
 // Slides
 .cover {
@@ -46,10 +50,6 @@ main > section > footer {
     &::after {
       content: ':'
     }
-  }
-
-  img {
-    height: 4em;
   }
 }
 
@@ -144,4 +144,12 @@ main > section > footer {
     //--startAt: '12h00';
   }
 
+}
+
+#industry_moving_too_fast article {
+  justify-content: space-evenly;
+
+  .twitter-tweet {
+    transform: scale(1.5) !important;
+  }
 }

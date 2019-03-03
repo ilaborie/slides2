@@ -5,6 +5,7 @@ import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Id
 import io.github.ilaborie.slides2.kt.engine.Presentation
 import io.github.ilaborie.slides2.kt.engine.Theme
+import io.github.ilaborie.slides2.kt.engine.contents.TextContent
 import io.github.ilaborie.slides2.kt.jvm.asKey
 
 
@@ -20,6 +21,10 @@ internal data class LazyBuilder<T>(
 interface PresentationDsl {
     operator fun invoke(input: Folder): Presentation
 }
+
+val String.raw: TextContent
+    get() = TextContent(this, escape = false)
+
 
 fun pres(
     title: ContainerBuilder.() -> Unit,

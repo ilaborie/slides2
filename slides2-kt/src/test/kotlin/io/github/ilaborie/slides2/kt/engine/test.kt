@@ -15,14 +15,20 @@ fun main() {
     SlideEngine
         .registerContentPlugin(CheckContentPlugin)
         .apply {
-            globalScripts += listOf("navigate.js", "toc.js", "line-numbers.js")
-            registerRenderer(usePrismJs())
+            globalScripts += listOf(
+                Script("./navigate.js"),
+                Script("./toc.js"),
+                Script("./line-numbers.js")
+            )
+
+            usePrismJs(showLines = true)
         }
     val allThemes = Theme.all.values.toList()
 
     val demoOut = run(jvmConfig("presentations/samples"), demo, allThemes)
     val wcOut = run(jvmConfig("presentations/WebComponents2019"), webComponents, listOf(devoxxFr19))
 
+//    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     val cgf = JvmFolder("public")
     cgf.writeFile("data.json") {
         listOf(demoOut, wcOut).joinToString(", ", "[ ", "]") { it.json }

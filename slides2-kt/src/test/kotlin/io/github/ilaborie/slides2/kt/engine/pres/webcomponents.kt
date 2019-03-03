@@ -1,6 +1,7 @@
 import io.github.ilaborie.slides2.kt.dsl.pres
-import io.github.ilaborie.slides2.kt.engine.contents.p
-import io.github.ilaborie.slides2.kt.engine.contents.raw
+import io.github.ilaborie.slides2.kt.dsl.raw
+import io.github.ilaborie.slides2.kt.jvm.extra.tweet
+
 
 // https://shprink.github.io/talks/2018/web_component_native_vs_stenciljs
 
@@ -58,12 +59,12 @@ val webComponents = pres(
             todo { "Installation instructions" } // TODO
         }
     }
-    part("Modern Web Development Issues") {
+    part("Modern Web Development Issues", skipHeader = true) {
         slide("I want to build a Web app in 2019", setOf("header-hidden")) {
-            p { "I want to build a Web app in 2019" }
+            h4("I want to build a Web app in 2019")
         }
         slide("Choose Framework", setOf("header-hidden")) {
-            p { "Let's start by picking up a Framework" }
+            h4("Let's start by picking up a Framework")
             ul(steps = true, classes = setOf("list-inline")) {
                 figure("logos/react.svg", "React")
                 figure("logos/vuejs.svg", "VueJs")
@@ -71,51 +72,44 @@ val webComponents = pres(
             }
         }
         slide("Choose Style", styles = setOf("two-columns", "header-hidden")) {
-            p { "Now let's select how to write our style" }
+            h4("Now let's select how to write our style")
             ul(steps = true) {
-                html { "CSS" }
-                html { "Sass/Scss" }
-                html { "Less" }
-                html { "Stylus" }
-                html { "CSS-in-JS" }
-                html { "PostCSS" }
-                html { "NextCSS" }
+                span("CSS")
+                span("Sass/Scss")
+                span("Less")
+                span("Stylus")
+                span("CSS-in-JS")
+                span("PostCSS")
+                span("NextCSS")
+                span("...")
             }
         }
         slide("Choose JavaScript Transpiler", setOf("header-hidden")) {
-            p { "Now let's transpile our code" }
+            h4("Now let's transpile our code")
             ul(steps = true) {
-                html { "Webpack" }
-                html { "ParcelJs" }
-                html { "RollupJs" }
-                html { "Bazel" }
+                span("Webpack")
+                span("ParcelJs")
+                span("RollupJs")
+                span("Bazel")
             }
         }
         slide("Development Not Easy", setOf("header-hidden")) {
-            p { "Developing an app in JS in not easy anymore..." }
+            h5("Developing an app in JS in not easy anymore...")
         }
         slide("Industry Moving too Fast", setOf("header-hidden")) {
-            p { "The industry is moving too fast..." }
-            // TODO tweet
-            html {
-                """<blockquote class="twitter-tweet" data-lang="fr">
-               |  <p lang="en" dir="ltr">I think I&#39;ve had milk last longer than some JavaScript frameworks.</p>
-               |  &mdash; I Am Devloper (@iamdevloper)
-               |  <a href="https://twitter.com/iamdevloper/status/540481335362875392?ref_src=twsrc%5Etfw">4 décembre 2014</a>
-               |</blockquote>
-               |<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>"""
-            }
+            h4("The industry is moving too fast...")
+            tweet("540481335362875392")
         }
         slide("Interoperability") {
-            p { "...Interoperability is not available out of the box..." }
-            ul {
+            h4("...Interoperability is not available out of the box...")
+            ul(classes = setOf("list-inline")) {
                 figure("logos/react.svg", "React")
                 figure("logos/vuejs.svg", "VueJs")
                 figure("logos/angular.svg", "Angular")
             }
         }
         slide("Reinventing") {
-            p { "...And we keep reinventing the wheel!" }
+            p("...And we keep reinventing the wheel!")
             ul(steps = true) {
                 (1..10).forEach {
                     figure("img/material/material-design-$it.png", "Material $it")
@@ -174,15 +168,18 @@ val webComponents = pres(
         }
         slide("Custom Elements") {
             figure("img/webcomponents/custom-elements.svg", "Custom Elements")
-            quote { "Custom Elements is a capability for creating your own custom HTML elements with its own methods and properties".p }
+            quote {
+                p("Custom Elements is a capability for creating your own custom HTML elements with its own methods and properties")
+
+            }
         }
         slide("Shadow DOM") {
             figure("img/webcomponents/shadow-DOM.svg", "Shadow DOM")
-            quote { "Shadow DOM provides encapsulation for DOM and CSS".p }
+            quote { p("Shadow DOM provides encapsulation for DOM and CSS") }
         }
         slide("HTML templates") {
             figure("img/webcomponents/HTML-templates.svg", "HTML templates")
-            quote { "Give the ability to create reusable piece of HTML that can be used at runtime".p }
+            quote { p("Give the ability to create reusable piece of HTML that can be used at runtime") }
         }
         slide("Browser support") {
             file("img/caniuse/browser-support.html")
@@ -282,6 +279,6 @@ val webComponents = pres(
                 html { "..." }
             }
         }
-        slide("End") { p { "Thanks" } }
+        slide("End") { p("Thanks") }
     }
 }

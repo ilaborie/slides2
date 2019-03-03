@@ -17,6 +17,7 @@ import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Strong
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sub
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sup
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.UnderLine
+import io.github.ilaborie.slides2.kt.engine.extra.Table
 import io.github.ilaborie.slides2.kt.jvm.escapeHtml
 
 
@@ -209,44 +210,5 @@ object FigureHtmlRenderer : Renderer<Figure> {
                 |  <img src="${content.src}" alt="${content.title}">$copyright
                 |  <figcaption>${content.title}</figcaption>
                 |</figure>""".trimMargin()
-        }
-}
-
-object TableHtmlRenderer : Renderer<Table> {
-    override val mode: RenderMode = Html
-
-    override fun render(content: Table): String =
-        with(SlideEngine) {
-            val headValues = content.data.keys
-                .map { (_, v) -> v }
-                .distinct()
-
-            val thead = "<td></td>" + headValues.joinToString("") { "<th>${render(mode, it)}</th>" }
-
-            val bodyValues = content.data.keys
-                .map { (_, v) -> v }
-                .distinct()
-
-
-            val tbodyRow = { k: Content ->
-                """
-                  |<th>${render(mode, k)}</th>
-                  |${headValues.joinToString("") { v ->
-                    content.data[k to v]
-                        ?.let { "<td>${render(mode, it)}</td>" }
-                        ?: "<td></td>"
-                }}
-                """.trimMargin()
-            }
-
-            """<table>
-                |  <thead>
-                |    <tr>$thead</tr>
-                |  </thead>
-                |  <tbody>
-                |    ${bodyValues.joinToString("</tr><tr>", "<tr>", "</tr>") { tbodyRow(it) }}</tr>
-                |  </tbody>
-                |  <caption>${render(mode, content.caption)}</caption>
-                |</table>""".trimMargin()
         }
 }

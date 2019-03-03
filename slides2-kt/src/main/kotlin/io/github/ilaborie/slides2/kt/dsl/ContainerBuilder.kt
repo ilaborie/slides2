@@ -4,6 +4,7 @@ import io.github.ilaborie.slides2.kt.Folder
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.contents.*
 import io.github.ilaborie.slides2.kt.engine.extra.Speaker
+import io.github.ilaborie.slides2.kt.engine.extra.Table
 import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml.markdownToHtml
 import io.github.ilaborie.slides2.kt.term.Notifier
 import io.github.ilaborie.slides2.kt.term.Styles
@@ -64,7 +65,7 @@ open class ContainerBuilder(private val input: Folder) {
         content.add { TextContent(html(), escape = false) }
     }
 
-    fun h1(classes: Set<String> = emptySet(), title: String) {
+    fun h1(title: String, classes: Set<String> = emptySet()) {
         title(1, classes) { title.raw }
     }
 
@@ -72,7 +73,7 @@ open class ContainerBuilder(private val input: Folder) {
         title(1, classes, block)
     }
 
-    fun h2(classes: Set<String> = emptySet(), title: String) {
+    fun h2(title: String, classes: Set<String> = emptySet()) {
         title(2, classes) { title.raw }
     }
 
@@ -80,7 +81,7 @@ open class ContainerBuilder(private val input: Folder) {
         title(2, classes, block)
     }
 
-    fun h3(classes: Set<String> = emptySet(), title: String) {
+    fun h3(title: String, classes: Set<String> = emptySet()) {
         title(3, classes) { title.raw }
     }
 
@@ -88,7 +89,7 @@ open class ContainerBuilder(private val input: Folder) {
         title(3, classes, block)
     }
 
-    fun h4(classes: Set<String> = emptySet(), title: String) {
+    fun h4(title: String, classes: Set<String> = emptySet()) {
         title(4, classes) { title.raw }
     }
 
@@ -96,7 +97,7 @@ open class ContainerBuilder(private val input: Folder) {
         title(4, classes, block)
     }
 
-    fun h5(classes: Set<String> = emptySet(), title: String) {
+    fun h5(title: String, classes: Set<String> = emptySet()) {
         title(5, classes) { title.raw }
     }
 
@@ -104,7 +105,7 @@ open class ContainerBuilder(private val input: Folder) {
         title(5, classes, block)
     }
 
-    fun h6(classes: Set<String> = emptySet(), title: String) {
+    fun h6(title: String, classes: Set<String> = emptySet()) {
         title(6, classes) { title.raw }
     }
 
@@ -152,6 +153,7 @@ open class ContainerBuilder(private val input: Folder) {
     fun sup(classes: Set<String> = emptySet(), block: () -> Content) {
         content.add { StyledText(TextStyle.Sup, block(), classes) }
     }
+
     fun span(inner: String) {
         html { """<span>$inner</span>""" }
     }
@@ -183,8 +185,14 @@ open class ContainerBuilder(private val input: Folder) {
         content.add { Code(language, codeBlock()) }
     }
 
-    fun p(text: () -> String) {
-        content.add { text().p }
+    fun p2(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        content.add {
+            Paragraph(ContainerBuilder(input).single(block), classes)
+        }
+    }
+
+    fun p(text: String, classes: Set<String> = emptySet()) {
+        content.add { Paragraph(text.raw, classes) }
     }
 
     fun ol(steps: Boolean = false, classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
@@ -215,8 +223,16 @@ open class ContainerBuilder(private val input: Folder) {
         link(href) { content.raw }
     }
 
-    fun quote(author: String? = null, cite: String? = null, classes: Set<String> = emptySet(), block: () -> Content) {
-        content.add { Quote(author = author, cite = cite, classes = classes, content = block()) }
+    fun quote(
+        author: String? = null,
+        cite: String? = null,
+        classes: Set<String> = emptySet(),
+        block: ContainerBuilder.() -> Unit
+    ) {
+        content.add {
+            val c = ContainerBuilder(input).single(block)
+            Quote(author = author, cite = cite, classes = classes, content = c)
+        }
     }
 
     fun notice(kind: NoticeKind, title: String?, classes: Set<String> = emptySet(), block: () -> Content) {

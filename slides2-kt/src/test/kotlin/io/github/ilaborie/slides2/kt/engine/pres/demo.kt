@@ -1,13 +1,14 @@
 import io.github.ilaborie.slides2.kt.dsl.pres
+import io.github.ilaborie.slides2.kt.dsl.raw
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Danger
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Info
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Tips
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Warning
-import io.github.ilaborie.slides2.kt.engine.contents.raw
+
 
 val demo = pres("Demo Presentation", extraStyle = "demo") {
     part("A part") {
-        slide("A slide") { p { "lorem ipsum" } }
+        slide("A slide") { p("lorem ipsum") }
         roadmap("Roadmap")
     }
     part("Another part") {
@@ -15,7 +16,7 @@ val demo = pres("Demo Presentation", extraStyle = "demo") {
             file("content/test.md")
         }
         slide("Slide List") {
-            p { "A simple list" }
+            p("A simple list")
             ul {
                 listOf(
                     "lorem".raw,
@@ -27,7 +28,7 @@ val demo = pres("Demo Presentation", extraStyle = "demo") {
             }
         }
         slide("Slide List steps") {
-            p { "A simple list with steps" }
+            p("A simple list with steps")
             ul(steps = true) {
                 listOf(
                     "lorem".raw,
@@ -51,7 +52,7 @@ val demo = pres("Demo Presentation", extraStyle = "demo") {
             }
         }
         slide("Slide Ordered list") {
-            p { "A simple ordered list" }
+            p("A simple ordered list")
             ol(steps = true) {
                 listOf(
                     "lorem".raw,
@@ -65,19 +66,19 @@ val demo = pres("Demo Presentation", extraStyle = "demo") {
     }
     part("Some Contents") {
         slide("Slide Paragraph") {
-            p {
+            p(
                 """Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 |Repellendus neque reiciendis quaerat natus perspiciatis temporibus aut laboriosam,
                 |itaque est consectetur.
                 |Dolorem cum eaque odit voluptatibus laboriosam vero modi cumque deserunt?
                 |""".trimMargin()
-            }
+            )
         }
         slide("Slide Link") {
             link("http://www.google.com") { "Google".raw }
         }
         slide("Slide Quote") {
-            quote(author = "Anonymous") { "Plop, Plop, Plouf !".raw }
+            quote(author = "Anonymous") { html { "Plop, Plop, Plouf !" } }
         }
         slide("Slide Code") {
             code("javascript") {
@@ -101,6 +102,6 @@ val demo = pres("Demo Presentation", extraStyle = "demo") {
         }
     }
     part("Last part") {
-        slide("End") { p { "lorem ipsum" } }
+        slide("End") { p("lorem ipsum") }
     }
 }

@@ -5,42 +5,23 @@ import io.github.ilaborie.slides2.kt.engine.Presentation
 import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
+import io.github.ilaborie.slides2.kt.engine.Stylesheet
 
-data class Script(
-    val src: String,
-    val defer: Boolean = true,
-    val module: Boolean = true,
-    val async: Boolean = false
-) {
-    private val tags: String =
-        ((if (defer) listOf("defer") else emptyList()) +
-                (if (async) listOf("async") else emptyList()))
-            .joinToString(separator = " ") +
-                (if (module) " type=\"module\"" else "")
-
-    fun asHtml(): String =
-        """<script $tags src="$src"></script>"""
-}
-
-// FIXME add global progress
-open class PresentationHtmlRenderer(
-    open val scripts: List<Script> = emptyList(),
-    open val stylesheets: List<String> = emptyList()
-) : Renderer<Presentation> {
+open class PresentationHtmlRenderer : Renderer<Presentation> {
     override val mode: RenderMode = Html
 
     open fun head(presentation: Presentation): String {
-        val scripts = (SlideEngine.globalScripts.map { Script("./$it") } + scripts)
+        val scripts = SlideEngine.globalScripts
             .filter { it.module }
             .joinToString("\n") { it.asHtml() }
 
         val innerStyle = (listOf(presentation.theme.name, presentation.extraStyle))
             .filterNotNull()
-            .map { "./$it.css" }
-        val stylesheets = (innerStyle + stylesheets)
-            .joinToString("\n") {
-                """<link rel="stylesheet" href="$it" media="all">"""
-            }
+            .map { Stylesheet("./$it.css") }
+
+        val stylesheets = (SlideEngine.globalStylesheets + innerStyle)
+            .joinToString("\n") { it.asHtml() }
+
         return """<head>
                 |  <meta charset="utf-8">
                 |  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -57,7 +38,7 @@ open class PresentationHtmlRenderer(
             |</header>""".trimMargin()
 
     open fun afterMain(presentation: Presentation): String =
-        scripts
+        SlideEngine.globalScripts
             .filterNot { it.module }
             .joinToString("\n") { it.asHtml() }
 

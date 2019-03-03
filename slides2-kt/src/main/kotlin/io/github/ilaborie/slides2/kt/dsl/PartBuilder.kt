@@ -7,7 +7,7 @@ import io.github.ilaborie.slides2.kt.engine.Part
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
 import io.github.ilaborie.slides2.kt.engine.Slide
 import io.github.ilaborie.slides2.kt.engine.contents.OrderedList
-import io.github.ilaborie.slides2.kt.engine.contents.h3
+import io.github.ilaborie.slides2.kt.engine.contents.Title
 import io.github.ilaborie.slides2.kt.jvm.asKey
 
 @PresentationMarker
@@ -30,7 +30,7 @@ class PartBuilder(internal val presentationDsl: PresentationBuilder) {
         id: String = title.asKey(),
         block: SlideBuilder.() -> Unit
     ) {
-        slide(slideTitle = title.h3, id = id, styles = styles, block = block)
+        slide(slideTitle = Title(3, title.raw, emptySet()), id = id, styles = styles, block = block)
     }
 
     fun slide(

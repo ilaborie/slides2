@@ -27,8 +27,6 @@ fun String.escapeHtml(): String =
 fun ByteArray.readAsBase64(): String =
     Base64.getEncoder().encodeToString(this)
 
-fun String.singleLine(): String =
-    replace("\n", "")
 
 
 fun jvmConfig(from: String, to: String="public"): Config =

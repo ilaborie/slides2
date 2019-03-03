@@ -5,8 +5,12 @@ import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.extra.SpeakerHtmlRenderer
 import io.github.ilaborie.slides2.kt.engine.extra.SpeakerTextRenderer
+import io.github.ilaborie.slides2.kt.engine.extra.TableHtmlRenderer
+import io.github.ilaborie.slides2.kt.engine.extra.TableTextRenderer
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
+import io.github.ilaborie.slides2.kt.jvm.extra.TweetHtmlRenderer
+import io.github.ilaborie.slides2.kt.jvm.extra.TweetTextRenderer
 import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss.scssFileToCss
 import io.github.ilaborie.slides2.kt.term.Notifier.time
 import io.github.ilaborie.slides2.kt.term.Styles
@@ -18,7 +22,8 @@ object SlideEngine {
 
     private val cache: MutableMap<Pair<RenderMode, Presentation>, String> = mutableMapOf()
 
-    val globalScripts: MutableList<String> = mutableListOf()
+    val globalScripts: MutableList<Script> = mutableListOf()
+    val globalStylesheets: MutableList<Stylesheet> = mutableListOf()
 
     init {
         // Base
@@ -36,7 +41,11 @@ object SlideEngine {
         registerRenderers(FigureTextRenderer, FigureHtmlRenderer)
         registerRenderers(TableTextRenderer, TableHtmlRenderer)
         // Extra
-        registerRenderers(SpeakerTextRenderer, SpeakerHtmlRenderer)
+        registerRenderers(
+            SpeakerTextRenderer,
+            SpeakerHtmlRenderer
+        )
+        registerRenderers(TweetTextRenderer, TweetHtmlRenderer)
 
         // Presentation, Part, Slide
         registerRenderer(PresentationHtmlRenderer())
@@ -84,31 +93,53 @@ object SlideEngine {
                     }
                 }
                 // Style
-                val themeFile = "${theme.name}.css"
-                time("Write to ${Styles.highlight(themeFile)}") {
-                    folder.writeFile(themeFile) {
-                        theme.compiled
-                    }
-                }
-                if (extraStyle != null) {
-                    val outputFilename = "$extraStyle.css"
-                    time("Write to ${Styles.highlight(outputFilename)}") {
-                        folder.writeFile(outputFilename) {
-                            val path = config.input.resolveAbsolutePath("$extraStyle.scss")
-                            scssFileToCss(path)
-                        }
-                    }
+                time("Write to ${Styles.highlight("themes")}") {
+                    writePresentationStylesheets(config)
                 }
                 // Scripts
-                time("Write to ${globalScripts.joinToString(", ") { Styles.highlight(it) }}") {
-                    globalScripts.forEach { script ->
-                        folder.writeFile(script) {
-                            javaClass.getResource("/scripts/$script").readText()
-                        }
-                    }
+                time("Write ${Styles.highlight("Global scripts")}") {
+                    writePresentationScripts(config)
                 }
                 PresentationOutputInstance(label = theme.name, path = "${id.id}/$filename")
             } ?: throw IllegalStateException("No renderer found for $this")
+
+    private fun Presentation.writePresentationScripts(config: Config) {
+        val folder = config.output / id.id
+        globalScripts
+            .filterNot { it.src.startsWith("http") }
+            .forEach { script ->
+                // lookup input
+                if (config.input.exists(script.src)) {
+                    folder.writeFile(script.src) {
+                        config.input.readFileAsString(script.src)
+                    }
+                } else {
+                    val res = javaClass.getResource("/scripts/${script.src}")
+                    res?.also { r ->
+                        folder.writeFile(script.src) {
+                            r.readText()
+                        }
+                    }
+                }
+            }
+    }
+
+    private fun Presentation.writePresentationStylesheets(config: Config) {
+        val folder = config.output / id.id
+        val themeFile = "${theme.name}.css"
+        folder.writeFile(themeFile) {
+            theme.compiled
+        }
+        if (extraStyle != null) {
+            val outputFilename = "$extraStyle.css"
+            time("Write to ${Styles.highlight(outputFilename)}") {
+                folder.writeFile(outputFilename) {
+                    val path = config.input.resolveAbsolutePath("$extraStyle.scss")
+                    scssFileToCss(path)
+                }
+            }
+        }
+    }
 
     fun applyPlugins(function: () -> Presentation): Presentation =
         plugContent(function()) as Presentation

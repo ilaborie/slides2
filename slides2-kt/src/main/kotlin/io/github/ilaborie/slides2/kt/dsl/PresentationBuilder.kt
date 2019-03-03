@@ -4,7 +4,7 @@ import io.github.ilaborie.slides2.kt.Folder
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.*
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
-import io.github.ilaborie.slides2.kt.engine.contents.h2
+import io.github.ilaborie.slides2.kt.engine.contents.Title
 import io.github.ilaborie.slides2.kt.jvm.asKey
 
 @PresentationMarker
@@ -19,7 +19,13 @@ class PresentationBuilder(internal val input: Folder) {
         skipHeader: Boolean = false,
         block: PartBuilder.() -> Unit
     ) {
-        part(partTitle = title.h2, id = id, skipHeader = skipHeader, style = style, block = block)
+        part(
+            partTitle = Title(2, title.raw, emptySet()),
+            id = id,
+            skipHeader = skipHeader,
+            style = style,
+            block = block
+        )
     }
 
     fun part(
