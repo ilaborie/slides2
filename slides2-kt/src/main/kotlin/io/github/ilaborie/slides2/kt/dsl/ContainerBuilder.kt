@@ -17,12 +17,12 @@ open class ContainerBuilder(private val input: Folder) {
     fun build(): List<Content> =
         content.map { it() }
 
-    fun compound(block: ContainerBuilder.() -> Unit): Content =
-        ContainerBuilder(input)
-            .apply(block)
-            .content
-            .map { it() }
-            .let { CompoundContent(it) }
+    fun compound(block: ContainerBuilder.() -> Unit): Content {
+        val builder = ContainerBuilder(input)
+        builder.apply(block)
+        val lst = builder.content.map { it() }
+        return CompoundContent(lst)
+    }
 
     fun file(file: String) {
         val extension = file.split(".").last()
@@ -59,7 +59,7 @@ open class ContainerBuilder(private val input: Folder) {
     }
 
     fun h1(title: String, classes: Set<String> = emptySet()) {
-        title(1, classes) { title.raw }
+        content.add { Title(1, title.raw, classes) }
     }
 
     fun h1(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
@@ -67,7 +67,9 @@ open class ContainerBuilder(private val input: Folder) {
     }
 
     fun h2(title: String, classes: Set<String> = emptySet()) {
-        title(2, classes) { title.raw }
+        content.add {
+            Title(2, title.raw, classes)
+        }
     }
 
     fun h2(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
@@ -75,7 +77,9 @@ open class ContainerBuilder(private val input: Folder) {
     }
 
     fun h3(title: String, classes: Set<String> = emptySet()) {
-        title(3, classes) { title.raw }
+        content.add {
+            Title(2, title.raw, classes)
+        }
     }
 
     fun h3(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
@@ -83,18 +87,19 @@ open class ContainerBuilder(private val input: Folder) {
     }
 
     fun h4(title: String, classes: Set<String> = emptySet()) {
-        title(4, classes) { title.raw }
-    }
-
-    fun h4(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         content.add {
-            val c = ContainerBuilder(input).compound(block)
-            Title(level = 4, classes = classes, content = c)
+            Title(4, title.raw, classes)
         }
     }
 
+    fun h4(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        title(4, classes, block)
+    }
+
     fun h5(title: String, classes: Set<String> = emptySet()) {
-        title(5, classes) { title.raw }
+        content.add {
+            Title(5, title.raw, classes)
+        }
     }
 
     fun h5(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
@@ -102,7 +107,9 @@ open class ContainerBuilder(private val input: Folder) {
     }
 
     fun h6(title: String, classes: Set<String> = emptySet()) {
-        title(6, classes) { title.raw }
+        content.add {
+            Title(6, title.raw, classes)
+        }
     }
 
     fun h6(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {

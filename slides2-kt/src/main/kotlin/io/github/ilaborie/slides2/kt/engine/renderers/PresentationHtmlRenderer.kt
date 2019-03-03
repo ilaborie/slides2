@@ -32,10 +32,11 @@ open class PresentationHtmlRenderer : Renderer<Presentation> {
     }
 
     open fun beforeMain(presentation: Presentation): String =
-        """<header class="no-print">
-            |  ${SlideEngine.render(mode, presentation.title)}
-            |  <a href="#${presentation.coverSlide.id.id}">📺</a>
-            |</header>""".trimMargin()
+        ""
+//        """<header class="no-print">
+//            |  ${SlideEngine.render(mode, presentation.title)}
+//            |  <a href="#${presentation.coverSlide.id.id}">📺</a>
+//            |</header>""".trimMargin()
 
     open fun afterMain(presentation: Presentation): String =
         SlideEngine.globalScripts

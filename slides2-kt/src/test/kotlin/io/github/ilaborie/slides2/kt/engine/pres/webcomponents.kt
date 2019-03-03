@@ -10,7 +10,7 @@ val webComponents = pres(
     id = "webComponents-19",
     extraStyle = "style",
     title = {
-        title(1, "Web Components")
+        h1("Web Components")
         ul(classes = setOf("list-inline")) {
             listOf(
                 figure("logos/web-components.svg", "Natif"),
@@ -56,7 +56,7 @@ val webComponents = pres(
             }
         }
         slide("Instructions") {
-            todo { "Installation instructions" } // TODO
+            todo { "Installation instructions, Wifi" } // TODO
         }
     }
     part("Modern Web Development Issues", skipHeader = true) {
@@ -87,6 +87,7 @@ val webComponents = pres(
         slide("Choose JavaScript Transpiler", setOf("header-hidden")) {
             h4("Now let's transpile our code")
             ul(steps = true) {
+                // TODO logo
                 span("Webpack")
                 span("ParcelJs")
                 span("RollupJs")
@@ -109,7 +110,7 @@ val webComponents = pres(
             }
         }
         slide("Reinventing", setOf("header-hidden")) {
-            p("...And we keep reinventing the wheel!")
+            h4("...And we keep reinventing the wheel!")
             ul(steps = true) {
                 (1..10).forEach {
                     figure("img/material/material-design-$it.png", "Material $it")
@@ -118,9 +119,8 @@ val webComponents = pres(
         }
         slide("Solution", setOf("header-hidden")) {
             h4 {
-                markdown {
-                    """All this complexity is coming to an end with **Web Components**"""
-                }
+                html { "All this complexity is coming to an end with" }
+                strong { html { "Web Components" } }
             }
         }
         slide("Size matters (Gzipped)") {
