@@ -17,13 +17,6 @@ open class ContainerBuilder(private val input: Folder) {
     fun build(): List<Content> =
         content.map { it() }
 
-    fun single(block: ContainerBuilder.() -> Unit): Content =
-        ContainerBuilder(input)
-            .apply(block)
-            .content.asSequence()
-            .map { it() }
-            .firstOrNull() ?: throw IllegalStateException("No content")
-
     fun compound(block: ContainerBuilder.() -> Unit): Content =
         ContainerBuilder(input)
             .apply(block)
@@ -69,7 +62,7 @@ open class ContainerBuilder(private val input: Folder) {
         title(1, classes) { title.raw }
     }
 
-    fun h1(classes: Set<String> = emptySet(), block: () -> Content) {
+    fun h1(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         title(1, classes, block)
     }
 
@@ -77,7 +70,7 @@ open class ContainerBuilder(private val input: Folder) {
         title(2, classes) { title.raw }
     }
 
-    fun h2(classes: Set<String> = emptySet(), block: () -> Content) {
+    fun h2(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         title(2, classes, block)
     }
 
@@ -85,7 +78,7 @@ open class ContainerBuilder(private val input: Folder) {
         title(3, classes) { title.raw }
     }
 
-    fun h3(classes: Set<String> = emptySet(), block: () -> Content) {
+    fun h3(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         title(3, classes, block)
     }
 
@@ -93,15 +86,18 @@ open class ContainerBuilder(private val input: Folder) {
         title(4, classes) { title.raw }
     }
 
-    fun h4(classes: Set<String> = emptySet(), block: () -> Content) {
-        title(4, classes, block)
+    fun h4(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        content.add {
+            val c = ContainerBuilder(input).compound(block)
+            Title(level = 4, classes = classes, content = c)
+        }
     }
 
     fun h5(title: String, classes: Set<String> = emptySet()) {
         title(5, classes) { title.raw }
     }
 
-    fun h5(classes: Set<String> = emptySet(), block: () -> Content) {
+    fun h5(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         title(5, classes, block)
     }
 
@@ -109,49 +105,56 @@ open class ContainerBuilder(private val input: Folder) {
         title(6, classes) { title.raw }
     }
 
-    fun h6(classes: Set<String> = emptySet(), block: () -> Content) {
+    fun h6(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         title(6, classes, block)
     }
 
-
-    fun strong(classes: Set<String> = emptySet(), block: () -> Content) {
-        content.add { StyledText(TextStyle.Strong, block(), classes) }
+    fun styledText(style: TextStyle, classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        content.add {
+            val c = ContainerBuilder(input).compound(block)
+            StyledText(style, c, classes)
+        }
     }
 
-    fun em(classes: Set<String> = emptySet(), block: () -> Content) {
-        content.add { StyledText(TextStyle.Emphasis, block(), classes) }
+
+    fun strong(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        styledText(TextStyle.Strong, classes, block)
     }
 
-    fun u(classes: Set<String> = emptySet(), block: () -> Content) {
-        content.add { StyledText(TextStyle.UnderLine, block(), classes) }
+    fun em(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        styledText(TextStyle.Emphasis, classes, block)
     }
 
-    fun mark(classes: Set<String> = emptySet(), block: () -> Content) {
-        content.add { StyledText(TextStyle.Mark, block(), classes) }
+    fun u(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        styledText(TextStyle.UnderLine, classes, block)
     }
 
-    fun kbd(classes: Set<String> = emptySet(), block: () -> Content) {
-        content.add { StyledText(TextStyle.Keyboard, block(), classes) }
+    fun mark(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        styledText(TextStyle.Mark, classes, block)
     }
 
-    fun pre(classes: Set<String> = emptySet(), block: () -> Content) {
-        content.add { StyledText(TextStyle.Pre, block(), classes) }
+    fun kbd(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        styledText(TextStyle.Keyboard, classes, block)
     }
 
-    fun ins(classes: Set<String> = emptySet(), block: () -> Content) {
-        content.add { StyledText(TextStyle.Ins, block(), classes) }
+    fun pre(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        styledText(TextStyle.Pre, classes, block)
     }
 
-    fun del(classes: Set<String> = emptySet(), block: () -> Content) {
-        content.add { StyledText(TextStyle.Del, block(), classes) }
+    fun ins(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        styledText(TextStyle.Ins, classes, block)
     }
 
-    fun sub(classes: Set<String> = emptySet(), block: () -> Content) {
-        content.add { StyledText(TextStyle.Sub, block(), classes) }
+    fun del(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        styledText(TextStyle.Del, classes, block)
     }
 
-    fun sup(classes: Set<String> = emptySet(), block: () -> Content) {
-        content.add { StyledText(TextStyle.Sup, block(), classes) }
+    fun sub(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        styledText(TextStyle.Sub, classes, block)
+    }
+
+    fun sup(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        styledText(TextStyle.Sup, classes, block)
     }
 
     fun span(inner: String) {
@@ -185,9 +188,9 @@ open class ContainerBuilder(private val input: Folder) {
         content.add { Code(language, codeBlock()) }
     }
 
-    fun p2(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+    fun p(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         content.add {
-            Paragraph(ContainerBuilder(input).single(block), classes)
+            Paragraph(ContainerBuilder(input).compound(block), classes)
         }
     }
 
@@ -215,8 +218,11 @@ open class ContainerBuilder(private val input: Folder) {
         }
     }
 
-    fun link(href: String, classes: Set<String> = emptySet(), block: () -> Content = { href.raw }) {
-        content.add { Link(href = href, content = block(), classes = classes) }
+    fun link(href: String, classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit = { href.raw }) {
+        content.add {
+            val c = ContainerBuilder(input).compound(block)
+            Link(href = href, content = c, classes = classes)
+        }
     }
 
     fun link(href: String, content: String) {
@@ -230,13 +236,21 @@ open class ContainerBuilder(private val input: Folder) {
         block: ContainerBuilder.() -> Unit
     ) {
         content.add {
-            val c = ContainerBuilder(input).single(block)
+            val c = ContainerBuilder(input).compound(block)
             Quote(author = author, cite = cite, classes = classes, content = c)
         }
     }
 
-    fun notice(kind: NoticeKind, title: String?, classes: Set<String> = emptySet(), block: () -> Content) {
-        content.add { Notice(kind = kind, title = title, classes = classes, content = block()) }
+    fun notice(
+        kind: NoticeKind,
+        title: String?,
+        classes: Set<String> = emptySet(),
+        block: ContainerBuilder.() -> Unit
+    ) {
+        content.add {
+            val c = ContainerBuilder(input).compound(block)
+            Notice(kind = kind, title = title, classes = classes, content = c)
+        }
     }
 
     fun figure(src: String, title: String, copyrightBlock: Content? = null) {
@@ -246,9 +260,10 @@ open class ContainerBuilder(private val input: Folder) {
         }
     }
 
-    private fun title(level: Int, classes: Set<String> = emptySet(), block: () -> Content) {
+    private fun title(level: Int, classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         content.add {
-            Title(level = level, classes = classes, content = block())
+            val c = ContainerBuilder(input).compound(block)
+            Title(level = level, classes = classes, content = c)
         }
     }
 

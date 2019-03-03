@@ -12,6 +12,9 @@ data class TextContent(
 data class CompoundContent(override val inner: List<Content>) : ContainerContent {
     override val classes: Set<String>
         get() = emptySet()
+
+    override fun toString(): String =
+        "CompoundContent"
 }
 
 data class Title(

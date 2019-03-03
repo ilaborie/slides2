@@ -88,20 +88,23 @@ main > section > footer {
     &::before, &::after {
       position: absolute;
       font-family: var(--font-mono);
+      content: var(--textAt);
+      --xOffset: calc(50% * var(--dir));
+      transform: translateX(var(--xOffset));
     }
 
     &::before {
-      content: var(--startAt);
+      --textAt: var(--startAt);
+      --dir: -1;
       top: -1.2em;
       left: 0;
-      transform: translateX(-50%);
     }
 
     &::after {
-      content: var(--endAt);
+      --textAt: var(--endAt);
+      --dir: 1;
       bottom: -1.2em;
       right: 0;
-      transform: translateX(50%);
     }
   }
 
@@ -115,8 +118,6 @@ main > section > footer {
   li:nth-child(2) {
     flex-grow: 1;
     background: purple;
-    //--startAt: '09h15';
-    //--endAt: '10h30';
   }
 
   li:nth-child(3) {
@@ -127,8 +128,6 @@ main > section > footer {
   li:nth-child(4) {
     flex-grow: 1;
     background: purple;
-    //--startAt: '10h40';
-    //--endAt: '11h50';
   }
 
   li:nth-child(5) {
@@ -141,7 +140,6 @@ main > section > footer {
     background: linear-gradient(to right, purple, purple 60%, transparent 100%);
     min-width: 5rem;
     margin-left: .5rem;
-    //--startAt: '12h00';
   }
 
 }
@@ -153,3 +151,66 @@ main > section > footer {
     transform: scale(1.5) !important;
   }
 }
+
+#reinventing article {
+
+  ul {
+    position: relative;
+    align-self: stretch;
+    margin: 2em 1.5em;
+    list-style: none;
+
+
+    li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      //transform: translate(50%, 50%);
+
+      figcaption {
+        position: absolute !important;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+        clip: rect(1px, 1px, 1px, 1px);
+      }
+
+      &.step-done {
+        opacity: 1;
+      }
+    }
+    li:nth-child(1) {
+      transform: rotate(.005turn);
+    }
+    li:nth-child(2) {
+      transform: rotate(-.005turn);
+    }
+    li:nth-child(3) {
+      transform: rotate(.008turn);
+    }
+    li:nth-child(4) {
+      transform: rotate(-.008turn);
+    }
+    li:nth-child(5) {
+      transform: rotate(.01turn);
+    }
+    li:nth-child(6) {
+      transform: rotate(-.01turn);
+    }
+    li:nth-child(7) {
+      transform: rotate(.012turn);
+    }
+    li:nth-child(8) {
+      transform: rotate(-.012turn);
+    }
+    li:nth-child(9) {
+      transform: rotate(.015turn);
+    }
+    li:nth-child(10) {
+      transform: rotate(-.015turn);
+    }
+  }
+
+}
+

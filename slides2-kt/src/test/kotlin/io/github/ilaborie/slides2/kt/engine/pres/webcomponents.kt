@@ -100,7 +100,7 @@ val webComponents = pres(
             h4("The industry is moving too fast...")
             tweet("540481335362875392")
         }
-        slide("Interoperability") {
+        slide("Interoperability", setOf("header-hidden")) {
             h4("...Interoperability is not available out of the box...")
             ul(classes = setOf("list-inline")) {
                 figure("logos/react.svg", "React")
@@ -108,7 +108,7 @@ val webComponents = pres(
                 figure("logos/angular.svg", "Angular")
             }
         }
-        slide("Reinventing") {
+        slide("Reinventing", setOf("header-hidden")) {
             p("...And we keep reinventing the wheel!")
             ul(steps = true) {
                 (1..10).forEach {
@@ -116,9 +116,11 @@ val webComponents = pres(
                 }
             }
         }
-        slide("Solution") {
-            markdown {
-                """All this complexity is coming to an end with **Web Components**"""
+        slide("Solution", setOf("header-hidden")) {
+            h4 {
+                markdown {
+                    """All this complexity is coming to an end with **Web Components**"""
+                }
             }
         }
         slide("Size matters (Gzipped)") {
@@ -243,7 +245,7 @@ val webComponents = pres(
                         "Stencil"        -> "stencil"
                         else             -> throw IllegalArgumentException("Unexpected value $col")
                     }
-                    single { figure("logos/$key.svg", col) }
+                    compound { figure("logos/$key.svg", col) }
                 },
                 valueFn = { value -> """<span class="$value">︎</span>""".raw }
             )

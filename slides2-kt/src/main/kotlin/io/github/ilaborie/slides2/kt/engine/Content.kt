@@ -4,6 +4,7 @@ package io.github.ilaborie.slides2.kt.engine
 interface Content {
     val steps: Boolean
         get() = false
+
 }
 
 interface ContainerContent : Content {
