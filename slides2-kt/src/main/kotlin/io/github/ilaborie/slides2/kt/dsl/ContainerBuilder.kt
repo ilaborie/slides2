@@ -128,6 +128,10 @@ open class ContainerBuilder(private val input: Folder) {
         styledText(TextStyle.Strong, classes, block)
     }
 
+    fun strong(text: String, classes: Set<String> = emptySet()) {
+        styledText(TextStyle.Strong, classes) { html { text } }
+    }
+
     fun em(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         styledText(TextStyle.Emphasis, classes, block)
     }

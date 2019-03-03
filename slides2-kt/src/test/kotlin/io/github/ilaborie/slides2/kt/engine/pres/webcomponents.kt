@@ -120,10 +120,10 @@ val webComponents = pres(
         slide("Solution", setOf("header-hidden")) {
             h4 {
                 html { "All this complexity is coming to an end with" }
-                strong { html { "Web Components" } }
+                strong("Web Components")
             }
         }
-        slide("Size matters (Gzipped)") {
+        slide("Size matters", setOf("header-hidden")) {
             ul(steps = true) {
                 barChart(
                     "Size matters (Gzipped)",
@@ -134,11 +134,11 @@ val webComponents = pres(
                     ),
                     unit = "kb"
                 )
-                html { "Native is 23 times smaller than Angular" }
-                html { "Stencil is 5 times smaller than Angular" }
+                html { "😨 Stencil is 5 times smaller than Angular" } // TODO icon
+                html { "😱 Native is 23 times smaller than Angular" }// TODO icon
             }
         }
-        slide("Time matters (FMP 3G \uD83D\uDCF1 in ms)") {
+        slide("Time matters (FMP 3G \uD83D\uDCF1 in ms)", setOf("header-hidden")) {
             ul(steps = true) {
                 barChart(
                     "Time matters (FMP 3G \uD83D\uDCF1 in ms)", mapOf(
@@ -154,13 +154,13 @@ val webComponents = pres(
     }
     part("Web Components") {
         // TODO Logo
-        slide("History") {
+        slide("History", setOf("header-hidden")) {
             ul {
                 markdown { "Specs from **World Wide Web Consortium** (W3C)" }
                 markdown { "First draft in **2012**" }
             }
         }
-        slide("Components") {
+        slide("Components", setOf("header-hidden")) {
             ul(steps = true) {
                 figure("img/webcomponents/custom-elements.svg", "Custom Elements")
                 figure("img/webcomponents/shadow-DOM.svg", "Shadow DOM")
@@ -168,36 +168,36 @@ val webComponents = pres(
                 figure("img/webcomponents/HTML-imports.svg", "HTML imports")
             }
         }
-        slide("Custom Elements") {
+        slide("Custom Elements", setOf("header-hidden")) {
             figure("img/webcomponents/custom-elements.svg", "Custom Elements")
             quote {
                 p("Custom Elements is a capability for creating your own custom HTML elements with its own methods and properties")
 
             }
         }
-        slide("Shadow DOM") {
+        slide("Shadow DOM", setOf("header-hidden")) {
             figure("img/webcomponents/shadow-DOM.svg", "Shadow DOM")
             quote { p("Shadow DOM provides encapsulation for DOM and CSS") }
         }
-        slide("HTML templates") {
+        slide("HTML templates", setOf("header-hidden")) {
             figure("img/webcomponents/HTML-templates.svg", "HTML templates")
             quote { p("Give the ability to create reusable piece of HTML that can be used at runtime") }
         }
-        slide("Browser support") {
+        slide("Browser support", setOf("header-hidden")) {
             file("img/caniuse/browser-support.html")
         }
-        slide("Polyfill support") {
+        slide("Polyfill support", setOf("header-hidden")) {
             file("img/caniuse/polyfill-support.html")
             link("https://github.com/webcomponents/webcomponentsjs")
         }
-        slide("Framework Interoperability") {
+        slide("Framework Interoperability", setOf("header-hidden")) {
             file("img/caniuse/frameworks-support.html")
             link("https://custom-elements-everywhere.com/")
         }
     }
     part("StencilJS") {
         // TODO Logo + Link
-        slide("What") {
+        slide("What", setOf("header-hidden")) {
             ul(steps = true) {
                 markdown { "**Open Source** project" }
                 markdown { "Created by the **Ionic Team** in 2017" }
@@ -205,11 +205,19 @@ val webComponents = pres(
                 markdown { "3.9k ⭐️ on github" }
             }
         }
-        slide("Not a framework") {
-            markdown { "StencilJS is **not another framework**" }
+        slide("Not a framework", setOf("header-hidden")) {
+            h4 {
+                html { "StencilJS is" }
+                strong("not another framework")
+            }
         }
-        slide("Compiler") {
-            markdown { "StencilJS is a **compiler** that generates **web components**" }
+        slide("Compiler", setOf("header-hidden")) {
+            h4 {
+                html { "StencilJS is a " }
+                strong("compiler")
+                html { "that generates " }
+                strong("web components")
+            }
         }
         slide("StencilJS is a **set** of **great tools**") {
             table(
@@ -251,7 +259,7 @@ val webComponents = pres(
             )
         }
         slide("StencilJS **works everywhere**") {
-            h4 { "Loads polyfills on-demand".raw }
+            h4("Loads polyfills on-demand")
         }
         slide("Stencil Syntax is short") {
             figure("stencil/stencil-syntax.png", "Stencil Syntax is short")
