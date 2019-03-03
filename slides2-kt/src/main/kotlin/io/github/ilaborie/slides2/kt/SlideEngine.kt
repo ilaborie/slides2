@@ -6,7 +6,6 @@ import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
 import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss.scssFileToCss
-import io.github.ilaborie.slides2.kt.term.Notifier
 import io.github.ilaborie.slides2.kt.term.Notifier.time
 import io.github.ilaborie.slides2.kt.term.Styles
 
@@ -66,7 +65,7 @@ object SlideEngine {
             ?.render(content)
             ?: throw IllegalStateException("No renderer found for $content")
 
-    fun Presentation.renderHtml(config: Config) {
+    fun Presentation.renderHtml(config: Config): PresentationOutputInstance =
         findRenderer(Html, this)
             ?.let { renderer ->
                 val folder = config.output / id.id
@@ -103,8 +102,8 @@ object SlideEngine {
                         }
                     }
                 }
-            } ?: Notifier.error { "No renderer found for $this" }
-    }
+                PresentationOutputInstance(label = theme.name, path = "${id.id}/$filename")
+            } ?: throw IllegalStateException("No renderer found for $this")
 
     fun applyPlugins(function: () -> Presentation): Presentation =
         plugContent(function()) as Presentation

@@ -111,8 +111,8 @@ open class ContainerBuilder(private val input: Folder) {
         content.add { Quote(author = author, cite = cite, content = block()) }
     }
 
-    fun notice(kind: NoticeKind, block: () -> Content) {
-        content.add { Notice(kind = kind, content = block()) }
+    fun notice(kind: NoticeKind, title: String?, block: () -> Content) {
+        content.add { Notice(kind = kind, title = title, content = block()) }
     }
 
     fun figure(src: String, title: String, copyrightBlock: Content? = null) {

@@ -3,15 +3,28 @@ main > section > footer {
   background: var(--footerBg);
   color: var(--footerFg);
   box-shadow: inset 0 0.1em 0.1em rgba(0, 0, 0, .25);
+  display: flex;
+  justify-content: space-between;
 
   &::before {
     margin-left: .25em;
     content: var(--footerText);
     text-shadow: .05em .05em rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &::after {
     content: '';
+    background-origin: content-box;
     background: var(--footerLogo);
+    display: block;
+    width: 15vw;
+    flex-shrink: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    margin: .1em;
   }
 }

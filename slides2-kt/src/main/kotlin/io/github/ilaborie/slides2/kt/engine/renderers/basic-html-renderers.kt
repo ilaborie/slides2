@@ -166,7 +166,10 @@ object NoticeHtmlRenderer : Renderer<Notice> {
     override fun render(content: Notice): String =
         with(SlideEngine) {
             """<div class="notice notice-${content.kind.name.toLowerCase()}">
+                |${content.title?.let { "<header>$it</header>"} ?: ""}
+                |<div class="notice-body">
                 |${render(mode, content.content).prependIndent("  ")}
+                |</div>
                 |</div>""".trimMargin()
         }
 }

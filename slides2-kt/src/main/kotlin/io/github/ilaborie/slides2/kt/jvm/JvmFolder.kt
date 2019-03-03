@@ -8,6 +8,8 @@ import java.io.File
 
 class JvmFolder(private val file: File) : Folder {
 
+    constructor(path:String): this(File(path))
+
     init {
         require(file.isDirectory || !file.exists()) { "Expected a folder, and $file already exists" }
     }

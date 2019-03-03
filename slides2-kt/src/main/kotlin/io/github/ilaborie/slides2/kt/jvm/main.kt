@@ -10,6 +10,7 @@ import io.github.ilaborie.slides2.kt.Config
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.SlideEngine.applyPlugins
 import io.github.ilaborie.slides2.kt.dsl.PresentationDsl
+import io.github.ilaborie.slides2.kt.engine.PresentationOutput
 import io.github.ilaborie.slides2.kt.engine.Theme
 import io.github.ilaborie.slides2.kt.engine.extra.usePrismJs
 import io.github.ilaborie.slides2.kt.engine.plugins.CheckContentPlugin
@@ -76,17 +77,21 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
         )
         pres
             .map { run(config, it, allThemes) }
-            .recover { Notifier.error(cause = it) { "Oops!" } }
+            .recover {
+                Notifier.error(cause = it) { "Oops!" }
+                throw it
+            }
     }
 }
 
-fun run(config: Config, presentation: PresentationDsl, themes: List<Theme>) {
+fun run(config: Config, presentation: PresentationDsl, themes: List<Theme>): PresentationOutput {
     val pres = applyPlugins { presentation(config.input) }
-    time("Generate all `${pres.sTitle}`") {
+    val instances = time("Generate all `${pres.sTitle}`") {
         with(SlideEngine) {
             themes
                 .map { pres.copy(theme = it) }
-                .forEach { it.renderHtml(config) }
+                .map { it.renderHtml(config) }
         }
     }
+    return PresentationOutput(pres.sTitle, instances)
 }

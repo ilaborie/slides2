@@ -2,7 +2,7 @@
 main > section {
   counter-increment: slide;
 
-  header::after {
+  & > header::after {
     content: "#" counter(slide);
     background: var(--counterBg);
     color: var(--counterFg);

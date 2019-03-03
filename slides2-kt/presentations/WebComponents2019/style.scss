@@ -2,8 +2,27 @@
 
   --litElementBg: linear-gradient(315deg, #8FCDFF 0%, #2196F3 100%);
 
+  // Companies
   --monkeyBof: #00b0ff;
-
   --toptal: #3863a0;
 
+  // Base
+  --baseBg: #212529;
+  --baseFg: #fff;
+
+  // Footer
+  --footerText: '@julienrenaux @ilaborie #DevoxxFR #webcomponents';
+  --footerFg: var(--baseBg);
+  --footerBg: var(--baseFg);
+}
+
+h1 {
+  font-size: 2em;
+}
+
+
+main> section > footer {
+  &::before {
+    text-shadow: none;
+  }
 }

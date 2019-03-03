@@ -91,10 +91,10 @@ val demo = pres("Demo Presentation", extraStyle = "demo") {
             sourceCode("content/plop.js")
         }
         slide("Slide Notice") {
-            notice(Tips) { "block tips".raw }
-            notice(Info) { "block info".raw }
-            notice(Warning) { "block warn".raw }
-            notice(Danger) { "block danger".raw }
+            notice(Tips, "block tips") { "Lorem ipsum dolor sit amet.".raw }
+            notice(Info, "block info") { "Lorem ipsum dolor sit amet.".raw }
+            notice(Warning, "block warn") { "Lorem ipsum dolor sit amet.".raw }
+            notice(Danger, "block danger") { "Lorem ipsum dolor sit amet.".raw }
         }
         slide("Slide Figure") {
             figure("content/figure.png", title = "A chart")

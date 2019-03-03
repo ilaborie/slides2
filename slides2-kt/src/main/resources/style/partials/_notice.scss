@@ -1,17 +1,33 @@
 main > section > article {
 
   .notice {
-    border: thin solid rgba(0, 0, 0, .1);
+    border: medium solid currentColor;
     border-radius: .125em;
     align-self: stretch;
     margin: .125rem 0;
-    padding: .25em;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+
+
+    header {
+      font-weight: bold;
+      padding: .25em;
+    }
+
+    .notice-body {
+      padding: .25em;
+      color: var(--baseFg);
+    }
 
     // icons
     &::before {
+      grid-row: 1 / -1;
       float: left;
-      margin-right: .25em;
-      filter: drop-shadow(.1em .1em .2em rgba(0, 0, 0, .25));
+      padding: .25em;
+      justify-self: stretch;
+      text-shadow: 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.5);
+      background: currentColor;
     }
 
     &.notice-tips::before {
@@ -27,7 +43,7 @@ main > section > article {
     }
 
     &.notice-danger::before {
-      content: '🛑';
+      content: '🚨';
     }
 
     // style
@@ -47,8 +63,8 @@ main > section > article {
     }
 
     &.notice-danger {
-      background: rgba(220, 20, 60, .1);
-      color: rgba(220, 20, 60, .9);
+      background: rgba(135, 12, 12, .1);
+      color: rgba(135, 12, 12, 0.9);
     }
   }
 }
