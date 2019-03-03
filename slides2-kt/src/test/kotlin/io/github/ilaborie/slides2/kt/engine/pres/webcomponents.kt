@@ -10,7 +10,7 @@ val webComponents = pres(
     extraStyle = "style",
     title = {
         title(1, "Web Components")
-        ul {
+        ul(classes = setOf("list-inline")) {
             listOf(
                 figure("logos/web-components.svg", "Natif"),
                 figure("logos/stencil.svg", "StencilJS"),
@@ -21,8 +21,26 @@ val webComponents = pres(
 ) {
     part("Introduction", skipHeader = true) {
         slide("Speakers", setOf("header-hidden")) {
-            file("speakers/julien.html")
-            file("speakers/igor.html")
+            speaker(
+                fullName = "Julien Renaux",
+                classes = setOf("toptal"),
+                src = "speakers/julien.jpg",
+                info = "GDE Web, Freelancer",
+                links = mapOf(
+                    "@julienrenaux" to "https://twitter.com/julienrenaux",
+                    "https://julienrenaux.fr/" to "https://julienrenaux.fr/"
+                )
+            )
+            speaker(
+                fullName = "Igor Laborie",
+                classes = setOf("monkeyPatch"),
+                src = "speakers/igor.jpg",
+                info = "Expert Web & Java",
+                links = mapOf(
+                    "@ilaborie" to "https://twitter.com/ilaborie",
+                    "igor@monkeypatch.io" to "mailto:igor@monkeypatch.io"
+                )
+            )
             file("logos/toptal.svg")
             file("logos/monkeypatch.svg")
         }

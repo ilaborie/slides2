@@ -3,6 +3,8 @@ package io.github.ilaborie.slides2.kt
 import io.github.ilaborie.slides2.kt.engine.*
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
+import io.github.ilaborie.slides2.kt.engine.extra.SpeakerHtmlRenderer
+import io.github.ilaborie.slides2.kt.engine.extra.SpeakerTextRenderer
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
 import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss.scssFileToCss
@@ -33,6 +35,8 @@ object SlideEngine {
         registerRenderers(NoticeTextRenderer, NoticeHtmlRenderer)
         registerRenderers(FigureTextRenderer, FigureHtmlRenderer)
         registerRenderers(TableTextRenderer, TableHtmlRenderer)
+        // Extra
+        registerRenderers(SpeakerTextRenderer, SpeakerHtmlRenderer)
 
         // Presentation, Part, Slide
         registerRenderer(PresentationHtmlRenderer())

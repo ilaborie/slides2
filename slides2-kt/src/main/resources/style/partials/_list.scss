@@ -1,0 +1,10 @@
+main > section > article {
+
+  ul.list-inline, ol.list-inline, dl.list-inline {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-self: stretch;
+  }
+
+}

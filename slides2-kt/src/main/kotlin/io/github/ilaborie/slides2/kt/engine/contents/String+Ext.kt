@@ -12,7 +12,7 @@ val String.raw: TextContent
     get() = TextContent(this, escape = false)
 
 fun String.header(level: Int): Title =
-    Title(level, TextContent(this))
+    Title(level, TextContent(this), emptySet())
 
 val String.h1: Title
     get() = header(1)
@@ -34,23 +34,23 @@ val String.h6: Title
 
 
 val String.p: Paragraph
-    get() = Paragraph(TextContent(this))
+    get() = Paragraph(TextContent(this), emptySet())
 
 
 val String.strong: StyledText
-    get() = StyledText(Strong, TextContent(this))
+    get() = StyledText(Strong, TextContent(this), emptySet())
 
 val String.em: StyledText
-    get() = StyledText(Emphasis, TextContent(this))
+    get() = StyledText(Emphasis, TextContent(this), emptySet())
 
 val String.u: StyledText
-    get() = StyledText(UnderLine, TextContent(this))
+    get() = StyledText(UnderLine, TextContent(this), emptySet())
 
 val String.mark: StyledText
-    get() = StyledText(Mark, TextContent(this))
+    get() = StyledText(Mark, TextContent(this), emptySet())
 
 val String.kbd: StyledText
-    get() = StyledText(Keyboard, TextContent(this))
+    get() = StyledText(Keyboard, TextContent(this), emptySet())
 
 val String.pre: StyledText
-    get() = StyledText(Pre, TextContent(this))
+    get() = StyledText(Pre, TextContent(this), emptySet())

@@ -1,0 +1,30 @@
+main > section > article {
+  .speaker {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      border-radius: 50%;
+      border: medium solid currentColor;
+      box-shadow: .125em .125em .25em rgba(0, 0, 0, .5);
+      height: 4em;
+      width: 4em;
+      object-fit: cover;
+    }
+
+    p {
+      font-size: 75%;
+    }
+
+    a {
+      background: none;
+
+      &::before {
+        content: '';
+      }
+    }
+  }
+}

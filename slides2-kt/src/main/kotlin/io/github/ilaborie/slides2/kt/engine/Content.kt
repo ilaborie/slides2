@@ -8,6 +8,7 @@ interface Content {
 
 interface ContainerContent : Content {
     val inner: List<Content>
+    val classes: Set<String>
 }
 
 interface SingleContent : ContainerContent {

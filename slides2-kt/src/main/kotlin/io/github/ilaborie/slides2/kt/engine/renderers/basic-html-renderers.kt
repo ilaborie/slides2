@@ -1,6 +1,7 @@
 package io.github.ilaborie.slides2.kt.engine.renderers
 
 import io.github.ilaborie.slides2.kt.SlideEngine
+import io.github.ilaborie.slides2.kt.engine.ContainerContent
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
@@ -22,7 +23,12 @@ import io.github.ilaborie.slides2.kt.jvm.escapeHtml
 abstract class HtmlTagRenderer<T : Content> : Renderer<T> {
     override val mode = Html
     abstract fun tag(content: T): String
-    open fun classes(content: T): List<String> = emptyList()
+    open fun classes(content: T): Set<String> =
+        when (content) {
+            is ContainerContent -> content.classes
+            else                -> emptySet()
+        }
+
     open fun innerContent(content: T): Content? = null
     override fun render(content: T): String =
         with(SlideEngine) {
@@ -99,7 +105,8 @@ object OrderedListHtmlRenderer : Renderer<OrderedList> {
                             |</li>""".trimMargin()
                 }
         }
-        return """<ol>
+        val tagClass = if (content.classes.isEmpty()) "" else " class=\"${content.classes.joinToString(" ")}\""
+        return """<ol$tagClass>
                 |${body.prependIndent("  ")}
                 |</ol>""".trimMargin()
     }
@@ -118,7 +125,8 @@ object UnorderedListHtmlRenderer : Renderer<UnorderedList> {
                             |</li>""".trimMargin()
                 }
         }
-        return """<ul>
+        val tagClass = if (content.classes.isEmpty()) "" else " class=\"${content.classes.joinToString(" ")}\""
+        return """<ul$tagClass>
                 |${body.prependIndent("  ")}
                 |</ul>""".trimMargin()
     }
@@ -139,7 +147,8 @@ object LinkHtmlRenderer : Renderer<Link> {
 
     override fun render(content: Link): String =
         with(SlideEngine) {
-            """<a href="${content.href}">${render(mode, content.content)}</a>"""
+            val tagClass = if (content.classes.isEmpty()) "" else " class=\"${content.classes.joinToString(" ")}\""
+            """<a href="${content.href}"$tagClass>${render(mode, content.content)}</a>"""
         }
 }
 
@@ -160,7 +169,8 @@ object QuoteHtmlRenderer : Renderer<Quote> {
                     "<footer></footer>"
             }
 
-            """<blockquote>
+            val tagClass = if (content.classes.isEmpty()) "" else " class=\"${content.classes.joinToString(" ")}\""
+            """<blockquote$tagClass>
                 |  <p>${render(mode, content.content)}</p>
                 |  $subBlock
                 |</blockquote>""".trimMargin()
@@ -173,8 +183,10 @@ object NoticeHtmlRenderer : Renderer<Notice> {
 
     override fun render(content: Notice): String =
         with(SlideEngine) {
-            """<div class="notice notice-${content.kind.name.toLowerCase()}">
-                |${content.title?.let { "<header>$it</header>"} ?: ""}
+            val allClasses = content.classes + "notice" + "notice-${content.kind.name.toLowerCase()}"
+            val tagClass = " class=\"${allClasses.joinToString(" ")}\""
+            """<div$tagClass>
+                |${content.title?.let { "<header>$it</header>" } ?: ""}
                 |<div class="notice-body">
                 |${render(mode, content.content).prependIndent("  ")}
                 |</div>

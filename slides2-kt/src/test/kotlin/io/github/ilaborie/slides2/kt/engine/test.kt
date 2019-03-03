@@ -25,7 +25,7 @@ fun main() {
 
     val cgf = JvmFolder("public")
     cgf.writeFile("data.json") {
-        listOf(demoOut, wcOut).joinToString(", ", "[ ", "]")
+        listOf(demoOut, wcOut).joinToString(", ", "[ ", "]") { it.json }
     }
 
 

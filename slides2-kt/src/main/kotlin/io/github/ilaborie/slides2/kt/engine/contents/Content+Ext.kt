@@ -14,7 +14,7 @@ import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.UnderLine
 
 
 fun <T : Content> T.header(level: Int): Title =
-    Title(level, this)
+    Title(level, this, emptySet())
 
 val <T : Content> T.h1: Title
     get() = header(1)
@@ -36,42 +36,42 @@ val <T : Content> T.h6: Title
 
 
 val <T : Content> T.p: Paragraph
-    get() = Paragraph(this)
+    get() = Paragraph(this, emptySet())
 
 
 val <T : Content> T.strong: StyledText
-    get() = StyledText(Strong, this)
+    get() = StyledText(Strong, this, emptySet())
 
 val <T : Content> T.em: StyledText
-    get() = StyledText(Emphasis, this)
+    get() = StyledText(Emphasis, this, emptySet())
 
 val <T : Content> T.u: StyledText
-    get() = StyledText(UnderLine, this)
+    get() = StyledText(UnderLine, this, emptySet())
 
 val <T : Content> T.mark: StyledText
-    get() = StyledText(Mark, this)
+    get() = StyledText(Mark, this, emptySet())
 
 val <T : Content> T.kbd: StyledText
-    get() = StyledText(Keyboard, this)
+    get() = StyledText(Keyboard, this, emptySet())
 
 val <T : Content> T.pre: StyledText
-    get() = StyledText(Pre, this)
+    get() = StyledText(Pre, this, emptySet())
 
 val <T : Content> T.ins: StyledText
-    get() = StyledText(Ins, this)
+    get() = StyledText(Ins, this, emptySet())
 
 val <T : Content> T.del: StyledText
-    get() = StyledText(Del, this)
+    get() = StyledText(Del, this, emptySet())
 
 val <T : Content> T.sub: StyledText
-    get() = StyledText(Sub, this)
+    get() = StyledText(Sub, this, emptySet())
 
 val <T : Content> T.sup: StyledText
-    get() = StyledText(Sup, this)
+    get() = StyledText(Sup, this, emptySet())
 
 
 val <T : List<Content>> T.ul: UnorderedList
-    get() = UnorderedList(this)
+    get() = UnorderedList(this, classes = emptySet())
 
 val <T : List<Content>> T.ol: OrderedList
-    get() = OrderedList(this)
+    get() = OrderedList(this, classes = emptySet())

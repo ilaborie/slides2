@@ -3,6 +3,7 @@ package io.github.ilaborie.slides2.kt.dsl
 import io.github.ilaborie.slides2.kt.Folder
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.contents.*
+import io.github.ilaborie.slides2.kt.engine.extra.Speaker
 import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml.markdownToHtml
 import io.github.ilaborie.slides2.kt.term.Notifier
 import io.github.ilaborie.slides2.kt.term.Styles
@@ -86,62 +87,52 @@ open class ContainerBuilder(private val input: Folder) {
         content.add { text().p }
     }
 
-    fun ol(steps: Boolean = false, block: ContainerBuilder.() -> Unit) {
+    fun ol(steps: Boolean = false, classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         content.add {
             ContainerBuilder(input)
                 .apply(block)
                 .build()
                 .ol
-                .copy(steps = steps)
+                .copy(steps = steps, classes = classes)
         }
     }
 
-    fun ul(steps: Boolean = false, block: ContainerBuilder.() -> Unit) {
+    fun ul(steps: Boolean = false, classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         content.add {
             ContainerBuilder(input)
                 .apply(block)
                 .build()
                 .ul
-                .copy(steps = steps)
+                .copy(steps = steps,classes = classes)
         }
     }
 
-    fun link(href: String, block: () -> Content = { href.raw }) {
-        content.add { Link(href = href, content = block()) }
+    fun link(href: String, classes: Set<String> = emptySet(), block: () -> Content = { href.raw }) {
+        content.add { Link(href = href, content = block(), classes = classes) }
     }
 
     fun link(href: String, content: String) {
         link(href) { content.raw }
     }
 
-    fun quote(author: String? = null, cite: String? = null, block: () -> Content) {
-        content.add { Quote(author = author, cite = cite, content = block()) }
+    fun quote(author: String? = null, cite: String? = null, classes: Set<String> = emptySet(), block: () -> Content) {
+        content.add { Quote(author = author, cite = cite, classes = classes, content = block()) }
     }
 
-    fun notice(kind: NoticeKind, title: String?, block: () -> Content) {
-        content.add { Notice(kind = kind, title = title, content = block()) }
+    fun notice(kind: NoticeKind, title: String?, classes: Set<String> = emptySet(), block: () -> Content) {
+        content.add { Notice(kind = kind, title = title, classes = classes, content = block()) }
     }
 
     fun figure(src: String, title: String, copyrightBlock: Content? = null) {
         content.add {
-            val figSrc = if (input.exists(src)) {
-                val extension = src.split(".").last()
-                val mimeType = when (extension) {
-                    "svg" -> "image/svg+xml;base64"
-                    "png" -> "image/png;base64"
-                    "gif" -> "image/gif;base64"
-                    "jpg" -> "image/jpeg;base64"
-                    else  -> throw IllegalArgumentException("Unsupported file extension: $extension")
-                }
-                "data:$mimeType,${input.readFileAsBase64(src)}"
-            } else src
+            val figSrc = input.readFileAsDataUri(src)
             Figure(src = figSrc, title = title, copyright = copyrightBlock)
         }
     }
 
-    fun title(level: Int, block: () -> Content) {
+    fun title(level: Int, classes: Set<String> = emptySet(), block: () -> Content) {
         content.add {
-            Title(level = level, content = block())
+            Title(level = level, classes = classes, content = block())
         }
     }
 
@@ -200,6 +191,19 @@ open class ContainerBuilder(private val input: Folder) {
                |  <caption>$title</caption>
                |  <tbody>$rows</tbody>
                |</table>""".trimMargin()
+        }
+    }
+
+    fun speaker(fullName: String, src: String, info: String, links: Map<String, String>, classes: Set<String>) {
+        content.add {
+            val img = input.readFileAsDataUri(src)
+            Speaker(
+                fullName = fullName,
+                info = info,
+                img = img,
+                links = links,
+                classes = classes
+            )
         }
     }
 
