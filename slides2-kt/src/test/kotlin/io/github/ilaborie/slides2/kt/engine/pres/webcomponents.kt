@@ -3,6 +3,7 @@ import io.github.ilaborie.slides2.kt.dsl.raw
 import io.github.ilaborie.slides2.kt.engine.extra.barChart
 import io.github.ilaborie.slides2.kt.engine.extra.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.extra.speaker
+import io.github.ilaborie.slides2.kt.jvm.extra.tweet
 
 
 // https://shprink.github.io/talks/2018/web_component_native_vs_stenciljs
@@ -101,7 +102,7 @@ val webComponents = pres(
         }
         slide("Industry Moving too Fast", setOf("header-hidden")) {
             h4("The industry is moving too fast...")
-//            tweet("540481335362875392")
+            tweet("540481335362875392")
         }
         slide("Interoperability", setOf("header-hidden")) {
             h4("...Interoperability is not available out of the box...")
