@@ -12,12 +12,13 @@ main > section > article {
       grid-template-columns: auto 1fr auto;
       align-items: center;
 
-      .label {
+      label {
         grid-column: 1 / 1;
         text-align: right;
+        max-width: 20vw;
       }
 
-      .value {
+      meter {
         background-color: currentColor;
         margin: 0;
         padding: 0;
@@ -25,19 +26,13 @@ main > section > article {
         grid-column-end: -2;
         height: .66em;
         width: calc(100% * var(--value) / var(--scale));
-
-        &::before {
-          content: '';
-        }
       }
 
       .info {
-        grid-column-start: -2;
-        grid-column-end: -1;
-        font-size: 66%;
-        white-space: nowrap;
         font-family: var(--font-mono);
+        font-size: 66%;
       }
+
     }
 
     .caption {

@@ -228,7 +228,7 @@ open class ContainerBuilder(internal val input: Folder) {
         }
     }
 
-    fun link(href: String, classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit = { href.raw }) {
+    fun link(href: String, classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit = { html { href}}) {
         content.add {
             val c = ContainerBuilder(input).compound(block)
             Link(href = href, content = c, classes = classes)

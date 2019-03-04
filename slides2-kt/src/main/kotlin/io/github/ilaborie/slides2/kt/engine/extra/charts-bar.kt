@@ -6,6 +6,7 @@ import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
+import io.github.ilaborie.slides2.kt.jvm.asKey
 
 data class BarChart(
     val title: String,
@@ -13,8 +14,10 @@ data class BarChart(
     val unit: String,
     val factor: (Double) -> Int = { it.toInt() }
 ) : Content {
-    val max: Double by lazy {
-        values.values.max() ?: throw AssertionError("WTF")
+    val max: Int by lazy {
+        values.values
+            .map(factor)
+            .max() ?: throw AssertionError("WTF")
     }
 
     init {
@@ -40,13 +43,15 @@ object BarChartHtmlRenderer : Renderer<BarChart> {
 
     override fun render(content: BarChart): String {
 
-        val rows = content.values.map { (title, value) ->
-            """<div class="label">$title</div>
-              |<div class="value" style="--value: ${content.factor(value)}"></div>
-              |<div class="info">$value ${content.unit}</div>"""
+        val rows = content.values.map { (label, value) ->
+            val id = "${content.title}_$label".asKey()
+            val info = "$value ${content.unit}"
+            """<label for="$id">$label</label>
+              |<meter id="$id" value="${content.factor(value)}" max="${content.max}" title="$info">$info</meter>
+              |<div class="info">$info</div>"""
         }.joinToString("\n")
 
-        return """<div class="charts bar" style="--scale: ${content.factor(content.max)}">
+        return """<div class="charts bar">
                  |  <div class="body">$rows</div>
                  |  <div class="caption">${content.title}</div>
                  |</div>""".trimMargin()

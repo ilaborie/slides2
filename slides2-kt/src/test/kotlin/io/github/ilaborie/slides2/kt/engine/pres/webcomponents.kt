@@ -187,6 +187,8 @@ val webComponents = pres(
             quote("Give the ability to create reusable piece of HTML that can be used at runtime")
         }
         slide("Browser support", setOf("header-hidden")) {
+            // custom-elementsv1, shadowdomv1, template
+            // ie11, edge18, firefox65, chrome72, opera58\
             file("img/caniuse/browser-support.html")
         }
         slide("Polyfill support", setOf("header-hidden")) {
