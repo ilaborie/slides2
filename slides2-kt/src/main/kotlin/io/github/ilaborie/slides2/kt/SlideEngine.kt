@@ -7,6 +7,8 @@ import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
 import io.github.ilaborie.slides2.kt.engine.extra.*
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
+import io.github.ilaborie.slides2.kt.jvm.extra.CanIUseHtmlRenderer
+import io.github.ilaborie.slides2.kt.jvm.extra.CanIUseTextRenderer
 import io.github.ilaborie.slides2.kt.jvm.extra.TweetHtmlRenderer
 import io.github.ilaborie.slides2.kt.jvm.extra.TweetTextRenderer
 import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss.scssFileToCss
@@ -40,9 +42,11 @@ object SlideEngine {
         registerRenderers(TableTextRenderer, TableHtmlRenderer)
         // Extra
         registerRenderers(SpeakerTextRenderer, SpeakerHtmlRenderer)
-        registerRenderers(TweetTextRenderer, TweetHtmlRenderer)
         registerRenderers(BarChartTextRenderer, BarChartHtmlRenderer)
         registerRenderers(InlineFigureTextRenderer, InlineFigureHtmlRenderer)
+        // Extra with JVM
+        registerRenderers(TweetTextRenderer, TweetHtmlRenderer)
+        registerRenderers(CanIUseTextRenderer, CanIUseHtmlRenderer)
 
         // Presentation, Part, Slide
         registerRenderer(PresentationHtmlRenderer())

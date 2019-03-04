@@ -1,0 +1,82 @@
+main > section > article {
+
+  .caniuse {
+    --caniuse-supported: #32ac41;
+    --caniuse-partial: #9eb40b;
+    --caniuse-not-supported: #bc392a;
+  }
+
+  table.caniuse {
+    width: 100%;
+    empty-cells: hide;
+    border-collapse: collapse;
+    caption-side: top;
+
+    tbody, thead {
+      font-size: 80%;
+    }
+
+    thead td {
+      border-top-color: transparent;
+      border-left-color: transparent;
+    }
+
+    th {
+      font-weight: normal;
+    }
+
+    th, td {
+      padding: .125em;
+      border: thin solid hsla(0, 100%, 100%, .9);
+    }
+
+    td {
+      // by default expected a number
+      text-align: center;
+
+      &.y {
+        background: var(--caniuse-supported);
+
+        &::before {
+          content: '😃';
+        }
+      }
+
+      &.p, &.a {
+        background: var(--caniuse-partial);
+        &::before {
+          content: '🙂';
+        }
+      }
+
+      &.n {
+        background: var(--caniuse-not-supported);
+
+        &::before {
+          content: '😞';
+        }
+      }
+    }
+  }
+
+  ul.caniuse {
+    color: var(--colLight);
+
+    li {
+      padding: .125em .25em;
+    }
+
+    .y {
+      background: var(--caniuse-supported);
+    }
+
+    .p {
+      background: var(--caniuse-partial);
+    }
+
+    .n {
+      background: var(--caniuse-not-supported);
+    }
+  }
+
+}

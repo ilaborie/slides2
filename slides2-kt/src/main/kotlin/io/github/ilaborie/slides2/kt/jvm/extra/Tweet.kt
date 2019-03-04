@@ -17,16 +17,16 @@ data class TweetInfo(val html: String, val width: Int)
 
 data class Tweet(val tweetId: String) : Content {
 
+    private val mapper = ObjectMapper()
+        .configure(FAIL_ON_UNKNOWN_PROPERTIES, false)
+        .findAndRegisterModules()
+
     private val cachingFolder: CachingFolder = CachingFolder(JvmFolder(".cache/tweet")) { id ->
         URL("https://api.twitter.com/1/statuses/oembed.json?=true&id=$tweetId")
             .readText()
             .let { mapper.readValue<TweetInfo>(it) }
             .html
     }
-
-    private val mapper = ObjectMapper()
-        .configure(FAIL_ON_UNKNOWN_PROPERTIES, false)
-        .findAndRegisterModules()
 
     val content: String by lazy {
         cachingFolder[tweetId]

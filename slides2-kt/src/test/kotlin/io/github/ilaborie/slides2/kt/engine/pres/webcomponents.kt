@@ -3,6 +3,7 @@ import io.github.ilaborie.slides2.kt.dsl.raw
 import io.github.ilaborie.slides2.kt.engine.extra.barChart
 import io.github.ilaborie.slides2.kt.engine.extra.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.extra.speaker
+import io.github.ilaborie.slides2.kt.jvm.extra.caniuse
 import io.github.ilaborie.slides2.kt.jvm.extra.tweet
 
 
@@ -146,7 +147,7 @@ val webComponents = pres(
             ul(steps = true) {
                 barChart(
                     "Time matters (FMP 3G 📱 in ms)", mapOf(
-                        "Angular" to 3000.0,
+                        "Angular" to 3000.0, // TODO icon
                         "Stencil" to 1070.0,
                         "Native" to 1030.0,
                         "Stencil Pre Rendered" to 980.0
@@ -188,9 +189,15 @@ val webComponents = pres(
             quote("Give the ability to create reusable piece of HTML that can be used at runtime")
         }
         slide("Browser support", setOf("header-hidden")) {
-            // custom-elementsv1, shadowdomv1, template
-            // ie11, edge18, firefox65, chrome72, opera58\
-            file("img/caniuse/browser-support.html")
+            caniuse("Browser support",
+                    features =listOf("custom-elementsv1", "shadowdomv1", "template"),
+                    browsers = listOf(
+                        "ie" to 11,
+                        "edge" to 18,
+                        "firefox" to 65,
+                        "chrome" to 72,
+                        "safari" to 12))
+            link("https://caniuse.com")
         }
         slide("Polyfill support", setOf("header-hidden")) {
             file("img/caniuse/polyfill-support.html")
