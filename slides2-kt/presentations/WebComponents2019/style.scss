@@ -44,6 +44,17 @@ main > section {
     strong {
       color: #007bff;
     }
+
+    blockquote {
+      background-color: hsla(0, 100%, 100%, .1);
+      border-radius: .125em;
+      p::before {
+        margin-top: -.25em;
+      }
+      p {
+        font-style: italic;
+      }
+    }
   }
 
   & > footer {
@@ -71,6 +82,17 @@ main > section {
   }
 }
 
+.part {
+  img {
+    height: 6em;
+  }
+
+  figcaption {
+    display: none;
+  }
+}
+
+//
 #speakers {
 
   .previous {
@@ -97,6 +119,7 @@ main > section {
   }
 }
 
+//
 .roadmap article {
 
   ul {
@@ -172,6 +195,7 @@ main > section {
 
 }
 
+//
 #industry_moving_too_fast article {
   justify-content: space-evenly;
 
@@ -180,6 +204,7 @@ main > section {
   }
 }
 
+//
 #reinventing article {
 
   ul {
@@ -195,12 +220,7 @@ main > section {
       left: 0;
 
       figcaption {
-        position: absolute !important;
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
-        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-        clip: rect(1px, 1px, 1px, 1px);
+        display: none;
       }
 
       &.step-done {
@@ -251,12 +271,8 @@ main > section {
 
 }
 
-
+//
 #size_matters article, #time_matters article {
-
-  ul {
-    list-style: none;
-  }
 
   .step-done {
     opacity: 1;
@@ -267,6 +283,61 @@ main > section {
 
     .caption {
       opacity: .75;
+    }
+  }
+}
+
+//
+#components article {
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    svg {
+      height: 4em;
+    }
+
+    li {
+
+      grid-row: 1 / 2;
+    }
+
+    li:nth-child(1) {
+      grid-column: 1 / 2;
+    }
+
+    li:nth-child(2) {
+      grid-column: 2 / 3;
+    }
+
+    li:nth-child(3) {
+      grid-column: 3 / 4;
+    }
+
+    li:nth-child(4), li:nth-child(5) {
+      grid-column: 4 / 5;
+    }
+
+    li:nth-child(5) {
+      justify-self: center;
+      align-self: center;
+    }
+
+    .obsolete {
+      &::before {
+        content: '✘';
+        font-size: 5em;
+        color: firebrick;
+      }
+    }
+  }
+}
+
+#custom_elements, #shadow_dom, #html_templates {
+  article {
+    svg {
+      max-height: 6em;
     }
   }
 }

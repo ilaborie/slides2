@@ -1,6 +1,7 @@
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.dsl.raw
 import io.github.ilaborie.slides2.kt.engine.extra.barChart
+import io.github.ilaborie.slides2.kt.engine.extra.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.extra.speaker
 
 
@@ -74,7 +75,7 @@ val webComponents = pres(
         }
         slide("Choose Style", styles = setOf("two-columns", "header-hidden")) {
             h4("Now let's select how to write our style")
-            ul(steps = true) {
+            ul(steps = true, classes = setOf("bullet")) {
                 span("CSS")
                 span("Sass/Scss")
                 span("Less")
@@ -87,7 +88,7 @@ val webComponents = pres(
         }
         slide("Choose JavaScript Transpiler", setOf("header-hidden")) {
             h4("Now let's transpile our code")
-            ul(steps = true) {
+            ul(steps = true, classes = setOf("bullet")) {
                 // TODO logo
                 span("Webpack")
                 span("ParcelJs")
@@ -154,8 +155,10 @@ val webComponents = pres(
             }
         }
     }
-    part("Web Components") {
-        // TODO Logo
+    part(partTitle = {
+        h2("Web Components")
+        figure("logos/web-components.svg", "Web Components")
+    }, id = "web_components_part") {
         slide("History", setOf("header-hidden")) {
             ul {
                 markdown { "Specs from **World Wide Web Consortium** (W3C)" }
@@ -163,27 +166,25 @@ val webComponents = pres(
             }
         }
         slide("Components", setOf("header-hidden")) {
-            ul(steps = true) {
-                figure("img/webcomponents/custom-elements.svg", "Custom Elements")
-                figure("img/webcomponents/shadow-DOM.svg", "Shadow DOM")
-                figure("img/webcomponents/HTML-templates.svg", "HTML templates")
-                figure("img/webcomponents/HTML-imports.svg", "HTML imports")
+            ul(steps = true, classes = setOf("list-inline")) {
+                inlineFigure("img/webcomponents/custom-elements.svg", "Custom Elements")
+                inlineFigure("img/webcomponents/shadow-DOM.svg", "Shadow DOM")
+                inlineFigure("img/webcomponents/HTML-templates.svg", "HTML templates")
+                inlineFigure("img/webcomponents/HTML-imports.svg", "HTML imports")
+                html { "<div class=\"obsolete\"></div>" }
             }
         }
         slide("Custom Elements", setOf("header-hidden")) {
-            figure("img/webcomponents/custom-elements.svg", "Custom Elements")
-            quote {
-                p("Custom Elements is a capability for creating your own custom HTML elements with its own methods and properties")
-
-            }
+            inlineFigure("img/webcomponents/custom-elements.svg", "Custom Elements")
+            quote("Custom Elements is a capability for creating your own custom HTML elements with its own methods and properties")
         }
         slide("Shadow DOM", setOf("header-hidden")) {
-            figure("img/webcomponents/shadow-DOM.svg", "Shadow DOM")
-            quote { p("Shadow DOM provides encapsulation for DOM and CSS") }
+            inlineFigure("img/webcomponents/shadow-DOM.svg", "Shadow DOM")
+            quote("Shadow DOM provides encapsulation for DOM and CSS")
         }
         slide("HTML templates", setOf("header-hidden")) {
-            figure("img/webcomponents/HTML-templates.svg", "HTML templates")
-            quote { p("Give the ability to create reusable piece of HTML that can be used at runtime") }
+            inlineFigure("img/webcomponents/HTML-templates.svg", "HTML templates")
+            quote("Give the ability to create reusable piece of HTML that can be used at runtime")
         }
         slide("Browser support", setOf("header-hidden")) {
             file("img/caniuse/browser-support.html")
@@ -197,8 +198,12 @@ val webComponents = pres(
             link("https://custom-elements-everywhere.com/")
         }
     }
-    part("StencilJS") {
-        // TODO Logo + Link
+    part(partTitle = {
+        h2("StencilJS")
+        figure("logos/stencil.gif", "StencilJS")
+        link("https://stenciljs.com/")
+    }, id = "stenciljs_part") {
+
         slide("What", setOf("header-hidden")) {
             ul(steps = true) {
                 markdown { "**Open Source** project" }
@@ -221,7 +226,7 @@ val webComponents = pres(
                 strong("web components")
             }
         }
-        slide("StencilJS is a **set** of **great tools**") {
+        slide("StencilJS is a **set** of **great tools**", setOf("header-hidden")) {
             table(
                 "StencilJS is a set of great tools",
                 rows = listOf("JSX / Virtual DOM", "TypeScript", "Decorators", "Prerendering SSR"),
@@ -263,7 +268,7 @@ val webComponents = pres(
         slide("StencilJS **works everywhere**") {
             h4("Loads polyfills on-demand")
         }
-        slide("Stencil Syntax is short") {
+        slide("Stencil Syntax is short", setOf("header-hidden")) {
             figure("stencil/stencil-syntax.png", "Stencil Syntax is short")
         }
         slide("Getting started") {
@@ -276,11 +281,20 @@ val webComponents = pres(
             }
         }
     }
-    part("Lit-Elements") {
-        // TODO
+    part(partTitle = {
+        h2("Lit-Elements")
+        figure("logos/lit-element.png", "LitElement")
+        link("https://lit-element.polymer-project.org/")
+    }, id = "lit-element_part") {
+        slide("TODO") {
+            todo { "idea" } // TODO
+        }
     }
     part("Workshop") {
-        // TODO
+        slide("TODO - work") {
+            todo { "links..." } // TODO
+            // timer...
+        }
     }
     part("Conclusion") {
         slide("Moderns Alternatives") {

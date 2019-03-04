@@ -1,10 +1,7 @@
 package io.github.ilaborie.slides2.kt.dsl
 
 import io.github.ilaborie.slides2.kt.Folder
-import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.*
-import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
-import io.github.ilaborie.slides2.kt.engine.contents.Title
 import io.github.ilaborie.slides2.kt.jvm.asKey
 
 @PresentationMarker
@@ -20,7 +17,7 @@ class PresentationBuilder(internal val input: Folder) {
         block: PartBuilder.() -> Unit
     ) {
         part(
-            partTitle = Title(2, title.raw, emptySet()),
+            partTitle = { h2(title) },
             id = id,
             skipHeader = skipHeader,
             style = style,
@@ -29,17 +26,18 @@ class PresentationBuilder(internal val input: Folder) {
     }
 
     fun part(
-        partTitle: Content,
-        id: String = with(SlideEngine) { render(Text, partTitle) },
+        partTitle: ContainerBuilder.() -> Unit,
+        id: String,
         style: String? = null,
         skipHeader: Boolean = false,
         block: PartBuilder.() -> Unit
     ) {
         val partId = Id(id)
-        parts.add(LazyBuilder(partId, partTitle) {
+        val title = ContainerBuilder(input).compound(partTitle)
+        parts.add(LazyBuilder(partId, title) {
             PartBuilder(this)
                 .apply(block)
-                .build(partId, partTitle, style, skipHeader)
+                .build(partId, title, style, skipHeader)
         })
     }
 

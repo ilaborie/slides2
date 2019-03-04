@@ -1,10 +1,17 @@
 main > section > article {
 
-  ul.list-inline, ol.list-inline, dl.list-inline {
+  ul, ol, dl {
     list-style: none;
-    display: flex;
-    justify-content: space-around;
-    align-self: stretch;
+
+    &.list-inline {
+      display: flex;
+      justify-content: space-around;
+      align-self: stretch;
+    }
+
+    &.bullet {
+      list-style: circle;
+    }
   }
 
 }

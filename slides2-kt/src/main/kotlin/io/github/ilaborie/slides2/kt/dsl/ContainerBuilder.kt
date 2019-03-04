@@ -3,7 +3,6 @@ package io.github.ilaborie.slides2.kt.dsl
 import io.github.ilaborie.slides2.kt.Folder
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.contents.*
-import io.github.ilaborie.slides2.kt.engine.extra.Speaker
 import io.github.ilaborie.slides2.kt.engine.extra.Table
 import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml.markdownToHtml
 import io.github.ilaborie.slides2.kt.term.Notifier
@@ -249,6 +248,17 @@ open class ContainerBuilder(internal val input: Folder) {
         content.add {
             val c = ContainerBuilder(input).compound(block)
             Quote(author = author, cite = cite, classes = classes, content = c)
+        }
+    }
+
+    fun quote(
+        quote: String,
+        author: String? = null,
+        cite: String? = null,
+        classes: Set<String> = emptySet()
+    ) {
+        quote(author = author, cite = cite, classes = classes) {
+            html { quote }
         }
     }
 

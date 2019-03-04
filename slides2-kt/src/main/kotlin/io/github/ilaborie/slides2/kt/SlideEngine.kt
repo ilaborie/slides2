@@ -42,6 +42,7 @@ object SlideEngine {
         registerRenderers(SpeakerTextRenderer, SpeakerHtmlRenderer)
         registerRenderers(TweetTextRenderer, TweetHtmlRenderer)
         registerRenderers(BarChartTextRenderer, BarChartHtmlRenderer)
+        registerRenderers(InlineFigureTextRenderer, InlineFigureHtmlRenderer)
 
         // Presentation, Part, Slide
         registerRenderer(PresentationHtmlRenderer())
