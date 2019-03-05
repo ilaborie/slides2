@@ -167,8 +167,8 @@ open class ContainerBuilder(internal val input: Folder) {
         styledText(TextStyle.Sup, classes, block)
     }
 
-    fun span(inner: String) {
-        html { """<span>$inner</span>""" }
+    fun span(inner: String, classes: Set<String> = emptySet()) {
+        html { """<span class="${classes.joinToString(" ")}">$inner</span>""" }
     }
 
     fun sourceCode(file: String) {
@@ -292,40 +292,5 @@ open class ContainerBuilder(internal val input: Folder) {
         title(level) { text.raw }
     }
 
-
-    fun table(
-        caption: String,
-        rows: List<String>,
-        columns: List<String>,
-        values: Map<Pair<String, String>, String>,
-        rowsFn: (String) -> Content = { it.raw },
-        columnFn: (String) -> Content = { it.raw },
-        valueFn: (String) -> Content = { it.raw }
-    ) {
-        val valuesFunction = { row: String, col: String -> values[row to col] }
-        table(caption, rows, columns, valuesFunction, rowsFn, columnFn, valueFn)
-    }
-
-    fun table(
-        caption: String,
-        rows: List<String>,
-        columns: List<String>,
-        values: (String, String) -> String?,
-        rowsFn: (String) -> Content = { it.raw },
-        columnFn: (String) -> Content = { it.raw },
-        valueFn: (String) -> Content = { it.raw }
-    ) {
-        content.add {
-            val data = rows
-                .flatMap { row -> columns.map { col -> row to col } }
-                .map { (row, col) -> (row to col) to values(row, col) }
-                .filter { (_, v) -> v != null }
-                .toMap()
-                .mapKeys { (p, _) -> rowsFn(p.first) to columnFn(p.second) }
-                .mapValues { (_, v) -> valueFn(v!!) }
-
-            Table(caption.raw, data)
-        }
-    }
 
 }

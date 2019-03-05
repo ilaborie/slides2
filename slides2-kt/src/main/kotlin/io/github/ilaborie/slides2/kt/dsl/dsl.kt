@@ -7,6 +7,7 @@ import io.github.ilaborie.slides2.kt.engine.Presentation
 import io.github.ilaborie.slides2.kt.engine.Theme
 import io.github.ilaborie.slides2.kt.engine.contents.TextContent
 import io.github.ilaborie.slides2.kt.jvm.asKey
+import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml
 
 
 @DslMarker
@@ -24,6 +25,8 @@ interface PresentationDsl {
 
 val String.raw: TextContent
     get() = TextContent(this, escape = false)
+val String.markdown: TextContent
+    get() = TextContent(MarkdownToHtml.markdownToHtml(this), escape = false)
 
 
 fun pres(

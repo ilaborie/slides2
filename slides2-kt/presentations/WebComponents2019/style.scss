@@ -42,12 +42,15 @@ main {
 
 main > section {
   & > article {
+    text-align: center;
+
     strong {
       color: var(--accent);
     }
 
-    &>a {
+    & > a {
       color: var(--accent);
+
       &::before {
         content: '';
       }
@@ -362,6 +365,7 @@ main > section {
       background: var(--caniuse-supported);
     }
   }
+
   a {
     font-size: 80%;
   }
@@ -372,6 +376,40 @@ main > section {
   .charts.bar {
     .body {
       order: 2;
+    }
+  }
+}
+
+#stenciljs_is_a_set_of_great_tools__ article {
+  table {
+    caption-side: top;
+
+    thead tr th figure{
+      align-items: center;
+    }
+
+    tbody tr th {
+      text-align: right;
+    }
+
+    th {
+      font-size: 80%;
+      font-weight: normal;
+
+    }
+
+    td {
+      text-align: center;
+
+      .yes {
+        color: var(--colValid);
+
+      }
+
+      .no {
+        color: var(--colInvalid);
+
+      }
     }
   }
 }

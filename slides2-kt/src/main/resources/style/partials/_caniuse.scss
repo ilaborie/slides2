@@ -1,9 +1,9 @@
 main > section > article {
 
   .caniuse {
-    --caniuse-supported: #32ac41;
-    --caniuse-partial: #9eb40b;
-    --caniuse-not-supported: #bc392a;
+    --caniuse-supported: var(--colValid);
+    --caniuse-partial: var(--colMostValid);
+    --caniuse-not-supported: var(--colInvalid);
     --caniuse-not-found: transparent;
   }
 

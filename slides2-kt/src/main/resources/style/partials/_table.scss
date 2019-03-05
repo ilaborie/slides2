@@ -6,9 +6,24 @@ main > section > article {
     border-collapse: collapse;
     caption-side: bottom;
 
+    caption {
+      text-align: center;
+      margin: .5em 0;
+      font-weight: bold;
+    }
+
     th, td {
       padding: .125em;
       border: thin solid hsla(0, 100%, 100%, .1);
+
+      img {
+        max-width: 3.5em;
+        width: 3.5em;
+        max-height: 3.5em;
+      }
+      figcaption {
+        display: none;
+      }
     }
 
     td {

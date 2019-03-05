@@ -1,8 +1,9 @@
+import io.github.ilaborie.slides2.kt.dsl.markdown
 import io.github.ilaborie.slides2.kt.dsl.pres
-import io.github.ilaborie.slides2.kt.dsl.raw
 import io.github.ilaborie.slides2.kt.engine.extra.barChart
 import io.github.ilaborie.slides2.kt.engine.extra.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.extra.speaker
+import io.github.ilaborie.slides2.kt.engine.extra.table
 import io.github.ilaborie.slides2.kt.jvm.extra.caniuse
 import io.github.ilaborie.slides2.kt.jvm.extra.tweet
 
@@ -238,7 +239,7 @@ val webComponents = pres(
                     "AngularJS" to 100.0,
                     "Preact" to 91.0,
                     "React" to 71.0
-                ), infoFn = { "${it.toInt()}%"}
+                ), infoFn = { "${it.toInt()}%" }
             )
             link("https://custom-elements-everywhere.com/")
         }
@@ -271,31 +272,31 @@ val webComponents = pres(
                 strong("web components")
             }
         }
-        slide("StencilJS is a **set** of **great tools**", setOf("header-hidden")) {
+        slide("StencilJS is a set of great tools**", setOf("header-hidden")) {
             table(
-                "StencilJS is a set of great tools",
+                "StencilJS is a **set** of **great tools**".markdown,
                 rows = listOf("JSX / Virtual DOM", "TypeScript", "Decorators", "Prerendering SSR"),
                 columns = listOf("Web Components", "Angular", "React", "Stencil"),
                 values = mapOf(
-                    ("JSX / Virtual DOM" to "Web Components") to "no",
-                    ("JSX / Virtual DOM" to "Angular") to "no",
-                    ("JSX / Virtual DOM" to "React") to "y︎es",
-                    ("JSX / Virtual DOM" to "Stencil") to "y︎es",
+                    ("JSX / Virtual DOM" to "Web Components") to false,
+                    ("JSX / Virtual DOM" to "Angular") to false,
+                    ("JSX / Virtual DOM" to "React") to true,
+                    ("JSX / Virtual DOM" to "Stencil") to true,
 
-                    ("TypeScript" to "Web Components") to "no",
-                    ("TypeScript" to "Angular") to "y︎es",
-                    ("TypeScript" to "React") to "no",
-                    ("TypeScript" to "Stencil") to "y︎es",
+                    ("TypeScript" to "Web Components") to false,
+                    ("TypeScript" to "Angular") to true,
+                    ("TypeScript" to "React") to false,
+                    ("TypeScript" to "Stencil") to true,
 
-                    ("Decorators" to "Web Components") to "no",
-                    ("Decorators" to "Angular") to "y︎es",
-                    ("Decorators" to "React") to "no",
-                    ("Decorators" to "Stencil") to "y︎es",
+                    ("Decorators" to "Web Components") to false,
+                    ("Decorators" to "Angular") to true,
+                    ("Decorators" to "React") to false,
+                    ("Decorators" to "Stencil") to true,
 
-                    ("Prerendering SSR" to "Web Components") to "no",
-                    ("Prerendering SSR" to "Angular") to "no",
-                    ("Prerendering SSR" to "React") to "no",
-                    ("Prerendering SSR" to "Stencil") to "yes"
+                    ("Prerendering SSR" to "Web Components") to false,
+                    ("Prerendering SSR" to "Angular") to false,
+                    ("Prerendering SSR" to "React") to false,
+                    ("Prerendering SSR" to "Stencil") to true
                 ),
                 columnFn = { col ->
                     val key = when (col) {
@@ -307,11 +308,15 @@ val webComponents = pres(
                     }
                     compound { figure("logos/$key.svg", col) }
                 },
-                valueFn = { value -> """<span class="$value">︎</span>""".raw }
+                valueFn = { value ->
+                    val text = if (value) "✔︎" else "✘"
+                    compound { span(text, setOf(if (value) "yes" else "no")) }
+                }
             )
         }
-        slide("StencilJS **works everywhere**") {
-            h4("Loads polyfills on-demand")
+        slide("StencilJS works everywhere", setOf("header-hidden", "sets")) {
+            h4 { markdown { "StencilJS **works everywhere**" } }
+            p("Loads polyfills on-demand", classes = setOf("step"))
         }
         slide("Stencil Syntax is short", setOf("header-hidden")) {
             figure("stencil/stencil-syntax.png", "Stencil Syntax is short")
