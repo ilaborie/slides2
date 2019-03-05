@@ -59,7 +59,7 @@ fun pres(
     block: PresentationBuilder.() -> Unit
 ): PresentationDsl =
     pres(
-        title = { title(1, title) },
+        title = { h1(title) },
         id = id,
         theme = theme,
         extraStyle = extraStyle,

@@ -6,6 +6,8 @@
   --monkeyBof: #00b0ff;
   --toptal: #3863a0;
   --accent: #007bff;
+  --slides: green;
+  --work: purple;
 
   // Colors
   --colDark: #212529;
@@ -43,6 +45,9 @@ main {
 main > section {
   & > article {
     text-align: center;
+    ul, pre {
+      text-align: left;
+    }
 
     strong {
       color: var(--accent);
@@ -56,17 +61,16 @@ main > section {
       }
     }
 
+    caption, .caption {
+      opacity: .75;
+    }
+
+    table td{
+      font-size: 2em;
+    }
+
     blockquote {
       background-color: hsla(0, 100%, 100%, .1);
-      border-radius: .125em;
-
-      p::before {
-        margin-top: -.25em;
-      }
-
-      p {
-        font-style: italic;
-      }
     }
   }
 
@@ -111,7 +115,7 @@ main > section {
   .previous {
     @extend .toptal;
     // Fix a glitch
-    box-shadow: 0 0 0 1px white;
+    box-shadow: 0 0 0 1px var(--colLight);
   }
 
   .next {
@@ -128,7 +132,7 @@ main > section {
     align-items: stretch;
     grid-column-gap: 2em;
     //background: linear-gradient(to right, white 50%, var(--monkeyBof) 0);
-    background: linear-gradient(92deg, white 50%, var(--monkeyBof) 0);
+    background: linear-gradient(92deg, var(--colLight) 50%, var(--monkeyBof) 0);
   }
 }
 
@@ -141,14 +145,12 @@ main > section {
 
   li {
     font-size: 3vh;
-    color: white;
+    color: var(--colLight);
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 3em .5em;
-    --slides: green;
-    --work: purple;
 
     &::before, &::after {
       position: absolute;
@@ -286,17 +288,8 @@ main > section {
 
 //
 #size_matters article, #time_matters article {
-
-  .step-done {
-    opacity: 1;
-  }
-
   .charts.bar {
     margin-bottom: 1em;
-
-    .caption {
-      opacity: .75;
-    }
   }
 }
 
@@ -312,7 +305,6 @@ main > section {
     }
 
     li {
-
       grid-row: 1 / 2;
     }
 
@@ -341,7 +333,7 @@ main > section {
       &::before {
         content: '✘';
         font-size: 5em;
-        color: firebrick;
+        color: var(--colInvalid);
       }
     }
   }
@@ -380,11 +372,11 @@ main > section {
   }
 }
 
-#stenciljs_is_a_set_of_great_tools__ article {
+#stenciljs_is_a_set_of_great_tools article {
   table {
     caption-side: top;
 
-    thead tr th figure{
+    thead tr th figure {
       align-items: center;
     }
 
@@ -412,4 +404,21 @@ main > section {
       }
     }
   }
+}
+
+#stencil_is_concise {
+  figure {
+    flex-direction: column-reverse;
+  }
+}
+
+
+#getting_started {
+  pre {
+    font-size: 50%;
+  }
+}
+
+#moderns_alternatives article {
+  text-align: left;
 }

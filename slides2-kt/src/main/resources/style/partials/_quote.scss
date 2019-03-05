@@ -1,13 +1,21 @@
 main > section > article {
 
   blockquote {
+    border-radius: .125em;
+    background-color: rgba(0, 0, 0, .1);
 
-    & > p::before {
-      content: '“';
-      margin-top: -.5em;
-      font-size: 2.5em;
-      opacity: .5;
-      float: left;
+    & > p {
+      font-style: italic;
+      padding: .25em;
+
+      &::before {
+        content: '“';
+        margin-top: -.25em;
+        margin-right: .125em;
+        font-size: 2.5em;
+        opacity: .5;
+        float: left;
+      }
     }
 
     footer {

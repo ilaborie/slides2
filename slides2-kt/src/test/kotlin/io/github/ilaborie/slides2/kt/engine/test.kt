@@ -21,7 +21,7 @@ fun main() {
                 Script("./line-numbers.js")
             )
 
-            usePrismJs(showLines = true)
+            usePrismJs(showLines = false)
         }
     val allThemes = Theme.all.values.toList()
 

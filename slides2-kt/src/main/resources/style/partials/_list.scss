@@ -1,6 +1,6 @@
 main > section > article {
 
-  ul, ol, dl {
+  ul{
     list-style: none;
 
     &.list-inline {
@@ -10,8 +10,11 @@ main > section > article {
     }
 
     &.bullet {
-      list-style: circle;
+      list-style: disc;
     }
   }
+}
 
+main > section.roadmap > article > ol {
+  list-style: upper-roman;
 }

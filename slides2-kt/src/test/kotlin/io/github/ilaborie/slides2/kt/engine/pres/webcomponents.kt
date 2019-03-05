@@ -10,7 +10,6 @@ import io.github.ilaborie.slides2.kt.jvm.extra.tweet
 
 // https://shprink.github.io/talks/2018/web_component_native_vs_stenciljs
 
-
 val webComponents = pres(
     id = "webComponents-19",
     extraStyle = "style",
@@ -59,6 +58,7 @@ val webComponents = pres(
                 span("Conclusion")
                 span("...")
             }
+            todo {"fix hours"}
         }
         slide("Instructions") {
             todo { "Installation instructions, Wifi" } // TODO
@@ -272,7 +272,7 @@ val webComponents = pres(
                 strong("web components")
             }
         }
-        slide("StencilJS is a set of great tools**", setOf("header-hidden")) {
+        slide("StencilJS is a set of great tools", setOf("header-hidden")) {
             table(
                 "StencilJS is a **set** of **great tools**".markdown,
                 rows = listOf("JSX / Virtual DOM", "TypeScript", "Decorators", "Prerendering SSR"),
@@ -314,12 +314,12 @@ val webComponents = pres(
                 }
             )
         }
-        slide("StencilJS works everywhere", setOf("header-hidden", "sets")) {
+        slide("StencilJS works everywhere", setOf("header-hidden", "steps")) {
             h4 { markdown { "StencilJS **works everywhere**" } }
             p("Loads polyfills on-demand", classes = setOf("step"))
         }
-        slide("Stencil Syntax is short", setOf("header-hidden")) {
-            figure("stencil/stencil-syntax.png", "Stencil Syntax is short")
+        slide("Stencil is concise", setOf("header-hidden")) {
+            figure("stencil/stencil-syntax.png", "Stencil Syntax is concise")
         }
         slide("Getting started") {
             code("sh") { "\$ npm init stencil" }

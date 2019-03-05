@@ -17,50 +17,52 @@ val demo = pres("Demo Presentation", extraStyle = "demo") {
         }
         slide("Slide List") {
             p("A simple list")
-            ul {
-                listOf(
-                    "lorem".raw,
-                    "ipsum".raw,
-                    "dolor".raw,
-                    "sit".raw,
-                    "amet".raw
-                )
+            ul(classes = setOf("bullet")) {
+                html { "lorem" }
+                html { "ipsum" }
+                html { "dolor" }
+                html { "sit" }
+                html { "amet" }
             }
         }
         slide("Slide List steps") {
             p("A simple list with steps")
-            ul(steps = true) {
-                listOf(
-                    "lorem".raw,
-                    "ipsum".raw,
-                    "dolor".raw,
-                    "sit".raw,
-                    "amet".raw
-                )
+            ul(steps = true, classes = setOf("bullet")) {
+                html { "lorem" }
+                html { "ipsum" }
+                html { "dolor" }
+                html { "sit" }
+                html { "amet" }
             }
         }
         slide("Slide List 2 columns", styles = setOf("two-columns")) {
             markdown { "A simple list with `two-columns` class" }
-            ul(steps = true) {
-                listOf(
-                    "lorem".raw,
-                    "ipsum".raw,
-                    "dolor".raw,
-                    "sit".raw,
-                    "amet".raw
-                )
+            ul(steps = true, classes = setOf("bullet")) {
+                html { "lorem" }
+                html { "ipsum" }
+                html { "dolor" }
+                html { "sit" }
+                html { "amet" }
             }
         }
         slide("Slide Ordered list") {
             p("A simple ordered list")
-            ol(steps = true) {
-                listOf(
-                    "lorem".raw,
-                    "ipsum".raw,
-                    "dolor".raw,
-                    "sit".raw,
-                    "amet".raw
-                )
+            ol(steps = true, classes = setOf("bullet")) {
+                html { "lorem" }
+                html { "ipsum" }
+                html { "dolor" }
+                html { "sit" }
+                html { "amet" }
+            }
+        }
+        slide("Slide Inline list") {
+            p("An inline list")
+            ul(steps = true, classes = setOf("list-inline")) {
+                html { "lorem" }
+                html { "ipsum" }
+                html { "dolor" }
+                html { "sit" }
+                html { "amet" }
             }
         }
     }
@@ -75,10 +77,10 @@ val demo = pres("Demo Presentation", extraStyle = "demo") {
             )
         }
         slide("Slide Link") {
-            link("http://www.google.com") { "Google".raw }
+            link("http://www.google.com", "Google")
         }
         slide("Slide Quote") {
-            quote(author = "Anonymous") { html { "Plop, Plop, Plouf !" } }
+            quote("Plop, Plop, Plouf !", author = "Anonymous")
         }
         slide("Slide Code") {
             code("javascript") {

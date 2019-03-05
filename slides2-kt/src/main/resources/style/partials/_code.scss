@@ -1,5 +1,12 @@
 main > section > article {
 
+
+  &>code, p > code {
+    background: rgba(127,0,0,.1);
+    border-radius: .125rem;
+    padding: .125rem;
+  }
+
   pre[class*=language-] {
     position: relative;
     box-shadow: .25em .25em .5em rgba(0, 0, 0, .5);
