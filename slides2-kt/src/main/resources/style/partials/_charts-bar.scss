@@ -31,12 +31,14 @@ main > section > article {
       .info {
         font-family: var(--font-mono);
         font-size: 66%;
+        text-align: right;
       }
-
     }
 
     .caption {
       text-align: center;
+      margin: .5em 0;
+      font-weight: bold;
     }
   }
 }

@@ -5,6 +5,7 @@
   // Companies
   --monkeyBof: #00b0ff;
   --toptal: #3863a0;
+  --accent: #007bff;
 
   // Colors
   --colDark: #212529;
@@ -42,7 +43,14 @@ main {
 main > section {
   & > article {
     strong {
-      color: #007bff;
+      color: var(--accent);
+    }
+
+    &>a {
+      color: var(--accent);
+      &::before {
+        content: '';
+      }
     }
 
     blockquote {
@@ -356,5 +364,14 @@ main > section {
   }
   a {
     font-size: 80%;
+  }
+}
+
+#framework_interoperability article {
+
+  .charts.bar {
+    .body {
+      order: 2;
+    }
   }
 }

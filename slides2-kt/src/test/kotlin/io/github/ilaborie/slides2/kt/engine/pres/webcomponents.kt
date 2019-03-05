@@ -231,7 +231,15 @@ val webComponents = pres(
             link("https://github.com/webcomponents/webcomponentsjs")
         }
         slide("Framework Interoperability", setOf("header-hidden")) {
-            file("img/caniuse/frameworks-support.html")
+            barChart(
+                "Web component interoperability support", mapOf(
+                    "Angular 6" to 100.0, // TODO icon
+                    "Vue" to 100.0,
+                    "AngularJS" to 100.0,
+                    "Preact" to 91.0,
+                    "React" to 71.0
+                ), infoFn = { "${it.toInt()}%"}
+            )
             link("https://custom-elements-everywhere.com/")
         }
     }

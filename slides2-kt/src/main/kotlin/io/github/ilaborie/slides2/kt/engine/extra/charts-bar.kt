@@ -12,6 +12,7 @@ data class BarChart(
     val title: String,
     val values: Map<String, Double>,
     val unit: String,
+    val infoFn: (Double) -> String,
     val factor: (Double) -> Int = { it.toInt() }
 ) : Content {
     val max: Int by lazy {
@@ -25,15 +26,14 @@ data class BarChart(
     }
 }
 
-
 fun ContainerBuilder.barChart(
     title: String,
     values: Map<String, Double>,
-    unit: String,
+    unit: String = "",
+    infoFn: (Double) -> String = { "$it $unit" },
     factor: (Double) -> Int = { it.toInt() }
 ) {
-    content.add { BarChart(title, values, unit, factor) }
-
+    content.add { BarChart(title, values, unit, infoFn, factor) }
 }
 
 
@@ -45,7 +45,7 @@ object BarChartHtmlRenderer : Renderer<BarChart> {
 
         val rows = content.values.map { (label, value) ->
             val id = "${content.title}_$label".asKey()
-            val info = "$value ${content.unit}"
+            val info = content.infoFn(value)
             """<label for="$id">$label</label>
               |<meter id="$id" value="${content.factor(value)}" max="${content.max}" title="$info">$info</meter>
               |<div class="info">$info</div>"""
