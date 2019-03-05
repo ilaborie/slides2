@@ -48,9 +48,11 @@ main > section {
     blockquote {
       background-color: hsla(0, 100%, 100%, .1);
       border-radius: .125em;
+
       p::before {
         margin-top: -.25em;
       }
+
       p {
         font-style: italic;
       }
@@ -339,5 +341,20 @@ main > section {
     svg {
       max-height: 6em;
     }
+  }
+}
+
+#polyfill_support article {
+  .legend {
+    display: none;
+  }
+
+  td {
+    .y, .n, .a, .p {
+      background: var(--caniuse-supported);
+    }
+  }
+  a {
+    font-size: 80%;
   }
 }

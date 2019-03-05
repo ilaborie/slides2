@@ -213,7 +213,21 @@ val webComponents = pres(
             link("https://caniuse.com")
         }
         slide("Polyfill support", setOf("header-hidden")) {
-            file("img/caniuse/polyfill-support.html")
+            caniuse("Polyfill support",
+                    features = listOf("custom-elementsv1", "shadowdomv1", "template"),
+                    browsers = listOf("ie" to 11, "edge" to 18, "firefox" to 65, "chrome" to 72, "safari" to 9),
+                    browserFn = { (name, version) ->
+                        {
+                            figure("browsers/$name.svg", name)
+                            html {
+                                when (name) {
+                                    "safari", "ie" -> "$version+"
+                                    else           -> "&nbsp;"
+                                }
+                            }
+                        }
+                    },
+                    statusFn = { { html { "✔︎" } } })
             link("https://github.com/webcomponents/webcomponentsjs")
         }
         slide("Framework Interoperability", setOf("header-hidden")) {
