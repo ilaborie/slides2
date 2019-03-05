@@ -4,6 +4,7 @@ main > section > article {
     --caniuse-supported: #32ac41;
     --caniuse-partial: #9eb40b;
     --caniuse-not-supported: #bc392a;
+    --caniuse-not-found: transparent;
   }
 
   table.caniuse {
@@ -28,33 +29,28 @@ main > section > article {
     th, td {
       padding: .125em;
       border: thin solid hsla(0, 100%, 100%, .9);
+
+      img {
+        max-width: 4em;
+      }
+      figcaption {
+        display: none;
+      }
     }
 
     td {
-      // by default expected a number
       text-align: center;
 
       &.y {
         background: var(--caniuse-supported);
-
-        &::before {
-          content: '😃';
-        }
       }
 
-      &.p, &.a {
+      &.a {
         background: var(--caniuse-partial);
-        &::before {
-          content: '🙂';
-        }
       }
 
-      &.n {
+      &.p, &.n {
         background: var(--caniuse-not-supported);
-
-        &::before {
-          content: '😞';
-        }
       }
     }
   }
@@ -64,17 +60,18 @@ main > section > article {
 
     li {
       padding: .125em .25em;
+      border-radius: .125em;
     }
 
     .y {
       background: var(--caniuse-supported);
     }
 
-    .p {
+    .a {
       background: var(--caniuse-partial);
     }
 
-    .n {
+    .n, .p {
       background: var(--caniuse-not-supported);
     }
   }

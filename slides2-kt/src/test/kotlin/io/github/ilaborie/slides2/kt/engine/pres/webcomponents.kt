@@ -190,13 +190,26 @@ val webComponents = pres(
         }
         slide("Browser support", setOf("header-hidden")) {
             caniuse("Browser support",
-                    features =listOf("custom-elementsv1", "shadowdomv1", "template"),
-                    browsers = listOf(
-                        "ie" to 11,
-                        "edge" to 18,
-                        "firefox" to 65,
-                        "chrome" to 72,
-                        "safari" to 12))
+                    features = listOf("custom-elementsv1", "shadowdomv1", "template"),
+                    browsers = listOf("ie" to 11, "edge" to 18, "firefox" to 65, "chrome" to 72, "safari" to 12),
+                    browserFn = { (name, version) ->
+                        {
+                            figure("browsers/$name.svg", name)
+                            html { version.toString() }
+                        }
+                    },
+                    statusFn = { status ->
+                        {
+                            html {
+                                when (status) {
+                                    "y" -> "😃"
+                                    "p", "n" -> "😫"
+                                    "a" -> "🙂"
+                                    else -> "🤔"
+                                }
+                            }
+                        }
+                    })
             link("https://caniuse.com")
         }
         slide("Polyfill support", setOf("header-hidden")) {
