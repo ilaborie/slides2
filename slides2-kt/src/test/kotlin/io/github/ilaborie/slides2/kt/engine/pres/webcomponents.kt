@@ -58,7 +58,7 @@ val webComponents = pres(
                 span("Conclusion")
                 span("...")
             }
-            todo {"fix hours"}
+            todo { "fix hours" } // TODO
         }
         slide("Instructions") {
             todo { "Installation instructions, Wifi" } // TODO
@@ -132,7 +132,7 @@ val webComponents = pres(
             ul(steps = true) {
                 barChart(
                     "Size matters (Gzipped)",
-                    mapOf( // TODO icon
+                    values = mapOf( // TODO icon
                         "Angular" to 59.0,
                         "Stencil" to 11.0,
                         "Native" to 2.5
@@ -142,19 +142,23 @@ val webComponents = pres(
                 )
                 html { "😨 Stencil is 5 times smaller than Angular" } // TODO icon
                 html { "😱 Native is 23 times smaller than Angular" } // TODO icon
+                todo { "Add litElement, Update numbers" } // TODO
             }
         }
         slide("Time matters", setOf("header-hidden")) {
             ul(steps = true) {
                 barChart(
-                    "Time matters (FMP 3G 📱 in ms)", mapOf(
-                        "Angular" to 3000.0, // TODO icon
-                        "Stencil" to 1070.0,
-                        "Native" to 1030.0,
-                        "Stencil Pre Rendered" to 980.0
-                    ), unit = "ms"
+                    "Time matters (FMP 3G 📱 in ms)",
+                    values = mapOf(
+                        "Angular" to 3000, // TODO icon
+                        "Stencil" to 1070,
+                        "Native" to 1030,
+                        "Stencil Pre Rendered" to 980
+                    ), unit = "ms",
+                    factor = { it }
                 )
                 html { "😨 Native & Stencil 3 times faster than Angular" }
+                todo { "Add litElement, Update numbers" } // TODO
             }
         }
     }
@@ -233,13 +237,16 @@ val webComponents = pres(
         }
         slide("Framework Interoperability", setOf("header-hidden")) {
             barChart(
-                "Web component interoperability support", mapOf(
-                    "Angular 6" to 100.0, // TODO icon
-                    "Vue" to 100.0,
-                    "AngularJS" to 100.0,
-                    "Preact" to 91.0,
-                    "React" to 71.0
-                ), infoFn = { "${it.toInt()}%" }
+                "Web component interoperability support",
+                values = mapOf(
+                    "Angular 6" to 100, // TODO icon
+                    "Vue" to 100,
+                    "AngularJS" to 100,
+                    "Preact" to 91,
+                    "React" to 71
+                ),
+                factor = {it},
+                infoFn = { "$it%" }
             )
             link("https://custom-elements-everywhere.com/")
         }
@@ -254,7 +261,6 @@ val webComponents = pres(
             ul(steps = true) {
                 markdown { "**Open Source** project" }
                 markdown { "Created by the **Ionic Team** in 2017" }
-                markdown { "3.9k ⭐️ on github" }
                 markdown { "3.9k ⭐️ on github" }
             }
         }
@@ -343,6 +349,7 @@ val webComponents = pres(
     part("Workshop") {
         slide("TODO - work") {
             todo { "links..." } // TODO
+            todo { "Timer Clock ..." } // TODO
             // timer...
         }
     }

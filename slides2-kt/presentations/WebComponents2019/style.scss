@@ -353,7 +353,7 @@ main > section {
   }
 
   td {
-    .y, .n, .a, .p {
+    &.y, &.n, &.a, &.p {
       background: var(--caniuse-supported);
     }
   }

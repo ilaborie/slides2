@@ -8,12 +8,12 @@ import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
 import io.github.ilaborie.slides2.kt.jvm.asKey
 
-data class BarChart(
+data class BarChart<T>(
     val title: String,
-    val values: Map<String, Double>,
+    val values: Map<String, T>,
     val unit: String,
-    val infoFn: (Double) -> String,
-    val factor: (Double) -> Int = { it.toInt() }
+    val infoFn: (T) -> String,
+    val factor: (T) -> Int
 ) : Content {
     val max: Int by lazy {
         values.values
@@ -26,22 +26,22 @@ data class BarChart(
     }
 }
 
-fun ContainerBuilder.barChart(
+fun <T> ContainerBuilder.barChart(
     title: String,
-    values: Map<String, Double>,
+    factor: (T) -> Int,
+    values: Map<String, T>,
     unit: String = "",
-    infoFn: (Double) -> String = { "$it $unit" },
-    factor: (Double) -> Int = { it.toInt() }
+    infoFn: (T) -> String = { "$it $unit" }
 ) {
     content.add { BarChart(title, values, unit, infoFn, factor) }
 }
 
 
-object BarChartHtmlRenderer : Renderer<BarChart> {
+object BarChartHtmlRenderer : Renderer<BarChart<Any>> {
 
     override val mode: RenderMode = Html
 
-    override fun render(content: BarChart): String {
+    override fun render(content: BarChart<Any>): String {
 
         val rows = content.values.map { (label, value) ->
             val id = "${content.title}_$label".asKey()
@@ -58,10 +58,10 @@ object BarChartHtmlRenderer : Renderer<BarChart> {
     }
 }
 
-object BarChartTextRenderer : Renderer<BarChart> {
+object BarChartTextRenderer : Renderer<BarChart<Any>> {
 
     override val mode: RenderMode = Text
 
-    override fun render(content: BarChart): String =
+    override fun render(content: BarChart<Any>): String =
         content.title
 }
