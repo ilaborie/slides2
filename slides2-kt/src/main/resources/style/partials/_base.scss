@@ -26,7 +26,7 @@ body {
 
   max-height: 100vh;
   max-width: 100vw;
-  overflow: hidden;
+  //overflow: hidden;
 }
 
 a {
@@ -81,19 +81,18 @@ code {
 }
 
 .todo {
-  font-size: 1.5em;
   padding: .25em;
   margin: 1em;
   border-radius: .25em;
   box-shadow:
           0 0 0 1pt currentColor,
-          .2em .2em .25em red,
-          .3em .3em .25em orange,
-          .4em .4em .25em green,
-          .5em .5em .25em teal,
-          .6em .6em .25em blue,
-          .7em .7em .25em indigo,
-          .8em .8em .25em magenta;
+          .2em .2em .125em red,
+          .3em .3em .125em orange,
+          .4em .4em .125em green,
+          .5em .5em .125em teal,
+          .6em .6em .125em blue,
+          .7em .7em .125em indigo,
+          .8em .8em .125em magenta;
   &::before {
     content: 'TODO: ';
   }

@@ -13,4 +13,5 @@ node_modules/
 dist/
 
 slides2-kt/public/*/
+.scannerwork/
 

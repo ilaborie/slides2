@@ -1,14 +1,9 @@
 const getToc = () => {
-    const result = document.querySelector("body > .toc-menu");
-    if (result) {
-        return result;
-    }
-
-    const tocMenu = document.createElement("nav");
-    tocMenu.classList.add("toc-menu", "no-print");
+    const tocMenu = document.querySelector("body > .toc-menu");
     tocMenu.innerHTML = `
-<input id="toc-toggle" type="checkbox" class="visually-hidden">
-<label for="toc-toggle"></label>
+<input id="tocToggle" type="checkbox" class="visually-hidden">
+<label for="tocToggle" class="toggle"></label>
+<label for="tocGrid" class="grid"></label>
 <ul></ul>`;
     document.body.append(tocMenu);
     return tocMenu;
@@ -34,9 +29,18 @@ const buildToc = () => {
         .forEach(a =>
             a.addEventListener('click', () =>
                 document.getElementById("toc-toggle").checked = false));
-    // } else {
-    //     setTimeout(buildToc, 300);
-    // }
+
+    // Navigate throw Slide click
+    const tocGrid = document.getElementById('tocGrid');
+    slides.forEach(slide => {
+        slide.addEventListener('click', () => {
+            if (tocGrid && tocGrid.checked) {
+                tocGrid.checked = false;
+                slide.scrollIntoView({behavior: "smooth"});
+            }
+            return false;
+        })
+    });
 };
 
 buildToc();

@@ -32,7 +32,11 @@ open class PresentationHtmlRenderer : Renderer<Presentation> {
     }
 
     open fun beforeMain(presentation: Presentation): String =
-        ""
+        """<nav class="toc-menu no-print"></nav>
+          |<input id="tocGrid" type="checkbox" class="visually-hidden">
+          |<header>
+          |${SlideEngine.render(mode, presentation.title)}
+          |</header>""".trimMargin()
 //        """<header class="no-print">
 //            |  ${SlideEngine.render(mode, presentation.title)}
 //            |  <a href="#${presentation.coverSlide.id.id}">📺</a>

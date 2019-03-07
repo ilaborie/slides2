@@ -1,5 +1,6 @@
 :root {
 
+  font-size: 5vh;
   --litElementBg: linear-gradient(315deg, #8FCDFF 0%, #2196F3 100%);
 
   // Companies
@@ -38,13 +39,15 @@
   height: 4em;
 }
 
-main {
-  font-size: 5vh;
+body > header {
+  font-size: 60%;
 }
+
 
 main > section {
   & > article {
     text-align: center;
+
     ul, pre {
       text-align: left;
     }
@@ -65,7 +68,7 @@ main > section {
       opacity: .75;
     }
 
-    table td{
+    table td {
       font-size: 2em;
     }
 
@@ -75,7 +78,7 @@ main > section {
   }
 
   & > footer {
-    font-size: 4vh;
+    font-size: 80%;
 
     &::before {
       text-shadow: none;
@@ -83,19 +86,24 @@ main > section {
   }
 
   & > nav a {
-    padding: .5rem;
+    padding: .5em;
   }
 }
 
 
 // Slides
-.cover {
-  h1 {
-    font-size: 2em;
+h1 {
+  font-size: 200%;
 
-    &::after {
-      content: ':'
-    }
+  &::after {
+    content: ':'
+  }
+
+  & ~ ul {
+    display: flex;
+    justify-content: space-around;
+    align-self: stretch;
+    list-style: none;
   }
 }
 
@@ -125,7 +133,7 @@ main > section {
   }
 
   article {
-    font-size: 4vh;
+    font-size: 80%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -144,7 +152,7 @@ main > section {
   }
 
   li {
-    font-size: 3vh;
+    font-size: 60%;
     color: var(--colLight);
     position: relative;
     display: flex;
@@ -205,7 +213,7 @@ main > section {
   li:nth-child(6) {
     background: linear-gradient(to right, var(--work), var(--work) 60%, transparent 100%);
     justify-content: flex-start;
-    margin-left: .5rem;
+    margin-left: 1em;
   }
 
 }
@@ -219,6 +227,10 @@ main > section {
   }
 }
 
+#tocGrid:checked ~ main > #industry_moving_too_fast article .twitter-tweet {
+  transform: scale(1) !important;
+}
+
 //
 #reinventing article {
 
@@ -227,7 +239,7 @@ main > section {
     align-self: stretch;
     margin: 2em 1.5em;
     list-style: none;
-    min-height: 25vh;
+    min-height: 25%;
 
     li {
       position: absolute;
@@ -283,7 +295,6 @@ main > section {
       transform: rotate(-.015turn);
     }
   }
-
 }
 
 //
@@ -395,12 +406,10 @@ main > section {
 
       .yes {
         color: var(--colValid);
-
       }
 
       .no {
         color: var(--colInvalid);
-
       }
     }
   }

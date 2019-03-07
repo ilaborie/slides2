@@ -129,34 +129,34 @@ val webComponents = pres(
             }
         }
         slide("Size matters", setOf("header-hidden")) {
+            barChart(
+                "Size matters (Gzipped)",
+                values = mapOf( // TODO icon
+                    "Angular" to 59.0,
+                    "Stencil" to 11.0,
+                    "Native" to 2.5
+                ),
+                unit = "kb",
+                factor = { (it * 2).toInt() }
+            )
             ul(steps = true) {
-                barChart(
-                    "Size matters (Gzipped)",
-                    values = mapOf( // TODO icon
-                        "Angular" to 59.0,
-                        "Stencil" to 11.0,
-                        "Native" to 2.5
-                    ),
-                    unit = "kb",
-                    factor = { (it * 2).toInt() }
-                )
-                html { "😨 Stencil is 5 times smaller than Angular" } // TODO icon
-                html { "😱 Native is 23 times smaller than Angular" } // TODO icon
+                html { "😨 Stencil is 5 times smaller than Angular" }
+                html { "😱 Native is 23 times smaller than Angular" }
                 todo { "Add litElement, Update numbers" } // TODO
             }
         }
         slide("Time matters", setOf("header-hidden")) {
+            barChart(
+                "Time matters (FMP 3G 📱 in ms)",
+                values = mapOf(
+                    "Angular" to 3000, // TODO icon
+                    "Stencil" to 1070,
+                    "Native" to 1030,
+                    "Stencil Pre Rendered" to 980
+                ), unit = "ms",
+                factor = { it }
+            )
             ul(steps = true) {
-                barChart(
-                    "Time matters (FMP 3G 📱 in ms)",
-                    values = mapOf(
-                        "Angular" to 3000, // TODO icon
-                        "Stencil" to 1070,
-                        "Native" to 1030,
-                        "Stencil Pre Rendered" to 980
-                    ), unit = "ms",
-                    factor = { it }
-                )
                 html { "😨 Native & Stencil 3 times faster than Angular" }
                 todo { "Add litElement, Update numbers" } // TODO
             }
@@ -349,8 +349,7 @@ val webComponents = pres(
     part("Workshop") {
         slide("TODO - work") {
             todo { "links..." } // TODO
-            todo { "Timer Clock ..." } // TODO
-            // timer...
+            todo { "Hours pause ..." } // TODO
         }
     }
     part("Conclusion") {

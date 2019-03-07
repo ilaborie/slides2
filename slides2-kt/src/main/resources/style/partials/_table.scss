@@ -30,16 +30,5 @@ main > section > article {
       // by default expected a number
       text-align: right;
     }
-
-    tr:nth-child(2n + 2) td {
-      --size: calc(var(--scale, 100) * 100%);
-      --position: calc(var(--value, 0) / var(--scale, 100) * 100%);
-      background-image: linear-gradient(right, Window, ButtonFace, ButtonText, highlight);
-      background-blend-mode: hard-light;
-      background-position: var(--position) 0, center;
-      background-size: var(--size) 100%, contain;
-    }
-
   }
-
 }

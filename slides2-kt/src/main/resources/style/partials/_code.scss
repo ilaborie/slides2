@@ -3,8 +3,8 @@ main > section > article {
 
   &>code, p > code {
     background: rgba(127,0,0,.1);
-    border-radius: .125rem;
-    padding: .125rem;
+    border-radius: .125em;
+    padding: .125em;
   }
 
   pre[class*=language-] {

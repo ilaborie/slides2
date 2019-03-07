@@ -2,6 +2,7 @@
 const clickOn = selector => {
     const btn = document.querySelector(selector);
     if (btn) {
+        scrollTo(btn.hash);
         btn.click();
     }
 };
@@ -52,10 +53,19 @@ document.addEventListener('keydown', event => {
     }
 });
 
-// Current page
-setTimeout(() => {
-    const currentSlide = document.querySelector(document.location.hash);
-    if (currentSlide) {
-        currentSlide.scrollIntoView({behavior: "instant"});
+const scrollTo = (selector) => {
+    if (selector) {
+        const currentSlide = document.querySelector(selector);
+        if (currentSlide) {
+            currentSlide.scrollIntoView({behavior: "smooth"});
+        }
     }
-}, 1000);
+};
+
+// Current page (hack for Chrome ???)
+setTimeout(() => scrollTo(document.location.hash), 200);
+
+window.addEventListener('popstate', () => {
+    const {hash} = document.location;
+    scrollTo(hash)
+});

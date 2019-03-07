@@ -5,10 +5,10 @@ main > section > article {
     flex-direction: column;
 
     .body {
-      width: 80vw;
+      min-width: 100%;
       margin-right: 2ch;
       display: inline-grid;
-      grid-gap: .5rem;
+      grid-gap: .5em;
       grid-template-columns: auto 1fr auto;
       align-items: center;
 
