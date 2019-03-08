@@ -18,7 +18,14 @@ fun main() {
             globalScripts += listOf(
                 Script("./navigate.js"),
                 Script("./toc.js"),
-                Script("./line-numbers.js")
+                Script("./line-numbers.js"),
+                Script(
+                    "https://cdnjs.cloudflare.com/ajax/libs/rough.js/3.0.0/rough.js",
+                    async = false,
+                    module = false,
+                    defer = false
+                ),
+                Script("./rough-svg.js", async = false, module = false, defer = false)
             )
 
             usePrismJs(showLines = false)

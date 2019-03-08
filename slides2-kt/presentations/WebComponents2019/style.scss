@@ -37,6 +37,16 @@
 
 .list-inline li > figure > img {
   height: 4em;
+  max-width: 4em;
+}
+
+figure > svg {
+  height: 4em;
+  max-width: 4em;
+
+  path {
+    background-color: hsla(0, 100%, 100%, .25);
+  }
 }
 
 body > header {

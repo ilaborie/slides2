@@ -63,7 +63,7 @@ const scrollTo = (selector) => {
 };
 
 // Current page (hack for Chrome ???)
-setTimeout(() => scrollTo(document.location.hash), 200);
+setTimeout(() => scrollTo(document.location.hash), 500);
 
 window.addEventListener('popstate', () => {
     const {hash} = document.location;

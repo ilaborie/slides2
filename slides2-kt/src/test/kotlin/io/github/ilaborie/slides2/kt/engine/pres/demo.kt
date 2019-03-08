@@ -91,7 +91,7 @@ val demo = pres("Demo Presentation", extraStyle = "demo") {
             }
         }
         slide("Slide Source from file") {
-            sourceCode("content/plop.js")
+            sourceCode("content/rough-svg.js")
         }
         slide("Slide Notice") {
             notice(Tips, "block tips") { "Lorem ipsum dolor sit amet.".raw }

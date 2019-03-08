@@ -22,17 +22,41 @@ main > section > article {
       border-left-color: transparent;
     }
 
+    thead th {
+      border-top: none;
+
+    }
+    tbody th {
+      border-top: none;
+      border-left: none;
+    }
+
+
+    tbody tr:nth-child(odd) {
+      background: rgba(0, 0, 0, .1);
+    }
+    tbody tr:nth-child(even) {
+      border-bottom-color: hsla(0, 100%, 100%, .2);
+    }
+
     th {
       font-weight: normal;
     }
 
+    th + th {
+      border-left: white;
+      border-right: white;
+    }
+
     th, td {
       padding: .125em;
+      border-color: transparent;
 
       img {
         max-width: 3.5em;
         max-height: 3.5em;
       }
+
       figcaption {
         display: none;
       }

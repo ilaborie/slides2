@@ -25,14 +25,15 @@ const buildToc = () => {
         })
             .join("\n");
 
+    // Auto Close menu
+    const tocToggle = document.getElementById('tocToggle');
     tocMenu.querySelectorAll("a")
         .forEach(a =>
-            a.addEventListener('click', () =>
-                document.getElementById("toc-toggle").checked = false));
+            a.addEventListener('click', () => tocToggle.checked = false));
 
     // Navigate throw Slide click
     const tocGrid = document.getElementById('tocGrid');
-    slides.forEach(slide => {
+    slides.forEach(slide =>
         slide.addEventListener('click', () => {
             if (tocGrid && tocGrid.checked) {
                 tocGrid.checked = false;
@@ -40,7 +41,7 @@ const buildToc = () => {
             }
             return false;
         })
-    });
+    );
 };
 
 buildToc();

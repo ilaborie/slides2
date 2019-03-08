@@ -3,6 +3,7 @@ main > section > article {
   .charts.bar {
     display: flex;
     flex-direction: column;
+    min-width: 100%;
 
     .body {
       min-width: 100%;

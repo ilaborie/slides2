@@ -17,8 +17,8 @@ val webComponents = pres(
         h1("Web Components")
         ul(classes = setOf("list-inline")) {
             listOf(
-                figure("logos/web-components.svg", "Natif"),
-                figure("logos/stencil.svg", "StencilJS"),
+                inlineFigure("logos/web-components.svg", "Natif"),
+                inlineFigure("logos/stencil.svg", "StencilJS"),
                 figure("logos/lit-element.png", "LitElement")
             )
         }
@@ -71,9 +71,9 @@ val webComponents = pres(
         slide("Choose Framework", setOf("header-hidden")) {
             h4("Let's start by picking up a Framework")
             ul(steps = true, classes = setOf("list-inline")) {
-                figure("logos/react.svg", "React")
-                figure("logos/vuejs.svg", "VueJs")
-                figure("logos/angular.svg", "Angular")
+                inlineFigure("logos/react.svg", "React")
+                inlineFigure("logos/vuejs.svg", "VueJs")
+                inlineFigure("logos/angular.svg", "Angular")
             }
         }
         slide("Choose Style", styles = setOf("two-columns", "header-hidden")) {
@@ -109,9 +109,9 @@ val webComponents = pres(
         slide("Interoperability", setOf("header-hidden")) {
             h4("...Interoperability is not available out of the box...")
             ul(classes = setOf("list-inline")) {
-                figure("logos/react.svg", "React")
-                figure("logos/vuejs.svg", "VueJs")
-                figure("logos/angular.svg", "Angular")
+                inlineFigure("logos/react.svg", "React")
+                inlineFigure("logos/vuejs.svg", "VueJs")
+                inlineFigure("logos/angular.svg", "Angular")
             }
         }
         slide("Reinventing", setOf("header-hidden")) {
@@ -164,7 +164,7 @@ val webComponents = pres(
     }
     part(partTitle = {
         h2("Web Components")
-        figure("logos/web-components.svg", "Web Components")
+        inlineFigure("logos/web-components.svg", "Web Components")
     }, id = "web_components_part") {
         slide("History", setOf("header-hidden")) {
             ul {
@@ -199,7 +199,7 @@ val webComponents = pres(
                     browsers = listOf("ie" to 11, "edge" to 18, "firefox" to 65, "chrome" to 72, "safari" to 12),
                     browserFn = { (name, version) ->
                         {
-                            figure("browsers/$name.svg", name)
+                            inlineFigure("browsers/$name.svg", name)
                             html { version.toString() }
                         }
                     },
@@ -223,7 +223,7 @@ val webComponents = pres(
                     browsers = listOf("ie" to 11, "edge" to 18, "firefox" to 65, "chrome" to 72, "safari" to 9),
                     browserFn = { (name, version) ->
                         {
-                            figure("browsers/$name.svg", name)
+                            inlineFigure("browsers/$name.svg", name)
                             html {
                                 when (name) {
                                     "safari", "ie" -> "$version+"
@@ -261,7 +261,7 @@ val webComponents = pres(
             ul(steps = true) {
                 markdown { "**Open Source** project" }
                 markdown { "Created by the **Ionic Team** in 2017" }
-                markdown { "3.9k ⭐️ on github" }
+                markdown { "4.9k ⭐️ on github" }
             }
         }
         slide("Not a framework", setOf("header-hidden")) {
@@ -312,7 +312,7 @@ val webComponents = pres(
                         "Stencil"        -> "stencil"
                         else             -> throw IllegalArgumentException("Unexpected value $col")
                     }
-                    compound { figure("logos/$key.svg", col) }
+                    compound { inlineFigure("logos/$key.svg", col) }
                 },
                 valueFn = { value ->
                     val text = if (value) "✔︎" else "✘"
