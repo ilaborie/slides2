@@ -1,5 +1,6 @@
 package io.github.ilaborie.slides2.kt
 
+import io.github.ilaborie.slides2.kt.dsl.PresentationDsl
 import io.github.ilaborie.slides2.kt.engine.*
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
@@ -162,8 +163,18 @@ object SlideEngine {
         }
     }
 
-    fun applyPlugins(function: () -> Presentation): Presentation =
-        plugContent(function()) as Presentation
+    fun run(config: Config, presentation: PresentationDsl, themes: List<Theme>): PresentationOutput {
+        val pres = plugContent(presentation(config.input)) as Presentation
+        val instances = time("Generate all `${pres.sTitle}`") {
+            with(SlideEngine) {
+                themes
+                    .map { pres.copy(theme = it) }
+                    .map { it.renderHtml(config) }
+            }
+        }
+        return PresentationOutput(pres.sTitle, instances)
+    }
+
 
     private fun plugContent(content: Content): Content =
         plug(

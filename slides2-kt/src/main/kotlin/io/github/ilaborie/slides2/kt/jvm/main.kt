@@ -5,9 +5,7 @@ import com.github.ajalt.clikt.parameters.arguments.argument
 import com.github.ajalt.clikt.parameters.options.*
 import io.github.ilaborie.slides2.kt.Config
 import io.github.ilaborie.slides2.kt.SlideEngine
-import io.github.ilaborie.slides2.kt.SlideEngine.applyPlugins
 import io.github.ilaborie.slides2.kt.dsl.PresentationDsl
-import io.github.ilaborie.slides2.kt.engine.PresentationOutput
 import io.github.ilaborie.slides2.kt.engine.Theme
 import io.github.ilaborie.slides2.kt.engine.extra.PrismJsPlugin
 import io.github.ilaborie.slides2.kt.engine.extra.RoughSvgPlugin
@@ -18,7 +16,6 @@ import io.github.ilaborie.slides2.kt.engine.plugins.TocPlugin
 import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.CanIUsePlugin
 import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.TweetPlugin
 import io.github.ilaborie.slides2.kt.term.Notifier
-import io.github.ilaborie.slides2.kt.term.Notifier.time
 import io.github.ilaborie.slides2.kt.utils.Try
 import java.io.File
 import javax.script.ScriptEngineManager
@@ -95,7 +92,7 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
             output = JvmFolder(File(output))
         )
         pres
-            .map { run(config, it, allThemes) }
+            .map { SlideEngine.run(config, it, allThemes) }
             .recover {
                 Notifier.error(cause = it) { "Oops!" }
                 throw it
@@ -103,17 +100,6 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
     }
 }
 
-fun run(config: Config, presentation: PresentationDsl, themes: List<Theme>): PresentationOutput {
-    val pres = applyPlugins { presentation(config.input) }
-    val instances = time("Generate all `${pres.sTitle}`") {
-        with(SlideEngine) {
-            themes
-                .map { pres.copy(theme = it) }
-                .map { it.renderHtml(config) }
-        }
-    }
-    return PresentationOutput(pres.sTitle, instances)
-}
 
 //fun <EachT : Any, ValueT> NullableOption<EachT, ValueT>.requiredWithMessage()
 //        : OptionWithValues<EachT, EachT, ValueT> =

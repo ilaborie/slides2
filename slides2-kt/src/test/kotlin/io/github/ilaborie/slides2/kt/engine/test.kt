@@ -12,7 +12,6 @@ import io.github.ilaborie.slides2.kt.jvm.JvmFolder
 import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.CanIUsePlugin
 import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.TweetPlugin
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
-import io.github.ilaborie.slides2.kt.jvm.run
 import webComponents
 
 
@@ -25,8 +24,8 @@ fun main() {
 
     val allThemes = Theme.all.values.toList()
 
-    val demoOut = run(jvmConfig("presentations/samples"), demo, allThemes)
-    val wcOut = run(jvmConfig("presentations/WebComponents2019"), webComponents, listOf(devoxxFr19))
+    val demoOut = SlideEngine.run(jvmConfig("presentations/samples"), demo, allThemes)
+    val wcOut = SlideEngine.run(jvmConfig("presentations/WebComponents2019"), webComponents, listOf(devoxxFr19))
 
     JvmFolder("public")
         .writeFile("data.json") {
