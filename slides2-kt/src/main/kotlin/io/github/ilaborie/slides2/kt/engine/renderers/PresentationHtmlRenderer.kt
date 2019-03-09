@@ -6,6 +6,7 @@ import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.Stylesheet
+import io.github.ilaborie.slides2.kt.engine.contents.InlineFigure
 
 object PresentationHtmlRenderer : Renderer<Presentation> {
     override val mode: RenderMode = Html
@@ -31,15 +32,37 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
                 |</head>""".trimMargin()
     }
 
-    private fun beforeMain(presentation: Presentation): String =
-        """<nav class="toc-menu no-print"></nav>
-          |<input id="tocGrid" type="checkbox" class="visually-hidden">
-          |<header>
-          |${SlideEngine.render(mode, presentation.title)}
-          |<a href="#${presentation.coverSlide.id.id}">📺</a>
-          |</header>""".trimMargin()
+    private fun beforeMain(presentation: Presentation): String {
 
-    private fun afterMain(presentation: Presentation): String =
+        // Inline SVG
+        val inlineFigureSvg = presentation.flatten()
+            .filterIsInstance<InlineFigure>()
+            .distinctBy { it.xref }
+            .map { inlineFigure ->
+                inlineFigure.svg
+                    .replace("<svg xmlns=\"http://www.w3.org/2000/svg\"", "\t<symbol id=\"${inlineFigure.xref}\"")
+                    .replace("</svg>", "\t</symbol>")
+            }.toList()
+
+        val innerSvg = if (inlineFigureSvg.isEmpty()) "" else {
+            inlineFigureSvg.joinToString(
+                "\n",
+                prefix = """<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" class="visually-hidden">""",
+                postfix = "</svg>"
+            )
+        }
+
+        // FIXME generate nav !
+        return """$innerSvg
+              |<nav class="toc-menu no-print"></nav>
+              |<input id="tocGrid" type="checkbox" class="visually-hidden">
+              |<header>
+              |${SlideEngine.render(mode, presentation.title)}
+              |<a href="#${presentation.coverSlide.id.id}">📺</a>
+              |</header>""".trimMargin()
+    }
+
+    private fun afterMain(): String =
         SlideEngine.scripts
             .filterNot { it.module }
             .joinToString("\n") { it.asHtml() }
@@ -58,7 +81,7 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
             |  <main>
             |$body
             |  </main>
-            |${afterMain(content).prependIndent("  ")}
+            |${afterMain().prependIndent("  ")}
             |</body>
             |</html>""".trimMargin()
         }

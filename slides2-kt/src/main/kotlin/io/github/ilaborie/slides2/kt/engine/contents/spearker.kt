@@ -1,4 +1,4 @@
-package io.github.ilaborie.slides2.kt.engine.extra
+package io.github.ilaborie.slides2.kt.engine.contents
 
 import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.engine.Content

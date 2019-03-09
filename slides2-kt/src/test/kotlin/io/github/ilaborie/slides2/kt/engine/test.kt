@@ -3,8 +3,8 @@ package io.github.ilaborie.slides2.kt.engine
 import demo
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.devoxxFr19
-import io.github.ilaborie.slides2.kt.engine.extra.PrismJsPlugin
-import io.github.ilaborie.slides2.kt.engine.extra.RoughSvgPlugin
+import io.github.ilaborie.slides2.kt.engine.plugins.PrismJsPlugin
+import io.github.ilaborie.slides2.kt.engine.plugins.RoughSvgPlugin
 import io.github.ilaborie.slides2.kt.engine.plugins.CheckContentPlugin
 import io.github.ilaborie.slides2.kt.engine.plugins.NavigatePlugin
 import io.github.ilaborie.slides2.kt.engine.plugins.TocPlugin
@@ -20,7 +20,10 @@ fun main() {
         .use(CheckContentPlugin)
         .use(TocPlugin, NavigatePlugin)
         .use(TweetPlugin, CanIUsePlugin)
-        .use(PrismJsPlugin(showLines = false), RoughSvgPlugin)
+        .use(
+            PrismJsPlugin(showLines = false),
+            RoughSvgPlugin
+        )
 
     val allThemes = Theme.all.values.toList()
 

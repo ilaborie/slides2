@@ -1,7 +1,6 @@
-package io.github.ilaborie.slides2.kt.engine.extra
+package io.github.ilaborie.slides2.kt.engine.plugins
 
 import io.github.ilaborie.slides2.kt.engine.Script
-import io.github.ilaborie.slides2.kt.engine.plugins.WebPlugin
 
 
 object RoughSvgPlugin : WebPlugin {

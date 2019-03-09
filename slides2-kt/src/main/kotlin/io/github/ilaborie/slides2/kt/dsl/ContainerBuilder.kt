@@ -273,10 +273,10 @@ open class ContainerBuilder(internal val input: Folder) {
         }
     }
 
-    fun figure(src: String, title: String, copyrightBlock: Content? = null) {
+    fun figure(src: String, title: String, classes: Set<String> = emptySet(), copyrightBlock: Content? = null) {
         content.add {
             val figSrc = input.readFileAsDataUri(src)
-            Figure(src = figSrc, title = title, copyright = copyrightBlock)
+            Figure(src = figSrc, title = title, copyright = copyrightBlock, classes = classes)
         }
     }
 

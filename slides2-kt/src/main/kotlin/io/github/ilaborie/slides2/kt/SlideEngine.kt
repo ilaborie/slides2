@@ -5,7 +5,7 @@ import io.github.ilaborie.slides2.kt.engine.*
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
-import io.github.ilaborie.slides2.kt.engine.extra.*
+import io.github.ilaborie.slides2.kt.engine.contents.*
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
 import io.github.ilaborie.slides2.kt.engine.plugins.Plugin
 import io.github.ilaborie.slides2.kt.engine.plugins.RendererPlugin
@@ -44,11 +44,23 @@ object SlideEngine {
         registerRenderers(QuoteTextRenderer, QuoteHtmlRenderer)
         registerRenderers(NoticeTextRenderer, NoticeHtmlRenderer)
         registerRenderers(FigureTextRenderer, FigureHtmlRenderer)
-        registerRenderers(TableTextRenderer, TableHtmlRenderer)
+        registerRenderers(
+            TableTextRenderer,
+            TableHtmlRenderer
+        )
         // Extra
-        registerRenderers(SpeakerTextRenderer, SpeakerHtmlRenderer)
-        registerRenderers(BarChartTextRenderer, BarChartHtmlRenderer)
-        registerRenderers(InlineFigureTextRenderer, InlineFigureHtmlRenderer)
+        registerRenderers(
+            SpeakerTextRenderer,
+            SpeakerHtmlRenderer
+        )
+        registerRenderers(
+            BarChartTextRenderer,
+            BarChartHtmlRenderer
+        )
+        registerRenderers(
+            InlineFigureTextRenderer,
+            InlineFigureHtmlRenderer
+        )
 
         // Presentation, Part, Slide
         registerRenderers(PresentationHtmlRenderer)

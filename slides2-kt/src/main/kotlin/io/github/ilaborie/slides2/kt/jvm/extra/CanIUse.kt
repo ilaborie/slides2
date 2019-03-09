@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
+import io.github.ilaborie.slides2.kt.engine.ContainerContent
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
@@ -26,8 +27,17 @@ data class CanIUse(
     val dataFn: (() -> Map<FeatureData, Map<Browser, String>>?) = { null },
     val featureFn: (FeatureData) -> Content,
     val browserFn: (Browser) -> Content,
-    val statusFn: (String) -> Content
-) : Content {
+    val statusFn: (String) -> Content,
+    override val classes: Set<String>
+) : ContainerContent {
+
+    override val inner: List<Content> by lazy {
+        browsers.map { browserFn(it) } +
+                content.flatMap { (feature, value) ->
+                    listOf(featureFn(feature)) +
+                            value.map { (_, status) -> statusFn(status) }
+                }
+    }
 
     private val mapper = ObjectMapper()
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
@@ -83,14 +93,17 @@ data class CanIUse(
             dataFn: (() -> Map<FeatureData, Map<Browser, String>>?) = { null },
             featureFn: (FeatureData) -> ContainerBuilder.() -> Unit = { feature -> { html { feature.title } } },
             browserFn: (Browser) -> ContainerBuilder.() -> Unit = { (name, version) -> { html { "$name $version" } } },
-            statusFn: (String) -> ContainerBuilder.() -> Unit = { status -> { html { status } } }
-
+            statusFn: (String) -> ContainerBuilder.() -> Unit = { status -> { html { status } } },
+            classes: Set<String> = emptySet()
         ) {
             content.add {
-                CanIUse(title, features, browsers, dataFn,
-                        { ContainerBuilder(input).compound(featureFn(it)) },
-                        { ContainerBuilder(input).compound(browserFn(it)) },
-                        { ContainerBuilder(input).compound(statusFn(it)) })
+                CanIUse(
+                    title, features, browsers, dataFn,
+                    { ContainerBuilder(input).compound(featureFn(it)) },
+                    { ContainerBuilder(input).compound(browserFn(it)) },
+                    { ContainerBuilder(input).compound(statusFn(it)) },
+                    classes
+                )
             }
         }
 

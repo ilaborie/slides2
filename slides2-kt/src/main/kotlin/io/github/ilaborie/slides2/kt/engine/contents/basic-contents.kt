@@ -36,8 +36,7 @@ enum class TextStyle { Strong, Emphasis, UnderLine, Mark, Keyboard, Pre, Ins, De
 data class StyledText(
     val style: TextStyle,
     override val content: Content, override val classes: Set<String>
-) :
-    SingleContent
+) : SingleContent
 
 data class UnorderedList(
     override val inner: List<Content>,
@@ -73,16 +72,12 @@ data class Notice(
     override val classes: Set<String>
 ) : SingleContent
 
-data class Figure(val title: String, val src: String, val copyright: Content?) : Content
-
-// TODO
-
-data class DefinitionsList(
-    val definitions: Map<Content, Content>,
-    override val steps: Boolean = false,
+data class Figure(
+    val title: String,
+    val src: String,
+    val copyright: Content?,
     override val classes: Set<String>
-) :
-    ContainerContent {
-    override val inner: List<Content>
-        get() = definitions.flatMap { (k, v) -> listOf(k, v) }
+) : ContainerContent {
+    override val inner: List<Content> =
+        copyright?.let { listOf(it) } ?: emptyList()
 }

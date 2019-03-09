@@ -7,43 +7,35 @@ const defaultOptions = {
     simplification: 1
 };
 
+const buildOptions = elt => ['fill', 'stroke', 'strokeWidth']
+    .reduce((opt, attr) => {
+        const value = elt.getAttribute(attr);
+        if (value) {
+            opt[attr] = value;
+        }
+        return opt;
+    }, defaultOptions);
 
 setTimeout(() => {
-    Array.from(document.querySelectorAll('figure svg'))
-        .forEach(svgElt => {
-            const roughSvg = rough.svg(svgElt);
-            Array.from(svgElt.querySelectorAll('path'))
-                .forEach(p => {
-                    const options = ['fill', 'stroke', 'strokeWidth']
-                        .reduce((opt, attr) => {
-                            const value = p.getAttribute(attr);
-                            if (value) {
-                                opt[attr] = value;
-                            }
-                            return opt;
-                        }, defaultOptions);
-                    const node = roughSvg.path(p.getAttribute('d'), options);
+    // only on top level svg
+    const svgElt = document.querySelector('body > svg.visually-hidden');
+    if (!svgElt) {
+        // Nothing to do
+        return;
+    }
+    const roughSvg = rough.svg(svgElt);
 
-                    p.parentNode.replaceChild(node, p);
-                });
-            Array.from(svgElt.querySelectorAll('circle'))
-                .forEach(p => {
-                    const options = ['fill', 'stroke', 'strokeWidth']
-                        .reduce((opt, attr) => {
-                            const value = p.getAttribute(attr);
-                            if (value) {
-                                opt[attr] = value;
-                            }
-                            return opt;
-                            //cross-hatch, zigzag,
-                        }, defaultOptions);
-                    const node = roughSvg.circle(
-                        parseInt(p.getAttribute('cx')),
-                        parseInt(p.getAttribute('cy')),
-                        parseInt(p.getAttribute('r')),
-                        options);
+    const roughing = (selector, createNode) =>
+        Array.from(svgElt.querySelectorAll(selector))
+            .forEach(p => p.parentNode.replaceChild(createNode(p), p));
 
-                    p.parentNode.replaceChild(node, p);
-                });
-        });
+    roughing('path', path => roughSvg.path(path.getAttribute('d'), buildOptions(path)));
+    roughing('circle', circle => {
+        roughSvg.circle(
+            parseInt(p.getAttribute('cx')),
+            parseInt(p.getAttribute('cy')),
+            parseInt(p.getAttribute('r')),
+            buildOptions(circle));
+    });
+    // fixme handle other shape: rect, ellipse, polyline, polygon
 }, 100);

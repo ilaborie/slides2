@@ -1,8 +1,7 @@
-package io.github.ilaborie.slides2.kt.engine.extra
+package io.github.ilaborie.slides2.kt.engine.plugins
 
 import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Stylesheet
-import io.github.ilaborie.slides2.kt.engine.plugins.WebPlugin
 
 const val cloudfare = "https://cdnjs.cloudflare.com/ajax/libs"
 

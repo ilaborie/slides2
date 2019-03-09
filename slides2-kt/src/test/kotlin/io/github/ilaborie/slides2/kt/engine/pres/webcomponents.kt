@@ -1,9 +1,11 @@
 import io.github.ilaborie.slides2.kt.dsl.markdown
 import io.github.ilaborie.slides2.kt.dsl.pres
-import io.github.ilaborie.slides2.kt.engine.extra.barChart
-import io.github.ilaborie.slides2.kt.engine.extra.inlineFigure
-import io.github.ilaborie.slides2.kt.engine.extra.speaker
-import io.github.ilaborie.slides2.kt.engine.extra.table
+import io.github.ilaborie.slides2.kt.engine.contents.BarChart.Companion.BarChartCustom
+import io.github.ilaborie.slides2.kt.engine.contents.BarChart.Companion.BarChartSmallerBetter
+import io.github.ilaborie.slides2.kt.engine.contents.barChart
+import io.github.ilaborie.slides2.kt.engine.contents.inlineFigure
+import io.github.ilaborie.slides2.kt.engine.contents.speaker
+import io.github.ilaborie.slides2.kt.engine.contents.table
 import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.caniuse
 import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.tweet
 
@@ -129,15 +131,20 @@ val webComponents = pres(
             }
         }
         slide("Size matters", setOf("header-hidden")) {
+            val values = mapOf("Angular" to 59.0, "Stencil" to 11.0, "Native" to 2.5)
+            val factor: (Double) -> Int = { (it * 2).toInt() }
             barChart(
                 "Size matters (Gzipped)",
-                values = mapOf( // TODO icon
-                    "Angular" to 59.0,
-                    "Stencil" to 11.0,
-                    "Native" to 2.5
-                ),
+                values = values,
                 unit = "kb",
-                factor = { (it * 2).toInt() }
+                factor = factor,
+                mode = BarChartCustom(
+                    min = 0,
+                    max = factor(59.0), // worst value
+                    low = factor(15.0),
+                    high = factor(25.0),
+                    optimum = factor(2.5) // best value
+                )
             )
             ul(steps = true) {
                 html { "😨 Stencil is 5 times smaller than Angular" }
@@ -149,12 +156,13 @@ val webComponents = pres(
             barChart(
                 "Time matters (FMP 3G 📱 in ms)",
                 values = mapOf(
-                    "Angular" to 3000, // TODO icon
+                    "Angular" to 3000,
                     "Stencil" to 1070,
                     "Native" to 1030,
                     "Stencil Pre Rendered" to 980
                 ), unit = "ms",
-                factor = { it }
+                factor = { it },
+                mode = BarChartSmallerBetter(fixedMin = 0)
             )
             ul(steps = true) {
                 html { "😨 Native & Stencil 3 times faster than Angular" }
@@ -242,11 +250,18 @@ val webComponents = pres(
                     "Angular 6" to 100, // TODO icon
                     "Vue" to 100,
                     "AngularJS" to 100,
-                    "Preact" to 91,
+                    "Preact" to 95,
                     "React" to 71
                 ),
                 factor = { it },
-                infoFn = { "$it%" }
+                infoFn = { "$it%" },
+                mode = BarChartCustom(
+                    min = 0,
+                    max = 100,
+                    low = 80,
+                    high = 90,
+                    optimum = 100
+                )
             )
             link("https://custom-elements-everywhere.com/")
         }

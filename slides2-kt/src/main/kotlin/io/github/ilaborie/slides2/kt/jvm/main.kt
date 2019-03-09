@@ -7,8 +7,8 @@ import io.github.ilaborie.slides2.kt.Config
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.PresentationDsl
 import io.github.ilaborie.slides2.kt.engine.Theme
-import io.github.ilaborie.slides2.kt.engine.extra.PrismJsPlugin
-import io.github.ilaborie.slides2.kt.engine.extra.RoughSvgPlugin
+import io.github.ilaborie.slides2.kt.engine.plugins.PrismJsPlugin
+import io.github.ilaborie.slides2.kt.engine.plugins.RoughSvgPlugin
 import io.github.ilaborie.slides2.kt.engine.plugins.CheckContentPlugin
 import io.github.ilaborie.slides2.kt.engine.plugins.NavigatePlugin
 import io.github.ilaborie.slides2.kt.engine.plugins.Plugin

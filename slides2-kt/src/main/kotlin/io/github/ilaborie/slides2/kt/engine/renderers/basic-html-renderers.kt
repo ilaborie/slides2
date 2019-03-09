@@ -203,7 +203,7 @@ object FigureHtmlRenderer : Renderer<Figure> {
                 |${render(mode, it).prependIndent("    ")}
                 |  </div>""".trimMargin()
             } ?: ""
-            """<figure>
+            """<figure${content.classes.asHtmlClass}>
                 |  <img src="${content.src}" alt="${content.title}">$copyright
                 |  <figcaption>${content.title}</figcaption>
                 |</figure>""".trimMargin()

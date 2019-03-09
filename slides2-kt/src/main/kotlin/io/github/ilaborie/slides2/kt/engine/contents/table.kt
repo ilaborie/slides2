@@ -1,15 +1,27 @@
-package io.github.ilaborie.slides2.kt.engine.extra
+package io.github.ilaborie.slides2.kt.engine.contents
 
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.raw
+import io.github.ilaborie.slides2.kt.engine.ContainerContent
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.renderers.asHtmlClass
 
 
-data class Table(val caption: Content, val data: Map<Pair<Content, Content>, Pair<Content, Set<String>>>) : Content
+data class Table(
+    val caption: Content,
+    val data: Map<Pair<Content, Content>, Pair<Content, Set<String>>>,
+    override val classes: Set<String>
+) : ContainerContent {
+    override val inner: List<Content> by lazy {
+        data.flatMap { (key, value) ->
+            val (row, col) = key
+            listOf(row, col) + value.first
+        } + caption
+    }
+}
 
 
 fun <R, C, V> ContainerBuilder.table(
@@ -34,7 +46,8 @@ fun <R, C, V> ContainerBuilder.table(
     rowsFn: (R) -> Content = { it.toString().raw },
     columnFn: (C) -> Content = { it.toString().raw },
     valueFn: (V) -> Content = { it.toString().raw },
-    valueClassesFn: (V) -> Set<String> = { emptySet() }
+    valueClassesFn: (V) -> Set<String> = { emptySet() },
+    classes: Set<String> = emptySet()
 ) {
     content.add {
         val data = rows
@@ -45,7 +58,7 @@ fun <R, C, V> ContainerBuilder.table(
             .mapKeys { (p, _) -> rowsFn(p.first) to columnFn(p.second) }
             .mapValues { (_, v) -> valueFn(v!!) to valueClassesFn(v) }
 
-        Table(caption, data)
+        Table(caption, data, classes)
     }
 }
 
@@ -108,7 +121,7 @@ object TableHtmlRenderer : Renderer<Table> {
                 """.trimMargin()
             }
 
-            """<table>
+            """<table${content.classes.asHtmlClass}>
               |  <thead>
               |    <tr>$thead</tr>
               |  </thead>
