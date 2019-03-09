@@ -12,9 +12,20 @@ main > section > article {
       font-weight: bold;
     }
 
+    tbody tr td{
+      border: thin solid hsla(0, 100%, 100%, .1);
+    }
+
+    tbody tr:nth-child(odd) {
+      background: rgba(0, 0, 0, .1);
+
+      td {
+        border-bottom-color: hsla(0, 100%, 100%, .2);
+      }
+    }
+
     th, td {
       padding: .125em;
-      border: thin solid hsla(0, 100%, 100%, .1);
 
       img {
         max-width: 3.5em;

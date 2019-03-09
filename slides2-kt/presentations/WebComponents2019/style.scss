@@ -49,6 +49,10 @@ figure > svg {
   }
 }
 
+table thead figure  {
+  font-size: 67%;
+}
+
 body > header {
   font-size: 60%;
 }
@@ -413,13 +417,11 @@ h1 {
 
     td {
       text-align: center;
-
-      .yes {
-        color: var(--colValid);
+      &.y {
+        background-color: var(--colValid);
       }
-
-      .no {
-        color: var(--colInvalid);
+      &.n {
+        background-color: var(--colInvalid);
       }
     }
   }

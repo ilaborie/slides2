@@ -16,7 +16,7 @@ import io.github.ilaborie.slides2.kt.utils.CachingFolder
 import java.net.URL
 
 
-typealias Browser = Pair<String, Int>
+typealias Browser = Pair<String, Int> // name: version
 typealias BrowserFeatureData = Map<String, String> // version: support
 
 data class CanIUse(

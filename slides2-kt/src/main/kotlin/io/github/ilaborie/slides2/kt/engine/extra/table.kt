@@ -6,32 +6,35 @@ import io.github.ilaborie.slides2.kt.dsl.raw
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
+import io.github.ilaborie.slides2.kt.engine.renderers.asHtmlClass
 
 
-data class Table(val caption: Content, val data: Map<Pair<Content, Content>, Content>) : Content
+data class Table(val caption: Content, val data: Map<Pair<Content, Content>, Pair<Content, Set<String>>>) : Content
 
 
-fun <R,C,V> ContainerBuilder.table(
+fun <R, C, V> ContainerBuilder.table(
     caption: Content,
     rows: List<R>,
     columns: List<C>,
     values: Map<Pair<R, C>, V>,
     rowsFn: (R) -> Content = { it.toString().raw },
     columnFn: (C) -> Content = { it.toString().raw },
-    valueFn: (V) -> Content = { it.toString().raw }
+    valueFn: (V) -> Content = { it.toString().raw },
+    valueClassesFn: (V) -> Set<String> = { emptySet() }
 ) {
     val valuesFunction = { row: R, col: C -> values[row to col] }
-    table<R,C,V>(caption, rows, columns, valuesFunction, rowsFn, columnFn, valueFn)
+    table(caption, rows, columns, valuesFunction, rowsFn, columnFn, valueFn, valueClassesFn)
 }
 
-fun <R,C,V> ContainerBuilder.table(
+fun <R, C, V> ContainerBuilder.table(
     caption: Content,
     rows: List<R>,
     columns: List<C>,
     values: (R, C) -> V?,
     rowsFn: (R) -> Content = { it.toString().raw },
     columnFn: (C) -> Content = { it.toString().raw },
-    valueFn: (V) -> Content = { it.toString().raw }
+    valueFn: (V) -> Content = { it.toString().raw },
+    valueClassesFn: (V) -> Set<String> = { emptySet() }
 ) {
     content.add {
         val data = rows
@@ -40,12 +43,11 @@ fun <R,C,V> ContainerBuilder.table(
             .filter { (_, v) -> v != null }
             .toMap()
             .mapKeys { (p, _) -> rowsFn(p.first) to columnFn(p.second) }
-            .mapValues { (_, v) -> valueFn(v!!) }
+            .mapValues { (_, v) -> valueFn(v!!) to valueClassesFn(v) }
 
         Table(caption, data)
     }
 }
-
 
 
 object TableTextRenderer : Renderer<Table> {
@@ -65,7 +67,7 @@ object TableTextRenderer : Renderer<Table> {
             val tbodyRow = { k: Content ->
                 "|${render(mode, k)}|${headValues.joinToString("|", postfix = "|") { v ->
                     content.data[k to v]
-                        ?.let { render(mode, it) }
+                        ?.let { (value, _) -> render(mode, value) }
                         ?: " "
                 }}"
             }
@@ -98,20 +100,22 @@ object TableHtmlRenderer : Renderer<Table> {
                   |<th>${render(mode, k)}</th>
                   |${headValues.joinToString("") { v ->
                     content.data[k to v]
-                        ?.let { "<td>${render(mode, it)}</td>" }
+                        ?.let { (value, classes) ->
+                            "<td${classes.asHtmlClass}>${render(mode, value)}</td>"
+                        }
                         ?: "<td></td>"
                 }}
                 """.trimMargin()
             }
 
             """<table>
-                |  <thead>
-                |    <tr>$thead</tr>
-                |  </thead>
-                |  <tbody>
-                |    ${bodyValues.joinToString("</tr><tr>", "<tr>", "</tr>") { tbodyRow(it) }}</tr>
-                |  </tbody>
-                |  <caption>${render(mode, content.caption)}</caption>
-                |</table>""".trimMargin()
+              |  <thead>
+              |    <tr>$thead</tr>
+              |  </thead>
+              |  <tbody>
+              |    ${bodyValues.joinToString("</tr><tr>", "<tr>", "</tr>") { tbodyRow(it) }}</tr>
+              |  </tbody>
+              |  <caption>${render(mode, content.caption)}</caption>
+              |</table>""".trimMargin()
         }
 }

@@ -245,7 +245,7 @@ val webComponents = pres(
                     "Preact" to 91,
                     "React" to 71
                 ),
-                factor = {it},
+                factor = { it },
                 infoFn = { "$it%" }
             )
             link("https://custom-elements-everywhere.com/")
@@ -314,10 +314,9 @@ val webComponents = pres(
                     }
                     compound { inlineFigure("logos/$key.svg", col) }
                 },
-                valueFn = { value ->
-                    val text = if (value) "✔︎" else "✘"
-                    compound { span(text, setOf(if (value) "yes" else "no")) }
-                }
+                valueFn = { value -> compound { html { if (value) "✔︎" else "✘" } } },
+                valueClassesFn = { value -> setOf(if (value) "y" else "n") }
+
             )
         }
         slide("StencilJS works everywhere", setOf("header-hidden", "steps")) {

@@ -1,47 +1,29 @@
-[
-  {
-    "title": "Demo Presentation",
-    "instances": [
-      {
-        "label": "base",
-        "path": "demo_presentation",
-        "metadata": {}
-      },
-      {
-        "label": "jug-tls",
-        "path": "demo_presentation",
-        "metadata": {}
-      },
-      {
-        "label": "devoxxfr-19",
-        "path": "demo_presentation",
-        "metadata": {}
-      },
-      {
-        "label": "mixit-19",
-        "path": "demo_presentation",
-        "metadata": {}
-      },
-      {
-        "label": "sunnytech-19",
-        "path": "demo_presentation",
-        "metadata": {}
-      },
-      {
-        "label": "rivieradev-19",
-        "path": "demo_presentation",
-        "metadata": {}
-      }
-    ]
-  },
-  {
-    "title": "Web Components Natif StencilJS LitElement",
-    "instances": [
-      {
-        "label": "devoxxfr-19",
-        "path": "webComponents-19",
-        "metadata": {}
-      }
-    ]
-  }
-]
+[ { "title": "Demo Presentation", "instances": [ {
+  "label": "base",
+  "path": "demo_presentation",
+  "metadata": { }
+}, {
+  "label": "jug-tls",
+  "path": "demo_presentation",
+  "metadata": { }
+}, {
+  "label": "devoxxfr-19",
+  "path": "demo_presentation",
+  "metadata": { }
+}, {
+  "label": "mixit-19",
+  "path": "demo_presentation",
+  "metadata": { }
+}, {
+  "label": "sunnytech-19",
+  "path": "demo_presentation",
+  "metadata": { }
+}, {
+  "label": "rivieradev-19",
+  "path": "demo_presentation",
+  "metadata": { }
+}]}, { "title": "Web Components Natif StencilJS LitElement", "instances": [ {
+  "label": "devoxxfr-19",
+  "path": "webComponents-19",
+  "metadata": { }
+}]}]

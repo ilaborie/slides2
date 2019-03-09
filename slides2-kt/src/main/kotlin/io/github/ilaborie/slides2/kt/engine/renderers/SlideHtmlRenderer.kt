@@ -12,11 +12,6 @@ object SlideHtmlRenderer : Renderer<Slide> {
 
     override fun render(content: Slide): String =
         with(SlideEngine) {
-            val classes = content.styles.joinToString(" ")
-
-            val body = content.content.joinToString("\n") {
-                render(mode, it)
-            }
 
             val previous =
                 """<nav class="previous">
@@ -28,13 +23,13 @@ object SlideHtmlRenderer : Renderer<Slide> {
                   |  ${content.next?.let { """<a href="#${it.id}" aria-label="next slide"></a>""" } ?: ""}
                   |</nav>""".trimMargin()
 
-            """<section id="${content.id.id}"${if (classes == "") "" else """ class="$classes""""}>
+            """<section id="${content.id.id}"${content.styles.asHtmlClass}>
               |  <header>
               |${render(mode, content.title).prependIndent("    ")}
               |  </header>
               |${previous.prependIndent("  ")}
               |  <article>
-              |$body
+              |${content.content.joinToString("\n") { render(mode, it) }}
               |  </article>
               |${next.prependIndent("  ")}
               |  <footer></footer>

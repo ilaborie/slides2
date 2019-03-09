@@ -27,16 +27,8 @@ main > section > article {
 
     }
     tbody th {
-      border-top: none;
-      border-left: none;
-    }
-
-
-    tbody tr:nth-child(odd) {
-      background: rgba(0, 0, 0, .1);
-    }
-    tbody tr:nth-child(even) {
-      border-bottom-color: hsla(0, 100%, 100%, .2);
+      border-top-color: transparent;
+      border-left-color: transparent;
     }
 
     th {
@@ -44,13 +36,11 @@ main > section > article {
     }
 
     th + th {
-      border-left: white;
-      border-right: white;
+      border-left-color: hsla(0,100%,100%,.2);
     }
 
     th, td {
       padding: .125em;
-      border-color: transparent;
 
       img {
         max-width: 3.5em;

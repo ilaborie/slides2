@@ -6,6 +6,7 @@ import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
+import io.github.ilaborie.slides2.kt.engine.renderers.asHtmlClass
 
 
 data class Speaker(
@@ -42,7 +43,7 @@ object SpeakerHtmlRenderer : Renderer<Speaker> {
     override val mode: RenderMode = Html
 
     override fun render(content: Speaker): String =
-        """<div class="speaker ${content.classes.joinToString(",")}">
+        """<div${(content.classes + "speaker").asHtmlClass}>
                 |  <img src="${content.img}" alt="${content.fullName}">
                 |  <h4>${content.fullName}</h4>
                 |  <p>${content.info}</p>
