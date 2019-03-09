@@ -37,12 +37,11 @@
 
 .list-inline li > figure > img {
   height: 4em;
-  max-width: 4em;
 }
 
 figure > svg {
   height: 4em;
-  max-width: 4em;
+  max-width: 6em;
 
   path {
     background-color: hsla(0, 100%, 100%, .25);
@@ -57,6 +56,13 @@ body > header {
   font-size: 60%;
 }
 
+main > section.part > article {
+  figure > svg {
+    height: 8em;
+    max-width: 8em;
+
+  }
+}
 
 main > section {
   & > article {
@@ -166,7 +172,6 @@ h1 {
   }
 
   li {
-    font-size: 60%;
     color: var(--colLight);
     position: relative;
     display: flex;
@@ -235,10 +240,6 @@ h1 {
 //
 #industry_moving_too_fast article {
   justify-content: space-evenly;
-
-  .twitter-tweet {
-    transform: scale(1.5) !important;
-  }
 }
 
 #tocGrid:checked ~ main > #industry_moving_too_fast article .twitter-tweet {

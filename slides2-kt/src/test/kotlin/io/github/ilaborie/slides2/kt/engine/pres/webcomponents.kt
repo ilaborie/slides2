@@ -19,7 +19,7 @@ val webComponents = pres(
             listOf(
                 inlineFigure("logos/web-components.svg", "Natif"),
                 inlineFigure("logos/stencil.svg", "StencilJS"),
-                figure("logos/lit-element.png", "LitElement")
+                figure("logos/lit-element.svg", "LitElement")
             )
         }
     }
@@ -338,7 +338,7 @@ val webComponents = pres(
     }
     part(partTitle = {
         h2("Lit-Elements")
-        figure("logos/lit-element.png", "LitElement")
+        figure("logos/lit-element.svg", "LitElement")
         link("https://lit-element.polymer-project.org/")
     }, id = "lit-element_part") {
         slide("TODO") {

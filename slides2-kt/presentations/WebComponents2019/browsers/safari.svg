@@ -1,7 +1,7 @@
 <svg width="2500" height="2500" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
     <g transform="translate(4 2)">
-        <circle fill="#FFFFFF" cx="124" cy="124" r="124"/>
-        <circle fill="#3375F8" cx="124" cy="124" r="114.7"/>
+        <path fill="#FFFFFF" d="M0,124a124,124 0 1,0 248,0a124,124 0 1,0 -248,0"/>
+        <path fill="#3375F8" d="M9.299999999999997,124a114.7,114.7 0 1,0 229.4,0a114.7,114.7 0 1,0 -229.4,0"/>
         <g transform="translate(9.688 8.719)">
             <path d="M114.506 28.481c-.775 0-1.453-.581-1.453-1.356V6.878c0-.775.678-1.356 1.453-1.356s1.453.581 1.453 1.356v20.247c-.097.775-.678 1.356-1.453 1.356z"
                   fill="#F3F3F3"/>
