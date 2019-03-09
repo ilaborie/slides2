@@ -10,6 +10,7 @@ import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
+import io.github.ilaborie.slides2.kt.engine.plugins.RendererPlugin
 import io.github.ilaborie.slides2.kt.jvm.JvmFolder
 import io.github.ilaborie.slides2.kt.utils.CachingFolder
 import java.net.URL
@@ -17,13 +18,6 @@ import java.net.URL
 
 typealias Browser = Pair<String, Int>
 typealias BrowserFeatureData = Map<String, String> // version: support
-
-data class FeatureData(
-    val title: String,
-    val description: String,
-    val spec: String,
-    val stats: Map<String, BrowserFeatureData>
-)
 
 data class CanIUse(
     val title: String,
@@ -65,48 +59,63 @@ data class CanIUse(
                     .toMap()
             }
     }
-}
 
-fun ContainerBuilder.caniuse(
-    title: String,
-    features: List<String>,
-    browsers: List<Browser>,
-    dataFn: (() -> Map<FeatureData, Map<Browser, String>>?) = { null },
-    featureFn: (FeatureData) -> ContainerBuilder.() -> Unit = { feature -> { html { feature.title } } },
-    browserFn: (Browser) -> ContainerBuilder.() -> Unit = { (name, version) -> { html { "$name $version" } } },
-    statusFn: (String) -> ContainerBuilder.() -> Unit = { status -> { html { status } } }
+    companion object {
 
-) {
-    content.add {
-        CanIUse(title, features, browsers, dataFn,
-                { ContainerBuilder(input).compound(featureFn(it)) },
-                { ContainerBuilder(input).compound(browserFn(it)) },
-                { ContainerBuilder(input).compound(statusFn(it)) })
-    }
-}
+        data class FeatureData(
+            val title: String,
+            val description: String,
+            val spec: String,
+            val stats: Map<String, BrowserFeatureData>
+        )
 
-object CanIUseHtmlRenderer : Renderer<CanIUse> {
-    override val mode: RenderMode = Html
+        object CanIUsePlugin : RendererPlugin<CanIUse> {
+            override val name = "CanIUse"
+            override val clazz = CanIUse::class.java
+            override fun renderers(): List<Renderer<CanIUse>> =
+                listOf(CanIUseTextRenderer, CanIUseHtmlRenderer)
+        }
 
-    override fun render(content: CanIUse): String =
-        with(SlideEngine) {
-            val tbody = content.content
-                .map { (feature, map) ->
-                    val values = content.browsers.joinToString("") { browser ->
-                        val status = map[browser] ?: "notFound"
-                        """<td class="$status">${render(mode, content.statusFn(status))}</td>"""
-                    }
-                    """<th>${render(mode, content.featureFn(feature))}</th>$values"""
-                }.joinToString("</tr><tr>", "<tr>", "</tr>")
+        fun ContainerBuilder.caniuse(
+            title: String,
+            features: List<String>,
+            browsers: List<Browser>,
+            dataFn: (() -> Map<FeatureData, Map<Browser, String>>?) = { null },
+            featureFn: (FeatureData) -> ContainerBuilder.() -> Unit = { feature -> { html { feature.title } } },
+            browserFn: (Browser) -> ContainerBuilder.() -> Unit = { (name, version) -> { html { "$name $version" } } },
+            statusFn: (String) -> ContainerBuilder.() -> Unit = { status -> { html { status } } }
 
-            """<table class="caniuse">
+        ) {
+            content.add {
+                CanIUse(title, features, browsers, dataFn,
+                        { ContainerBuilder(input).compound(featureFn(it)) },
+                        { ContainerBuilder(input).compound(browserFn(it)) },
+                        { ContainerBuilder(input).compound(statusFn(it)) })
+            }
+        }
+
+        private object CanIUseHtmlRenderer : Renderer<CanIUse> {
+            override val mode: RenderMode = Html
+
+            override fun render(content: CanIUse): String =
+                with(SlideEngine) {
+                    val tbody = content.content
+                        .map { (feature, map) ->
+                            val values = content.browsers.joinToString("") { browser ->
+                                val status = map[browser] ?: "notFound"
+                                """<td class="$status">${render(mode, content.statusFn(status))}</td>"""
+                            }
+                            """<th>${render(mode, content.featureFn(feature))}</th>$values"""
+                        }.joinToString("</tr><tr>", "<tr>", "</tr>")
+
+                    """<table class="caniuse">
             |<caption>${content.title}</caption>
             |<thead>
             |<tr>
             | <td></td>
             | ${content.browsers.joinToString("</th><th>", "<th>", "</th>") {
-                render(mode, content.browserFn(it))
-            }}
+                        render(mode, content.browserFn(it))
+                    }}
             |</tr>
             |</thead>
             |<tbody>
@@ -118,20 +127,24 @@ object CanIUseHtmlRenderer : Renderer<CanIUse> {
             |<li class="a">Partial Support</li>
             |<li class="n">Not Supported</li>
             |</ul>""".trimMargin()
+                }
         }
-}
 
-object CanIUseTextRenderer : Renderer<CanIUse> {
-    override val mode: RenderMode = Text
-    override fun render(content: CanIUse): String =
-        content.content
-            .toList()
-            .flatMap { (feature, map) ->
-                map.map { (browser, state) -> Triple(feature, browser, state) }
-            }
-            .joinToString("\n") { (feature, browser, status) ->
-                val (name, version) = browser
-                "$feature with $name v$version : $status"
-            }
+        private object CanIUseTextRenderer : Renderer<CanIUse> {
+            override val mode: RenderMode = Text
+            override fun render(content: CanIUse): String =
+                content.content
+                    .toList()
+                    .flatMap { (feature, map) ->
+                        map.map { (browser, state) -> Triple(feature, browser, state) }
+                    }
+                    .joinToString("\n") { (feature, browser, status) ->
+                        val (name, version) = browser
+                        "$feature with $name v$version : $status"
+                    }
+        }
+
+
+    }
 }
 

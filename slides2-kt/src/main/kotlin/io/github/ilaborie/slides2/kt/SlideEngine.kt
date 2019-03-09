@@ -6,24 +6,28 @@ import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
 import io.github.ilaborie.slides2.kt.engine.extra.*
 import io.github.ilaborie.slides2.kt.engine.plugins.ContentPlugin
+import io.github.ilaborie.slides2.kt.engine.plugins.Plugin
+import io.github.ilaborie.slides2.kt.engine.plugins.RendererPlugin
+import io.github.ilaborie.slides2.kt.engine.plugins.WebPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
-import io.github.ilaborie.slides2.kt.jvm.extra.CanIUseHtmlRenderer
-import io.github.ilaborie.slides2.kt.jvm.extra.CanIUseTextRenderer
-import io.github.ilaborie.slides2.kt.jvm.extra.TweetHtmlRenderer
-import io.github.ilaborie.slides2.kt.jvm.extra.TweetTextRenderer
 import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss.scssFileToCss
 import io.github.ilaborie.slides2.kt.term.Notifier.time
 import io.github.ilaborie.slides2.kt.term.Styles
 
 object SlideEngine {
 
-    val rendererMap: MutableMap<String, MutableMap<RenderMode, Renderer<*>>> = mutableMapOf()
+    private val rendererMap: MutableMap<String, MutableMap<RenderMode, Renderer<*>>> = mutableMapOf()
     private val contentPlugins: MutableList<ContentPlugin> = mutableListOf()
 
     private val cache: MutableMap<Pair<RenderMode, Presentation>, String> = mutableMapOf()
 
-    val globalScripts: MutableList<Script> = mutableListOf()
-    val globalStylesheets: MutableList<Stylesheet> = mutableListOf()
+    private val globalScripts: MutableList<Script> = mutableListOf()
+    private val globalStylesheets: MutableList<Stylesheet> = mutableListOf()
+
+    val scripts: List<Script>
+        get() = globalScripts
+    val stylesheets: List<Stylesheet>
+        get() = globalStylesheets
 
     init {
         // Base
@@ -44,28 +48,38 @@ object SlideEngine {
         registerRenderers(SpeakerTextRenderer, SpeakerHtmlRenderer)
         registerRenderers(BarChartTextRenderer, BarChartHtmlRenderer)
         registerRenderers(InlineFigureTextRenderer, InlineFigureHtmlRenderer)
-        // Extra with JVM
-        registerRenderers(TweetTextRenderer, TweetHtmlRenderer)
-        registerRenderers(CanIUseTextRenderer, CanIUseHtmlRenderer)
 
         // Presentation, Part, Slide
-        registerRenderer(PresentationHtmlRenderer())
-        registerRenderer(SlideHtmlRenderer)
+        registerRenderers(PresentationHtmlRenderer)
+        registerRenderers(SlideHtmlRenderer)
     }
 
-    inline fun <reified T : Content> registerRenderer(renderer: Renderer<T>): SlideEngine {
-        val map = rendererMap.computeIfAbsent(T::class.java.name) { mutableMapOf() }
+    private fun <T : Content> registerRenderer(renderer: Renderer<*>, clazz: Class<T>): SlideEngine {
+        val map = rendererMap.computeIfAbsent(clazz.name) { mutableMapOf() }
         map[renderer.mode] = renderer
         return this
     }
 
-    inline fun <reified T : Content> registerRenderers(vararg renderer: Renderer<T>): SlideEngine {
-        renderer.forEach { registerRenderer(it) }
+    private inline fun <reified T : Content> registerRenderers(vararg renderer: Renderer<T>): SlideEngine {
+        renderer.forEach { registerRenderer(it, T::class.java) }
         return this
     }
 
-    fun registerContentPlugin(plugin: ContentPlugin): SlideEngine {
-        contentPlugins += plugin
+    fun use(vararg plugins: Plugin): SlideEngine {
+        plugins.forEach { plugin ->
+            when (plugin) {
+                is ContentPlugin     ->
+                    contentPlugins += plugin
+                is WebPlugin         -> {
+                    globalScripts += plugin.scripts()
+                    globalStylesheets += plugin.stylesheets()
+                }
+                is RendererPlugin<*> ->
+                    plugin.renderers().forEach {
+                        registerRenderer(it, plugin.clazz)
+                    }
+            }
+        }
         return this
     }
 
@@ -86,7 +100,7 @@ object SlideEngine {
             ?.replace('\n', ' ')
             ?: throw IllegalStateException("No Text renderer found for $content")
 
-    fun Presentation.renderHtml(config: Config): PresentationOutputInstance =
+    fun Presentation.renderHtml(config: Config, metadata: Map<String, String> = emptyMap()): PresentationOutputInstance =
         findRenderer(Html, this)
             ?.let { renderer ->
                 val folder = config.output / id.id
@@ -107,7 +121,7 @@ object SlideEngine {
                 time("Write ${Styles.highlight("Global scripts")}") {
                     writePresentationScripts(config)
                 }
-                PresentationOutputInstance(label = theme.name, path = "${id.id}/$filename")
+                PresentationOutputInstance(theme.name, id.id, metadata)
             } ?: throw IllegalStateException("No Html renderer found for $this")
 
     private fun Presentation.writePresentationScripts(config: Config) {

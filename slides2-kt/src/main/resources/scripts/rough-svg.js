@@ -3,14 +3,14 @@ const defaultOptions = {
     fillWeight: 1.5,
     stroke: 'rgba(0,0,0,.1)',
     strokeWidth: 1,
-    fillStyle: 'zigzag'
+    fillStyle: 'zigzag', //cross-hatch, zigzag,
+    simplification: 1
 };
 
 
 setTimeout(() => {
     Array.from(document.querySelectorAll('figure svg'))
         .forEach(svgElt => {
-            console.log(svgElt);
             const roughSvg = rough.svg(svgElt);
             Array.from(svgElt.querySelectorAll('path'))
                 .forEach(p => {
@@ -21,7 +21,6 @@ setTimeout(() => {
                                 opt[attr] = value;
                             }
                             return opt;
-                            //cross-hatch, zigzag,
                         }, defaultOptions);
                     const node = roughSvg.path(p.getAttribute('d'), options);
 

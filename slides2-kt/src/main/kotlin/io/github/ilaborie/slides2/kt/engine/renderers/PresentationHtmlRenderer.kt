@@ -7,11 +7,11 @@ import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
 import io.github.ilaborie.slides2.kt.engine.Stylesheet
 
-open class PresentationHtmlRenderer : Renderer<Presentation> {
+object PresentationHtmlRenderer : Renderer<Presentation> {
     override val mode: RenderMode = Html
 
-    open fun head(presentation: Presentation): String {
-        val scripts = SlideEngine.globalScripts
+    private fun head(presentation: Presentation): String {
+        val scripts = SlideEngine.scripts
             .filter { it.module }
             .joinToString("\n") { it.asHtml() }
 
@@ -19,7 +19,7 @@ open class PresentationHtmlRenderer : Renderer<Presentation> {
             .filterNotNull()
             .map { Stylesheet("./$it.css") }
 
-        val stylesheets = (SlideEngine.globalStylesheets + innerStyle)
+        val stylesheets = (SlideEngine.stylesheets + innerStyle)
             .joinToString("\n") { it.asHtml() }
 
         return """<head>
@@ -31,19 +31,16 @@ open class PresentationHtmlRenderer : Renderer<Presentation> {
                 |</head>""".trimMargin()
     }
 
-    open fun beforeMain(presentation: Presentation): String =
+    private fun beforeMain(presentation: Presentation): String =
         """<nav class="toc-menu no-print"></nav>
           |<input id="tocGrid" type="checkbox" class="visually-hidden">
           |<header>
           |${SlideEngine.render(mode, presentation.title)}
+          |<a href="#${presentation.coverSlide.id.id}">📺</a>
           |</header>""".trimMargin()
-//        """<header class="no-print">
-//            |  ${SlideEngine.render(mode, presentation.title)}
-//            |  <a href="#${presentation.coverSlide.id.id}">📺</a>
-//            |</header>""".trimMargin()
 
-    open fun afterMain(presentation: Presentation): String =
-        SlideEngine.globalScripts
+    private fun afterMain(presentation: Presentation): String =
+        SlideEngine.scripts
             .filterNot { it.module }
             .joinToString("\n") { it.asHtml() }
 

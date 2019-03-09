@@ -4,8 +4,8 @@ import io.github.ilaborie.slides2.kt.engine.extra.barChart
 import io.github.ilaborie.slides2.kt.engine.extra.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.extra.speaker
 import io.github.ilaborie.slides2.kt.engine.extra.table
-import io.github.ilaborie.slides2.kt.jvm.extra.caniuse
-import io.github.ilaborie.slides2.kt.jvm.extra.tweet
+import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.caniuse
+import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.tweet
 
 
 // https://shprink.github.io/talks/2018/web_component_native_vs_stenciljs

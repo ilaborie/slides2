@@ -1,45 +1,41 @@
 package io.github.ilaborie.slides2.kt.engine.extra
 
-import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Stylesheet
+import io.github.ilaborie.slides2.kt.engine.plugins.WebPlugin
 
-// See https://prismjs.com/
 const val cloudfare = "https://cdnjs.cloudflare.com/ajax/libs"
 
 
-private fun String.script(): Script =
-    Script(
-        this,
-        async = false,
-        module = false,
-        defer = false
-    )
+// See https://prismjs.com/
+class PrismJsPlugin(
+    val languages: List<String> = emptyList(), // see <https://prismjs.com/#languages-list>
+    val theme: String? = null,
+    val version: String = "1.15.0",
+    showLines: Boolean = true
+) : WebPlugin {
+    override val name = "PrismJs code highlighting"
 
-fun SlideEngine.usePrismJs(
-    showLines: Boolean = true,
-    theme: String? = null,
-    version: String = "1.15.0",
-    languages: List<String> = emptyList() // see <https://prismjs.com/#languages-list>
-) {
-    // Main
-    globalScripts += "$cloudfare/prism/$version/prism.min.js".script()
-    globalStylesheets += Stylesheet("$cloudfare/prism/$version/themes/prism.min.css")
+    private val plugins: List<String> =
+        if (showLines) listOf("line-numbers") else emptyList()
 
-    // Theme
-    if (theme != null) {
-        globalStylesheets += Stylesheet("$cloudfare/prism/$version/themes/prism-$theme.min.css")
-    }
+    override fun scripts(): List<Script> =
+        (listOf("$cloudfare/prism/$version/prism.min.js") +
+                // Languages
+                languages.map { "$cloudfare/prism/$version/components/prism-$it.min.js" } +
+                // plugins
+                plugins.map { "$cloudfare/prism/$version/plugins/$it/prism-$it.min.js" }
+                )
+            .map { Script(it, async = false, module = false, defer = false) }
 
-    // Languages
-    globalScripts += languages.map { lang ->
-        "$cloudfare/prism/$version/components/prism-$lang.min.js".script()
-    }
+    override fun stylesheets(): List<Stylesheet> =
+        (listOf("$cloudfare/prism/$version/themes/prism.min.css") +
+                // Theme
+                (if (theme != null)
+                    listOf("$cloudfare/prism/$version/themes/prism-$theme.min.css")
+                else emptyList()) +
+                // Plugins
+                plugins.map { "$cloudfare/prism/$version/plugins/$it/prism-$it.min.css" })
+            .map { Stylesheet(it) }
 
-    // Plugins
-    if (showLines) {
-        val plugin = "line-numbers"
-        globalScripts += "$cloudfare/prism/$version/plugins/$plugin/prism-$plugin.min.js".script()
-        globalStylesheets += Stylesheet("$cloudfare/prism/$version/plugins/$plugin/prism-$plugin.min.css")
-    }
 }

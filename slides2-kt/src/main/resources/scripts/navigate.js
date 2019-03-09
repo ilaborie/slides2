@@ -2,8 +2,8 @@
 const clickOn = selector => {
     const btn = document.querySelector(selector);
     if (btn) {
-        scrollTo(btn.hash);
         btn.click();
+        scrollTo(btn.hash);
     }
 };
 

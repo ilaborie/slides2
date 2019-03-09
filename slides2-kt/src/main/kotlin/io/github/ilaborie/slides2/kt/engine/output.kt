@@ -12,9 +12,13 @@ data class PresentationOutput(val title: String, val instances: List<Presentatio
     }
 }
 
-data class PresentationOutputInstance(val label: String, val path: String) {
+data class PresentationOutputInstance(val label: String, val path: String, val metadata: Map<String, String>) {
 
     val json: String by lazy {
-        """{ "label": "${label.replace('\n', ' ')}", "path": "$path" }"""
+        """{
+          |  "label": "${label.replace('\n', ' ')}",
+          |  "path": "$path",
+          |  "metadata": ${metadata.map { (key, value) -> """"$key": "$value"""" }.joinToString(", ", "{ ", "}")}
+          |}""".trimMargin()
     }
 }

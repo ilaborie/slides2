@@ -38,5 +38,11 @@
       overflow: hidden;
       padding: .5em;
     }
+
+    &.steps {
+      .step, .step-current, .step-done {
+        opacity: 1;
+      }
+    }
   }
 }

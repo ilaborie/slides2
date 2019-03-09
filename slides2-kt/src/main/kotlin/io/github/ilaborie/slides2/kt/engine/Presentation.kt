@@ -17,7 +17,7 @@ data class Presentation(
     val lang: String = "en"
 ) : Content {
 
-    private val coverSlide: Slide = Slide(
+    val coverSlide: Slide = Slide(
         id = Id("${id.id}_cover"),
         title = title,
         styles = setOf("cover", "header-hidden"),
