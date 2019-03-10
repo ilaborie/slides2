@@ -259,7 +259,7 @@ val webComponents = pres(
                     min = 0,
                     max = 100,
                     low = 80,
-                    high = 90,
+                    high = 95,
                     optimum = 100
                 )
             )

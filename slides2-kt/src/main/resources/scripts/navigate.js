@@ -1,17 +1,10 @@
-import {keymap} from './keymap';
-
-export const navigateTo = (selector) => {
-    const elt = document.querySelector(selector);
-    if (elt) {
-        elt.click();
-    }
-};
+import {keymap, navigateTo} from './slide';
 
 // XXX With Firefox, we can smooth the scrolling
-const isFirefox =  typeof InstallTrigger !== 'undefined';
+const isFirefox = typeof InstallTrigger !== 'undefined';
 if (isFirefox) {
     const main = document.querySelector('main');
-    if(main) {
+    if (main) {
         // scroll-behavior: smooth
         main.style.scrollBehavior = 'smooth';
     }
@@ -21,34 +14,53 @@ if (isFirefox) {
 const prevSelector = "section:target .previous a";
 const nextSelector = "section:target .next a";
 
-const previousSlide = () => navigateTo(prevSelector);
-const nextSlide = () => navigateTo(nextSelector);
 const home = () => navigateTo("section.cover");
+
+// const previousSlide = () => navigateTo(prevSelector);
+// const nextSlide = () => navigateTo(nextSelector);
+
 const nextStep = () => {
     const currentStepSlide = document.querySelector('section.steps:target');
     if (currentStepSlide) {
         const current = currentStepSlide.querySelector('.step-current');
         const next = currentStepSlide.querySelector(!current ? '.step' : '.step-current ~ .step');
-        if (next) {
-            if (current) {
-                current.classList.toggle('step-current');
-                current.classList.toggle('step-done');
-            }
-            next.classList.toggle('step-current');
-        } else {
-            // no more step, go to next slide
-            navigateTo(nextSelector)
+        // console.debug('nextStep', {current, next});
+        if (current) {
+            current.classList.toggle('step-current');
+            current.classList.toggle('step-done');
         }
+        next ? next.classList.toggle('step-current') : navigateTo(nextSelector);
     } else {
         // no step, go to next slide
         navigateTo(nextSelector)
+    }
+};
+const previousStep = () => {
+    const currentStepSlide = document.querySelector('section.steps:target');
+    if (currentStepSlide) {
+        const current = currentStepSlide.querySelector('.step-current');
+        const done = currentStepSlide.querySelectorAll('.step-done');
+        const previous = done && done[done.length - 1];
+        // console.debug('previousStep', {current, previous});
+        if (current) {
+            current.classList.toggle('step-current');
+        }
+        if (previous) {
+            previous.classList.toggle('step-current');
+            previous.classList.toggle('step-done');
+        } else {
+            navigateTo(prevSelector);
+        }
+    } else {
+        // no step, go to next slide
+        navigateTo(prevSelector)
     }
 };
 
 // Register handlers
 keymap({
     ArrowRight: nextStep,
-    ArrowLeft: previousSlide,
+    ArrowLeft: previousStep,
     Space: nextStep,
     Home: home
 });

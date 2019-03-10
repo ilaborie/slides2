@@ -1,4 +1,4 @@
-import {navigateTo} from './navigate';
+import {keymap, navigateTo} from './slide';
 
 const getToc = () => {
     const tocMenu = document.querySelector("body > .toc-menu");
@@ -46,3 +46,12 @@ const buildToc = () => {
 };
 
 buildToc();
+
+keymap({
+    Escape: () => {
+        const tocGrid = document.getElementById('tocGrid');
+        if (tocGrid) {
+            tocGrid.checked = !tocGrid.checked;
+        }
+    }
+});

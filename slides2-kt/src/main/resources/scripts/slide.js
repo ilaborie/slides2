@@ -6,7 +6,20 @@ export const keymap = mapping => {
             if (mapping[code]) {
                 mapping[code](event);
                 event.stopPropagation();
+            // } else {
+            //     console.debug('Skipped', {code});
             }
         }
     });
 };
+
+export const navigateTo = (selector) => {
+    const elt = document.querySelector(selector);
+    if (elt) {
+        elt.click();
+    }
+};
+
+export function defer(delay = 0) {
+    return fun => setTimeout(fun, delay);
+}

@@ -17,5 +17,5 @@ object NavigatePlugin : WebPlugin {
     override fun scripts(): List<Script> =
         listOf(
             module("./navigate.js"),
-            module("./keymap.js"))
+            module("./slide.js"))
 }
