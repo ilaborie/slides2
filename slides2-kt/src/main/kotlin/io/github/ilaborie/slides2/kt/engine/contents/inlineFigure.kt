@@ -63,7 +63,9 @@ object InlineFigureHtmlRenderer : Renderer<InlineFigure> {
             } ?: ""
 
             """<figure${content.classes.asHtmlClass}>
-                |<svg><use xlink:href="#${content.xref}"/></svg>
+                |<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                |  <use xlink:href="#${content.xref}"/>
+                |</svg>
                 |$copyright
                 |<figcaption>${content.title}</figcaption>
                 |</figure>""".trimMargin()

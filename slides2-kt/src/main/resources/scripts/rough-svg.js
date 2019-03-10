@@ -1,3 +1,5 @@
+// See https://github.com/pshihn/rough/
+
 const defaultOptions = {
     roughness: 2,
     fillWeight: 1.5,
