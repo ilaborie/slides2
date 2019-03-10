@@ -1,18 +1,29 @@
-// Navigation
-const clickOn = selector => {
-    const btn = document.querySelector(selector);
-    if (btn) {
-        btn.click();
-        scrollTo(btn.hash);
+import {keymap} from './keymap';
+
+export const navigateTo = (selector) => {
+    const elt = document.querySelector(selector);
+    if (elt) {
+        elt.click();
     }
 };
 
+// XXX With Firefox, we can smooth the scrolling
+const isFirefox =  typeof InstallTrigger !== 'undefined';
+if (isFirefox) {
+    const main = document.querySelector('main');
+    if(main) {
+        // scroll-behavior: smooth
+        main.style.scrollBehavior = 'smooth';
+    }
+}
+
+// Navigation
 const prevSelector = "section:target .previous a";
 const nextSelector = "section:target .next a";
 
-const previousSlide = () => clickOn(prevSelector);
-const nextSlide = () => clickOn(nextSelector);
-const home = () => clickOn("section.cover");
+const previousSlide = () => navigateTo(prevSelector);
+const nextSlide = () => navigateTo(nextSelector);
+const home = () => navigateTo("section.cover");
 const nextStep = () => {
     const currentStepSlide = document.querySelector('section.steps:target');
     if (currentStepSlide) {
@@ -26,46 +37,23 @@ const nextStep = () => {
             next.classList.toggle('step-current');
         } else {
             // no more step, go to next slide
-            clickOn(nextSelector)
+            navigateTo(nextSelector)
         }
     } else {
         // no step, go to next slide
-        clickOn(nextSelector)
+        navigateTo(nextSelector)
     }
 };
 
 // Register handlers
-const keys = {
-    ArrowRight: nextSlide,
+keymap({
+    ArrowRight: nextStep,
     ArrowLeft: previousSlide,
     Space: nextStep,
     Home: home
-};
-
-// listen events
-document.addEventListener('keydown', event => {
-    if (event.target.type !== 'textarea') {
-        const {code} = event;
-        if (keys[code]) {
-            keys[code](event);
-            event.stopPropagation()
-        }
-    }
 });
 
-const scrollTo = (selector) => {
-    if (selector) {
-        const currentSlide = document.querySelector(selector);
-        if (currentSlide) {
-            currentSlide.scrollIntoView({behavior: "smooth"});
-        }
-    }
-};
+// FIXME Current page (hack for Chrome ???)
 
-// Current page (hack for Chrome ???)
-setTimeout(() => scrollTo(document.location.hash), 500);
-
-window.addEventListener('popstate', () => {
-    const {hash} = document.location;
-    scrollTo(hash)
-});
+// setTimeout(() => navigateTo(document.location.hash), 1000);
+navigateTo(`a[href='${document.location.hash}']`);

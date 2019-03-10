@@ -1,6 +1,7 @@
 package io.github.ilaborie.slides2.kt.engine.plugins
 
 import io.github.ilaborie.slides2.kt.engine.Script
+import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
 
 
 object RoughSvgPlugin : WebPlugin {
@@ -9,7 +10,7 @@ object RoughSvgPlugin : WebPlugin {
 
     override fun scripts(): List<Script> =
         listOf(
-            Script("$cloudfare/rough.js/3.0.0/rough.js", async = false, module = false, defer = false),
-            Script("./rough-svg.js", async = false, module = false, defer = false)
+            script("$cloudfare/rough.js/3.0.0/rough.js"),
+            script("./rough-svg.js")
         )
 }

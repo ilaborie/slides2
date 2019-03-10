@@ -1,3 +1,5 @@
+import {navigateTo} from './navigate';
+
 const getToc = () => {
     const tocMenu = document.querySelector("body > .toc-menu");
     tocMenu.innerHTML = `
@@ -9,11 +11,10 @@ const getToc = () => {
     return tocMenu;
 };
 
-
 const buildToc = () => {
     const tocMenu = getToc();
     let slides = Array.from(document.querySelectorAll("main > section"));
-    // if (slides.length) {
+
     tocMenu.querySelector('ul').innerHTML =
         slides.map(elt => {
             const classes =
@@ -37,7 +38,7 @@ const buildToc = () => {
         slide.addEventListener('click', () => {
             if (tocGrid && tocGrid.checked) {
                 tocGrid.checked = false;
-                slide.scrollIntoView({behavior: "smooth"});
+                navigateTo(`a[href='${slide.id}']`);
             }
             return false;
         })

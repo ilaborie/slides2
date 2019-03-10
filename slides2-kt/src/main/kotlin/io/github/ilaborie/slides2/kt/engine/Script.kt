@@ -2,9 +2,9 @@ package io.github.ilaborie.slides2.kt.engine
 
 data class Script(
     val src: String,
-    val defer: Boolean = true,
-    val module: Boolean = true,
-    val async: Boolean = false
+    val defer: Boolean,
+    val module: Boolean,
+    val async: Boolean
 ) {
     private val tags: String by lazy {
         var base = ""
@@ -23,4 +23,15 @@ data class Script(
 
     fun asHtml(): String =
         """<script $tags src="$src"></script>"""
+
+    companion object {
+        fun module(src: String): Script =
+                Script(src = src, defer = false, module = true, async = false)
+        fun async(src: String): Script =
+                Script(src = src, defer = false, module = false, async = true)
+        fun defer(src: String): Script =
+                Script(src = src, defer = true, module = false, async = false)
+        fun script(src: String): Script =
+                Script(src = src, defer = false, module = false, async = false)
+    }
 }

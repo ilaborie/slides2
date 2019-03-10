@@ -3,5 +3,16 @@ main {
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  scroll-behavior: smooth;
+  position: relative;
 }
+
+// XXX
+// Chrome does not scroll correctly with this scroll behavior feature
+// So I use an ugly JS browser detection instead
+// `const isFirefox =  typeof InstallTrigger !== 'undefined';`
+
+//@supports (scroll-behavior: smooth) {
+//  main {
+//    scroll-behavior: smooth;
+//  }
+//}

@@ -27,15 +27,16 @@ setTimeout(() => {
 
     const roughing = (selector, createNode) =>
         Array.from(svgElt.querySelectorAll(selector))
-            .forEach(p => p.parentNode.replaceChild(createNode(p), p));
+            .forEach(elt => elt.parentNode.replaceChild(createNode(elt), elt));
 
-    roughing('path', path => roughSvg.path(path.getAttribute('d'), buildOptions(path)));
-    roughing('circle', circle => {
+    roughing('path', path =>
+        roughSvg.path(path.getAttribute('d'), buildOptions(path)));
+
+    roughing('circle', circle =>
         roughSvg.circle(
-            parseInt(p.getAttribute('cx')),
-            parseInt(p.getAttribute('cy')),
-            parseInt(p.getAttribute('r')),
-            buildOptions(circle));
-    });
+            parseInt(circle.getAttribute('cx')),
+            parseInt(circle.getAttribute('cy')),
+            parseInt(circle.getAttribute('r')),
+            buildOptions(circle)));
     // fixme handle other shape: rect, ellipse, polyline, polygon
-}, 100);
+}, 0);

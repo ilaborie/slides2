@@ -1,6 +1,7 @@
 package io.github.ilaborie.slides2.kt.engine.plugins
 
 import io.github.ilaborie.slides2.kt.engine.Script
+import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
 import io.github.ilaborie.slides2.kt.engine.Stylesheet
 
 const val cloudfare = "https://cdnjs.cloudflare.com/ajax/libs"
@@ -25,7 +26,7 @@ class PrismJsPlugin(
                 // plugins
                 plugins.map { "$cloudfare/prism/$version/plugins/$it/prism-$it.min.js" }
                 )
-            .map { Script(it, async = false, module = false, defer = false) }
+            .map { script(it) }
 
     override fun stylesheets(): List<Stylesheet> =
         (listOf("$cloudfare/prism/$version/themes/prism.min.css") +

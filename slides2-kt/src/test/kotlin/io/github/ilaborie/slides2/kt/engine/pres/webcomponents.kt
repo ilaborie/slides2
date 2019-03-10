@@ -94,7 +94,7 @@ val webComponents = pres(
         slide("Choose JavaScript Transpiler", setOf("header-hidden")) {
             h4("Now let's transpile our code")
             ul(steps = true, classes = setOf("bullet")) {
-                // TODO logo
+                // TODO logo ?
                 span("Webpack")
                 span("ParcelJs")
                 span("RollupJs")
@@ -247,10 +247,10 @@ val webComponents = pres(
             barChart(
                 "Web component interoperability support",
                 values = mapOf(
-                    "Angular 6" to 100, // TODO icon
+                    "Angular 6" to 100,
                     "Vue" to 100,
                     "AngularJS" to 100,
-                    "Preact" to 95,
+                    "Preact" to 91,
                     "React" to 71
                 ),
                 factor = { it },

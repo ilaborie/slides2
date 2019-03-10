@@ -58,7 +58,6 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
               |<input id="tocGrid" type="checkbox" class="visually-hidden">
               |<header>
               |${SlideEngine.render(mode, presentation.title)}
-              |<a href="#${presentation.coverSlide.id.id}">📺</a>
               |</header>""".trimMargin()
     }
 

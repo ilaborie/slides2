@@ -120,6 +120,7 @@ body > header {
     margin: .5em;
     border: thin solid currentColor;
     cursor: pointer;
+    transform: none;
 
     &:target {
       box-shadow: 0 0 .1em .25em var(--colSelect);

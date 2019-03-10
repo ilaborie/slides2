@@ -23,12 +23,12 @@ object SlideEngine {
     private val cache: MutableMap<Pair<RenderMode, Presentation>, String> = mutableMapOf()
 
     private val globalScripts: MutableList<Script> = mutableListOf()
-    private val globalStylesheets: MutableList<Stylesheet> = mutableListOf()
-
     val scripts: List<Script>
-        get() = globalScripts
+        get() = globalScripts.distinct()
+
+    private val globalStylesheets: MutableList<Stylesheet> = mutableListOf()
     val stylesheets: List<Stylesheet>
-        get() = globalStylesheets
+        get() = globalStylesheets.distinct()
 
     init {
         // Base
