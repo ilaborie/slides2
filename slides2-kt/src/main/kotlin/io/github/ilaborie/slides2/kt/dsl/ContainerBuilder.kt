@@ -25,7 +25,7 @@ open class ContainerBuilder(internal val input: Folder) {
     fun file(file: String) {
         val extension = file.split(".").last()
         if (!input.exists(file)) {
-            input.writeFile(file) { "TODO fill" }
+            input.writeTextFile(file) { "TODO fill" }
             Notifier.warning {
                 "No file ${Styles.highlight(file)}, it has been created with dummy content"
             }
@@ -185,7 +185,7 @@ open class ContainerBuilder(internal val input: Folder) {
         }
 
         if (!input.exists(file)) {
-            input.writeFile(file) { "TODO fill the source file $language" }
+            input.writeTextFile(file) { "TODO fill the source file $language" }
             Notifier.warning {
                 "No file ${Styles.highlight(file)}, it has been created with dummy content"
             }

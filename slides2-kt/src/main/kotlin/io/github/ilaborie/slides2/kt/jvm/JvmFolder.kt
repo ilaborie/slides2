@@ -28,10 +28,19 @@ class JvmFolder(private val file: File) : Folder {
     override fun exists(filename: String): Boolean =
         resolve(filename).exists()
 
-    override fun writeFile(filename: String, block: () -> String) {
+    override fun lastModified(filename: String): Long =
+        resolve(filename).lastModified()
+
+    override fun writeTextFile(filename: String, block: () -> String) {
         resolve(filename)
             .also { if (it.exists()) info("💾: FS") { "Override file $it" } }
             .writeText(block())
+    }
+
+    override fun writeFile(filename: String, block: () -> ByteArray) {
+        resolve(filename)
+            .also { if (it.exists()) info("💾: FS") { "Override file $it" } }
+            .writeBytes(block())
     }
 
     override fun readFileAsString(filename: String): String =
@@ -43,15 +52,17 @@ class JvmFolder(private val file: File) : Folder {
                 }
             }
 
-    override fun readFileAsBase64(filename: String): String =
+    override fun readFileAsBytes(filename: String): ByteArray =
         resolve(filename)
             .let { file ->
                 bytesCache.computeIfAbsent(filename) {
                     info("💾: FS") { "Read file $filename as Base64" }
                     file.readBytes()
                 }
-                    .readAsBase64()
             }
+
+    override fun readFileAsBase64(filename: String): String =
+        readFileAsBytes(filename).readAsBase64()
 
     override fun resolveAbsolutePath(filename: String): String =
         resolve(filename)

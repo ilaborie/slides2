@@ -12,6 +12,6 @@ class CachingFolder(
         val fileName = "${key.asKey()}.cache"
         return if (folder.exists(fileName)) folder.readFileAsString(fileName)
         else loader(key)
-            .also { folder.writeFile(fileName) { it } }
+            .also { folder.writeTextFile(fileName) { it } }
     }
 }

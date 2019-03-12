@@ -367,6 +367,19 @@ val webComponents = pres(
         }
     }
     part("Conclusion") {
+        slide("Commons Issues") {
+            ul {
+                markdown{"Attribute are `string`"}
+                markdown{"Styling with theme"}
+                markdown{"Browser support"}
+                todo {"others issues"}
+
+                markdown{"Use an external state manager"}
+                markdown{"Use CSS custom properties"}
+                markdown{"Wait, or Electron, or polyfills"}
+                todo {"others alternatives"}
+            }
+        }
         slide("Moderns Alternatives") {
             ul {
                 link("https://skatejs.netlify.com/", "SkateJS")

@@ -31,7 +31,7 @@ fun main() {
     val wcOut = SlideEngine.run(jvmConfig("presentations/WebComponents2019"), webComponents, listOf(devoxxFr19))
 
     JvmFolder("public")
-        .writeFile("data.json") {
+        .writeTextFile("data.json") {
             listOf(demoOut, wcOut).joinToString(", ", "[ ", "]") { it.json }
         }
 }

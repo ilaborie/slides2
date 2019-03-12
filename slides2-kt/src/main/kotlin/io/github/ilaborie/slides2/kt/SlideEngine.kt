@@ -120,7 +120,7 @@ object SlideEngine {
                 // Slides
                 val filename = "index-${theme.name}.html"
                 time("Write to ${Styles.highlight(filename)}") {
-                    folder.writeFile(filename) {
+                    folder.writeTextFile(filename) {
                         cache.computeIfAbsent(Html to this) {
                             renderer.render(this)
                         }
@@ -144,13 +144,11 @@ object SlideEngine {
             .forEach { script ->
                 // lookup input
                 if (config.input.exists(script.src)) {
-                    folder.writeFile(script.src) {
-                        config.input.readFileAsString(script.src)
-                    }
+                    config.input.copyOrUpdate(script.src, config.output)
                 } else {
                     val res = javaClass.getResource("/scripts/${script.src}")
                     res?.also { r ->
-                        folder.writeFile(script.src) {
+                        folder.writeTextFile(script.src) {
                             r.readText()
                         }
                     }
@@ -161,13 +159,13 @@ object SlideEngine {
     private fun Presentation.writePresentationStylesheets(config: Config) {
         val folder = config.output / id.id
         val themeFile = "${theme.name}.css"
-        folder.writeFile(themeFile) {
+        folder.writeTextFile(themeFile) {
             theme.compiled
         }
         if (extraStyle != null) {
             val outputFilename = "$extraStyle.css"
             time("Write to ${Styles.highlight(outputFilename)}") {
-                folder.writeFile(outputFilename) {
+                folder.writeTextFile(outputFilename) {
                     val path = config.input.resolveAbsolutePath("$extraStyle.scss")
                     scssFileToCss(path)
                 }
