@@ -17,7 +17,7 @@
   --col2: var(--colLight);
   --col3: var(--colLight);
 
-  --baseFg: var(--colLight);
+  --baseFg: var(--colDark);
   --partFg: var(--colDark);
   --headerFg: var(--colDark);
   --tocFg: var(--colDark);
@@ -90,7 +90,7 @@ main > section {
     }
 
     blockquote {
-      background-color: hsla(0, 100%, 100%, .1);
+      background-color: rgba(0, 0, 0, .1);
     }
   }
 
@@ -377,6 +377,7 @@ h1 {
 
   td {
     &.y, &.n, &.a, &.p {
+      color: var(--colLight);
       background: var(--caniuse-supported);
     }
   }
@@ -415,6 +416,7 @@ h1 {
 
     td {
       text-align: center;
+      color: var(--colLight);
       &.y {
         background-color: var(--colValid);
       }

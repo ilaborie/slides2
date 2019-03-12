@@ -64,7 +64,7 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
         if (scriptFile.extension != "kts") {
             error { "File '$scriptFile' is not a kotlin script file (*.kts) !" }
         }
-        
+
         Notifier.verbose = verbose
 
         // Configure engine
