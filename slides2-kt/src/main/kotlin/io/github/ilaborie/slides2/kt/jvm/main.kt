@@ -3,16 +3,12 @@ package io.github.ilaborie.slides2.kt.jvm
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.arguments.argument
 import com.github.ajalt.clikt.parameters.options.*
+import com.github.ajalt.clikt.parameters.types.file
 import io.github.ilaborie.slides2.kt.Config
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.PresentationDsl
 import io.github.ilaborie.slides2.kt.engine.Theme
-import io.github.ilaborie.slides2.kt.engine.plugins.PrismJsPlugin
-import io.github.ilaborie.slides2.kt.engine.plugins.RoughSvgPlugin
-import io.github.ilaborie.slides2.kt.engine.plugins.CheckContentPlugin
-import io.github.ilaborie.slides2.kt.engine.plugins.NavigatePlugin
-import io.github.ilaborie.slides2.kt.engine.plugins.Plugin
-import io.github.ilaborie.slides2.kt.engine.plugins.TocPlugin
+import io.github.ilaborie.slides2.kt.engine.plugins.*
 import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.CanIUsePlugin
 import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.TweetPlugin
 import io.github.ilaborie.slides2.kt.term.Notifier
@@ -42,7 +38,7 @@ private val allPlugins: Map<String, Plugin> = mapOf(
 
 object Slides : CliktCommand(name = "build", help = "Build slides") {
 
-    private val script by argument("script", help = "the Kotlin script file (*.kts)")
+    private val script by argument(help = "the Kotlin script file (*.kts)").file(exists = true)
 
     private val output by option("-o", "--output", help = "the output folder")
         .defaultWithMessage("public")
@@ -51,14 +47,14 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
         .multiple(listOf("base"))
 
     private val plugins: List<String> by option("-p", "--plugin", help = "Toggle plugins")
-        .multiple()
+        .multiple(listOf("check", "toc", "navigate", "tweet", "caniuse", "prism", "rough-svg"))
 
     private val engine by lazy {
         ScriptEngineManager().getEngineByExtension("kts")
     }
 
     override fun run() {
-        val scriptFile = File(script)
+        val scriptFile = script
         if (!scriptFile.exists()) {
             error { "File '$scriptFile' does not exists !" }
         }
@@ -70,9 +66,8 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
         plugins
             .map {
                 allPlugins[it] ?: throw IllegalArgumentException(
-                    "No plugin for $it, existing plugins: ${allPlugins.keys.sorted().joinToString(
-                        ", "
-                    )}"
+                    "No plugin for $it, existing plugins: ${allPlugins.keys.sorted()
+                        .joinToString(", ")}"
                 )
             }
             .forEach { SlideEngine.use(it) }

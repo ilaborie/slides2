@@ -6,20 +6,21 @@
   // Companies
   --monkeyBof: #00b0ff;
   --toptal: #3863a0;
+
   --accent: #007bff;
   --slides: green;
   --work: purple;
 
   // Colors
-  --colDark: #212529;
-  --col1: var(--colDark);
-  --col2: var(--colDark);
-  --col3: var(--colDark);
+  //--colDark: #212529;
+  --col1: var(--colLight);
+  --col2: var(--colLight);
+  --col3: var(--colLight);
 
   --baseFg: var(--colLight);
-  --partFg: var(--colLight);
-  --headerFg: var(--colLight);
-  --tocFg: var(--colLight);
+  --partFg: var(--colDark);
+  --headerFg: var(--colDark);
+  --tocFg: var(--colDark);
 
   // Footer
   --footerText: '@julienrenaux @ilaborie #DevoxxFR #webcomponents';

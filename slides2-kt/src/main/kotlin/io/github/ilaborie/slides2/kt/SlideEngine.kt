@@ -12,6 +12,8 @@ import io.github.ilaborie.slides2.kt.engine.plugins.RendererPlugin
 import io.github.ilaborie.slides2.kt.engine.plugins.WebPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
 import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss.scssFileToCss
+import io.github.ilaborie.slides2.kt.term.Notifier
+import io.github.ilaborie.slides2.kt.term.Notifier.info
 import io.github.ilaborie.slides2.kt.term.Notifier.time
 import io.github.ilaborie.slides2.kt.term.Styles
 
@@ -80,6 +82,7 @@ object SlideEngine {
 
     fun use(vararg plugins: Plugin): SlideEngine {
         plugins.forEach { plugin ->
+            info("🧩: plugin") { "using ${plugin.name}" }
             when (plugin) {
                 is ContentPlugin     ->
                     contentPlugins += plugin
@@ -113,7 +116,7 @@ object SlideEngine {
             ?.replace('\n', ' ')
             ?: throw IllegalStateException("No Text renderer found for $content")
 
-    fun Presentation.renderHtml(config: Config, metadata: Map<String, String> = emptyMap()): PresentationOutputInstance =
+    private fun Presentation.renderHtml(config: Config, metadata: Map<String, String> = emptyMap()): PresentationOutputInstance =
         findRenderer(Html, this)
             ?.let { renderer ->
                 val folder = config.output / id.id
@@ -178,7 +181,10 @@ object SlideEngine {
         val instances = time("Generate all `${pres.sTitle}`") {
             with(SlideEngine) {
                 themes
-                    .map { pres.copy(theme = it) }
+                    .map {
+                        info("🎨: theme") { "using ${it.name}" }
+                        pres.copy(theme = it)
+                    }
                     .map { it.renderHtml(config) }
             }
         }
