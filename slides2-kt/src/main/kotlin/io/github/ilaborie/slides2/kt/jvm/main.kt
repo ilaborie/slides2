@@ -49,9 +49,12 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
     private val plugins: List<String> by option("-p", "--plugin", help = "Toggle plugins")
         .multiple(listOf("check", "toc", "navigate", "tweet", "caniuse", "prism", "rough-svg"))
 
+    private val verbose by option("-v", "--verbose", help = "verbose mode").flag(default = false)
+
     private val engine by lazy {
         ScriptEngineManager().getEngineByExtension("kts")
     }
+
 
     override fun run() {
         val scriptFile = script
@@ -61,6 +64,8 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
         if (scriptFile.extension != "kts") {
             error { "File '$scriptFile' is not a kotlin script file (*.kts) !" }
         }
+        
+        Notifier.verbose = verbose
 
         // Configure engine
         plugins

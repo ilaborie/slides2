@@ -5,12 +5,16 @@ object Notifier {
 
     var level = 0
 
+    var verbose: Boolean = false;
+
     private fun display(message: String, level: Int = this.level) {
         println(" ".repeat(level) + message)
     }
 
     fun debug(label: String? = null, message: () -> String) {
-        display(Styles.debug(label ?: "Debug") + " " + message())
+        if (verbose) {
+            display(Styles.debug(label ?: "Debug") + " " + message())
+        }
     }
 
     fun info(label: String? = null, message: () -> String) {

@@ -2,7 +2,6 @@ package io.github.ilaborie.slides2.kt.jvm
 
 import io.github.ilaborie.slides2.kt.Folder
 import io.github.ilaborie.slides2.kt.term.Notifier.debug
-import io.github.ilaborie.slides2.kt.term.Notifier.info
 import java.io.File
 
 
@@ -33,13 +32,13 @@ class JvmFolder(private val file: File) : Folder {
 
     override fun writeTextFile(filename: String, block: () -> String) {
         resolve(filename)
-            .also { if (it.exists()) info("💾: FS") { "Override file $it" } }
+            .also { if (it.exists()) debug("💾: FS") { "Override file $it" } }
             .writeText(block())
     }
 
     override fun writeFile(filename: String, block: () -> ByteArray) {
         resolve(filename)
-            .also { if (it.exists()) info("💾: FS") { "Override file $it" } }
+            .also { if (it.exists()) debug("💾: FS") { "Override file $it" } }
             .writeBytes(block())
     }
 
@@ -47,7 +46,7 @@ class JvmFolder(private val file: File) : Folder {
         resolve(filename)
             .let { file ->
                 stringCache.computeIfAbsent(filename) {
-                    info("💾: FS") { "Read file $filename" }
+                    debug("💾: FS") { "Read file $filename" }
                     file.readText()
                 }
             }
@@ -56,7 +55,7 @@ class JvmFolder(private val file: File) : Folder {
         resolve(filename)
             .let { file ->
                 bytesCache.computeIfAbsent(filename) {
-                    info("💾: FS") { "Read file $filename as Base64" }
+                    debug("💾: FS") { "Read file $filename as Base64" }
                     file.readBytes()
                 }
             }
