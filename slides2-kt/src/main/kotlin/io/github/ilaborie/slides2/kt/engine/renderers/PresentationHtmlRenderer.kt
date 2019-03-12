@@ -52,9 +52,23 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
             )
         }
 
+        val tocMenu = presentation.allSlides.joinToString("\n") { slide ->
+            val classes = when {
+                slide.isCover -> " class=\"cover\""
+                slide.isPart  -> " class=\"part\""
+                else          -> ""
+            }
+            """<li$classes><a href="#${slide.id.id}">$slide</a></li>"""
+        }
+
         // FIXME generate nav !
         return """$innerSvg
-              |<nav class="toc-menu no-print"></nav>
+              |<nav class="toc-menu no-print">
+              |  <label for="tocGrid" class="grid"></label>
+              |  <input id="tocToggle" type="checkbox" class="visually-hidden">
+              |  <label for="tocToggle" class="toggle"></label>
+              |  <ul>$tocMenu</ul>
+              |</nav>
               |<input id="tocGrid" type="checkbox" class="visually-hidden">
               |<header>
               |${SlideEngine.render(mode, presentation.title)}

@@ -12,7 +12,7 @@ class SlideBuilder(partDsl: PartBuilder) : ContainerBuilder(partDsl.presentation
         return Slide(
             id = id,
             title = title,
-            styles = styles + (if (contents.any { it.steps }) setOf("steps") else emptySet()),
+            classes = styles + (if (contents.any { it.steps }) setOf("steps") else emptySet()),
             content = contents
         )
     }

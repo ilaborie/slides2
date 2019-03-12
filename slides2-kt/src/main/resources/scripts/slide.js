@@ -16,6 +16,7 @@ export const keymap = mapping => {
 export const navigateTo = (selector) => {
     const elt = document.querySelector(selector);
     if (elt) {
+        // console.debug('navigateTo', elt);
         elt.click();
     }
 };

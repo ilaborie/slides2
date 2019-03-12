@@ -23,7 +23,7 @@ object SlideHtmlRenderer : Renderer<Slide> {
                   |  ${content.next?.let { """<a href="#${it.id}" aria-label="next slide"></a>""" } ?: ""}
                   |</nav>""".trimMargin()
 
-            """<section id="${content.id.id}"${content.styles.asHtmlClass}>
+            """<section id="${content.id.id}"${content.classes.asHtmlClass}>
               |  <header>
               |${render(mode, content.title).prependIndent("    ")}
               |  </header>

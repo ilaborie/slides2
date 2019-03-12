@@ -20,7 +20,7 @@ data class Presentation(
     val coverSlide: Slide = Slide(
         id = Id("${id.id}_cover"),
         title = title,
-        styles = setOf("cover", "header-hidden"),
+        classes = setOf("cover", "header-hidden"),
         content = listOf(title)
     )
 

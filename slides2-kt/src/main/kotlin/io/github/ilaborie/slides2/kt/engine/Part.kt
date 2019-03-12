@@ -1,7 +1,6 @@
 package io.github.ilaborie.slides2.kt.engine
 
 import io.github.ilaborie.slides2.kt.SlideEngine
-import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
 
 /**
  * A Part
@@ -18,7 +17,7 @@ data class Part(
         Slide(
             id = Id("${id.id}_part"),
             title = title,
-            styles = setOf("header-hidden", "part"),
+            classes = setOf("header-hidden", "part"),
             content = listOf(title)
         )
     }
