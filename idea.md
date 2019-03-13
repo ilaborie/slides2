@@ -1,52 +1,16 @@
 Brainstorming IDEA
 ===
 
-Kotlin DSL
----
-
-### [P0] Plugin architecture
-
-- Should add a custom Content
-- Should define a specific render for a Content
-
-- Could add JS 
-
-[P0] Some basic plugins:
-
-* From external HTML
-* From external MD
-* Quote
-* Figure
-* List (ul, li, def)
-* Paragraph
-* StyledText (strong, emphasis, block)
-* Link
-* Table
-* Theme & Custom CSSmod
-* Notice
-* BasicJs (allow Js Plugin)
-  * JS keyboard navigation
-  * Navbar (part, slides, nb)
-  * Welcome View
-
-
-// Table
-// Welcome View
 
 [P1]
 
-* Source Code
-  * PrismJS <https://prismjs.com/>
-  * CarbonNow <https://github.com/mixn/carbon-now-cli#readme>
-  * highlight.js <https://highlightjs.org/>
 * Embedded Code Editor
   * Web <https://stackblitz.com>
   * Scala <https://scastie.scala-lang.org/>
   * Kotlin <https://github.com/JetBrains/kotlin-playground>, <https://jetbrains.github.io/kotlin-playground/examples/>
   * Java <https://repl.it/languages/java>
-  * Monaco editor
+  * Monaco editor for other
 * In Place CSS live code
-* CanIUse Compatibility
 
 [P2]
 
@@ -61,19 +25,6 @@ Kotlin DSL
 
 * UML with <http://plantuml.com/fr/>
 * Giphy
-
-### [P1] CLI Usage
-
-See <https://github.com/ajalt/clikt>
-
-
-### [P0] Highly configurable
-
-
-Presentation
- - Input
- - Output Dir `<id>/<theme>.html`
- - DRAFT
 
 ### [P2] Multi-platform ?
 
@@ -113,15 +64,6 @@ fn main() {
 }
 ```
 
-### [P1] Build SCSS
-
-<https://crates.io/crates/sass-sys>
-
-### [P2] Code to HTML 
-
-Maybe use do it in Kotlin
-Maybe use the <https://github.com/firecracker-microvm/firecracker>
-
 ### [P2] Fetch compatibility data from caniuse
 
 Maybe do in Kotlin
@@ -141,80 +83,11 @@ fn main() -> Result<(), Box<std::error::Error>> {
 }
 ```
 
-### [P1] HTML to PDF
-
-<https://github.com/anowell/wkhtmltopdf-rs>
-<https://wkhtmltopdf.org/>
-
-```rust
-let html = r#"<html><body><div>foo</div></body></html>"#;
-let mut pdf_app = PdfApplication::new().expect("Failed to init PDF application");
-let mut pdfout = pdf_app.builder()
-  .orientation(Orientation::Landscape)
-  .margin(Size::Inches(2))
-  .title("Awesome Foo")
-  .build_from_html(&html)
-  .expect("failed to build pdf");
-
-pdfout.save("foo.pdf").expect("failed to save foo.pdf");
-println!("generated PDF saved as: foo.pdf");
-```
-
-### [P0] MD to HTML
-
-<https://crates.io/crates/pulldown-cmark>
-
-```rust
-use pulldown_cmark::{html, Parser};
-
-let markdown_str = r#"
-hello
-=====
-
-* alpha
-* beta
-"#;
-let parser = Parser::new(markdown_str);
-
-let mut html_buf = String::new();
-html::push_html(&mut html_buf, parser);
-
-assert_eq!(html_buf, r#"<h1>hello</h1>
-<ul>
-<li>alpha</li>
-<li>beta</li>
-</ul>
-"#);
-```
 
 ### [P2] Eval code
 
 Today: transpile TS to JS, eval are done in browser
 Maybe just use <https://github.com/firecracker-microvm/firecracker>
-
-
-HTML Slides
----
-
-`styles.css`, `theme-*.css`, `prez-*.css`
-
-### [P1] Optimization compression
-
-* <https://parceljs.org/>
-
-* Maybe create a custom Asset for Slides
-
-
-### [P0] Slide Engine
-
-
-Maybe replace transition with  
-
-```css
-.slides {
-  scroll-behavior: smooth;
-}
-``` 
 
 ### [P1] a11
 

@@ -59,3 +59,9 @@ val shadowJar: ShadowJar by tasks
 tasks.withType<Assemble> {
     dependsOn(shadowJar)
 }
+
+task("webComponent19", type = JavaExec::class) {
+    dependsOn("assemble")
+    classpath = sourceSets["test"].runtimeClasspath
+    main = "io.github.ilaborie.slides2.kt.engine.TestKt"
+}
