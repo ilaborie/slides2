@@ -1,10 +1,8 @@
 package io.github.ilaborie.slides2.kt.engine
 
-import demo
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.devoxxFr19
 import io.github.ilaborie.slides2.kt.engine.plugins.*
-import io.github.ilaborie.slides2.kt.jvm.JvmFolder
 import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.CanIUsePlugin
 import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.TweetPlugin
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
@@ -17,7 +15,7 @@ fun main() {
         .use(TocPlugin, NavigatePlugin, GridPlugin)
         .use(TweetPlugin, CanIUsePlugin)
         .use(
-            PrismJsPlugin(showLines = false),
+            PrismJsPlugin(showLines = false, languages = listOf("typescript")),
             RoughSvgPlugin
         )
 

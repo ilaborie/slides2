@@ -138,7 +138,7 @@ object CodeHtmlRenderer : Renderer<Code> {
 
     override fun render(content: Code): String =
         """<pre>
-            |<code class="lang-${content.language}">${content.code}</code>
+            |<code class="lang-${content.language}">${content.code.escapeHtml()}</code>
             |</pre>""".trimMargin()
 }
 

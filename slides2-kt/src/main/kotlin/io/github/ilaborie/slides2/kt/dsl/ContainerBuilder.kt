@@ -178,6 +178,7 @@ open class ContainerBuilder(internal val input: Folder) {
             "smali"     -> "java"
             "kt"        -> "kotlin"
             "ts"        -> "typescript"
+            "tsx"       -> "typescript"
             "js"        -> "javascript"
             "sh"        -> "bash"
             "re"        -> "reason"

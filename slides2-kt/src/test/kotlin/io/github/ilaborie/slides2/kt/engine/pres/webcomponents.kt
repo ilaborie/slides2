@@ -185,6 +185,9 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             inlineFigure("img/webcomponents/HTML-templates.svg", "HTML templates")
             quote("Give the ability to create reusable piece of HTML that can be used at runtime")
         }
+        slide("Natif code", setOf("header-hidden")) {
+            sourceCode("code/natif.js")
+        }
         slide("Browser support", setOf("header-hidden")) {
             caniuse("Browser support",
                     features = listOf("custom-elementsv1", "shadowdomv1", "template"),
@@ -251,10 +254,9 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
         }
     }
     part(partTitle = { stencilTitle() }, id = "stenciljs_part") {
-
         slide("What", setOf("header-hidden")) {
             ul(steps = true) {
-                markdown { "**Open Source** project" }
+                markdown { "**Open Source** project, [MIT License](https://github.com/ionic-team/stencil/blob/master/LICENSE)" }
                 markdown { "Created by the **Ionic Team** in 2017" }
                 markdown { "4.9k ⭐️ on github" }
             }
@@ -330,10 +332,50 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
                 |   component     Collection of web components that can be used anywhere""".trimMargin()
             }
         }
+        slide("stencil code", setOf("header-hidden")) {
+            sourceCode("code/stencil.tsx")
+        }
     }
     part(partTitle = { litElementTitle() }, id = "lit-element_part") {
-        slide("TODO") {
-            todo { "idea" } // TODO
+        slide("What-Lit", setOf("header-hidden")) {
+            ul(steps = true) {
+                markdown { "**Open Source** project, [BSD 3-Clause License](https://github.com/Polymer/lit-element/blob/master/LICENSE)" }
+                markdown { "Created by the **Polymer Team** in 2017" }
+                markdown { "1.7k ⭐️ on github" }
+            }
+        }
+        slide("Close-to", setOf("header-hidden")) {
+            h4("Close to other lightweight WebComponent frameworks")
+            ul {
+                link("https://stenciljs.com/", "Stencil")
+                link("https://skatejs.netlify.com/", "SkateJS")
+                link("https://svelte.technology/", "Svelte")
+                link("http://slimjs.com", "Slim.js")
+            }
+        }
+        slide("Templating", setOf("header-hidden")) {
+            h4("Using the lit-html templating library")
+            link("https://lit-html.polymer-project.org/")
+            ul {
+                markdown {"built on **HTML templates**"}
+                markdown { "with the ES2015 [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)"
+                }
+            }
+        }
+        slide("lit-html", setOf("header-hidden")) {
+            sourceCode("code/lit-html.js")
+        }
+        slide("lit-elements in JS", setOf("header-hidden")) {
+            markdown { "Just extend the `LitElement` class" }
+            sourceCode("code/lit-element.js")
+        }
+        slide("lit-elements in TS", setOf("header-hidden")) {
+            markdown { "Also can use Typescript with **decorators**" }
+            sourceCode("code/lit-element.ts")
+        }
+        slide("lit-elements Support", setOf("header-hidden")) {
+            p("The last 2 versions of all modern browsers are supported, including Chrome, Safari, Opera, Firefox, Edge. In addition, Internet Explorer 11 is also supported.")
+            p("Edge and Internet Explorer 11 require the web components polyfills.")
         }
     }
     part("Workshop") {
