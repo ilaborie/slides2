@@ -21,17 +21,25 @@ data class Script(
         base
     }
 
+    val localSrc: String by lazy {
+        if (src.startsWith("http")) "./" + src.split("/").last() else src
+    }
+
     fun asHtml(): String =
-        """<script $tags src="$src"></script>"""
+        """<script $tags src="$localSrc"></script>"""
+
 
     companion object {
         fun module(src: String): Script =
-                Script(src = src, defer = false, module = true, async = false)
+            Script(src = src, defer = false, module = true, async = false)
+
         fun async(src: String): Script =
-                Script(src = src, defer = false, module = false, async = true)
+            Script(src = src, defer = false, module = false, async = true)
+
         fun defer(src: String): Script =
-                Script(src = src, defer = true, module = false, async = false)
+            Script(src = src, defer = true, module = false, async = false)
+
         fun script(src: String): Script =
-                Script(src = src, defer = false, module = false, async = false)
+            Script(src = src, defer = false, module = false, async = false)
     }
 }

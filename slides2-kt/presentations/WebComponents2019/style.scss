@@ -179,6 +179,7 @@ h1 {
     padding: 3em .5em;
 
     &::before, &::after {
+      color: var(--colDark);
       position: absolute;
       font-family: var(--font-mono);
       content: var(--textAt);

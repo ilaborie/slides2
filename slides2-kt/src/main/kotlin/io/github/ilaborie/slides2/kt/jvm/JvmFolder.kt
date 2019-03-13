@@ -2,13 +2,22 @@ package io.github.ilaborie.slides2.kt.jvm
 
 import io.github.ilaborie.slides2.kt.Folder
 import io.github.ilaborie.slides2.kt.term.Notifier.debug
+import io.github.ilaborie.slides2.kt.utils.CachingFolder
 import java.io.File
+import java.net.URL
 
 
 class JvmFolder(private val file: File) : Folder {
 
     private val stringCache: MutableMap<String, String> = mutableMapOf()
     private val bytesCache: MutableMap<String, ByteArray> = mutableMapOf()
+
+    // Need lazy to avoid stackOverflow
+    private val urlCache: CachingFolder by lazy {
+        CachingFolder(JvmFolder(".cache/url")) { url ->
+            URL(url).readText()
+        }
+    }
 
     constructor(path: String) : this(File(path))
 
@@ -41,6 +50,14 @@ class JvmFolder(private val file: File) : Folder {
             .also { if (it.exists()) debug("💾: FS") { "Override file $it" } }
             .writeBytes(block())
     }
+
+    override fun writeUrlContent(url: String) {
+        val filename = url.split("/").last()
+        writeTextFile(filename) {
+            urlCache[url]
+        }
+    }
+
 
     override fun readFileAsString(filename: String): String =
         resolve(filename)

@@ -29,13 +29,11 @@ interface Folder {
 
     fun writeTextFile(filename: String, block: () -> String)
     fun writeFile(filename: String, block: () -> ByteArray)
+    fun writeUrlContent(url: String)
 
     fun readFileAsString(filename: String): String
-
     fun readFileAsBytes(filename: String): ByteArray
-
     fun readFileAsBase64(filename: String): String
-
     fun readFileAsDataUri(src: String): String =
         if (exists(src)) {
             val extension = src.split(".").last()
@@ -48,6 +46,7 @@ interface Folder {
             }
             "data:$mimeType,${readFileAsBase64(src)}"
         } else src
+
 
 }
 

@@ -141,20 +141,22 @@ object SlideEngine {
     private fun Presentation.writePresentationScripts(config: Config) {
         val folder = config.output / id.id
 
-        info("⚙️") { "global script ${globalScripts.joinToString(", ") { Styles.highlight(it.src) }}" }
+        info("⚙️") { "global script ${globalScripts.joinToString(", ") { Styles.highlight(it.localSrc) }}" }
         globalScripts
-            .filterNot { it.src.startsWith("http") }
             .forEach { script ->
                 // lookup input
-                if (config.input.exists(script.src)) {
-                    config.input.copyOrUpdate(script.src, config.output)
-                } else {
-                    val res = javaClass.getResource("/scripts/${script.src}")
-                    res?.also { r ->
-                        folder.writeTextFile(script.src) {
-                            r.readText()
-                        }
-                    }
+                when {
+                    script.src.startsWith("http")   ->
+                        (config.output / id.id).writeUrlContent(script.src)
+                    config.input.exists(script.src) ->
+                        config.input.copyOrUpdate(script.src, config.output)
+                    else                            ->
+                        javaClass.getResource("/scripts/${script.src}")
+                            ?.also { r ->
+                                folder.writeTextFile(script.src) {
+                                    r.readText()
+                                }
+                            }
                 }
             }
     }
@@ -173,6 +175,12 @@ object SlideEngine {
             folder.writeTextFile(outputFilename) {
                 val path = config.input.resolveAbsolutePath("$extraStyle.scss")
                 scssFileToCss(path)
+            }
+        }
+        if (globalStylesheets.isNotEmpty()) {
+            info("⚙️") { "global stylesheet ${globalStylesheets.joinToString(", ") { Styles.highlight(it.localHref) }}" }
+            globalStylesheets.forEach {
+                (config.output / id.id).writeUrlContent(it.href)
             }
         }
     }
