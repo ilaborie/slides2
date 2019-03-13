@@ -1,3 +1,4 @@
+import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.markdown
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.contents.BarChart.Companion.BarChartCustom
@@ -12,20 +13,7 @@ import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.tweet
 
 // https://shprink.github.io/talks/2018/web_component_native_vs_stenciljs
 
-val webComponents = pres(
-    id = "webComponents-19",
-    extraStyle = "style",
-    title = {
-        h1("Web Components")
-        ul(classes = setOf("list-inline")) {
-            listOf(
-                inlineFigure("logos/web-components.svg", "Natif"),
-                inlineFigure("logos/stencil.svg", "StencilJS"),
-                figure("logos/lit-element.svg", "LitElement")
-            )
-        }
-    }
-) {
+val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = { mainTitle() }) {
     part("Introduction", skipHeader = true) {
         slide("Speakers", setOf("header-hidden")) {
             speaker(
@@ -55,12 +43,11 @@ val webComponents = pres(
             ul(classes = setOf("list-inline")) {
                 span("Slides & Installation")
                 span("Workshop")
-                span("⏸")
+                span("🌭")
                 span("Workshop")
                 span("Conclusion")
                 span("...")
             }
-            todo { "fix hours" } // TODO
         }
         slide("Instructions") {
             todo { "Installation instructions, Wifi" } // TODO
@@ -170,10 +157,7 @@ val webComponents = pres(
             }
         }
     }
-    part(partTitle = {
-        h2("Web Components")
-        inlineFigure("logos/web-components.svg", "Web Components")
-    }, id = "web_components_part") {
+    part(partTitle = { webComponentTitle() }, id = "web_components_part") {
         slide("History", setOf("header-hidden")) {
             ul {
                 markdown { "Specs from **World Wide Web Consortium** (W3C)" }
@@ -266,11 +250,7 @@ val webComponents = pres(
             link("https://custom-elements-everywhere.com/")
         }
     }
-    part(partTitle = {
-        h2("StencilJS")
-        figure("logos/stencil.gif", "StencilJS")
-        link("https://stenciljs.com/")
-    }, id = "stenciljs_part") {
+    part(partTitle = { stencilTitle() }, id = "stenciljs_part") {
 
         slide("What", setOf("header-hidden")) {
             ul(steps = true) {
@@ -351,11 +331,7 @@ val webComponents = pres(
             }
         }
     }
-    part(partTitle = {
-        h2("Lit-Elements")
-        figure("logos/lit-element.svg", "LitElement")
-        link("https://lit-element.polymer-project.org/")
-    }, id = "lit-element_part") {
+    part(partTitle = { litElementTitle() }, id = "lit-element_part") {
         slide("TODO") {
             todo { "idea" } // TODO
         }
@@ -369,15 +345,15 @@ val webComponents = pres(
     part("Conclusion") {
         slide("Commons Issues") {
             ul {
-                markdown{"Attribute are `string`"}
-                markdown{"Styling with theme"}
-                markdown{"Browser support"}
-                todo {"others issues"}
+                markdown { "Attribute are `string`" }
+                markdown { "Styling with theme" }
+                markdown { "Browser support" }
+                todo { "others issues" }
 
-                markdown{"Use an external state manager"}
-                markdown{"Use CSS custom properties"}
-                markdown{"Wait, or Electron, or polyfills"}
-                todo {"others alternatives"}
+                markdown { "Use an external state manager" }
+                markdown { "Use CSS custom properties" }
+                markdown { "Wait, or Electron, or polyfills" }
+                todo { "others alternatives" }
             }
         }
         slide("Moderns Alternatives") {
@@ -389,5 +365,33 @@ val webComponents = pres(
             }
         }
         slide("End") { p("Thanks") }
+    }
+}
+
+private fun ContainerBuilder.litElementTitle() {
+    h2("Lit-Elements")
+    figure("logos/lit-element.svg", "LitElement")
+    link("https://lit-element.polymer-project.org/")
+}
+
+private fun ContainerBuilder.stencilTitle() {
+    h2("StencilJS")
+    inlineFigure("logos/stencil.svg", "StencilJS")
+    link("https://stenciljs.com/")
+}
+
+private fun ContainerBuilder.webComponentTitle() {
+    h2("Web Components")
+    inlineFigure("logos/web-components.svg", "Web Components")
+}
+
+private fun ContainerBuilder.mainTitle() {
+    h1("Web Components")
+    ul(classes = setOf("list-inline")) {
+        listOf(
+            inlineFigure("logos/web-components.svg", "Natif"),
+            inlineFigure("logos/stencil.svg", "StencilJS"),
+            figure("logos/lit-element.svg", "LitElement")
+        )
     }
 }

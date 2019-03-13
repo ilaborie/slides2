@@ -6,12 +6,11 @@ import io.github.ilaborie.slides2.kt.engine.Stylesheet
 
 const val cloudfare = "https://cdnjs.cloudflare.com/ajax/libs"
 
-
 // See https://prismjs.com/
 class PrismJsPlugin(
-    val languages: List<String> = emptyList(), // see <https://prismjs.com/#languages-list>
-    val theme: String? = null,
-    val version: String = "1.15.0",
+    private val languages: List<String> = emptyList(), // see <https://prismjs.com/#languages-list>
+    private val theme: String? = null,
+    private val version: String = "1.15.0",
     showLines: Boolean = true
 ) : WebPlugin {
     override val name = "PrismJs code highlighting"

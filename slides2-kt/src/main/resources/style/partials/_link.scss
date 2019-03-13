@@ -10,7 +10,7 @@ main > section > article {
 
     &:hover {
       text-shadow: .05em .05em .1em rgba(0, 0, 0, .5);
-      animation: borderAnim 4s linear infinite;
+      animation: borderAnim 8s linear infinite;
     }
 
     &::before {

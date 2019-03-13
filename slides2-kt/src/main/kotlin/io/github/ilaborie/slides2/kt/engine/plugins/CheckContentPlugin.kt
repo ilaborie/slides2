@@ -1,11 +1,11 @@
 package io.github.ilaborie.slides2.kt.engine.plugins
 
-import io.github.ilaborie.slides2.kt.term.Notifier
-import io.github.ilaborie.slides2.kt.term.Notifier.warning
-import io.github.ilaborie.slides2.kt.term.Styles
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Presentation
 import io.github.ilaborie.slides2.kt.engine.contents.Title
+import io.github.ilaborie.slides2.kt.term.Notifier
+import io.github.ilaborie.slides2.kt.term.Notifier.warning
+import io.github.ilaborie.slides2.kt.term.Styles
 
 
 // FIXME do a composable functional checker
@@ -20,18 +20,15 @@ object CheckContentPlugin : ContentPlugin {
         }
 
     private fun check(presentation: Presentation): Presentation {
-        val title = presentation.title
-        when (title) {
-            is Title ->
-                if (title.level != 1) {
-                    warning {
-                        "Expected a `${Styles.highlight("H1")}` for presentation title, got H${title.level}"
-                    }
-                }
-            else     ->
-                warning {
-                    "Expected a `${Styles.highlight("Title")}` for presentation title, got $title"
-                }
+        // Check title
+        val title = presentation.title.flatten()
+            .filterIsInstance<Title>()
+            .firstOrNull { it.level == 1 }
+
+        if (title == null) {
+            warning {
+                "Expected a `${Styles.highlight("H1")}` for presentation title, got ${presentation.title}"
+            }
         }
 
         presentation.allSlides

@@ -29,6 +29,7 @@ fun main(args: Array<String>) =
 private val allPlugins: Map<String, Plugin> = mapOf(
     "check" to CheckContentPlugin,
     "toc" to TocPlugin,
+    "grid" to GridPlugin,
     "navigate" to NavigatePlugin,
     "tweet" to TweetPlugin,
     "caniuse" to CanIUsePlugin,
@@ -47,7 +48,7 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
         .multiple(listOf("base"))
 
     private val plugins: List<String> by option("-p", "--plugin", help = "Toggle plugins")
-        .multiple(listOf("check", "toc", "navigate", "tweet", "caniuse", "prism", "rough-svg"))
+        .multiple(listOf("check", "toc", "grid", "navigate", "tweet", "caniuse", "prism", "rough-svg"))
 
     private val verbose by option("-v", "--verbose", help = "verbose mode").flag(default = false)
 
@@ -70,10 +71,10 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
         // Configure engine
         plugins
             .map {
-                allPlugins[it] ?: throw IllegalArgumentException(
-                    "No plugin for $it, existing plugins: ${allPlugins.keys.sorted()
-                        .joinToString(", ")}"
-                )
+                allPlugins[it]
+                    ?: throw IllegalArgumentException(
+                        "No plugin for $it, existing plugins: ${allPlugins.keys.sorted().joinToString(", ")}"
+                    )
             }
             .forEach { SlideEngine.use(it) }
 
@@ -94,7 +95,7 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
         pres
             .map { SlideEngine.run(config, it, allThemes) }
             .recover {
-                Notifier.error(cause = it) { "Oops!" }
+                Notifier.error(label="💣 ", cause = it) { "Oops!" }
                 throw it
             }
     }

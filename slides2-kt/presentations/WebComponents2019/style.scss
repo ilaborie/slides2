@@ -26,6 +26,8 @@
   --footerText: '@julienrenaux @ilaborie #DevoxxFR #webcomponents';
 }
 
+// TODO use a https://www.heropatterns.com/ as background with
+
 .toptal {
   background: white;
   color: var(--toptal);
@@ -201,8 +203,8 @@ h1 {
 
   li:nth-child(1) {
     background: var(--slides);
-    --startAt: '09h00';
-    --endAt: '09h15';
+    --startAt: '10h45';
+    --endAt: '11h05';
   }
 
   li:nth-child(2) {
@@ -211,8 +213,8 @@ h1 {
   }
 
   li:nth-child(3) {
-    --startAt: '10h30';
-    --endAt: '10h40';
+    --startAt: '12h00';
+    --endAt: '13h00';
   }
 
   li:nth-child(4) {
@@ -222,8 +224,8 @@ h1 {
 
   li:nth-child(5) {
     background: var(--slides);
-    --startAt: '11h50';
-    --endAt: '12h00';
+    --startAt: '14h10';
+    --endAt: '14h15';
   }
 
   li:nth-child(6) {
@@ -310,13 +312,6 @@ h1 {
 }
 
 //
-#size_matters article, #time_matters article {
-  .charts.bar {
-    margin-bottom: 1em;
-  }
-}
-
-//
 #components article {
 
   ul {
@@ -343,11 +338,12 @@ h1 {
       grid-column: 3 / 4;
     }
 
-    li:nth-child(4), li:nth-child(5) {
+    li:nth-child(4){
       grid-column: 4 / 5;
     }
 
     li:nth-child(5) {
+      grid-column: 4 / 5;
       justify-self: center;
       align-self: center;
     }

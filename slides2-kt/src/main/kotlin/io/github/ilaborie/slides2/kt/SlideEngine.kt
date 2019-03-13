@@ -12,7 +12,6 @@ import io.github.ilaborie.slides2.kt.engine.plugins.RendererPlugin
 import io.github.ilaborie.slides2.kt.engine.plugins.WebPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
 import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss.scssFileToCss
-import io.github.ilaborie.slides2.kt.term.Notifier
 import io.github.ilaborie.slides2.kt.term.Notifier.info
 import io.github.ilaborie.slides2.kt.term.Notifier.time
 import io.github.ilaborie.slides2.kt.term.Styles
@@ -116,32 +115,33 @@ object SlideEngine {
             ?.replace('\n', ' ')
             ?: throw IllegalStateException("No Text renderer found for $content")
 
-    private fun Presentation.renderHtml(config: Config, metadata: Map<String, String> = emptyMap()): PresentationOutputInstance =
-        findRenderer(Html, this)
-            ?.let { renderer ->
-                val folder = config.output / id.id
-                // Slides
-                val filename = "index-${theme.name}.html"
-                time("Write to ${Styles.highlight(filename)}") {
+    private fun Presentation.renderHtml(config: Config): (Map<String, String>) -> PresentationOutputInstance =
+        { metadata ->
+            findRenderer(Html, this)
+                ?.let { renderer ->
+                    val folder = config.output / id.id
+
+                    // Slides
+                    val filename = "index-${theme.name}.html"
+                    info("⚙️") { Styles.highlight(filename) }
                     folder.writeTextFile(filename) {
                         cache.computeIfAbsent(Html to this) {
                             renderer.render(this)
                         }
                     }
-                }
-                // Style
-                time("Write to ${Styles.highlight("themes")}") {
+
                     writePresentationStylesheets(config)
-                }
-                // Scripts
-                time("Write ${Styles.highlight("Global scripts")}") {
                     writePresentationScripts(config)
-                }
-                PresentationOutputInstance(theme.name, id.id, metadata)
-            } ?: throw IllegalStateException("No Html renderer found for $this")
+
+                    PresentationOutputInstance(theme.name, id.id, metadata)
+
+                } ?: throw IllegalStateException("No Html renderer found for $this")
+        }
 
     private fun Presentation.writePresentationScripts(config: Config) {
         val folder = config.output / id.id
+
+        info("⚙️") { "global script ${globalScripts.joinToString(", ") { Styles.highlight(it.src) }}" }
         globalScripts
             .filterNot { it.src.startsWith("http") }
             .forEach { script ->
@@ -162,21 +162,27 @@ object SlideEngine {
     private fun Presentation.writePresentationStylesheets(config: Config) {
         val folder = config.output / id.id
         val themeFile = "${theme.name}.css"
+
+        info("⚙️") { "main theme ${Styles.highlight(theme.name)}" }
         folder.writeTextFile(themeFile) {
             theme.compiled
         }
         if (extraStyle != null) {
             val outputFilename = "$extraStyle.css"
-            time("Write to ${Styles.highlight(outputFilename)}") {
-                folder.writeTextFile(outputFilename) {
-                    val path = config.input.resolveAbsolutePath("$extraStyle.scss")
-                    scssFileToCss(path)
-                }
+            info("⚙️") { "extra style ${Styles.highlight(outputFilename)}" }
+            folder.writeTextFile(outputFilename) {
+                val path = config.input.resolveAbsolutePath("$extraStyle.scss")
+                scssFileToCss(path)
             }
         }
     }
 
-    fun run(config: Config, presentation: PresentationDsl, themes: List<Theme>): PresentationOutput {
+    fun run(
+        config: Config,
+        presentation: PresentationDsl,
+        themes: List<Theme>,
+        metadata: (Theme) -> Map<String, String> = { emptyMap() }
+    ): PresentationOutput {
         val pres = plugContent(presentation(config.input)) as Presentation
         val instances = time("Generate all `${pres.sTitle}`") {
             with(SlideEngine) {
@@ -185,7 +191,7 @@ object SlideEngine {
                         info("🎨: theme") { "using ${it.name}" }
                         pres.copy(theme = it)
                     }
-                    .map { it.renderHtml(config) }
+                    .map { it.renderHtml(config)(metadata(it.theme)) }
             }
         }
         return PresentationOutput(pres.sTitle, instances)

@@ -3,11 +3,7 @@ package io.github.ilaborie.slides2.kt.engine
 import demo
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.devoxxFr19
-import io.github.ilaborie.slides2.kt.engine.plugins.PrismJsPlugin
-import io.github.ilaborie.slides2.kt.engine.plugins.RoughSvgPlugin
-import io.github.ilaborie.slides2.kt.engine.plugins.CheckContentPlugin
-import io.github.ilaborie.slides2.kt.engine.plugins.NavigatePlugin
-import io.github.ilaborie.slides2.kt.engine.plugins.TocPlugin
+import io.github.ilaborie.slides2.kt.engine.plugins.*
 import io.github.ilaborie.slides2.kt.jvm.JvmFolder
 import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.CanIUsePlugin
 import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.TweetPlugin
@@ -18,7 +14,7 @@ import webComponents
 fun main() {
     SlideEngine
         .use(CheckContentPlugin)
-        .use(TocPlugin, NavigatePlugin)
+        .use(TocPlugin, NavigatePlugin, GridPlugin)
         .use(TweetPlugin, CanIUsePlugin)
         .use(
             PrismJsPlugin(showLines = false),

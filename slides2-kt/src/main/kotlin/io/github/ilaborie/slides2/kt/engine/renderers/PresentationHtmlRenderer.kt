@@ -61,7 +61,7 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
             """<li$classes><a href="#${slide.id.id}">$slide</a></li>"""
         }
 
-        // FIXME generate nav !
+        // Navigation & Grid
         return """$innerSvg
               |<nav class="toc-menu no-print">
               |  <label for="tocGrid" class="grid"></label>
