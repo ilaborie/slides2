@@ -27,6 +27,13 @@ sealed class Try<T> {
             is Failure -> function(this.cause)
         }
 
+    fun doOnError(function: (Throwable) -> Unit): Try<T> {
+        if (this is Failure) {
+            function(cause)
+        }
+        return this
+    }
+
     companion object {
         class Success<T>(val value: T) : Try<T>()
         class Failure<T>(val cause: Exception) : Try<T>()

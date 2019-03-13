@@ -12,7 +12,7 @@ object TocPlugin : WebPlugin {
 }
 
 object GridPlugin : WebPlugin {
-    override val name = "Grid"
+    override val name = "Grid navigation"
 
     override fun scripts(): List<Script> =
         listOf(module("./grid.js"))

@@ -64,7 +64,7 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
         // Navigation & Grid
         return """$innerSvg
               |<nav class="toc-menu no-print">
-              |  <label for="tocGrid" class="grid"></label>
+              |  <label for="tocGrid" class="grid" style="display:none;"></label>
               |  <input id="tocToggle" type="checkbox" class="visually-hidden">
               |  <label for="tocToggle" class="toggle"></label>
               |  <ul>$tocMenu</ul>

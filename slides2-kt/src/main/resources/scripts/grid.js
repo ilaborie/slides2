@@ -2,6 +2,8 @@ import {keymap, navigateTo} from './slide';
 
 const tocGrid = document.getElementById('tocGrid');
 
+document.querySelector('label[for=tocGrid]').style.display = 'inline-block';
+
 // Navigate throw Slide click
 const navigateToSlide = id => () => {
     if (tocGrid && tocGrid.checked) {

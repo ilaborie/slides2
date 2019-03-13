@@ -8,6 +8,8 @@ data class Theme(val name: String) {
         ScssToCss.scssFileToCss("src/main/resources/style/$name.scss")
     }
 
+    override fun toString(): String = name
+
     companion object {
 
          val all: Map<String, Theme> = listOf(

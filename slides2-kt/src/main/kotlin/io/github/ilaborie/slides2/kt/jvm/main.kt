@@ -1,6 +1,7 @@
 package io.github.ilaborie.slides2.kt.jvm
 
 import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.parameters.arguments.argument
 import com.github.ajalt.clikt.parameters.options.*
 import com.github.ajalt.clikt.parameters.types.file
@@ -14,17 +15,36 @@ import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.TweetPlugin
 import io.github.ilaborie.slides2.kt.term.Notifier
 import io.github.ilaborie.slides2.kt.utils.Try
 import java.io.File
+import java.io.InputStreamReader
 import javax.script.ScriptEngineManager
 
 
 fun main(args: Array<String>) =
-    Slides.main(args)
+    Slides
+        .subcommands(
+            BuildSlides,
+            ListThemes,
+            ListPlugins
+        )
+        .main(args)
 
-// TODO list theme
-// TODO list plugin
-// TODO build
-// TODO watch
+object Slides : CliktCommand() {
+    override fun run() = Unit
+}
 
+object ListThemes : CliktCommand(name = "themes", help = "list available themes") {
+    override fun run() {
+        Theme.all
+            .forEach { _, theme -> println(theme) }
+    }
+}
+
+object ListPlugins : CliktCommand(name = "plugins", help = "list available plugins") {
+    override fun run() {
+        allPlugins
+            .forEach { name, plugin -> println("$name: ${plugin.name}") }
+    }
+}
 
 private val allPlugins: Map<String, Plugin> = mapOf(
     "check" to CheckContentPlugin,
@@ -37,7 +57,7 @@ private val allPlugins: Map<String, Plugin> = mapOf(
     "rough-svg" to RoughSvgPlugin
 )
 
-object Slides : CliktCommand(name = "build", help = "Build slides") {
+object BuildSlides : CliktCommand(name = "build", help = "Build slides") {
 
     private val script by argument(help = "the Kotlin script file (*.kts)").file(exists = true)
 
@@ -48,14 +68,14 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
         .multiple(listOf("base"))
 
     private val plugins: List<String> by option("-p", "--plugin", help = "Toggle plugins")
-        .multiple(listOf("check", "toc", "grid", "navigate", "tweet", "caniuse", "prism", "rough-svg"))
+        .multiple(listOf())
 
     private val verbose by option("-v", "--verbose", help = "verbose mode").flag(default = false)
+    private val watch by option("-w", "--watch", help = "watch mode").flag(default = false)
 
     private val engine by lazy {
         ScriptEngineManager().getEngineByExtension("kts")
     }
-
 
     override fun run() {
         val scriptFile = script
@@ -78,29 +98,31 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
             }
             .forEach { SlideEngine.use(it) }
 
-        val pres = scriptFile.reader()
-            .use {
-                Try {
-                    val eval = engine.eval(it)
-                    eval as? PresentationDsl
-                        ?: throw IllegalStateException("Expected a Presentation, got $eval")
-                }
-            }
+        build(scriptFile)
+    }
 
+    private fun build(scriptFile: File) {
         val allThemes = themes.map { Theme[it] }
         val config = Config(
             input = JvmFolder(scriptFile.parentFile),
             output = JvmFolder(File(output))
         )
-        pres
+
+        scriptFile.reader()
+            .use { buildPresentation(it) }
             .map { SlideEngine.run(config, it, allThemes) }
-            .recover {
-                Notifier.error(label="💣 ", cause = it) { "Oops!" }
-                throw it
-            }
+            .doOnError { Notifier.error(label = "💣 ", cause = it) { "Oops!" } }
+            .unwrap()
+    }
+
+    private fun buildPresentation(it: InputStreamReader): Try<PresentationDsl> {
+        return Try {
+            val eval = engine.eval(it)
+            eval as? PresentationDsl
+                ?: throw IllegalStateException("Expected a Presentation, got $eval")
+        }
     }
 }
-
 
 //fun <EachT : Any, ValueT> NullableOption<EachT, ValueT>.requiredWithMessage()
 //        : OptionWithValues<EachT, EachT, ValueT> =
@@ -114,6 +136,4 @@ object Slides : CliktCommand(name = "build", help = "Build slides") {
 fun <EachT : Any, ValueT> NullableOption<EachT, ValueT>.defaultWithMessage(value: EachT)
         : OptionWithValues<EachT, EachT, ValueT> =
     transformAll { it.lastOrNull() ?: value }
-        .run {
-            copy(transformValue, transformEach, transformAll, help = "$help, (default: $value)")
-        }
+        .run { copy(transformValue, transformEach, transformAll, help = "$help, (default: $value)") }
