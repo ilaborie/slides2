@@ -126,7 +126,7 @@ object TableHtmlRenderer : Renderer<Table> {
               |    <tr>$thead</tr>
               |  </thead>
               |  <tbody>
-              |    ${bodyValues.joinToString("</tr><tr>", "<tr>", "</tr>") { tbodyRow(it) }}</tr>
+              |    ${bodyValues.joinToString("</tr><tr>", "<tr>", "</tr>") { tbodyRow(it) }}
               |  </tbody>
               |  <caption>${render(mode, content.caption)}</caption>
               |</table>""".trimMargin()

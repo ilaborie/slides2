@@ -1,17 +1,17 @@
 package io.github.ilaborie.slides2.kt.engine.plugins
 
 import io.github.ilaborie.slides2.kt.engine.Script
+import io.github.ilaborie.slides2.kt.engine.Script.Companion.cloudfare
 import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
 import io.github.ilaborie.slides2.kt.engine.Stylesheet
 
-const val cloudfare = "https://cdnjs.cloudflare.com/ajax/libs"
 
 // See https://prismjs.com/
 class PrismJsPlugin(
     private val languages: List<String> = emptyList(), // see <https://prismjs.com/#languages-list>
     private val theme: String? = null,
     private val version: String = "1.15.0",
-    showLines: Boolean = true
+    private val showLines: Boolean = true
 ) : WebPlugin {
     override val name = "PrismJs code highlighting"
 
@@ -23,7 +23,9 @@ class PrismJsPlugin(
                 // Languages
                 languages.map { "$cloudfare/prism/$version/components/prism-$it.min.js" } +
                 // plugins
-                plugins.map { "$cloudfare/prism/$version/plugins/$it/prism-$it.min.js" }
+                plugins.map { "$cloudfare/prism/$version/plugins/$it/prism-$it.min.js" } +
+                // Extra show Line
+                if (showLines) listOf("./line-numbers.js") else emptyList()
                 )
             .map { script(it) }
 

@@ -30,6 +30,13 @@ data class Script(
 
 
     companion object {
+        const val cloudfare = "https://cdnjs.cloudflare.com/ajax/libs"
+
+        fun unpkg(npmPackage: String, version: String? = null, path: String?): String =
+            "https://unpkg.com/$npmPackage" +
+                    (version?.let { "@$version" } ?: "") +
+                    (path?.let { if (it.startsWith("/")) it else "/$it" } ?: "")
+
         fun module(src: String): Script =
             Script(src = src, defer = false, module = true, async = false)
 

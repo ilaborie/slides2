@@ -15,7 +15,7 @@ fun main() {
         .use(TocPlugin, NavigatePlugin, GridPlugin)
         .use(TweetPlugin, CanIUsePlugin)
         .use(
-            PrismJsPlugin(showLines = false, languages = listOf("typescript")),
+            PrismJsPlugin(showLines = true, languages = listOf("typescript")),
             RoughSvgPlugin
         )
 

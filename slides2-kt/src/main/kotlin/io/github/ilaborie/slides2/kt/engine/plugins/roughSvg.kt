@@ -1,7 +1,8 @@
 package io.github.ilaborie.slides2.kt.engine.plugins
 
 import io.github.ilaborie.slides2.kt.engine.Script
-import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
+import io.github.ilaborie.slides2.kt.engine.Script.Companion.module
+import io.github.ilaborie.slides2.kt.engine.Script.Companion.unpkg
 
 
 object RoughSvgPlugin : WebPlugin {
@@ -10,7 +11,7 @@ object RoughSvgPlugin : WebPlugin {
 
     override fun scripts(): List<Script> =
         listOf(
-            script("$cloudfare/rough.js/3.0.0/rough.js"),
-            script("./rough-svg.js")
+            module(unpkg("roughjs", path = "/dist/rough.umd.js")),
+            module("./rough-svg.js")
         )
 }

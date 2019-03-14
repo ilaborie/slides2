@@ -27,6 +27,10 @@ main > section > article {
         grid-column-end: -2;
         height: .66em;
         width: calc(100% * var(--value) / var(--scale));
+
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 1s ease-out;
       }
 
       .info {
@@ -44,3 +48,6 @@ main > section > article {
   }
 }
 
+main > section:target > article .charts.bar .body meter {
+  transform: scaleX(1);
+}

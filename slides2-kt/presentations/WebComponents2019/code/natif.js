@@ -1,9 +1,9 @@
 class PopUpInfo extends HTMLElement {
-    constructor() {
-        super();
-        // ...
-    }
-    // ...
+	constructor() {
+		super();
+		// ...
+	}
+	// ...
 }
 
 customElements.define('popup-info', PopUpInfo);

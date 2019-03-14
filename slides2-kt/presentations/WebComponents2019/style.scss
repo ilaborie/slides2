@@ -94,6 +94,18 @@ main > section {
     blockquote {
       background-color: rgba(0, 0, 0, .1);
     }
+    pre.language-typescript, pre.language-javascript {
+      font-size: 50%;
+    }
+
+    pre.line-numbers.language-sh {
+      padding-left: .5em;
+      .line-numbers-rows {
+        display: none;
+      }
+
+    }
+
   }
 
   & > footer {
@@ -108,6 +120,7 @@ main > section {
     padding: .5em;
   }
 }
+
 
 
 // Slides

@@ -1,3 +1,4 @@
+import * as rough from "./rough.umd.js";
 // See https://github.com/pshihn/rough/
 
 const defaultOptions = {
