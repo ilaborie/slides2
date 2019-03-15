@@ -1,4 +1,5 @@
 import * as rough from "./rough.umd.js";
+import {defer} from "./slide";
 // See https://github.com/pshihn/rough/
 
 const defaultOptions = {
@@ -19,13 +20,7 @@ const buildOptions = elt => ['fill', 'stroke', 'strokeWidth']
         return opt;
     }, defaultOptions);
 
-setTimeout(() => {
-    // only on top level svg
-    const svgElt = document.querySelector('body > svg.visually-hidden');
-    if (!svgElt) {
-        // Nothing to do
-        return;
-    }
+const applyRoughJs = svgElt => {
     const roughSvg = rough.svg(svgElt);
 
     const roughing = (selector, createNode) =>
@@ -42,4 +37,12 @@ setTimeout(() => {
             parseInt(circle.getAttribute('r')),
             buildOptions(circle)));
     // fixme handle other shape: rect, ellipse, polyline, polygon
-}, 0);
+
+};
+
+defer()(() => {
+    const svgElt = document.querySelector('body > svg.visually-hidden');
+    if (svgElt) {
+        applyRoughJs(svgElt);
+    }
+});

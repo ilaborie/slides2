@@ -63,5 +63,5 @@ tasks.withType<Assemble> {
 task("webComponent19", type = JavaExec::class) {
     dependsOn("assemble")
     classpath = sourceSets["test"].runtimeClasspath
-    main = "io.github.ilaborie.slides2.kt.engine.TestKt"
+    main = "WebcomponentsKt"
 }

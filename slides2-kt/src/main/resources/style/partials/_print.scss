@@ -37,6 +37,10 @@
     & > article {
       overflow: hidden;
       padding: .5em;
+
+      .charts.bar .body meter {
+        transform: scaleX(1);
+      }
     }
 
     &.steps {

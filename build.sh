@@ -21,9 +21,10 @@ pushd slides2-kt
 popd
 
 
-# Optimize
+# Build web
 yarn
 yarn run build
+yarn run Generate
 
 # Publish
 #yarn run publish

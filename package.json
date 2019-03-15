@@ -10,7 +10,8 @@
     "prebuild": "rm -rf ./dist",
     "build": "parcel build slides2-kt/public/index.html --no-source-maps",
     "prepublish": "npm run build",
-    "publish": "gh-pages -d dist"
+    "publish": "gh-pages -d dist",
+    "generate": "node postprocess.js"
   },
   "devDependencies": {
     "gh-pages": "^2.0.1",

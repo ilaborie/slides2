@@ -1,14 +1,42 @@
+import io.github.ilaborie.slides2.kt.SlideEngine
+import io.github.ilaborie.slides2.kt.SlideEngine.run
 import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.markdown
 import io.github.ilaborie.slides2.kt.dsl.pres
+import io.github.ilaborie.slides2.kt.engine.Theme.Companion.devoxxFr19
 import io.github.ilaborie.slides2.kt.engine.contents.BarChart.Companion.BarChartCustom
 import io.github.ilaborie.slides2.kt.engine.contents.BarChart.Companion.BarChartSmallerBetter
 import io.github.ilaborie.slides2.kt.engine.contents.barChart
 import io.github.ilaborie.slides2.kt.engine.contents.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
 import io.github.ilaborie.slides2.kt.engine.contents.table
+import io.github.ilaborie.slides2.kt.engine.plugins.*
+import io.github.ilaborie.slides2.kt.jvm.JvmFolder
+import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse
 import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.caniuse
+import io.github.ilaborie.slides2.kt.jvm.extra.Tweet
 import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.tweet
+import io.github.ilaborie.slides2.kt.jvm.jvmConfig
+
+
+fun main() {
+    SlideEngine
+        .use(CheckContentPlugin)
+        .use(TocPlugin, NavigatePlugin, GridPlugin)
+        .use(Tweet.Companion.TweetPlugin, CanIUse.Companion.CanIUsePlugin)
+        .use(
+            PrismJsPlugin(showLines = true, languages = listOf("typescript")),
+            RoughSvgPlugin
+        )
+
+    val config = jvmConfig("presentations/WebComponents2019")
+    val wcOut = run(config, webComponents, listOf(devoxxFr19))
+
+    JvmFolder("public")
+        .writeTextFile("data.json") {
+            listOf(wcOut).joinToString(", ", "[ ", "]") { it.json }
+        }
+}
 
 
 // https://shprink.github.io/talks/2018/web_component_native_vs_stenciljs
@@ -357,8 +385,9 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             h4("Using the lit-html templating library")
             link("https://lit-html.polymer-project.org/")
             ul {
-                markdown {"built on **HTML templates**"}
-                markdown { "with the ES2015 [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)"
+                markdown { "built on **HTML templates**" }
+                markdown {
+                    "with the ES2015 [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)"
                 }
             }
         }
