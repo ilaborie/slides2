@@ -3,6 +3,10 @@ Slides2
 
 This is a personal experience around generating slides in HTML.
 
+You can use it, but I not sure to maintaing it.
+
+Contributions are welcome but I have strong ideas of what it should become.
+
 Installation
 --
 
