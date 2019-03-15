@@ -18,7 +18,7 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
 
         val innerStyle = (listOf(presentation.theme.name, presentation.extraStyle))
             .filterNotNull()
-            .map { Stylesheet("./$it.css") }
+            .map { Stylesheet("$it.css") }
 
         val stylesheets = (SlideEngine.stylesheets + innerStyle)
             .joinToString("\n") { it.asHtml() }

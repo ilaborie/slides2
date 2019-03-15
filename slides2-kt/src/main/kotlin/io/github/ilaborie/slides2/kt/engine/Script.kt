@@ -22,7 +22,7 @@ data class Script(
     }
 
     val localSrc: String by lazy {
-        if (src.startsWith("http")) "./" + src.split("/").last() else src
+        if (src.startsWith("http")) src.split("/").last() else src
     }
 
     fun asHtml(): String =

@@ -8,14 +8,14 @@ object TocPlugin : WebPlugin {
     override val name = "Table Of Content"
 
     override fun scripts(): List<Script> =
-        listOf(module("./toc.js"))
+        listOf(module("toc.js"))
 }
 
 object GridPlugin : WebPlugin {
     override val name = "Grid navigation"
 
     override fun scripts(): List<Script> =
-        listOf(module("./grid.js"))
+        listOf(module("grid.js"))
 }
 
 object NavigatePlugin : WebPlugin {
@@ -23,7 +23,7 @@ object NavigatePlugin : WebPlugin {
 
     override fun scripts(): List<Script> =
         listOf(
-            module("./navigate.js"),
-            module("./slide.js")
+            module("navigate.js"),
+            module("slide.js")
         )
 }
