@@ -1,5 +1,4 @@
 import io.github.ilaborie.slides2.kt.SlideEngine
-import io.github.ilaborie.slides2.kt.SlideEngine.run
 import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.markdown
 import io.github.ilaborie.slides2.kt.dsl.pres
@@ -11,7 +10,6 @@ import io.github.ilaborie.slides2.kt.engine.contents.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
 import io.github.ilaborie.slides2.kt.engine.contents.table
 import io.github.ilaborie.slides2.kt.engine.plugins.*
-import io.github.ilaborie.slides2.kt.jvm.JvmFolder
 import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse
 import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.caniuse
 import io.github.ilaborie.slides2.kt.jvm.extra.Tweet
@@ -20,24 +18,20 @@ import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 
 
 fun main() {
-    SlideEngine
+    val config = jvmConfig("presentations/WebComponents2019")
+
+    val wcOut = SlideEngine
         .use(CheckContentPlugin)
         .use(TocPlugin, NavigatePlugin, GridPlugin)
         .use(Tweet.Companion.TweetPlugin, CanIUse.Companion.CanIUsePlugin)
-        .use(
-            PrismJsPlugin(showLines = true, languages = listOf("typescript")),
-            RoughSvgPlugin
-        )
+        .use(PrismJsPlugin(showLines = true, languages = listOf("typescript")))
+        .use(RoughSvgPlugin)
+        .run(config, webComponents, listOf(devoxxFr19))
 
-    val config = jvmConfig("presentations/WebComponents2019")
-    val wcOut = run(config, webComponents, listOf(devoxxFr19))
-
-    JvmFolder("public")
-        .writeTextFile("data.json") {
-            listOf(wcOut).joinToString(", ", "[ ", "]") { it.json }
-        }
+    config.output.writeTextFile("data.json") {
+        listOf(wcOut).joinToString(", ", "[ ", "]") { it.json }
+    }
 }
-
 
 // https://shprink.github.io/talks/2018/web_component_native_vs_stenciljs
 

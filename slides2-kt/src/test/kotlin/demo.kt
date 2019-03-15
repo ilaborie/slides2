@@ -1,10 +1,27 @@
+import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.dsl.raw
+import io.github.ilaborie.slides2.kt.engine.Theme
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Danger
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Info
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Tips
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Warning
+import io.github.ilaborie.slides2.kt.engine.plugins.*
+import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.CanIUsePlugin
+import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.TweetPlugin
+import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 
+fun main() {
+    val allThemes = Theme.all.values.toList()
+    val config = jvmConfig("presentations/samples")
+
+    SlideEngine
+        .use(CheckContentPlugin)
+        .use(TocPlugin, NavigatePlugin, GridPlugin)
+        .use(TweetPlugin, CanIUsePlugin)
+        .use(PrismJsPlugin(showLines = true, languages = listOf("typescript")))
+        .run(config, demo, allThemes)
+}
 
 val demo = pres("Demo Presentation", extraStyle = "demo") {
     part("A part") {
