@@ -339,7 +339,7 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             )
         }
         slide("StencilJS works everywhere", setOf("header-hidden", "steps")) {
-            h4 { markdown { "StencilJS **works everywhere**" } }
+            markdown { "#### StencilJS **works everywhere**" }
             p("Loads polyfills on-demand", classes = setOf("step"))
         }
         slide("Stencil is concise", setOf("header-hidden")) {

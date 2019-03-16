@@ -25,7 +25,7 @@ class PrismJsPlugin(
                 // plugins
                 plugins.map { "$cloudfare/prism/$version/plugins/$it/prism-$it.min.js" } +
                 // Extra show Line
-                if (showLines) listOf("./line-numbers.js") else emptyList()
+                if (showLines) listOf("line-numbers.js") else emptyList()
                 )
             .map { script(it) }
 

@@ -51,7 +51,7 @@ figure > svg {
   }
 }
 
-table thead figure  {
+table thead figure {
   font-size: 67%;
 }
 
@@ -94,12 +94,14 @@ main > section {
     blockquote {
       background-color: rgba(0, 0, 0, .1);
     }
+
     pre.language-typescript, pre.language-javascript {
       font-size: 50%;
     }
 
     pre.line-numbers.language-sh {
       padding-left: .5em;
+
       .line-numbers-rows {
         display: none;
       }
@@ -120,7 +122,6 @@ main > section {
     padding: .5em;
   }
 }
-
 
 
 // Slides
@@ -172,7 +173,7 @@ h1 {
     align-items: stretch;
     grid-column-gap: 2em;
     //background: linear-gradient(to right, white 50%, var(--monkeyBof) 0);
-    background: linear-gradient(92deg, var(--colLight) 50%, var(--monkeyBof) 0);
+    background: linear-gradient(92deg, var(--colLight) 50%, var(--monkeyBof) 50.1%);
   }
 }
 
@@ -247,7 +248,6 @@ h1 {
     justify-content: flex-start;
     margin-left: 1em;
   }
-
 }
 
 //
@@ -352,7 +352,7 @@ h1 {
       grid-column: 3 / 4;
     }
 
-    li:nth-child(4){
+    li:nth-child(4) {
       grid-column: 4 / 5;
     }
 
@@ -427,9 +427,11 @@ h1 {
     td {
       text-align: center;
       color: var(--colLight);
+
       &.y {
         background-color: var(--colValid);
       }
+
       &.n {
         background-color: var(--colInvalid);
       }

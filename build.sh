@@ -15,16 +15,12 @@ done
 
 # Generate slides
 pushd slides2-kt
-./gradlew clean assemble
+./gradlew assemble
 # WebComponent
-./gradlew webComponent19  
+./gradlew webComponent19
 popd
 
-
-# Build web
-yarn
-yarn run build
-yarn run Generate
-
-# Publish
+# Build web & publish
+# yarn run generate
+# yarn run build
 #yarn run publish

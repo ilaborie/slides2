@@ -12,6 +12,6 @@ object RoughSvgPlugin : WebPlugin {
     override fun scripts(): List<Script> =
         listOf(
             module(unpkg("roughjs", path = "/dist/rough.umd.js")),
-            module("./rough-svg.js")
+            module("rough-svg.js")
         )
 }
