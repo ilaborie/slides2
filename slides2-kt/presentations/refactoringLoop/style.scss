@@ -11,6 +11,7 @@ main > section > article {
 
   pre[class*=language-].line-numbers {
     padding-left: .5em;
+    align-self: auto;
   }
 }
 
@@ -18,7 +19,7 @@ main > section > article {
   code {
     border-radius: .125em;
     padding: .125em;
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0, 0, 0, .1);
     font-weight: normal;
   }
 }
@@ -55,4 +56,14 @@ main > section > article {
     display: none;
   }
 
+}
+
+#transformation article {
+  .step {
+    display: none;
+
+    &.step-current {
+      display: block;
+    }
+  }
 }

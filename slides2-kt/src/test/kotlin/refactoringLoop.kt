@@ -18,7 +18,6 @@ fun main() {
         .use(TocPlugin, NavigatePlugin, GridPlugin)
         .use(Tweet.Companion.TweetPlugin, CanIUse.Companion.CanIUsePlugin)
         .use(PrismJsPlugin(showLines = true, languages = listOf("java", "scala", "kotlin")))
-        .use(RoughSvgPlugin)
         .run(config, refactoringLoop, listOf(Theme.jugTls))
 
 }
@@ -38,9 +37,9 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
             )
             inlineFigure("logos/monkeypatch.svg", "MonkeyPatch")
         }
-        slide("Citation", styles = setOf("header-hidden")) {
-            quote("Les frameworks naissent et meurent, les bases restent")
+        slide("Back to Basics", styles = setOf("header-hidden")) {
             strong("#backToBasics")
+            quote("Les frameworks naissent et meurent, les bases restent")
         }
         slide("Quizz 1", styles = setOf("header-hidden")) {
             h4("En quel langague est écrit ce code ?")
@@ -50,7 +49,7 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
             }
         }
         slide("Quizz 2", styles = setOf("header-hidden", "two-columns")) {
-            h4("Existe-il des langagues de programmation sans `for` ?")
+            markdown { "#### Existe-il des langagues de programmation sans `for` ?" }
             ul(steps = true) {
                 html { "Haskell" }
                 html { "Scala <sup>*</sup>" }
@@ -62,6 +61,60 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
             }
         }
         roadmap("Plan")
+    }
+    part("Anatomie d'une boucle") {
+        slide("Transformation") {
+            ul(steps = true) {
+                sourceCode("code/loop/transformation1.java")
+                sourceCode("code/loop/transformation2.java")
+                sourceCode("code/loop/transformation3.java")
+                sourceCode("code/loop/transformation4.java")
+            }
+        }
+        slide("Filtre") {
+            sourceCode("code/loop/filter.java")
+        }
+        slide("Accumulation") {
+            sourceCode("code/loop/accumulate.java")
+        }
+        slide("Imbrication") {
+            sourceCode("code/loop/nest.java")
+        }
+        slide("Et le reste") {
+            sourceCode("code/loop/other.java")
+        }
+    }
+    part("Récursion") {
+        slide("Parcours") {}
+        slide("Sortie rapide") {}
+        slide("Récursion terminale") {}
+        slide("Bilan récursion - Java") {}
+        slide("Bilan Kotlin &  Scala") {}
+    }
+    part("Stream") {
+        slide("Création") {}
+        slide("Opération paresseuses") {}
+        slide("Opérations finales") {}
+        slide("map") {}
+        slide("filter") {}
+        slide("fold / reduce") {}
+        slide("flatMap") {}
+        slide("Collectors") {}
+        slide("Zip et ZipWithIndex") {}
+        slide("Bilan Stream - Java") {}
+        slide("Bilan Stream - Kotlin & Scala") {}
+    }
+    part("Qui est le meilleur") {
+        slide("Norme") {}
+        slide("Exemples") {}
+        slide("MonteCarlo π") {}
+        slide("Perforamce") {}
+        slide("Élégance du code") {}
+    }
+    part("Conclusion") {
+        slide("Bilan") {}
+        slide("FP") {}
+        slide("Crafters") {}
     }
 }
 
