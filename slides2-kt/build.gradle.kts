@@ -65,3 +65,9 @@ task("webComponent19", type = JavaExec::class) {
     classpath = sourceSets["test"].runtimeClasspath
     main = "WebcomponentsKt"
 }
+
+task("refactoringLoop", type = JavaExec::class) {
+    dependsOn("assemble")
+    classpath = sourceSets["test"].runtimeClasspath
+    main = "RefactoringLoopKt"
+}

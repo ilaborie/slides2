@@ -24,12 +24,12 @@ data class Theme(val name: String) {
             all[name] ?: throw IllegalStateException("Missing theme $name")
 
         val base = get("base")
-        val tlsJug = get("jug-tls")
+        val jugTls = get("jug-tls")
         val devoxxFr19 = get("devoxxfr-19")
         val mixit19 = get("mixit-19")
         val sunnyTech19 = get("sunnytech-19")
         val rivieraDev19 = get("rivieradev-19")
 
-        // tlsGdg, devfestXXyy, voxxedXXyy, ...
+        // tlsGdg, voxxedXXyy, ...
     }
 }

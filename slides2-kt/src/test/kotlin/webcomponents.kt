@@ -56,8 +56,8 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
                     "igor@monkeypatch.io" to "mailto:igor@monkeypatch.io"
                 )
             )
-            inlineFigure("logos/toptal.svg", "Toptal")
-            inlineFigure("logos/monkeypatch.svg", "MonkeyPatch")
+            figure("logos/toptal.svg", "Toptal")
+            figure("logos/monkeypatch.svg", "MonkeyPatch")
         }
         slide("Roadmap", setOf("roadmap")) {
             ul(classes = setOf("list-inline")) {

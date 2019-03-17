@@ -1,0 +1,58 @@
+:root {
+  --monkeyBof: #00b0ff;
+
+  // Footer
+  --footerText: '@ilaborie @toulousejug #loop';
+}
+
+
+main > section > article {
+  justify-content: space-evenly;
+
+  pre[class*=language-].line-numbers {
+    padding-left: .5em;
+  }
+}
+
+.cover {
+  code {
+    border-radius: .125em;
+    padding: .125em;
+    background-color: rgba(0,0,0,.1);
+    font-weight: normal;
+  }
+}
+
+
+#speaker {
+  .previous, .next, article {
+    background: var(--monkeyBof);
+    color: white;
+  }
+
+  footer {
+    display: none;
+  }
+
+  article figure {
+    svg {
+      max-height: 33vh;
+      width: 50vh;
+    }
+
+    figcaption {
+      display: none;
+    }
+  }
+
+}
+
+#quizz_1 article {
+  justify-content: center;
+  align-items: center;
+
+  pre.language-java::after {
+    display: none;
+  }
+
+}
