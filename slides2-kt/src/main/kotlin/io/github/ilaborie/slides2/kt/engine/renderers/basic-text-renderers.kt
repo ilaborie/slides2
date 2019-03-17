@@ -13,6 +13,13 @@ object TextTextRenderer : Renderer<TextContent> {
         content.text
 }
 
+object MarkdownTextRenderer : Renderer<MarkdownContent> {
+    override val mode = Text
+    override fun render(content: MarkdownContent): String =
+        content.md
+}
+
+
 object CompoundTextRenderer : Renderer<CompoundContent> {
     override val mode = Text
     override fun render(content: CompoundContent): String =
@@ -53,7 +60,8 @@ object OrderedListTextRenderer : Renderer<OrderedList> {
     override fun render(content: OrderedList): String =
         with(SlideEngine) {
             content.inner
-                .joinToString("\n") { render(mode, it) }
+                .mapIndexed { idx, content -> "$idx. ${render(mode, content)}" }
+                .joinToString("\n", prefix = "\n")
         }
 }
 
@@ -62,8 +70,9 @@ object UnorderedListTextRenderer : Renderer<UnorderedList> {
 
     override fun render(content: UnorderedList): String =
         with(SlideEngine) {
-            content.inner
-                .joinToString("\n") { render(mode, it) }
+            content.inner.joinToString("\n", prefix = "\n") {
+                "* ${render(mode, it)}"
+            }
         }
 }
 

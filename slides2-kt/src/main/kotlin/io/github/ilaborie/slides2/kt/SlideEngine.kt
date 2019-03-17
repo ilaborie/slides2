@@ -14,7 +14,7 @@ import io.github.ilaborie.slides2.kt.engine.renderers.*
 import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss.scssFileToCss
 import io.github.ilaborie.slides2.kt.term.Notifier.info
 import io.github.ilaborie.slides2.kt.term.Notifier.time
-import io.github.ilaborie.slides2.kt.term.Styles
+import io.github.ilaborie.slides2.kt.term.Styles.highlight
 
 object SlideEngine {
 
@@ -34,6 +34,7 @@ object SlideEngine {
     init {
         // Base
         registerRenderers(TextTextRenderer, TextHtmlRenderer)
+        registerRenderers(MarkdownTextRenderer, MarkdownHtmlRenderer)
         registerRenderers(CompoundTextRenderer, CompoundHtmlRenderer)
         registerRenderers(TitleTextRenderer, TitleHtmlRenderer)
         registerRenderers(ParagraphTextRenderer, ParagraphHtmlRenderer)
@@ -45,27 +46,16 @@ object SlideEngine {
         registerRenderers(QuoteTextRenderer, QuoteHtmlRenderer)
         registerRenderers(NoticeTextRenderer, NoticeHtmlRenderer)
         registerRenderers(FigureTextRenderer, FigureHtmlRenderer)
-        registerRenderers(
-            TableTextRenderer,
-            TableHtmlRenderer
-        )
+        registerRenderers(TableTextRenderer, TableHtmlRenderer)
+
         // Extra
-        registerRenderers(
-            SpeakerTextRenderer,
-            SpeakerHtmlRenderer
-        )
-        registerRenderers(
-            BarChartTextRenderer,
-            BarChartHtmlRenderer
-        )
-        registerRenderers(
-            InlineFigureTextRenderer,
-            InlineFigureHtmlRenderer
-        )
+        registerRenderers(SpeakerTextRenderer, SpeakerHtmlRenderer)
+        registerRenderers(BarChartTextRenderer, BarChartHtmlRenderer)
+        registerRenderers(InlineFigureTextRenderer, InlineFigureHtmlRenderer)
 
         // Presentation, Part, Slide
-        registerRenderers(PresentationHtmlRenderer)
-        registerRenderers(SlideHtmlRenderer)
+        registerRenderers(PresentationTextRenderer, PresentationHtmlRenderer)
+        registerRenderers(SlideTextRenderer, SlideHtmlRenderer)
     }
 
     private fun <T : Content> registerRenderer(renderer: Renderer<*>, clazz: Class<T>): SlideEngine {
@@ -123,7 +113,7 @@ object SlideEngine {
 
                     // Slides
                     val filename = "index-${theme.name}.html"
-                    info("⚙️") { Styles.highlight(filename) }
+                    info("⚙️") { highlight(filename) }
                     folder.writeTextFile(filename) {
                         cache.computeIfAbsent(Html to this) {
                             renderer.render(this)
@@ -138,10 +128,25 @@ object SlideEngine {
                 } ?: throw IllegalStateException("No Html renderer found for $this")
         }
 
+    private fun Presentation.renderText(config: Config) {
+        findRenderer(Text, this)
+            ?.let { renderer ->
+                val folder = config.output / id.id
+                // Slides
+                val filename = "${id.id}.md"
+                info("⚙️") { highlight(filename) }
+                folder.writeTextFile(filename) {
+                    cache.computeIfAbsent(Text to this) {
+                        renderer.render(this)
+                    }
+                }
+            } ?: throw IllegalStateException("No Text renderer found for $this")
+    }
+
     private fun Presentation.writePresentationScripts(config: Config) {
         val folder = config.output / id.id
 
-        info("⚙️") { "global script ${globalScripts.joinToString(", ") { Styles.highlight(it.localSrc) }}" }
+        info("⚙️") { "global script ${globalScripts.joinToString(", ") { highlight(it.localSrc) }}" }
         globalScripts
             .forEach { script ->
                 // lookup input
@@ -165,20 +170,20 @@ object SlideEngine {
         val folder = config.output / id.id
         val themeFile = "${theme.name}.css"
 
-        info("⚙️") { "main theme ${Styles.highlight(theme.name)}" }
+        info("⚙️") { "main theme ${highlight(theme.name)}" }
         folder.writeTextFile(themeFile) {
             theme.compiled
         }
         if (extraStyle != null) {
             val outputFilename = "$extraStyle.css"
-            info("⚙️") { "extra style ${Styles.highlight(outputFilename)}" }
+            info("⚙️") { "extra style ${highlight(outputFilename)}" }
             folder.writeTextFile(outputFilename) {
                 val path = config.input.resolveAbsolutePath("$extraStyle.scss")
                 scssFileToCss(path)
             }
         }
         if (globalStylesheets.isNotEmpty()) {
-            info("⚙️") { "global stylesheet ${globalStylesheets.joinToString(", ") { Styles.highlight(it.localHref) }}" }
+            info("⚙️") { "global stylesheet ${globalStylesheets.joinToString(", ") { highlight(it.localHref) }}" }
             globalStylesheets.forEach {
                 (config.output / id.id).writeUrlContent(it.href)
             }
@@ -194,6 +199,7 @@ object SlideEngine {
         val pres = plugContent(presentation(config.input)) as Presentation
         val instances = time("Generate all `${pres.sTitle}`") {
             with(SlideEngine) {
+                pres.renderText(config)
                 themes
                     .map {
                         info("🎨: theme") { "using ${it.name}" }

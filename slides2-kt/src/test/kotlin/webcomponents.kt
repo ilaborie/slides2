@@ -33,8 +33,6 @@ fun main() {
     }
 }
 
-// https://shprink.github.io/talks/2018/web_component_native_vs_stenciljs
-
 val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = { mainTitle() }) {
     part("Introduction", skipHeader = true) {
         slide("Speakers", setOf("header-hidden")) {
@@ -58,8 +56,8 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
                     "igor@monkeypatch.io" to "mailto:igor@monkeypatch.io"
                 )
             )
-            file("logos/toptal.svg")
-            file("logos/monkeypatch.svg")
+            inlineFigure("logos/toptal.svg", "Toptal")
+            inlineFigure("logos/monkeypatch.svg", "MonkeyPatch")
         }
         slide("Roadmap", setOf("roadmap")) {
             ul(classes = setOf("list-inline")) {
@@ -103,7 +101,6 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
         slide("Choose JavaScript Transpiler", setOf("header-hidden")) {
             h4("Now let's transpile our code")
             ul(steps = true, classes = setOf("bullet")) {
-                // TODO logo ?
                 span("Webpack")
                 span("ParcelJs")
                 span("RollupJs")
@@ -111,7 +108,7 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             }
         }
         slide("Development Not Easy", setOf("header-hidden")) {
-            h5("Developing an app in JS in not easy anymore...")
+            h5("Developing an app in JS is not easy anymore...")
         }
         slide("Industry Moving too Fast", setOf("header-hidden")) {
             h4("The industry is moving too fast...")
@@ -205,7 +202,7 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
         }
         slide("HTML templates", setOf("header-hidden")) {
             inlineFigure("img/webcomponents/HTML-templates.svg", "HTML templates")
-            quote("Give the ability to create reusable piece of HTML that can be used at runtime")
+            quote("Give the ability to create a reusable piece of HTML that can be used at runtime")
         }
         slide("Natif code", setOf("header-hidden")) {
             sourceCode("code/natif.js")
@@ -407,23 +404,23 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
     }
     part("Workshop") {
         slide("Exercises", setOf("header-hidden")) {
-//            inlineFigure("exo/exercises.svg", "Exercises")
+            //            inlineFigure("exo/exercises.svg", "Exercises")
             figure("exo/exercises.svg", "Exercises")
         }
     }
     part("Conclusion") {
         slide("Commons Issues") {
             ul(steps = true) {
-                markdown { "Attribute are `string`" }
+                markdown { "Attributes are `string`" }
                 markdown { "Use an external state manager" }
 
-                markdown { "Styling with theme" }
+                markdown { "Styling with a theme" }
                 markdown { "Use CSS custom properties" }
 
                 markdown { "Browser support" }
                 markdown { "Polyfills or Electron" }
             }
-            todo {"..."}
+            todo { "..." } // TODO
         }
         slide("Moderns Alternatives") {
             ul {
@@ -436,7 +433,6 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
         slide("End") { p("Thanks") }
     }
 }
-
 
 private fun ContainerBuilder.litElementTitle() {
     h2("Lit-Elements")

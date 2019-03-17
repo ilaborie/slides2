@@ -4,6 +4,7 @@ import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
+import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
 import io.github.ilaborie.slides2.kt.engine.Slide
 
 
@@ -34,5 +35,17 @@ object SlideHtmlRenderer : Renderer<Slide> {
               |${next.prependIndent("  ")}
               |  <footer></footer>
               |</section>""".trimMargin()
+        }
+}
+
+object SlideTextRenderer : Renderer<Slide> {
+    override val mode: RenderMode = Text
+
+    override fun render(content: Slide): String =
+        with(SlideEngine) {
+            """## ${render(mode, content.title)}
+              |
+              |${content.content.joinToString("\n") { render(mode, it) }}
+              |""".trimMargin()
         }
 }

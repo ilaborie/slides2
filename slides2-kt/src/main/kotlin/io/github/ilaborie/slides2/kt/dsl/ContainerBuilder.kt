@@ -3,7 +3,17 @@ package io.github.ilaborie.slides2.kt.dsl
 import io.github.ilaborie.slides2.kt.Folder
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.contents.*
-import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml.markdownToHtml
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Del
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Emphasis
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Ins
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Keyboard
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Mark
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Pre
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Span
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Strong
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sub
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sup
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.UnderLine
 import io.github.ilaborie.slides2.kt.term.Notifier
 import io.github.ilaborie.slides2.kt.term.Styles
 
@@ -41,16 +51,12 @@ open class ContainerBuilder(internal val input: Folder) {
     }
 
     fun markdown(md: () -> String) {
-        html { markdownToHtml(md()) }
+        content.add { MarkdownContent(md()) }
     }
-
 
     fun todo(html: () -> String) {
-        html {
-            """<span class="todo">${html()}</span>"""
-        }
+        span(html(), classes = setOf("todo"))
     }
-
 
     fun html(html: () -> String) {
         content.add { TextContent(html(), escape = false) }
@@ -121,53 +127,56 @@ open class ContainerBuilder(internal val input: Folder) {
         }
     }
 
-
     fun strong(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
-        styledText(TextStyle.Strong, classes, block)
+        styledText(Strong, classes, block)
     }
 
     fun strong(text: String, classes: Set<String> = emptySet()) {
-        styledText(TextStyle.Strong, classes) { html { text } }
+        styledText(Strong, classes) { html { text } }
     }
 
     fun em(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
-        styledText(TextStyle.Emphasis, classes, block)
+        styledText(Emphasis, classes, block)
     }
 
     fun u(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
-        styledText(TextStyle.UnderLine, classes, block)
+        styledText(UnderLine, classes, block)
     }
 
     fun mark(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
-        styledText(TextStyle.Mark, classes, block)
+        styledText(Mark, classes, block)
     }
 
     fun kbd(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
-        styledText(TextStyle.Keyboard, classes, block)
+        styledText(Keyboard, classes, block)
     }
 
     fun pre(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
-        styledText(TextStyle.Pre, classes, block)
+        styledText(Pre, classes, block)
     }
 
     fun ins(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
-        styledText(TextStyle.Ins, classes, block)
+        styledText(Ins, classes, block)
     }
 
     fun del(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
-        styledText(TextStyle.Del, classes, block)
+        styledText(Del, classes, block)
     }
 
     fun sub(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
-        styledText(TextStyle.Sub, classes, block)
+        styledText(Sub, classes, block)
     }
 
     fun sup(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
-        styledText(TextStyle.Sup, classes, block)
+        styledText(Sup, classes, block)
     }
 
-    fun span(inner: String, classes: Set<String> = emptySet()) {
-        html { """<span class="${classes.joinToString(" ")}">$inner</span>""" }
+    fun span(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
+        styledText(Span, classes, block)
+    }
+
+    fun span(text: String, classes: Set<String> = emptySet()) {
+        styledText(Span, classes) { html { text } }
     }
 
     fun sourceCode(file: String) {

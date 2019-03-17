@@ -3,6 +3,7 @@ package io.github.ilaborie.slides2.kt.engine.contents
 import io.github.ilaborie.slides2.kt.engine.ContainerContent
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.SingleContent
+import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml.markdownToHtml
 
 data class TextContent(
     val text: String,
@@ -27,12 +28,18 @@ data class Title(
     }
 }
 
+data class MarkdownContent(val md: String) : Content {
+    val html: String by lazy {
+        markdownToHtml(md)
+    }
+}
+
 data class Paragraph(
     override val content: Content,
     override val classes: Set<String>
 ) : SingleContent
 
-enum class TextStyle { Strong, Emphasis, UnderLine, Mark, Keyboard, Pre, Ins, Del, Sub, Sup }
+enum class TextStyle { Span, Strong, Emphasis, UnderLine, Mark, Keyboard, Pre, Ins, Del, Sub, Sup }
 data class StyledText(
     val style: TextStyle,
     override val content: Content, override val classes: Set<String>

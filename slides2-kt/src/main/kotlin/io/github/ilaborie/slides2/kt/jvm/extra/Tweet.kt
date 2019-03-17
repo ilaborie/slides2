@@ -59,10 +59,8 @@ data class Tweet(val tweetId: String) : Content {
         private object TweetTextRenderer : Renderer<Tweet> {
             override val mode: RenderMode = Text
             override fun render(content: Tweet): String =
-                content.toString()
+                content.content
         }
-
-
     }
 }
 

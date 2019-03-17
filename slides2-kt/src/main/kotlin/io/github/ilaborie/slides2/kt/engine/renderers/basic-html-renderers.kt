@@ -13,6 +13,7 @@ import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Ins
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Keyboard
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Mark
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Pre
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Span
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Strong
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sub
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle.Sup
@@ -50,6 +51,12 @@ object TextHtmlRenderer : Renderer<TextContent> {
         if (content.escape) content.text.escapeHtml() else content.text
 }
 
+object MarkdownHtmlRenderer : Renderer<MarkdownContent> {
+    override val mode = Html
+    override fun render(content: MarkdownContent): String =
+        content.html
+}
+
 object CompoundHtmlRenderer : Renderer<CompoundContent> {
     override val mode = Html
     override fun render(content: CompoundContent): String =
@@ -78,6 +85,7 @@ object ParagraphHtmlRenderer : HtmlTagRenderer<Paragraph>() {
 object StyledTextHtmlRenderer : HtmlTagRenderer<StyledText>() {
     override fun tag(content: StyledText): String =
         when (content.style) {
+            Span      -> "span"
             Strong    -> "strong"
             Emphasis  -> "em"
             UnderLine -> "u"

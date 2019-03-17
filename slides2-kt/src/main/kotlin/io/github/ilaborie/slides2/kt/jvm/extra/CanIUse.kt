@@ -146,18 +146,18 @@ data class CanIUse(
         private object CanIUseTextRenderer : Renderer<CanIUse> {
             override val mode: RenderMode = Text
             override fun render(content: CanIUse): String =
-                content.content
-                    .toList()
-                    .flatMap { (feature, map) ->
-                        map.map { (browser, state) -> Triple(feature, browser, state) }
-                    }
-                    .joinToString("\n") { (feature, browser, status) ->
-                        val (name, version) = browser
-                        "$feature with $name v$version : $status"
-                    }
+                with(SlideEngine) {
+                    content.content
+                        .toList()
+                        .flatMap { (feature, map) ->
+                            map.map { (browser, state) -> Triple(feature, browser, state) }
+                        }
+                        .joinToString("\n") { (feature, browser, status) ->
+                            val (name, version) = browser
+                            "${feature.title} with $name v$version : ${render(mode, content.statusFn(status))}"
+                        }
+                }
         }
-
-
     }
 }
 

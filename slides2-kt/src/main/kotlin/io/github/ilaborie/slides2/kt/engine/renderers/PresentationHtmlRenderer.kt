@@ -5,6 +5,7 @@ import io.github.ilaborie.slides2.kt.engine.Presentation
 import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
+import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
 import io.github.ilaborie.slides2.kt.engine.Stylesheet
 import io.github.ilaborie.slides2.kt.engine.contents.InlineFigure
 
@@ -97,5 +98,23 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
             |${afterMain().prependIndent("  ")}
             |</body>
             |</html>""".trimMargin()
+        }
+}
+
+
+object PresentationTextRenderer : Renderer<Presentation> {
+
+    override val mode: RenderMode = Text
+
+    override fun render(content: Presentation): String =
+        with(SlideEngine) {
+            val body = content.allSlides.joinToString("\n") {
+                render(mode, it)
+            }
+
+            """# ${content.sTitle}
+              |
+              |$body
+              |""".trimMargin()
         }
 }

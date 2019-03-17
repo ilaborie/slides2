@@ -7,6 +7,7 @@ import io.github.ilaborie.slides2.kt.engine.ContainerContent
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Html
+import io.github.ilaborie.slides2.kt.engine.Renderer.Companion.RenderMode.Text
 import io.github.ilaborie.slides2.kt.engine.renderers.asHtmlClass
 
 
@@ -64,7 +65,7 @@ fun <R, C, V> ContainerBuilder.table(
 
 
 object TableTextRenderer : Renderer<Table> {
-    override val mode = Html
+    override val mode = Text
 
     override fun render(content: Table): String =
         with(SlideEngine) {
