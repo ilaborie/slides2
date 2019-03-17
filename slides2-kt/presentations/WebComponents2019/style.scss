@@ -452,6 +452,14 @@ h1 {
   }
 }
 
+#lit_elements_support article {
+  p a::before {
+    content: '💊 ';
+    width: 2ch;
+    display: inline-block;
+  }
+}
+
 #moderns_alternatives article {
   text-align: left;
 }

@@ -376,7 +376,7 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             }
         }
         slide("Templating", setOf("header-hidden")) {
-            h4("Using the lit-html templating library")
+            h4("But using the lit-html templating library")
             link("https://lit-html.polymer-project.org/")
             ul {
                 markdown { "built on **HTML templates**" }
@@ -397,8 +397,12 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             sourceCode("code/lit-element.ts")
         }
         slide("lit-elements Support", setOf("header-hidden")) {
-            p("The last 2 versions of all modern browsers are supported, including Chrome, Safari, Opera, Firefox, Edge. In addition, Internet Explorer 11 is also supported.")
-            p("Edge and Internet Explorer 11 require the web components polyfills.")
+            markdown {
+                """✅ Chrome, Safari, Opera, Firefox
+                  |
+                  |[polyfills](https://github.com/webcomponents/webcomponentsjs)
+                  |for Edge and IE 11""".trimMargin()
+            }
         }
     }
     part("Workshop") {
@@ -432,6 +436,7 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
         slide("End") { p("Thanks") }
     }
 }
+
 
 private fun ContainerBuilder.litElementTitle() {
     h2("Lit-Elements")
