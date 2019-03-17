@@ -83,7 +83,9 @@ object LinkTextRenderer : Renderer<Link> {
 
     override fun render(content: Link): String =
         with(SlideEngine) {
-            """[${render(mode, content.content)}](${content.href})"""
+            val label = render(mode, content.content)
+            if (label == content.href) "<${content.href}>"
+            else """[$label](${content.href})"""
         }
 }
 
@@ -115,7 +117,7 @@ object NoticeTextRenderer : Renderer<Notice> {
 
     override fun render(content: Notice): String =
         with(SlideEngine) {
-            """${content.kind.name.toLowerCase()}: ${content.title?:""}
+            """${content.kind.name.toLowerCase()}: ${content.title ?: ""}
                 |${render(mode, content.content).prependIndent("  ")}
                 |""".trimMargin()
         }

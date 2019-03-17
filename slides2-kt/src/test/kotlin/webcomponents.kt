@@ -343,7 +343,7 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             p("Loads polyfills on-demand", classes = setOf("step"))
         }
         slide("Stencil is concise", setOf("header-hidden")) {
-            figure("stencil/stencil-syntax.png", "Stencil Syntax is concise")
+            figure("img/stencil/stencil-syntax.png", "Stencil Syntax is concise")
         }
         slide("Getting started") {
             code("sh") { "\$ npm init stencil" }
@@ -406,24 +406,24 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
         }
     }
     part("Workshop") {
-        slide("TODO - work") {
-            todo { "links..." } // TODO
-            todo { "Hours pause ..." } // TODO
+        slide("Exercises", setOf("header-hidden")) {
+//            inlineFigure("exo/exercises.svg", "Exercises")
+            figure("exo/exercises.svg", "Exercises")
         }
     }
     part("Conclusion") {
         slide("Commons Issues") {
-            ul {
+            ul(steps = true) {
                 markdown { "Attribute are `string`" }
-                markdown { "Styling with theme" }
-                markdown { "Browser support" }
-                todo { "others issues" }
-
                 markdown { "Use an external state manager" }
+
+                markdown { "Styling with theme" }
                 markdown { "Use CSS custom properties" }
-                markdown { "Wait, or Electron, or polyfills" }
-                todo { "others alternatives" }
+
+                markdown { "Browser support" }
+                markdown { "Polyfills or Electron" }
             }
+            todo {"..."}
         }
         slide("Moderns Alternatives") {
             ul {

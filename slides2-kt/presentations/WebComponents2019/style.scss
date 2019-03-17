@@ -460,6 +460,29 @@ h1 {
   }
 }
 
+#exercises article {
+  figure {
+    img {
+      height: 80vh;
+      max-width: 100%;
+    }
+
+    figcaption {
+      display: none;
+
+    }
+  }
+}
+
 #moderns_alternatives article {
   text-align: left;
+}
+
+#commons_issues article {
+  ul {
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
 }

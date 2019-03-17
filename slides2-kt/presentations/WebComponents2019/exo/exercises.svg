@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 262 332">
+
+    <g>
+        <circle cx="127" cy="17" r="10"/>
+    </g>
+
+    <g>
+        <rect x="87" y="77" width="80" height="30" rx="4.5" ry="4.5" stroke="#000" fill="#fff"/>
+        <g transform="translate(114.5,85.5)">
+            <text x="13" y="12" font-family="Open Sans" font-size="12px" text-anchor="middle">Natif</text>
+        </g>
+    </g>
+    <g>
+        <rect x="7" y="157" width="80" height="30" rx="4.5" ry="4.5" stroke="#000" fill="#fff"/>
+        <g transform="translate(21.5,165.5)">
+            <text x="25" y="12" font-family="Open Sans" font-size="12px" text-anchor="middle">StencilJS</text>
+        </g>
+    </g>
+    <g>
+        <rect x="167" y="157" width="80" height="30" rx="4.5" ry="4.5" stroke="#000" fill="#fff"/>
+        <g transform="translate(178.5,165.5)">
+            <text x="29" y="12" font-family="Open Sans" font-size="12px" text-anchor="middle">LitElement</text>
+        </g>
+    </g>
+    <g>
+        <rect x="87" y="237" width="80" height="30" rx="4.5" ry="4.5" stroke="#000" fill="#fff"/>
+        <g transform="translate(93.5,245.5)">
+            <text x="34" y="12" font-family="Open Sans" font-size="12px" text-anchor="middle">Big Exercice</text>
+        </g>
+    </g>
+
+    <g>
+        <circle cx="127" cy="307" r="8"/>
+        <circle cx="127" cy="307" r="10" fill="none" stroke="#000"/>
+    </g>
+
+    <g>
+        <path d="M 127.31 27.31 L 127.31 70.6" fill="none" stroke="#000" stroke-miterlimit="10"/>
+        <path d="M 127.31 75.85 L 123.81 68.85 L 127.31 70.6 L 130.81 68.85 Z" stroke="#000" stroke-miterlimit="10"/>
+    </g>
+
+    <g>
+        <path d="M 107.31 107.31 L 71.31 152.01" fill="none" stroke="#000" stroke-miterlimit="10"/>
+        <path d="M 68.01 156.09 L 69.68 148.45 L 71.31 152.01 L 75.13 152.84 Z" stroke="#000"
+              stroke-miterlimit="10"/>
+    </g>
+
+    <g>
+        <path d="M 147.31 107.31 L 183.32 152.01" fill="none" stroke="#000" stroke-miterlimit="10"/>
+        <path d="M 186.61 156.09 L 179.49 152.84 L 183.32 152.01 L 184.94 148.45 Z" stroke="#000"
+              stroke-miterlimit="10"/>
+    </g>
+
+    <g>
+        <path d="M 119.72 23.86 L 56.1 52.85 Q 47 57 47.03 67 L 47.29 150.6" fill="none" stroke="#000"
+              stroke-miterlimit="10"/>
+        <path d="M 47.31 155.85 L 43.79 148.86 L 47.29 150.6 L 50.79 148.84 Z" stroke="#000"
+              stroke-miterlimit="10"/>
+    </g>
+
+    <g>
+        <path d="M 134.21 23.86 L 197.9 52.86 Q 207 57 207.03 67 L 207.29 150.6" fill="none" stroke="#000"
+              stroke-miterlimit="10"/>
+        <path d="M 207.31 155.85 L 203.79 148.86 L 207.29 150.6 L 210.79 148.84 Z" stroke="#000"
+              stroke-miterlimit="10"/>
+    </g>
+
+    <g>
+        <path d="M 127.31 267.31 L 127.31 290.6" fill="none" stroke="#000" stroke-miterlimit="10"/>
+        <path d="M 127.31 295.85 L 123.81 288.85 L 127.31 290.6 L 130.81 288.85 Z" stroke="#000"
+              stroke-miterlimit="10"/>
+    </g>
+
+    <g>
+        <path d="M 47.31 187.31 L 102.4 232.91" fill="none" stroke="#000" stroke-miterlimit="10"/>
+        <path d="M 106.45 236.25 L 98.82 234.49 L 102.4 232.91 L 103.29 229.09 Z" stroke="#000"
+              stroke-miterlimit="10"/>
+    </g>
+    <g>
+        <path d="M 207.31 187.31 L 150.58 233.01" fill="none" stroke="#000" stroke-miterlimit="10"/>
+        <path d="M 146.49 236.3 L 149.75 229.18 L 150.58 233.01 L 154.14 234.63 Z" stroke="#000"
+              stroke-miterlimit="10"/>
+    </g>
+
+    <g>
+        <path d="M 93.68 172.14 L 160.94 172.14" fill="none" stroke="#000" stroke-miterlimit="10"/>
+        <path d="M 88.43 172.14 L 95.43 168.64 L 93.68 172.14 L 95.43 175.64 Z" stroke="#000"
+              stroke-miterlimit="10"/>
+        <path d="M 166.19 172.14 L 159.19 175.64 L 160.94 172.14 L 159.19 168.64 Z" stroke="#000"
+              stroke-miterlimit="10"/>
+    </g>
+</svg>
