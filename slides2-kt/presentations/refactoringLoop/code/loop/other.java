@@ -1,5 +1,5 @@
 toto: for (Element element : input) {
-    tata: for (Child child : input.getChildren()) {
+    tata: for (Child child : element.getChildren()) {
         if(cond1) {
             continue toto;
         } else if (cond2) {

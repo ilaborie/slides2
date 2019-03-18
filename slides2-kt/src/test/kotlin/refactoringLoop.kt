@@ -85,13 +85,21 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         }
     }
     part("Récursion") {
-        slide("Parcours") {}
+        slide("Parcours") {
+            ul(steps = true) {
+                sourceCode("code/recursion/transform.java")
+                sourceCode("code/recursion/transform.kt")
+                sourceCode("code/recursion/transform2.kt")
+                sourceCode("code/recursion/transform.scala")
+                sourceCode("code/recursion/transform2.scala")
+            }
+        }
         slide("Sortie rapide") {}
         slide("Récursion terminale") {}
         slide("Bilan récursion - Java") {}
         slide("Bilan Kotlin &  Scala") {}
     }
-    part("Stream") {
+    part(partTitle = { markdown{"## `Stream`"} },id = "stream") {
         slide("Création") {}
         slide("Opération paresseuses") {}
         slide("Opérations finales") {}

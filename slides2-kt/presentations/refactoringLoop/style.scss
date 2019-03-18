@@ -12,10 +12,12 @@ main > section > article {
   pre[class*=language-].line-numbers {
     padding-left: .5em;
     align-self: auto;
+    max-width: calc(100% - 1em);
+    overflow: auto;
   }
 }
 
-.cover {
+h1, h2, h3, h4, h5, h6 {
   code {
     border-radius: .125em;
     padding: .125em;
@@ -58,12 +60,19 @@ main > section > article {
 
 }
 
-#transformation article {
+#transformation article, #parcours article {
   .step {
     display: none;
+    max-width: 100%;
 
     &.step-current {
       display: block;
     }
+  }
+}
+
+#parcours article {
+  ul {
+    font-size: 80%;
   }
 }

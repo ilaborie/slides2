@@ -15,3 +15,5 @@ dist/
 slides2-kt/public/*/
 .scannerwork/
 
+.metals/
+

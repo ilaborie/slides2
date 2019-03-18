@@ -1,5 +1,5 @@
 for (Element element : input) {
-    for (Child child: input.getChildren()) {
+    for (Child child: element.getChildren()) {
         // transform, filter, accumulate, ...
     }
 }
