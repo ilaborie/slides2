@@ -2,6 +2,8 @@ import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.Theme
+import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Info
+import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Warning
 import io.github.ilaborie.slides2.kt.engine.contents.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
 import io.github.ilaborie.slides2.kt.engine.plugins.*
@@ -18,6 +20,7 @@ fun main() {
         .use(TocPlugin, NavigatePlugin, GridPlugin)
         .use(Tweet.Companion.TweetPlugin, CanIUse.Companion.CanIUsePlugin)
         .use(PrismJsPlugin(showLines = true, languages = listOf("java", "scala", "kotlin")))
+        .use(MathJaxPlugin())
         .run(config, refactoringLoop, listOf(Theme.jugTls))
 
 }
@@ -94,12 +97,30 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
                 sourceCode("code/recursion/transform2.scala")
             }
         }
-        slide("Sortie rapide") {}
-        slide("Récursion terminale") {}
+        slide("Filtre & Sortie rapide") {
+            ul(steps = true) {
+                sourceCode("code/recursion/find.java")
+                sourceCode("code/recursion/find.kt")
+                sourceCode("code/recursion/find.scala")
+            }
+        }
+        slide("Récursion terminale") {
+            asciiMath { "x! = x xx (x-1) xx ... xx 2 xx 1" }
+            ul {
+                asciiMath { "fact(x) = x xx fact(x-1)" }
+//                stack("x")
+                asciiMath { "fact(x) = x xx (x-1) xx fact(x-2)" }
+//                stack("`x`", "`x - 1`")
+                asciiMath { "fact(x) = x xx (x-1) xx (x-2) xx ..." }
+//                stack("`x`", "`x - 1`", "...)
+                asciiMath { "fact(x) = x xxx (x-1) xx (x-2) xx ... xx 2 xx 1" }
+//                stack("`x`", "`x - 1`", "`...`", "`2`", "`1`")
+            }
+        }
         slide("Bilan récursion - Java") {}
         slide("Bilan Kotlin &  Scala") {}
     }
-    part(partTitle = { markdown{"## `Stream`"} },id = "stream") {
+    part(partTitle = { markdown { "## `Stream`" } }, id = "stream") {
         slide("Création") {}
         slide("Opération paresseuses") {}
         slide("Opérations finales") {}
@@ -118,6 +139,22 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         slide("MonteCarlo π") {}
         slide("Perforamce") {}
         slide("Élégance du code") {}
+        slide("Mon avis") {
+            ol(steps = true) {
+                html { "Privilégier la clarté du code" }
+                html { "Privilégier la maintenabilité du code" }
+                html { "Utilisez les bonnes structures de données" }
+            }
+            notice(Info, "Attention", classes = setOf("step")) {
+                html {
+                    """Normalement vous n'aurez pas de problèmes de performance.
+                    |Au cas ou, faites des mesures avant de faire des modifications""".trimMargin()
+                }
+            }
+            notice(Warning, "Attention", classes = setOf("step")) {
+                html { "🙏 Faites-vous votre propre avis" }
+            }
+        }
     }
     part("Conclusion") {
         slide("Bilan") {}
@@ -129,4 +166,10 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
 
 private fun ContainerBuilder.refactoringLoopTitle() {
     h1("🏋️‍♂️ Refactoring sans les <code>for</code>")
+}
+
+private fun ContainerBuilder.stack(vararg strings: String) {
+    ul(classes = setOf("stack")) {
+        strings.forEach { span(it) }
+    }
 }

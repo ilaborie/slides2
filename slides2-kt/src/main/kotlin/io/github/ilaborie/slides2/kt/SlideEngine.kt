@@ -148,6 +148,7 @@ object SlideEngine {
 
         info("⚙️") { "global script ${globalScripts.joinToString(", ") { highlight(it.localSrc) }}" }
         globalScripts
+            .filter { it.cacheLocal }
             .forEach { script ->
                 // lookup input
                 when {

@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
-#transformation article, #parcours article {
+#transformation article, #parcours article, #filtre___sortie_rapide article {
   .step {
     display: none;
     max-width: 100%;
@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-#parcours article {
+#parcours article, #filtre___sortie_rapide article {
   ul {
     font-size: 80%;
   }

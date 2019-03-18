@@ -4,7 +4,8 @@ data class Script(
     val src: String,
     val defer: Boolean,
     val module: Boolean,
-    val async: Boolean
+    val async: Boolean,
+    val cacheLocal: Boolean = true
 ) {
     private val tags: String by lazy {
         var base = ""
@@ -22,7 +23,11 @@ data class Script(
     }
 
     val localSrc: String by lazy {
-        if (src.startsWith("http")) src.split("/").last() else src
+        when {
+            !cacheLocal            -> src
+            src.startsWith("http") -> src.split("/").last()
+            else                   -> src
+        }
     }
 
     fun asHtml(): String =
