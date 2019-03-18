@@ -106,19 +106,38 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         }
         slide("Récursion terminale") {
             asciiMath { "x! = x xx (x-1) xx ... xx 2 xx 1" }
-            ul {
+            ul(steps = true) {
                 asciiMath { "fact(x) = x xx fact(x-1)" }
-//                stack("x")
+                stack("`x`")
                 asciiMath { "fact(x) = x xx (x-1) xx fact(x-2)" }
-//                stack("`x`", "`x - 1`")
+                stack("`x - 1`", "`x`")
                 asciiMath { "fact(x) = x xx (x-1) xx (x-2) xx ..." }
-//                stack("`x`", "`x - 1`", "...)
+                stack("...", "`x - 1`", "`x`")
                 asciiMath { "fact(x) = x xxx (x-1) xx (x-2) xx ... xx 2 xx 1" }
-//                stack("`x`", "`x - 1`", "`...`", "`2`", "`1`")
+                stack("`1`", "`2`", "...", "`x - 1`", "`x`")
             }
         }
-        slide("Bilan récursion - Java") {}
-        slide("Bilan Kotlin &  Scala") {}
+        slide("Récursion terminale - Java") {
+            h4("Game Over")
+            span("Insert Kotlin or Scala<br>To continue")
+        }
+        slide("Récursion terminale - Kotlin") {
+            sourceCode("code/recursion/tailrec.kt")
+        }
+        slide("Récursion terminale - Scala") {
+            sourceCode("code/recursion/tailrec.scala")
+        }
+        slide("Principe  récursion terminale") {
+            code("javascript") {
+                """tailRecFunc(scope, state) =
+                  |  if isFinish(scope) then computeResult(state)
+                  |  else
+                  |    (head, subScope) := scope
+                  |    newState := reduce(state, head)
+                  |    tailRecFunc(subScope, newState)
+                """.trimMargin()
+            }
+        }
     }
     part(partTitle = { markdown { "## `Stream`" } }, id = "stream") {
         slide("Création") {}
