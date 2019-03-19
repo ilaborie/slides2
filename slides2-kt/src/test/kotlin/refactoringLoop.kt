@@ -153,12 +153,7 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
     }
     part(partTitle = { markdown { "## `Stream`" } }, id = "stream") {
         slide("Création") {
-            todo {
-                "From List"
-                "From Array"
-                "of, empty"
-                "Stream Support"
-            }
+            sourceCode("code/recursion/create.java")
         }
         slide("Opération paresseuses") {
             // https://typealias.com/guides/kotlin-sequences-illustrated-guide/
