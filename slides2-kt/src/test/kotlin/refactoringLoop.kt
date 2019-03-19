@@ -27,19 +27,6 @@ fun main() {
 
 val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title = { refactoringLoopTitle() }) {
     part("Introduction", skipHeader = true) {
-        slide("Speaker", setOf("header-hidden")) {
-            speaker(
-                fullName = "Igor Laborie",
-                classes = setOf("monkeyPatch"),
-                src = "speakers/igor.jpg",
-                info = "Expert Web & Java",
-                links = mapOf(
-                    "@ilaborie" to "https://twitter.com/ilaborie",
-                    "igor@monkeypatch.io" to "mailto:igor@monkeypatch.io"
-                )
-            )
-            inlineFigure("logos/monkeypatch.svg", "MonkeyPatch")
-        }
         slide("Back to Basics", styles = setOf("header-hidden")) {
             strong("#backToBasics")
             quote("Les frameworks naissent et meurent, les bases restent")
@@ -62,6 +49,19 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
                 html { "ByteCode Java" }
                 html { "..." }
             }
+        }
+        slide("Speaker", setOf("header-hidden")) {
+            speaker(
+                fullName = "Igor Laborie",
+                classes = setOf("monkeyPatch"),
+                src = "speakers/igor.jpg",
+                info = "Expert Web & Java",
+                links = mapOf(
+                    "@ilaborie" to "https://twitter.com/ilaborie",
+                    "igor@monkeypatch.io" to "mailto:igor@monkeypatch.io"
+                )
+            )
+            inlineFigure("logos/monkeypatch.svg", "MonkeyPatch")
         }
         roadmap("Plan")
     }
@@ -88,32 +88,36 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         }
     }
     part("Récursion") {
-        slide("Parcours") {
-            ul(steps = true) {
-                sourceCode("code/recursion/transform.java")
-                sourceCode("code/recursion/transform.kt")
-                sourceCode("code/recursion/transform2.kt")
-                sourceCode("code/recursion/transform.scala")
-                sourceCode("code/recursion/transform2.scala")
-            }
+        slide("Parcours - Java") {
+            sourceCode("code/recursion/transform.java")
         }
-        slide("Filtre & Sortie rapide") {
-            ul(steps = true) {
-                sourceCode("code/recursion/find.java")
-                sourceCode("code/recursion/find.kt")
-                sourceCode("code/recursion/find.scala")
-            }
+        slide("Parcours - Kotlin") {
+            sourceCode("code/recursion/transform.kt")
+            sourceCode("code/recursion/transform2.kt")
+        }
+        slide("Parcours - Scala") {
+            sourceCode("code/recursion/transform.scala")
+            sourceCode("code/recursion/transform2.scala")
+        }
+        slide("Filtre & Sortie rapide - Java") {
+            sourceCode("code/recursion/find.java")
+        }
+        slide("Filtre & Sortie rapide - Kotlin") {
+            sourceCode("code/recursion/find.kt")
+        }
+        slide("Filtre & Sortie rapide - Scala") {
+            sourceCode("code/recursion/find.scala")
         }
         slide("Récursion terminale") {
             asciiMath { "x! = x xx (x-1) xx ... xx 2 xx 1" }
             ul(steps = true) {
                 asciiMath { "fact(x) = x xx fact(x-1)" }
                 stack("`x`")
-                asciiMath { "fact(x) = x xx (x-1) xx fact(x-2)" }
+                asciiMath { "= x xx (x-1) xx fact(x-2)" }
                 stack("`x - 1`", "`x`")
-                asciiMath { "fact(x) = x xx (x-1) xx (x-2) xx ..." }
+                asciiMath { "= x xx (x-1) xx (x-2) xx ..." }
                 stack("...", "`x - 1`", "`x`")
-                asciiMath { "fact(x) = x xxx (x-1) xx (x-2) xx ... xx 2 xx 1" }
+                asciiMath { "= x xx (x-1) xx (x-2) xx ... xx 2 xx 1" }
                 stack("`1`", "`2`", "...", "`x - 1`", "`x`")
             }
         }
@@ -130,7 +134,7 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         slide("Principe  récursion terminale") {
             code("javascript") {
                 """tailRecFunc(scope, state) =
-                  |  if isFinish(scope) then computeResult(state)
+                  |  if (isFinish(scope)) computeResult(state)
                   |  else
                   |    (head, subScope) := scope
                   |    newState := reduce(state, head)
@@ -138,19 +142,55 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
                 """.trimMargin()
             }
         }
+        slide("Bilan récusion") {
+            ul {
+                html { "🧩 découpage en petites tâches" }
+                html { "🤯 lisibilité" }
+                html { "✋ contrôle de l'arrêt" }
+                html { "📚 ATTENTION aux <code>StackOverflowError</code>" }
+            }
+        }
     }
     part(partTitle = { markdown { "## `Stream`" } }, id = "stream") {
-        slide("Création") {}
-        slide("Opération paresseuses") {}
-        slide("Opérations finales") {}
-        slide("map") {}
-        slide("filter") {}
-        slide("fold / reduce") {}
-        slide("flatMap") {}
-        slide("Collectors") {}
-        slide("Zip et ZipWithIndex") {}
-        slide("Bilan Stream - Java") {}
-        slide("Bilan Stream - Kotlin & Scala") {}
+        slide("Création") {
+            todo {
+                "From List"
+                "From Array"
+                "of, empty"
+                "Stream Support"
+            }
+        }
+        slide("Opération paresseuses") {
+            // https://typealias.com/guides/kotlin-sequences-illustrated-guide/
+        }
+        slide("Opérations finales") {
+            // ...
+        }
+        slide("map") {
+            // == transform
+        }
+        slide("filter") {
+            // == filter
+        }
+        slide("fold / reduce") {
+            // == accumulation
+        }
+        slide("foldLeft vs foldRight") {}
+        slide("flatMap") {
+            // == imbrication
+        }
+        slide("Collectors") {
+            // == accumulation généraliste
+        }
+        slide("Zip et ZipWithIndex") {
+            //
+        }
+        slide("Bilan Stream - Java") {
+            // Horreur API
+        }
+        slide("Bilan Stream - Kotlin & Scala") {
+            //
+        }
     }
     part("Qui est le meilleur") {
         slide("Norme") {}
@@ -163,12 +203,6 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
                 html { "Privilégier la clarté du code" }
                 html { "Privilégier la maintenabilité du code" }
                 html { "Utilisez les bonnes structures de données" }
-            }
-            notice(Info, "Attention", classes = setOf("step")) {
-                html {
-                    """Normalement vous n'aurez pas de problèmes de performance.
-                    |Au cas ou, faites des mesures avant de faire des modifications""".trimMargin()
-                }
             }
             notice(Warning, "Attention", classes = setOf("step")) {
                 html { "🙏 Faites-vous votre propre avis" }

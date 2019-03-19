@@ -23,7 +23,7 @@ const nextStep = () => {
     const currentStepSlide = document.querySelector('section.steps:target');
     if (currentStepSlide) {
         const current = currentStepSlide.querySelector('.step-current');
-        const next = currentStepSlide.querySelector(!current ? '.step' : '.step-current ~ .step');
+        const next = currentStepSlide.querySelector(!current ? '.step' : '.step:not(.step-done):not(.step-current)');
         // console.debug('nextStep', {current, next});
         if (current) {
             current.classList.toggle('step-current');

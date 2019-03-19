@@ -1,6 +1,5 @@
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.pres
-import io.github.ilaborie.slides2.kt.dsl.raw
 import io.github.ilaborie.slides2.kt.engine.Theme
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Danger
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Info
@@ -111,10 +110,10 @@ val demo = pres("Demo Presentation", extraStyle = "demo") {
             sourceCode("content/rough-svg.js")
         }
         slide("Slide Notice") {
-            notice(Tips, "block tips") { "Lorem ipsum dolor sit amet.".raw }
-            notice(Info, "block info") { "Lorem ipsum dolor sit amet.".raw }
-            notice(Warning, "block warn") { "Lorem ipsum dolor sit amet.".raw }
-            notice(Danger, "block danger") { "Lorem ipsum dolor sit amet.".raw }
+            notice(Tips, "block tips") { html { "Lorem ipsum dolor sit amet." } }
+            notice(Info, "block info") { html { "Lorem ipsum dolor sit amet." } }
+            notice(Warning, "block warn") { html { "Lorem ipsum dolor sit amet." } }
+            notice(Danger, "block danger") { html { "Lorem ipsum dolor sit amet." } }
         }
         slide("Slide Figure") {
             figure("content/figure.png", title = "A chart")
