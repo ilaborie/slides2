@@ -2,7 +2,6 @@ import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.Theme
-import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Info
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Warning
 import io.github.ilaborie.slides2.kt.engine.contents.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
@@ -152,14 +151,30 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         }
     }
     part(partTitle = { markdown { "## `Stream`" } }, id = "stream") {
-        slide("Création") {
-            sourceCode("code/recursion/create.java")
+        slide("Création 1") {
+            sourceCode("code/stream/create1.java")
         }
-        slide("Opération paresseuses") {
-            // https://typealias.com/guides/kotlin-sequences-illustrated-guide/
+        slide("Création 2") {
+            // More example, from String, from File, ...
+            sourceCode("code/stream/create2.java")
         }
-        slide("Opérations finales") {
-            // ...
+        slide("Stream is Lazy", setOf("header-hidden")) {
+            sourceCode("code/stream/lazy.java")
+            ul(steps = true) {
+                pre(setOf("step")) {
+                    html { "lorem ... amet LOREM ... AMET AMET Created stream" }
+                }
+                span("✘")
+            }
+        }
+        slide("Sloth", setOf("header-hidden")) {
+            figure("img/sloth.jpg", "Two Toe Sloth")
+        }
+        slide("Opérations paresseuses & terminals") {
+            // FIXME dl, dd, dt
+            // lazy: map, filter, flatMap, peek
+            // terminals: forEach, reduce, collect, any...
+            // Take
         }
         slide("map") {
             // == transform
@@ -170,30 +185,65 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         slide("fold / reduce") {
             // == accumulation
         }
-        slide("foldLeft vs foldRight") {}
         slide("flatMap") {
             // == imbrication
         }
+        slide("foldLeft vs foldRight") {}
         slide("Collectors") {
             // == accumulation généraliste
         }
-        slide("Zip et ZipWithIndex") {
+        slide("Illustration") {
+            // Ecosystem,
+            // Stream of string
+            // to emoji
+            // filter eaten by 🍎, 🍌, 🥥, ...
+            // filter eaten by mkp ...
             //
+            // https://typealias.com/guides/kotlin-sequences-illustrated-guide/
+        }
+        slide("Zip et ZipWithIndex") {
+            // Java vs Kotlin vs Scala
+        }
+        slide("Nouveauté depuis Java 8") {
+            // takeWhile / dropWhile
+            // ofNullable , Option#Stream()
+            // iterate (+ predicate)
+            // String chars, codePoints, lines
+        }
+        slide("Bilan Stream") {
+            // danger side effect, ...
+            // lazy et parallel
+            // proche de la prog reactive, par event, ...
         }
         slide("Bilan Stream - Java") {
             // Horreur API
+            // primitive, redure result, boilerplate
         }
         slide("Bilan Stream - Kotlin & Scala") {
-            //
+            // Without Stream // Sequence, collection Frwk
         }
     }
     part("Qui est le meilleur") {
         slide("Norme") {}
-        slide("Exemples") {}
-        slide("MonteCarlo π") {}
-        slide("Perforamce") {}
-        slide("Élégance du code") {}
-        slide("Mon avis") {
+        slide("MonteCarlo π") {
+            // Explain
+            // code java 1,2,3
+            // code kotlin 1,2,3
+            // code scala 1,2,3
+        }
+        slide("Perforamce") {
+            // logarithm axis ... Vs
+        }
+        slide("Élégance du code") {
+            // cf mario fusco SoC
+        }
+        slide("Exemples classique") {
+            // ...
+        }
+        slide("Exemples Excel colonne") {
+            // ...
+        }
+        slide("Mon avis 1") {
             ol(steps = true) {
                 html { "Privilégier la clarté du code" }
                 html { "Privilégier la maintenabilité du code" }
@@ -202,6 +252,9 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
             notice(Warning, "Attention", classes = setOf("step")) {
                 html { "🙏 Faites-vous votre propre avis" }
             }
+        }
+        slide("Mon avis lisibilité") {
+            // Règle sur la lisibilités des streams
         }
     }
     part("Conclusion") {

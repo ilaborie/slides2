@@ -9,6 +9,7 @@ Brainstorming IDEA
   * Scala <https://scastie.scala-lang.org/>
   * Kotlin <https://github.com/JetBrains/kotlin-playground>, <https://jetbrains.github.io/kotlin-playground/examples/>
   * Java <https://repl.it/languages/java>
+  * Rust embedded (see rustbook)
   * Monaco editor for other
 * In Place CSS live code
 
@@ -21,10 +22,15 @@ Brainstorming IDEA
 * Figure Effect <https://bennettfeely.com/image-effects/>
 * Marker Highlight with Houdini <https://css-houdini.rocks/highlighter-marker-annotations>
 
+[P2]
+
+Transpile TS/JS to ES2105 with Rust
+<https://swc-project.github.io/>
+
 [P3]
 
 * UML with <http://plantuml.com/fr/>
-* Giphy
+* draw.io
 
 ### [P2] Multi-platform ?
 
