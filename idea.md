@@ -117,3 +117,5 @@ Lighthouse: <https://web.dev/measure> or <https://github.com/GoogleChrome/lighth
 ### [P2] As WASM ?
 
 <https://medium.com/@saschagrunert/a-web-application-completely-in-rust-6f6bdb6c4471>
+
+### [P2] Sans Bullshit plugin

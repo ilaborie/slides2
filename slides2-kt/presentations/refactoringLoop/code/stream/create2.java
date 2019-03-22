@@ -1,9 +1,9 @@
-// Stream iterate, 
+// TODO IntStream.range
 
-// Stream generate, ...
+// TODO Files lines, walk, ...
 
-// IntStream.range
+// TODO Stream iterate, 
 
-// Files lines, walk, ...
+// TODO Stream generate, ...
 
-// StreamSupport
+// TODO StreamSupport

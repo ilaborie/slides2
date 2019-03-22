@@ -107,17 +107,29 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         slide("Filtre & Sortie rapide - Scala") {
             sourceCode("code/recursion/find.scala")
         }
-        slide("Récursion terminale") {
+        slide("Récursion pas terminale") {
             asciiMath { "x! = x xx (x-1) xx ... xx 2 xx 1" }
+            asciiMath { "1! = 0!  = 1" }
             ul(steps = true) {
-                asciiMath { "fact(x) = x xx fact(x-1)" }
+                asciiMath { "fact(x)" }
+                stack()
+                asciiMath { "x xx fact(x-1)" }
                 stack("`x`")
-                asciiMath { "= x xx (x-1) xx fact(x-2)" }
+                asciiMath { "x xx (x-1) xx fact(x-2)" }
                 stack("`x - 1`", "`x`")
-                asciiMath { "= x xx (x-1) xx (x-2) xx ..." }
+                asciiMath { "x xx (x-1) xx (x-2) xx ..." }
                 stack("...", "`x - 1`", "`x`")
-                asciiMath { "= x xx (x-1) xx (x-2) xx ... xx 2 xx 1" }
+                asciiMath { "x xx (x-1) xx (x-2) xx ... xx 2 xx 1" }
                 stack("`1`", "`2`", "...", "`x - 1`", "`x`")
+            }
+        }
+        slide("Récursion terminale") {
+            ul(steps = true) {
+                asciiMath { "fact(x) = fact(x, 1)" }
+                asciiMath { "fact(x-1, x xx 1)" }
+                asciiMath { "fact(x-2, x xx (x-1))" }
+                asciiMath { "fact(... , x xx (x-1) xx (x-2) xx ..)" }
+                asciiMath { "fact(1, x xx (x-1) xx (x-2) xx ... xx 2)" }
             }
         }
         slide("Récursion terminale - Java") {
@@ -155,16 +167,23 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
             sourceCode("code/stream/create1.java")
         }
         slide("Création 2") {
-            // More example, from String, from File, ...
             sourceCode("code/stream/create2.java")
+        }
+        slide("map") {
+            sourceCode("code/stream/map.java")
+        }
+        slide("filter") {
+            sourceCode("code/stream/filter.java")
         }
         slide("Stream is Lazy", setOf("header-hidden")) {
             sourceCode("code/stream/lazy.java")
             ul(steps = true) {
-                pre(setOf("step")) {
-                    html { "lorem ... amet LOREM ... AMET AMET Created stream" }
+                pre {
+                    html { "lorem,...,amet,LOREM,...,AMET,AMET\nCreated stream" }
                 }
-                span("✘")
+                pre {
+                    html { "Created stream" }
+                }
             }
         }
         slide("Sloth", setOf("header-hidden")) {
@@ -176,17 +195,11 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
             // terminals: forEach, reduce, collect, any...
             // Take
         }
-        slide("map") {
-            // == transform
-        }
-        slide("filter") {
-            // == filter
+        slide("flatMap") {
+            // == imbrication
         }
         slide("fold / reduce") {
             // == accumulation
-        }
-        slide("flatMap") {
-            // == imbrication
         }
         slide("foldLeft vs foldRight") {}
         slide("Collectors") {
@@ -218,8 +231,13 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         slide("Bilan Stream - Java") {
             // Horreur API
             // primitive, redure result, boilerplate
+            // Vavr
         }
-        slide("Bilan Stream - Kotlin & Scala") {
+        slide("Bilan Stream - Kotlin") {
+            // Without Stream // Sequence, collection Frwk
+        }
+        slide("Bilan Stream - Scala") {
+            // for comprehension
             // Without Stream // Sequence, collection Frwk
         }
     }

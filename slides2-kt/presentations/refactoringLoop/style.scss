@@ -12,7 +12,7 @@ main > section > article {
   pre[class*=language-].line-numbers {
     padding-left: .5em;
     align-self: auto;
-    max-width: calc(100% - 1em);
+    width: calc(100% - 1em);
     overflow: auto;
   }
 }
@@ -39,8 +39,8 @@ h1, h2, h3, h4, h5, h6 {
 
   article figure {
     svg {
-      max-height: 33vh;
-      width: 50vh;
+      max-height: 33%;
+      width: 50%;
     }
 
     figcaption {
@@ -77,7 +77,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-#recursion_terminale article {
+#recursion_pas_terminale article, #recursion_terminale article {
   font-size: 60%;
 
   & > ul {
@@ -112,11 +112,11 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   article {
-    font-family: "Press Start 2P", sans-serif;
+    font-family: "Press Start 2P", monospace;
   }
 
   h4 {
-    font-family: "Press Start 2P";
+    font-family: "Press Start 2P", monospace;
     text-transform: uppercase;
     font-size: 2.5em;
     text-align: center;
@@ -175,7 +175,33 @@ h1, h2, h3, h4, h5, h6 {
   .line-numbers.language-javascript::after {
     content: unset;
   }
+}
 
+#stream_is_lazy article {
+
+  li pre {
+    text-align: left;
+    background: #2b2b2b;
+    color: #a9b7c6;
+    padding: .25em; 
+    border-radius: .25em;
+  }
+  li {
+    position: relative;
+  }
+  li.step-done::after {
+    position: absolute;
+    content: '✘';
+    color: firebrick;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4em;
+  }
 }
 
 #mon_avis article {
