@@ -2,6 +2,7 @@
 // isSomething : (Element) -> boolean
 
 input.stream()
-    .filter(element -> isSomething(element)) // Stream<Element>
+    .filter(element -> isSomething(element))
+    // : Stream<Element>
     // ...
     ;

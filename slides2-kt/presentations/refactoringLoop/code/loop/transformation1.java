@@ -1,8 +1,8 @@
 // Good old for style
-public List<Result> transform(List<Element> input) {
-    List<Result> results = new ArrayList<>();
+public List transform(List input) {
+    List results = new ArrayList();
     for (int i = 0; i < input.size(); i++) {
-        Element element = input.get(i);
+        Element element = (Element) input.get(i);
         Result res = transform(element);
         results.add(res);
     }

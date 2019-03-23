@@ -1,10 +1,10 @@
 main > section > article {
 
 
-  & > code, p > code {
+  code:not([class*=language-]) {
     background: rgba(127, 0, 0, .1);
     border-radius: .125em;
-    padding: .125em;
+    padding: 0 .125em;
   }
 
   pre[class*=language-] {

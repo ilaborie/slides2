@@ -8,4 +8,4 @@ Stream<String> stream = Arrays.stream(data)
         return s.startsWith("A");
     }).peek(s -> System.out.println(s));
 
-System.out.println("Created stream");
+System.out.println("Stream created");

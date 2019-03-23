@@ -2,6 +2,9 @@ import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.Theme
+import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Danger
+import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Info
+import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Tips
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Warning
 import io.github.ilaborie.slides2.kt.engine.contents.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
@@ -22,9 +25,12 @@ fun main() {
         .use(MathJaxPlugin())
         .run(config, refactoringLoop, listOf(Theme.jugTls))
 
+    (config.input / "img").copyOrUpdate("sloth.jpg", config.output / id)
+
 }
 
-val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title = { refactoringLoopTitle() }) {
+private const val id = "refactoringLoop"
+val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringLoopTitle() }) {
     part("Introduction", skipHeader = true) {
         slide("Back to Basics", styles = setOf("header-hidden")) {
             strong("#backToBasics")
@@ -65,7 +71,7 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         roadmap("Plan")
     }
     part("Anatomie d'une boucle") {
-        slide("Transformation") {
+        slide("Transformation", setOf("steps-replace")) {
             ul(steps = true) {
                 sourceCode("code/loop/transformation1.java")
                 sourceCode("code/loop/transformation2.java")
@@ -88,15 +94,19 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
     }
     part("Récursion") {
         slide("Parcours - Java") {
-            sourceCode("code/recursion/transform.java")
+            sourceCode("code/recursion/transform.java") // FIXME why no linenumbers
         }
-        slide("Parcours - Kotlin") {
-            sourceCode("code/recursion/transform.kt")
-            sourceCode("code/recursion/transform2.kt")
+        slide("Parcours - Kotlin", setOf("steps-replace")) {
+            ul(steps = true) {
+                sourceCode("code/recursion/transform.kt")
+                sourceCode("code/recursion/transform2.kt")
+            }
         }
-        slide("Parcours - Scala") {
-            sourceCode("code/recursion/transform.scala")
-            sourceCode("code/recursion/transform2.scala")
+        slide("Parcours - Scala", setOf("steps-replace")) {
+            ul(steps = true) {
+                sourceCode("code/recursion/transform.scala")
+                sourceCode("code/recursion/transform2.scala")
+            }
         }
         slide("Filtre & Sortie rapide - Java") {
             sourceCode("code/recursion/find.java")
@@ -107,7 +117,7 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         slide("Filtre & Sortie rapide - Scala") {
             sourceCode("code/recursion/find.scala")
         }
-        slide("Récursion pas terminale") {
+        slide("Récursion non terminale") {
             asciiMath { "x! = x xx (x-1) xx ... xx 2 xx 1" }
             asciiMath { "1! = 0!  = 1" }
             ul(steps = true) {
@@ -163,10 +173,10 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         }
     }
     part(partTitle = { markdown { "## `Stream`" } }, id = "stream") {
-        slide("Création 1") {
+        slide("Création 1/2") {
             sourceCode("code/stream/create1.java")
         }
-        slide("Création 2") {
+        slide("Création 2/2") {
             sourceCode("code/stream/create2.java")
         }
         slide("map") {
@@ -178,68 +188,170 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         slide("Stream is Lazy", setOf("header-hidden")) {
             sourceCode("code/stream/lazy.java")
             ul(steps = true) {
-                pre {
-                    html { "lorem,...,amet,LOREM,...,AMET,AMET\nCreated stream" }
+                pre("lorem,...,amet,LOREM,...,AMET,AMET\nStream created")
+                pre("Stream created")
+            }
+        }
+        slide("Sloth", setOf("header-hidden")) { }
+        slide("Opérations paresseuses & terminales") {
+            definitions {
+                term("Opérations paresseuses") {
+                    html { "<code>map</code>" }
+                    html { "<code>filter</code>" }
+                    html { "<code>flatMap</code>" }
+                    html { "<code>peek</code>" }
+                    html { "<code>distinct</code>" }
+                    html { "<code>limit</code> et <code>skip</code>" }
+                    html { "..." }
                 }
-                pre {
-                    html { "Created stream" }
+                term("Opérations terminales") {
+                    html { "<code>reduce</code> et <code>collect</code>" }
+                    html { "<code>findAny</code> et <code>findFirst</code>" }
+                    html { "<code>forEach</code>" }
+                    html { "<code>count</code>" }
+                    html { "..." }
                 }
             }
         }
-        slide("Sloth", setOf("header-hidden")) {
-            figure("img/sloth.jpg", "Two Toe Sloth")
+        slide("Parallèle") {
+            markdown { "Les `Stream` peuvent être exécuté en parallèle, via le `ForkJoinPool`" }
+            notice(Tips) {
+                markdown { "On peut utiliser `Stream#sequential()` ou `Stream#parallel()` pour basculer vers une exécution séquentiel, ou parallèle." }
+            }
         }
-        slide("Opérations paresseuses & terminals") {
-            // FIXME dl, dd, dt
-            // lazy: map, filter, flatMap, peek
-            // terminals: forEach, reduce, collect, any...
-            // Take
+        slide("flatMap 1/2") {
+            sourceCode("code/stream/flatmap.java")
         }
-        slide("flatMap") {
-            // == imbrication
+        slide("flatMap 2/2", setOf("header-hidden")) {
+            ul(steps = true) {
+                (0..6).forEach {
+                    file("anim/flatmap-$it.html")
+                }
+            }
         }
-        slide("fold / reduce") {
-            // == accumulation
+        slide("Reduce 1/2") {
+            sourceCode("code/stream/reduce1.java")
+            notice(Info) {
+                markdown { "On appel souvent cette méthode `foldLeft`" }
+            }
         }
-        slide("foldLeft vs foldRight") {}
-        slide("Collectors") {
-            // == accumulation généraliste
+        slide("Reduce 2/2") {
+            notice(Tips, title = "Cas particulier") {
+                markdown { "Si `Element == Accumulator`, on peut utiliser un `reduce`" }
+                markdown { "Les `count`, `min`, `max`, `sum`, ... sont des réductions particulières" }
+            }
+            sourceCode("code/stream/reduce2.java")
         }
-        slide("Illustration") {
-            // Ecosystem,
-            // Stream of string
-            // to emoji
-            // filter eaten by 🍎, 🍌, 🥥, ...
-            // filter eaten by mkp ...
-            //
-            // https://typealias.com/guides/kotlin-sequences-illustrated-guide/
+        slide("collect & Collectors") {
+            markdown { "Les `Stream#collect` sont juste une généalisation du `reduce`" }
+            sourceCode("code/stream/collect.java")
         }
-        slide("Zip et ZipWithIndex") {
-            // Java vs Kotlin vs Scala
+        slide("Collectors classiques") {
+            markdown { "Dans `java.util.stream.Collectors`" }
+            ul {
+                markdown { "`toXXX` pour constuire une collection XXX" }
+                markdown { "`toMap` pour constuire un `Map`" }
+                markdown { "`groupBy` pour grouper en une `Map<K,List<V>>`" }
+                markdown { "`joining` pour constuire une `String`" }
+                markdown { "`summarizingXXX` pour les statistiques sur un nombre XXX" }
+                html { "..." }
+            }
         }
-        slide("Nouveauté depuis Java 8") {
-            // takeWhile / dropWhile
-            // ofNullable , Option#Stream()
-            // iterate (+ predicate)
-            // String chars, codePoints, lines
+        slide("Illustration Java", setOf("header-hidden")) {
+            sourceCode("code/stream/exemple.java")
         }
+        slide("Et l'index ?") {
+            markdown { "Et si j'ai besoin de l'_index_ ?" }
+            ul {
+                markdown { "😢 pas faisable facilement et _proprement_ en Java" }
+            }
+        }
+        slide("Nouveauté Java 9+") {
+            definitions {
+                term("JDK 9") {
+                    html { "<code>Stream#takeWhile</code> et <code>Stream#dropWhile</code>" }
+                    html { "<code>Stream#iterate</code> avec un predicat" }
+                    html { "<code>Stream#ofNullable</code>" }
+                    html { "<code>Option#stream</code>" }
+                    html { "<code>Collectors#flatMapping</code> et <code>Collectors#filtering</code>" }
+                    html { "<code>String#chars</code> et <code>String#codePoints</code>" }
+                }
+                term("Java 10") {
+                    html { "<code>Collectors#toUnmodifiableXXX</code> pour les <code>List</code>, <code>Set</code> et <code>Map</code>" }
+                }
+                term("Java 11") {
+                    html { "<code>String#lines</code>" }
+                }
+                term("Java 12") {
+                    html { "<code>Collectors#teeing</code>" }
+                }
+            }
+        }
+//        slide("Trucs et astuces") {
+//            // firstNotNull
+//            // read file
+//        }
         slide("Bilan Stream") {
-            // danger side effect, ...
-            // lazy et parallel
-            // proche de la prog reactive, par event, ...
+            h4("🤗")
+            notice(Danger, title = "A proscire") {
+                markdown { "les effets de bord ! (on tolère les _log_ dans le `peek`)" }
+                markdown { "les opérations non-associatives dans le code paralèlle" }
+                markdown { "les streams sur des `Interger`, `Double`, `Long`" }
+            }
+            notice(Warning) {
+                markdown { "sans bonne raison, ne faites pas de `Stream` parallèles" }
+                markdown { "la lisibilité est important" }
+            }
         }
         slide("Bilan Stream - Java") {
-            // Horreur API
-            // primitive, redure result, boilerplate
-            // Vavr
+            h4("😡")
+            ul(steps = true) {
+                markdown { "`T  reduce(T identity, BinaryOperator<T> accumulator)` et <br>`Optional<T> reduce(BinaryOperator<T> accumulator)`" }
+                markdown { "`IntStream`, `DoubleStream`, `LongStream`, avec `mapToObj`, `mapToXXX`, ..." }
+                markdown { "Le _boilerplate_, par exemple `groupBy`" }
+//                markdown { "💉 [∨∧∨r](http://www.vavr.io)" }
+            }
         }
-        slide("Bilan Stream - Kotlin") {
-            // Without Stream // Sequence, collection Frwk
+        slide("Kotlin 1/3") {
+            sourceCode("code/stream/exemple1.kt")
         }
-        slide("Bilan Stream - Scala") {
-            // for comprehension
-            // Without Stream // Sequence, collection Frwk
+        slide("Kotlin 2/3") {
+            sourceCode("code/stream/exemple2.kt")
         }
+        slide("Kotlin 3/3") {
+            h4("😍")
+            ul(steps = true) {
+                markdown { "API _lazy_ ou non" }
+                markdown { "API **immutable** ou mutable" }
+                markdown { "🎭 utilise juste les classes de Java" }
+            }
+        }
+        slide("Scala 1/4") {
+            sourceCode("code/stream/exemple1.scala")
+        }
+        slide("Scala 2/4") {
+            sourceCode("code/stream/exemple2.scala")
+        }
+        slide("Scala 3/4") {
+            h4("😻")
+            ul(steps = true) {
+                markdown { "API _lazy_ ou non" }
+                markdown { "API **immutable** ou mutable" }
+                markdown { "Pas de réutilisation de Java" }
+                markdown { "API de [`Stream`](https://www.scala-lang.org/api/2.12.3/scala/collection/immutable/Stream.html) avec la possibilité de construction recusive" }
+
+                notice(Info) {
+                    markdown { "De gros changement arrivent dans la [2.13](https://www.scala-lang.org/blog/2018/06/13/scala-213-collections.html)" }
+                }
+            }
+        }
+        slide("Scala 4/4") {
+            h4("🤢")
+            sourceCode("code/stream/exemple-for.scala")
+            markdown { "le `for` de Scala est du sucre syntaxique qui produit des `map`, `filter`, `flatMap`" }
+            markdown { "du coup on peut l'utiliser sur d'autre objects qui ont `map`, `filter`, `flatMap`" }
+        }
+//        slide("foldLeft vs foldRight") {}
     }
     part("Qui est le meilleur") {
         slide("Norme") {}
@@ -267,7 +379,7 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
                 html { "Privilégier la maintenabilité du code" }
                 html { "Utilisez les bonnes structures de données" }
             }
-            notice(Warning, "Attention", classes = setOf("step")) {
+            notice(Warning, classes = setOf("step")) {
                 html { "🙏 Faites-vous votre propre avis" }
             }
         }
@@ -276,9 +388,15 @@ val refactoringLoop = pres(id = "refactoringLoop", extraStyle = "style", title =
         }
     }
     part("Conclusion") {
-        slide("Bilan") {}
-        slide("FP") {}
-        slide("Crafters") {}
+        slide("Bilan") {
+            // lien flatmapThatShit
+        }
+        slide("FP") {
+            // Hidden
+        }
+        slide("Crafters") {
+            // Code review
+        }
     }
 }
 

@@ -26,6 +26,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+h1 {
+  text-align: center;
+}
+
 
 #speaker {
   .previous, .next, article {
@@ -39,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 
   article figure {
     svg {
-      max-height: 33%;
+      //max-height: 33%;
       width: 50%;
     }
 
@@ -60,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
-#transformation article, #parcours article, #filtre___sortie_rapide article {
+.steps.steps-replace {
   .step {
     display: none;
     max-width: 100%;
@@ -77,7 +81,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-#recursion_pas_terminale article, #recursion_terminale article {
+#recursion_non_terminale article, #recursion_terminale article {
   font-size: 60%;
 
   & > ul {
@@ -104,6 +108,9 @@ h1, h2, h3, h4, h5, h6 {
       }
     }
   }
+}
+#recursion_terminale article > ul {
+  grid-template-columns: 1fr;
 }
 
 #recursion_terminale___java {
@@ -183,26 +190,100 @@ h1, h2, h3, h4, h5, h6 {
     text-align: left;
     background: #2b2b2b;
     color: #a9b7c6;
-    padding: .25em; 
+    padding: .25em;
     border-radius: .25em;
   }
+
   li {
     position: relative;
   }
+
   li.step-done::after {
     position: absolute;
     content: '✘';
     color: firebrick;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 4em;
   }
 }
+
+#sloth {
+  background: url('sloth.jpg');
+  background-size: contain ;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+#operations_paresseuses___terminales {
+
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    display: inline;
+    margin-left: 0;
+  }
+
+  dt + dd {
+    margin-left: 2ch;
+  }
+
+  dd + dd::before {
+    content: ', ';
+  }
+
+  dd + dt {
+    margin-top: 1em;
+  }
+}
+
+
+#flatmap_2_2 article {
+
+  ul {
+    display: flex;
+
+    li {
+      margin: .5em;
+    }
+  }
+
+  .focus {
+    border: .1em solid darkorange;
+  }
+
+  .block {
+    background-color: hsl(205, 100%, 82%);
+    padding: .5em;
+    border-radius: .25em;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    .block {
+      background-color: hsl(121, 27%, 65%);
+    }
+
+    span {
+      border-radius: .125em;
+      padding: .25em;
+      margin: .125rem;
+      color: white;
+      background-color: rgba(0, 0, 0, .5);
+      text-align: center;
+
+    }
+  }
+}
+
 
 #mon_avis article {
   ol {

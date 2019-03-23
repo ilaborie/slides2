@@ -88,3 +88,12 @@ data class Figure(
     override val inner: List<Content> =
         copyright?.let { listOf(it) } ?: emptyList()
 }
+
+
+typealias TermAndDefinitions = Pair<Content, List<Content>>
+
+data class Definitions(val definitions: List<TermAndDefinitions>, override val classes: Set<String>) :
+    ContainerContent {
+    override val inner: List<Content>
+        get() = definitions.flatMap { listOf(it.first) + it.second }
+}

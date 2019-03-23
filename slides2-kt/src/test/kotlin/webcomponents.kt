@@ -130,6 +130,11 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
                 }
             }
         }
+        slide("Reinventing 2", setOf("header-hidden")) {
+            todo {
+                "Meme Luci Do It: add another one in WebComponent LitElement..."
+            }
+        }
         slide("Solution", setOf("header-hidden")) {
             h4 {
                 html { "All this complexity is coming to an end with" }

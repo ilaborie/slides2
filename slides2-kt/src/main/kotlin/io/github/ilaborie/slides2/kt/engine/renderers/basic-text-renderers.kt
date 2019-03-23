@@ -138,3 +138,16 @@ object FigureTextRenderer : Renderer<Figure> {
     override fun render(content: Figure): String =
         content.title
 }
+
+object DefinitionsTextRender : Renderer<Definitions> {
+    override val mode: RenderMode = Text
+
+    override fun render(content: Definitions): String =
+        with(SlideEngine) {
+            content.definitions.joinToString("\n") { (term, definitions) ->
+                """- **${render(mode, term)}**
+                  |  ${definitions.joinToString("\n  ") { render(mode, it) }}
+                """.trimMargin()
+            }
+        }
+}

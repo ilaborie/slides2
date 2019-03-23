@@ -154,6 +154,11 @@ open class ContainerBuilder(internal val input: Folder) {
     fun pre(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         styledText(Pre, classes, block)
     }
+    fun pre(text:String, classes: Set<String> = emptySet()) {
+        styledText(Pre, classes) {
+            html { text }
+        }
+    }
 
     fun ins(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         styledText(Ins, classes, block)
@@ -273,7 +278,7 @@ open class ContainerBuilder(internal val input: Folder) {
 
     fun notice(
         kind: NoticeKind,
-        title: String?,
+        title: String? = null,
         classes: Set<String> = emptySet(),
         block: ContainerBuilder.() -> Unit
     ) {
@@ -299,6 +304,15 @@ open class ContainerBuilder(internal val input: Folder) {
 
     fun title(level: Int, text: String) {
         title(level) { text.raw }
+    }
+
+    fun definitions(classes: Set<String> = emptySet(), block: DefinitionsContainer.() -> Unit) {
+        content.add {
+            val builder = DefinitionsContainer(input)
+            builder.apply(block)
+            val list = builder.content.map { it() }
+            Definitions(list, classes)
+        }
     }
 
 

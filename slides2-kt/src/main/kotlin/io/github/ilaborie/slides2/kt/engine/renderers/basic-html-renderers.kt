@@ -111,9 +111,7 @@ object OrderedListHtmlRenderer : Renderer<OrderedList> {
             val step = if (content.steps) """  class="step"""" else ""
             content.inner
                 .joinToString("\n") {
-                    """<li$step>
-                            |${render(mode, it).prependIndent("  ")}
-                            |</li>""".trimMargin()
+                    "<li$step>${render(mode, it)}</li>"
                 }
         }
         return """<ol${content.classes.asHtmlClass}>
@@ -215,5 +213,24 @@ object FigureHtmlRenderer : Renderer<Figure> {
                 |  <img src="${content.src}" alt="${content.title}">$copyright
                 |  <figcaption>${content.title}</figcaption>
                 |</figure>""".trimMargin()
+        }
+}
+
+object DefinitionsHtmlRender : Renderer<Definitions> {
+    override val mode: RenderMode = Html
+
+
+    override fun render(content: Definitions): String =
+        with(SlideEngine) {
+            fun TermAndDefinitions.asHtml(): String {
+                val (term, definitions) = this
+                val dt = "<dt>${render(mode, term)}</dt>"
+                val dds = definitions.joinToString("\n") { "<dd>${render(mode, it)}</dd>" }
+                return dt + "\n" + dds
+            }
+
+            """<dl${content.classes.asHtmlClass}>
+              |${content.definitions.joinToString("\n") { it.asHtml() }.prependIndent("  ")}
+              |</dl>""".trimMargin()
         }
 }
