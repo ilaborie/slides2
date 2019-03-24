@@ -171,17 +171,17 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             barChart(
                 "Le temps ça compte (FMP 3G 📱 en ms)",
                 values = mapOf(
-                    "Angular" to 3000,
-                    "Stencil" to 1070,
-                    "Native" to 1030,
-                    "Stencil Pre Rendered" to 980
+                    "Angular" to 2957,
+                    "Native" to 991,
+                    "LitElement" to 1125,
+                    "Stencil" to 1129,
+                    "Stencil Pre Rendered" to 869
                 ), unit = "ms",
                 factor = { it },
                 mode = BarChartSmallerBetter(fixedMin = 0)
             )
             ul(steps = true) {
-                markdown { "😨 Native et Stencil sont 3 fois plus rapides qu'Angular" }
-//                todo { "Add litElement, Update numbers" } // TODO
+                markdown { "😨 Angular est 3 fois plus lent" }
             }
         }
     }
