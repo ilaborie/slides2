@@ -89,7 +89,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             }
         }
         slide("Choose Style", styles = setOf("two-columns", "header-hidden")) {
-            h4("Puis comment nous allons écrire le styles")
+            h4("Puis comment allons-nous écrire le style")
             ul(steps = true, classes = setOf("bullet")) {
                 span("CSS")
                 span("Sass/Scss")
@@ -111,14 +111,14 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             }
         }
         slide("Development Not Easy", setOf("header-hidden")) {
-            h5("Développer une applicatione en JS n'est plus simple...")
+            h5("Développer une application en JS n'est plus simple...")
         }
         slide("Industry Moving too Fast", setOf("header-hidden")) {
             h4("Ça va trop vite ...")
             tweet("540481335362875392")
         }
         slide("Interoperability", setOf("header-hidden")) {
-            h4("...Interoperabilité ne vient plus gratuitement...")
+            h4("...Interopérabilité ne vient plus gratuitement...")
             ul(classes = setOf("list-inline")) {
                 inlineFigure("logos/react.svg", "React")
                 inlineFigure("logos/vuejs.svg", "VueJs")
@@ -139,7 +139,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             }
         }
         slide("Solution", setOf("header-hidden")) {
-            markdown { "#### Toute cette complexité doit s'arréter avec les **Web Components**" }
+            markdown { "#### Toute cette complexité doit s'arrêter avec les **Web Components**" }
         }
         slide("Size matters", setOf("header-hidden")) {
             val values = mapOf(
@@ -163,7 +163,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
                 )
             )
             ul(steps = true) {
-                markdown { "😨 Stencil et litElement sont 5 fois plus petit qu'Angular" }
+                markdown { "😨 Stencil et litElement sont 5 fois plus petits qu'Angular" }
                 markdown { "😱 Native est 23 fois plus petit qu'Angular" }
             }
         }
@@ -180,7 +180,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
                 mode = BarChartSmallerBetter(fixedMin = 0)
             )
             ul(steps = true) {
-                markdown { "😨 Native et Stencil sont 3 fois plus rapide qu'Angular" }
+                markdown { "😨 Native et Stencil sont 3 fois plus rapides qu'Angular" }
 //                todo { "Add litElement, Update numbers" } // TODO
             }
         }
@@ -205,7 +205,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             inlineFigure("img/webcomponents/custom-elements.svg", "Custom Elements")
             quote {
                 markdown {
-                    "Les _Custom Elements_ sont la capacité de créer une propes balise HTML avec ses propres attributes et méthodes"
+                    "Les _Custom Elements_ sont la capacité de créer un balise HTML avec ses propres attributs et méthodes"
                 }
             }
         }
@@ -293,7 +293,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
         slide("What", setOf("header-hidden")) {
             ul(steps = true) {
                 markdown { "Projet **Open Source**, [MIT License](https://github.com/ionic-team/stencil/blob/master/LICENSE)" }
-                markdown { "Créer par l'équipe d'**Ionic** en 2017" }
+                markdown { "Créé par l'équipe d'**Ionic** en 2017" }
                 markdown { "5.1k ⭐️ sur github" }
             }
         }
@@ -355,7 +355,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             }
         }
         slide("Stencil is concise", setOf("header-hidden")) {
-            figure("img/stencil/stencil-syntax.png", "La syntax de Stencil est concise")
+            figure("img/stencil/stencil-syntax.png", "La syntaxe de Stencil est concise")
         }
         slide("Pour démarrer") {
             code("sh") { "\$ npm init stencil" }
@@ -419,11 +419,11 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
     part("Conclusion") {
         slide("Issues", setOf("header-hidden")) {
             ul(steps = true) {
-                markdown { "Construire une Application" }
+                markdown { "Construire une application" }
                 markdown { "Utiliser un gestionnaire d'état externe" }
 
                 markdown { "Style avec un thème" }
-                markdown { "Utilisé les _custom properties_ CSS " }
+                markdown { "Utilisez les _custom properties_ CSS " }
 
                 markdown { "Support des navigateurs" }
                 markdown { "Utiliser le polyfill ou Electron" }
