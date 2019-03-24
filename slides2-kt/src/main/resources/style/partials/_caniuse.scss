@@ -9,6 +9,7 @@ main > section > article {
 
   table.caniuse {
     width: 100%;
+    overflow: hidden;
     empty-cells: hide;
     border-collapse: collapse;
     caption-side: top;
@@ -71,6 +72,7 @@ main > section > article {
 
   ul.caniuse {
     color: var(--colLight);
+    font-size: 80%;
 
     li {
       padding: .125em .25em;

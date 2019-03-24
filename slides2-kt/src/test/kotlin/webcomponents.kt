@@ -16,11 +16,12 @@ import io.github.ilaborie.slides2.kt.jvm.extra.Tweet
 import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.tweet
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 
+private const val id = "webComponents-19"
 
 fun main() {
     val config = jvmConfig("presentations/WebComponents2019")
 
-    val wcOut = SlideEngine
+    SlideEngine
         .use(CheckContentPlugin)
         .use(TocPlugin, NavigatePlugin, GridPlugin)
         .use(Tweet.Companion.TweetPlugin, CanIUse.Companion.CanIUsePlugin)
@@ -28,12 +29,14 @@ fun main() {
         .use(RoughSvgPlugin)
         .run(config, webComponents, listOf(devoxxFr19))
 
-    config.output.writeTextFile("data.json") {
-        listOf(wcOut).joinToString(", ", "[ ", "]") { it.json }
+    val devoxxImgs = config.input / "img" / "devoxx"
+    val outputDir = config.output / id
+    listOf("background_v1.png", "background_v2.png", "background_white_v1.png", "footer_v2.png").forEach {
+        devoxxImgs.copyOrUpdate(it, outputDir)
     }
 }
 
-val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = { mainTitle() }) {
+val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() }) {
     part("Introduction", skipHeader = true) {
         slide("Speakers", setOf("header-hidden")) {
             speaker(
@@ -75,10 +78,10 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
     }
     part("Modern Web Development Issues", skipHeader = true) {
         slide("I want to build a Web app in 2019", setOf("header-hidden")) {
-            h4("I want to build a Web app in 2019")
+            h4("Développons une application Web en 2019")
         }
         slide("Choose Framework", setOf("header-hidden")) {
-            h4("Let's start by picking up a Framework")
+            h4("Commençons par choisir un Framework")
             ul(steps = true, classes = setOf("list-inline")) {
                 inlineFigure("logos/react.svg", "React")
                 inlineFigure("logos/vuejs.svg", "VueJs")
@@ -86,7 +89,7 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             }
         }
         slide("Choose Style", styles = setOf("two-columns", "header-hidden")) {
-            h4("Now let's select how to write our style")
+            h4("Puis comment nous allons écrire le styles")
             ul(steps = true, classes = setOf("bullet")) {
                 span("CSS")
                 span("Sass/Scss")
@@ -99,7 +102,7 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             }
         }
         slide("Choose JavaScript Transpiler", setOf("header-hidden")) {
-            h4("Now let's transpile our code")
+            h4("Puis construisons notre application")
             ul(steps = true, classes = setOf("bullet")) {
                 span("Webpack")
                 span("ParcelJs")
@@ -108,14 +111,14 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             }
         }
         slide("Development Not Easy", setOf("header-hidden")) {
-            h5("Developing an app in JS is not easy anymore...")
+            h5("Développer une applicatione en JS n'est plus simple...")
         }
         slide("Industry Moving too Fast", setOf("header-hidden")) {
-            h4("The industry is moving too fast...")
+            h4("Ça va trop vite ...")
             tweet("540481335362875392")
         }
         slide("Interoperability", setOf("header-hidden")) {
-            h4("...Interoperability is not available out of the box...")
+            h4("...Interoperabilité ne vient plus gratuitement...")
             ul(classes = setOf("list-inline")) {
                 inlineFigure("logos/react.svg", "React")
                 inlineFigure("logos/vuejs.svg", "VueJs")
@@ -123,7 +126,7 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             }
         }
         slide("Reinventing", setOf("header-hidden")) {
-            h4("...And we keep reinventing the wheel!")
+            h4("...et on réinvente sans arrêt la roue !")
             ul(steps = true) {
                 (1..10).forEach {
                     figure("img/material/material-design-$it.png", "Material $it")
@@ -136,14 +139,16 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             }
         }
         slide("Solution", setOf("header-hidden")) {
-            h4 {
-                html { "All this complexity is coming to an end with" }
-                strong("Web Components")
-            }
+            markdown { "#### Toute cette complexité doit s'arréter avec les **Web Components**" }
         }
         slide("Size matters", setOf("header-hidden")) {
-            val values = mapOf("Angular" to 59.0, "Stencil" to 11.0, "Native" to 2.5)
-            val factor: (Double) -> Int = { (it * 2).toInt() }
+            val values = mapOf(
+                "Angular" to 59.0,
+                "Stencil" to 8.8,
+                "LitElement" to 8.4,
+                "Native" to 2.4
+            )
+            val factor: (Double) -> Int = { (it * 10).toInt() }
             barChart(
                 "Size matters (Gzipped)",
                 values = values,
@@ -158,14 +163,13 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
                 )
             )
             ul(steps = true) {
-                html { "😨 Stencil is 5 times smaller than Angular" }
-                html { "😱 Native is 23 times smaller than Angular" }
-                todo { "Add litElement, Update numbers" } // TODO
+                markdown { "😨 Stencil et litElement sont 5 fois plus petit qu'Angular" }
+                markdown { "😱 Native est 23 fois plus petit qu'Angular" }
             }
         }
         slide("Time matters", setOf("header-hidden")) {
             barChart(
-                "Time matters (FMP 3G 📱 in ms)",
+                "Le temps ça compte (FMP 3G 📱 en ms)",
                 values = mapOf(
                     "Angular" to 3000,
                     "Stencil" to 1070,
@@ -176,16 +180,16 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
                 mode = BarChartSmallerBetter(fixedMin = 0)
             )
             ul(steps = true) {
-                html { "😨 Native & Stencil 3 times faster than Angular" }
-                todo { "Add litElement, Update numbers" } // TODO
+                markdown { "😨 Native et Stencil sont 3 fois plus rapide qu'Angular" }
+//                todo { "Add litElement, Update numbers" } // TODO
             }
         }
     }
     part(partTitle = { webComponentTitle() }, id = "web_components_part") {
         slide("History", setOf("header-hidden")) {
             ul {
-                markdown { "Specs from **World Wide Web Consortium** (W3C)" }
-                markdown { "First draft in **2012**" }
+                markdown { "Spécifier par le **World Wide Web Consortium** (W3C)" }
+                markdown { "Débuté en **2012**" }
             }
         }
         slide("Components", setOf("header-hidden")) {
@@ -199,21 +203,29 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
         }
         slide("Custom Elements", setOf("header-hidden")) {
             inlineFigure("img/webcomponents/custom-elements.svg", "Custom Elements")
-            quote("Custom Elements is a capability for creating your own custom HTML elements with its own methods and properties")
+            quote {
+                markdown {
+                    "Les _Custom Elements_ sont la capacité de créer une propes balise HTML avec ses propres attributes et méthodes"
+                }
+            }
         }
         slide("Shadow DOM", setOf("header-hidden")) {
             inlineFigure("img/webcomponents/shadow-DOM.svg", "Shadow DOM")
-            quote("Shadow DOM provides encapsulation for DOM and CSS")
+            quote {
+                markdown {
+                    "Le Shadow DOM fournit l'encapsulation du DOM et du CSS"
+                }
+            }
         }
         slide("HTML templates", setOf("header-hidden")) {
             inlineFigure("img/webcomponents/HTML-templates.svg", "HTML templates")
-            quote("Give the ability to create a reusable piece of HTML that can be used at runtime")
+            quote("Définit un bloc d'HTML réutilisable au moment de l'exécution")
         }
         slide("Natif code", setOf("header-hidden")) {
             sourceCode("code/natif.js")
         }
         slide("Browser support", setOf("header-hidden")) {
-            caniuse("Browser support",
+            caniuse("Support des navigateurs",
                     features = listOf("custom-elementsv1", "shadowdomv1", "template"),
                     browsers = listOf("ie" to 11, "edge" to 18, "firefox" to 65, "chrome" to 72, "safari" to 12),
                     browserFn = { (name, version) ->
@@ -237,7 +249,7 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             link("https://caniuse.com")
         }
         slide("Polyfill support", setOf("header-hidden")) {
-            caniuse("Polyfill support",
+            caniuse("Support avec le polyfill",
                     features = listOf("custom-elementsv1", "shadowdomv1", "template"),
                     browsers = listOf("ie" to 11, "edge" to 18, "firefox" to 65, "chrome" to 72, "safari" to 9),
                     browserFn = { (name, version) ->
@@ -256,7 +268,7 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
         }
         slide("Framework Interoperability", setOf("header-hidden")) {
             barChart(
-                "Web component interoperability support",
+                "Interopérabilité des Web Component",
                 values = mapOf(
                     "Angular 6" to 100,
                     "Vue" to 100,
@@ -280,28 +292,24 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
     part(partTitle = { stencilTitle() }, id = "stenciljs_part") {
         slide("What", setOf("header-hidden")) {
             ul(steps = true) {
-                markdown { "**Open Source** project, [MIT License](https://github.com/ionic-team/stencil/blob/master/LICENSE)" }
-                markdown { "Created by the **Ionic Team** in 2017" }
-                markdown { "4.9k ⭐️ on github" }
+                markdown { "Projet **Open Source**, [MIT License](https://github.com/ionic-team/stencil/blob/master/LICENSE)" }
+                markdown { "Créer par l'équipe d'**Ionic** en 2017" }
+                markdown { "5.1k ⭐️ sur github" }
             }
         }
         slide("Not a framework", setOf("header-hidden")) {
-            h4 {
-                html { "StencilJS is" }
-                strong("not another framework")
+            markdown {
+                "#### StencilJS n'est **pas un autre framework**"
             }
         }
         slide("Compiler", setOf("header-hidden")) {
-            h4 {
-                html { "StencilJS is a " }
-                strong("compiler")
-                html { "that generates " }
-                strong("web components")
+            markdown {
+                "#### StencilJS c'est un **compileur** qui génère des **web components** "
             }
         }
         slide("StencilJS is a set of great tools", setOf("header-hidden")) {
             table(
-                "StencilJS is a **set** of **great tools**".markdown,
+                "StencilJS c'est un **ensemble** de **bons outils**".markdown,
                 rows = listOf("JSX / Virtual DOM", "TypeScript", "Decorators", "Prerendering SSR"),
                 columns = listOf("Web Components", "Angular", "React", "Stencil"),
                 values = mapOf(
@@ -340,20 +348,22 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
 
             )
         }
-        slide("StencilJS works everywhere", setOf("header-hidden", "steps")) {
-            markdown { "#### StencilJS **works everywhere**" }
-            p("Loads polyfills on-demand", classes = setOf("step"))
+        slide("StencilJS works everywhere", setOf("header-hidden")) {
+            ul(steps = true) {
+                markdown { "#### StencilJS **marche partout**" }
+                markdown { "Il charge les polyfills à la demande" }
+            }
         }
         slide("Stencil is concise", setOf("header-hidden")) {
-            figure("img/stencil/stencil-syntax.png", "Stencil Syntax is concise")
+            figure("img/stencil/stencil-syntax.png", "La syntax de Stencil est concise")
         }
-        slide("Getting started") {
+        slide("Pour démarrer") {
             code("sh") { "\$ npm init stencil" }
             code("sh") {
                 """? Pick a starter › - Use arrow-keys. Return to submit.
-                |❯  ionic-pwa     Everything you need to build fast, production ready PWAs
-                |   app           Minimal starter for building a Stencil app or website
-                |   component     Collection of web components that can be used anywhere""".trimMargin()
+                  |❯  ionic-pwa     Everything you need to build fast, production ready PWAs
+                  |   app           Minimal starter for building a Stencil app or website
+                  |   component     Collection of web components that can be used anywhere""".trimMargin()
             }
         }
         slide("stencil code", setOf("header-hidden")) {
@@ -363,27 +373,20 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
     part(partTitle = { litElementTitle() }, id = "lit-element_part") {
         slide("What-Lit", setOf("header-hidden")) {
             ul(steps = true) {
-                markdown { "**Open Source** project, [BSD 3-Clause License](https://github.com/Polymer/lit-element/blob/master/LICENSE)" }
-                markdown { "Created by the **Polymer Team** in 2017" }
-                markdown { "1.7k ⭐️ on github" }
-            }
-        }
-        slide("Close-to", setOf("header-hidden")) {
-            h4("Close to other lightweight WebComponent frameworks")
-            ul {
-                link("https://stenciljs.com/", "Stencil")
-                link("https://skatejs.netlify.com/", "SkateJS")
-                link("https://svelte.technology/", "Svelte")
-                link("http://slimjs.com", "Slim.js")
+                markdown { "Projet **Open Source**, [BSD 3-Clause License](https://github.com/Polymer/lit-element/blob/master/LICENSE)" }
+                markdown { "Créer par l'équipe **Polymer Team** en 2017" }
+                markdown { "1.7k ⭐️ sur github" }
             }
         }
         slide("Templating", setOf("header-hidden")) {
-            h4("But using the lit-html templating library")
+            markdown {
+                "#### Utilise la bibliothèque de template **lit-html**"
+            }
             link("https://lit-html.polymer-project.org/")
             ul {
-                markdown { "built on **HTML templates**" }
+                markdown { "Basé sur les **templates HTML**" }
                 markdown {
-                    "with the ES2015 [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)"
+                    "Avec les [_Template literals_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) de ES2015"
                 }
             }
         }
@@ -391,11 +394,11 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
             sourceCode("code/lit-html.js")
         }
         slide("lit-elements in JS", setOf("header-hidden")) {
-            markdown { "Just extend the `LitElement` class" }
+            //            markdown { "Juste étendre la classe `LitElement`" }
             sourceCode("code/lit-element.js")
         }
         slide("lit-elements in TS", setOf("header-hidden")) {
-            markdown { "Also can use Typescript with **decorators**" }
+            //            markdown { "On peut aussi utiliser les **decorateurs** de Typescript" }
             sourceCode("code/lit-element.ts")
         }
         slide("lit-elements Support", setOf("header-hidden")) {
@@ -403,7 +406,7 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
                 """✅ Chrome, Safari, Opera, Firefox
                   |
                   |[polyfills](https://github.com/webcomponents/webcomponentsjs)
-                  |for Edge and IE 11""".trimMargin()
+                  |pour Edge et IE 11""".trimMargin()
             }
         }
     }
@@ -414,28 +417,36 @@ val webComponents = pres(id = "webComponents-19", extraStyle = "style", title = 
         }
     }
     part("Conclusion") {
-        slide("Commons Issues") {
+        slide("Issues", setOf("header-hidden")) {
             ul(steps = true) {
-                markdown { "Attributes are `string`" }
-                markdown { "Use an external state manager" }
+                markdown { "Construire une Application" }
+                markdown { "Utiliser un gestionnaire d'état externe" }
 
-                markdown { "Styling with a theme" }
-                markdown { "Use CSS custom properties" }
+                markdown { "Style avec un thème" }
+                markdown { "Utilisé les _custom properties_ CSS " }
 
-                markdown { "Browser support" }
-                markdown { "Polyfills or Electron" }
+                markdown { "Support des navigateurs" }
+                markdown { "Utiliser le polyfill ou Electron" }
             }
             todo { "..." } // TODO
         }
-        slide("Moderns Alternatives") {
+        slide("Alternatives modernes") {
             ul {
-                link("https://skatejs.netlify.com/", "SkateJS")
-                link("https://svelte.technology/", "Svelte")
-                link("http://slimjs.com", "Slim.js")
-                html { "..." }
+                markdown { "[SkateJS](https://skatejs.netlify.com/)" }
+                markdown { "[Svelte](https://svelte.technology/)" }
+                markdown { "[Slim.js](http://slimjs.com)" }
+                markdown { "..." }
             }
         }
-        slide("End") { p("Thanks") }
+        slide("Fin") {
+            markdown {
+                """
+                #### Merci
+
+                Pensez à nous faire des retours (votez !)
+            """.trimIndent()
+            }
+        }
     }
 }
 

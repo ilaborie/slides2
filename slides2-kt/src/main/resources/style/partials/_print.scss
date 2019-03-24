@@ -45,6 +45,7 @@
 
     &.steps {
       .step, .step-current, .step-done {
+        transform: scale(1);
         opacity: 1;
       }
     }

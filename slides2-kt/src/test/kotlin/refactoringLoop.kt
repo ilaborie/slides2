@@ -13,6 +13,7 @@ import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse
 import io.github.ilaborie.slides2.kt.jvm.extra.Tweet
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 
+private const val id = "refactoringLoop"
 
 fun main() {
     val config = jvmConfig("presentations/refactoringLoop")
@@ -26,10 +27,8 @@ fun main() {
         .run(config, refactoringLoop, listOf(Theme.jugTls))
 
     (config.input / "img").copyOrUpdate("sloth.jpg", config.output / id)
-
 }
 
-private const val id = "refactoringLoop"
 val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringLoopTitle() }) {
     part("Introduction", skipHeader = true) {
         slide("Back to Basics", styles = setOf("header-hidden")) {

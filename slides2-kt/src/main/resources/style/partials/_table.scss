@@ -15,9 +15,12 @@ main > section > article {
     tbody tr td{
       border: thin solid hsla(0, 100%, 100%, .1);
     }
+    tbody th {
+      background: rgba(0, 0, 0, .05);
+    }
 
     tbody tr:nth-child(odd) {
-      background: rgba(0, 0, 0, .1);
+      background: rgba(0, 0, 0, .05);
 
       td {
         border-bottom-color: hsla(0, 100%, 100%, .2);

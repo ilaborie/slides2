@@ -176,7 +176,7 @@ object QuoteHtmlRenderer : Renderer<Quote> {
             }
 
             """<blockquote${content.classes.asHtmlClass}>
-                |  <p>${render(mode, content.content)}</p>
+                |  ${render(mode, content.content)}
                 |  $subBlock
                 |</blockquote>""".trimMargin()
         }

@@ -3,18 +3,87 @@
 :root {
 
   // FIXME
-  --col1: #fbf0f0;
-  --col2: #dfd3d3;
-  --col3: #b8b0b0;
-  --col4: #7c7575;
+  --colDark: #313741;
+  --colLight: #fff;
 
+  --col1: #313741;
+  --col2: #f8ad42;
+  --col3: #6bb884;
+  --col4: #c26b49;
 
-  --base-font: var(--system-font);
-  --header-font: var(--system-font);
+  --base-font: 'Open Sans', var(--system-font);
+  --header-font: 'Montserrat', var(--system-font);
+
+  // Header
+  --headerBg: transparent;
 
   // Footer
   --footerLogo: url('data:image/png;base64,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');
 
   --footerFg: var(--colDark);
-  --footerBg: var(--colLight);
+  //--footerBg: transparent;
+  --footerBg: url('background_white_v1.png');
+  //--footerBg: url('footer_v1.png');
+}
+
+h1 {
+  color: var(--colLight);
+}
+
+main > section {
+  background: url('background_white_v1.png');
+  background-size: cover;
+  background-position: center center;
+  color: var(--colDark);
+
+  & > header {
+    border-bottom: .125em solid;
+    border-bottom-color: var(--col2);
+    box-shadow: unset;
+
+    &::after {
+      font-size: 50%;
+    }
+  }
+
+  & > footer {
+    box-shadow: none;
+    background-position: center center;
+    background-size: cover;
+
+    &::after {
+      margin: 0;
+      text-shadow: 1px 1px white;
+    }
+  }
+
+  &.cover {
+    background: url('background_v2.png');
+    background-size: cover;
+    background-position: center center;
+    color: var(--colLight);
+    --footerFg: var(--colLight);
+    --footerBg: transparent;
+
+    footer::after {
+      text-shadow: 1px 1px black;
+    }
+  }
+
+  &.part {
+    background: url('background_v2.png');
+    background-size: cover;
+    background-position: center center;
+    color: var(--colLight);
+    --footerFg: var(--colLight);
+    --footerBg: transparent;
+
+    article a {
+      color: var(--col4);
+    }
+
+    footer::after {
+      text-shadow: 1px 1px black;
+    }
+  }
 }

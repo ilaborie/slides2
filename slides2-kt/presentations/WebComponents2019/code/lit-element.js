@@ -7,7 +7,7 @@ class MyElement extends LitElement {
 		}
 	}
 	static get styles() {
-		return css `.mood { color: green; }`;
+		return css`.mood { color: green; }`;
 	}
 	render() {
 		return html `Web Components are 

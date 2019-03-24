@@ -154,7 +154,8 @@ open class ContainerBuilder(internal val input: Folder) {
     fun pre(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {
         styledText(Pre, classes, block)
     }
-    fun pre(text:String, classes: Set<String> = emptySet()) {
+
+    fun pre(text: String, classes: Set<String> = emptySet()) {
         styledText(Pre, classes) {
             html { text }
         }
@@ -272,7 +273,7 @@ open class ContainerBuilder(internal val input: Folder) {
         classes: Set<String> = emptySet()
     ) {
         quote(author = author, cite = cite, classes = classes) {
-            html { quote }
+            p { html { quote } }
         }
     }
 
