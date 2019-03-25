@@ -9,11 +9,12 @@
 main > section > article {
   justify-content: space-evenly;
 
-  pre[class*=language-].line-numbers {
+  pre[class*=language-] {
     padding-left: .5em;
-    align-self: auto;
     width: calc(100% - 1em);
     overflow: auto;
+    align-self: center;
+    white-space: pre-wrap;
   }
 }
 
@@ -43,8 +44,7 @@ h1 {
 
   article figure {
     svg {
-      //max-height: 33%;
-      width: 50%;
+      width: 33vw;
     }
 
     figcaption {
@@ -109,6 +109,7 @@ h1 {
     }
   }
 }
+
 #recursion_terminale article > ul {
   grid-template-columns: 1fr;
 }
@@ -179,7 +180,7 @@ h1 {
 
 #principe__recursion_terminale article {
 
-  .line-numbers.language-javascript::after {
+  .language-javascript::after {
     content: unset;
   }
 }
@@ -215,7 +216,7 @@ h1 {
 
 #sloth {
   background: url('sloth.jpg');
-  background-size: contain ;
+  background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
 }
@@ -281,6 +282,16 @@ h1 {
       text-align: center;
 
     }
+  }
+}
+
+#bilan_stream article,
+#bilan_stream___java article,
+#kotlin_3_3 article,
+#scala_3_4 article,
+#scala_4_4 article{
+  h4 {
+    font-size: 2.5em;
   }
 }
 

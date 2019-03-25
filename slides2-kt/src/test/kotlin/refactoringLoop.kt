@@ -137,7 +137,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 asciiMath { "fact(x) = fact(x, 1)" }
                 asciiMath { "fact(x-1, x xx 1)" }
                 asciiMath { "fact(x-2, x xx (x-1))" }
-                asciiMath { "fact(... , x xx (x-1) xx (x-2) xx ..)" }
+                asciiMath { "fact(... , x xx (x-1) xx (x-2) xx ...)" }
                 asciiMath { "fact(1, x xx (x-1) xx (x-2) xx ... xx 2)" }
             }
         }
@@ -267,7 +267,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         }
         slide("Nouveauté Java 9+") {
             definitions {
-                term("JDK 9") {
+                term("Java 9") {
                     html { "<code>Stream#takeWhile</code> et <code>Stream#dropWhile</code>" }
                     html { "<code>Stream#iterate</code> avec un predicat" }
                     html { "<code>Stream#ofNullable</code>" }
@@ -293,13 +293,13 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         slide("Bilan Stream") {
             h4("🤗")
             notice(Danger, title = "A proscire") {
-                markdown { "les effets de bord ! (on tolère les _log_ dans le `peek`)" }
-                markdown { "les opérations non-associatives dans le code paralèlle" }
-                markdown { "les streams sur des `Interger`, `Double`, `Long`" }
+                markdown { "Les effets de bord ! (on tolère les _logs_ dans le `peek`)" }
+                markdown { "Les opérations non-associatives dans des `Stream` paralèlles" }
+                markdown { "Les streams sur des `Integer`, `Double`, `Long`" }
             }
             notice(Warning) {
-                markdown { "sans bonne raison, ne faites pas de `Stream` parallèles" }
-                markdown { "la lisibilité est important" }
+                markdown { "Sans bonne raison, ne faites pas de `Stream` parallèles" }
+                markdown { "La lisibilité est important" }
             }
         }
         slide("Bilan Stream - Java") {
@@ -307,7 +307,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             ul(steps = true) {
                 markdown { "`T  reduce(T identity, BinaryOperator<T> accumulator)` et <br>`Optional<T> reduce(BinaryOperator<T> accumulator)`" }
                 markdown { "`IntStream`, `DoubleStream`, `LongStream`, avec `mapToObj`, `mapToXXX`, ..." }
-                markdown { "Le _boilerplate_, par exemple `groupBy`" }
+                markdown { "Le _boilerplate_, par exemple `.collect(Collectors.toList())`, `Collectors.groupBy`, ..." }
 //                markdown { "💉 [∨∧∨r](http://www.vavr.io)" }
             }
         }
@@ -347,8 +347,10 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         slide("Scala 4/4") {
             h4("🤢")
             sourceCode("code/stream/exemple-for.scala")
-            markdown { "le `for` de Scala est du sucre syntaxique qui produit des `map`, `filter`, `flatMap`" }
-            markdown { "du coup on peut l'utiliser sur d'autre objects qui ont `map`, `filter`, `flatMap`" }
+            ul {
+                markdown { "Le `for` de Scala est du sucre syntaxique qui produit des `map`, `filter`, `flatMap`" }
+                markdown { "Du coup on peut l'utiliser sur d'autre objects qui ont `map`, `filter`, `flatMap`" }
+            }
         }
 //        slide("foldLeft vs foldRight") {}
     }

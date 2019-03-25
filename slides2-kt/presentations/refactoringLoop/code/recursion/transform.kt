@@ -1,4 +1,4 @@
-fun transformzR(input: List<Element>): List<Result> =
+fun transformR(input: List<Element>): List<Result> =
     if (input.isEmpty()) listOf() // end of recursion
     else {
         // Deconstruct
@@ -9,5 +9,5 @@ fun transformzR(input: List<Element>): List<Result> =
         val transformed = transform(head)
 
         // Recursion
-        listOf(transformed) + transformzR(tail)
+        listOf(transformed) + transformR(tail)
     }

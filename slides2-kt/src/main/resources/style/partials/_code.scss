@@ -18,6 +18,8 @@ main > section > article {
 
     align-self: stretch;
 
+    white-space: pre-wrap;
+
 
     &::before {
       position: absolute;

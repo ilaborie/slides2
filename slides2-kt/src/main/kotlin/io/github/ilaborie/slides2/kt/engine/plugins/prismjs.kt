@@ -19,15 +19,13 @@ class PrismJsPlugin(
         if (showLines) listOf("line-numbers") else emptyList()
 
     override fun scripts(): List<Script> =
-    // Extra show Line
-        ((if (showLines) listOf("line-numbers.js") else emptyList()) +
-                // Prism
-                listOf("$cloudfare/prism/$version/prism.min.js") +
+        listOf(script("$cloudfare/prism/$version/prism.min.js")) +
                 // Languages
-                languages.map { "$cloudfare/prism/$version/components/prism-$it.min.js" } +
+                languages.map { script("$cloudfare/prism/$version/components/prism-$it.min.js") } +
                 // plugins
-                plugins.map { "$cloudfare/prism/$version/plugins/$it/prism-$it.min.js" })
-            .map { script(it) }
+                plugins.map { script("$cloudfare/prism/$version/plugins/$it/prism-$it.min.js") }
+                // Extra show Line
+//                (if (showLines) listOf(script("line-numbers.js")) else emptyList())
 
     override fun stylesheets(): List<Stylesheet> =
         (listOf("$cloudfare/prism/$version/themes/prism.min.css") +

@@ -1,4 +1,4 @@
-def find(elements: List[Element]): Option[Element] =
-  if (elements.isEmpty) None
-  else if (isSomething(elements)) Some(elements.head)
-  else filterAlt(elements.tail)
+def find(input: List[Element]): Option[Element] =
+  if (input.isEmpty) None
+  else if (isSomething(input)) Some(input.head)
+  else find(input.tail)

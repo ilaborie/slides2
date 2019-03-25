@@ -147,8 +147,10 @@ object SlideEngine {
     private fun Presentation.writePresentationScripts(config: Config) {
         val folder = config.output / id.id
 
-        info("⚙️") { "global script ${globalScripts.joinToString(", ") { highlight(it.localSrc) }}" }
-        globalScripts
+        val scriptToCopy = globalScripts.filterIsInstance<Script.Companion.BaseScript>()
+
+        info("⚙️") { "global script ${scriptToCopy.joinToString(", ") { highlight(it.localSrc) }}" }
+        scriptToCopy
             .filter { it.cacheLocal }
             .forEach { script ->
                 // lookup input

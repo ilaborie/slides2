@@ -90,7 +90,7 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
             """<!doctype html>
             |<html lang="${content.lang}">
             |${head(content)}
-            |<body class="${content.theme.name}">
+            |<body class="${content.theme.name} line-numbers">
             |${beforeMain(content).prependIndent("  ")}
             |  <main>
             |$body

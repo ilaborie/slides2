@@ -1,6 +1,6 @@
-fun find(elements: List<Element>): Element? =
+fun find(input: List<Element>): Element? =
     when {
-        elements.isEmpty()    -> null
-        isSomething(elements) -> elements.first()
-        else                  -> filterAlt(elements.drop(1))
+        input.isEmpty()    -> null
+        isSomething(input) -> input.first()
+        else               -> find(input.drop(1))
     }

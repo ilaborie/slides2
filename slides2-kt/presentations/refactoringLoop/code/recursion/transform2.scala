@@ -1,5 +1,5 @@
-def transform(elements: List[ElementScala]): List[Result] =
-  elements match {
+def transformR(input: List[Element]): List[Result] =
+  input match {
     case Nil          => Nil
-    case head :: tail => transform(head) :: transform(tail)
+    case head :: tail => transform(head) :: transformR(tail)
   }

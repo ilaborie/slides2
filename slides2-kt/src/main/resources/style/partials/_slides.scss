@@ -1,7 +1,7 @@
 
 main > section {
   display: grid;
-  grid-template-columns: 2em 1fr 2em;
+  grid-template-columns: 5vw 1fr 5vw;
   grid-template-rows: auto 1fr auto;
 
   background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, .05) 80%, rgba(0, 0, 0, 0.08) 100%);
