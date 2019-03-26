@@ -1,6 +1,8 @@
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.pres
+import io.github.ilaborie.slides2.kt.engine.Script
+import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
 import io.github.ilaborie.slides2.kt.engine.Theme
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Danger
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Info
@@ -9,8 +11,8 @@ import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Warning
 import io.github.ilaborie.slides2.kt.engine.contents.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
 import io.github.ilaborie.slides2.kt.engine.plugins.*
-import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse
-import io.github.ilaborie.slides2.kt.jvm.extra.Tweet
+import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.CanIUsePlugin
+import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.TweetPlugin
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 
 private const val id = "refactoringLoop"
@@ -21,12 +23,21 @@ fun main() {
     SlideEngine
         .use(CheckContentPlugin)
         .use(TocPlugin, NavigatePlugin, GridPlugin)
-        .use(Tweet.Companion.TweetPlugin, CanIUse.Companion.CanIUsePlugin)
-        .use(PrismJsPlugin(showLines = true, languages = listOf("java", "scala", "kotlin")))
+        .use(TweetPlugin, CanIUsePlugin)
+        .use(PrismJsPlugin(showLines = false, languages = listOf("java", "scala", "kotlin")))
         .use(MathJaxPlugin())
+        .use(monteCarloPlugin)
         .run(config, refactoringLoop, listOf(Theme.jugTls))
 
+    // Copy images
     (config.input / "img").copyOrUpdate("sloth.jpg", config.output / id)
+}
+
+val monteCarloPlugin=  object: WebPlugin {
+    override val name: String = "MonteCarlo Plugin"
+
+    override fun scripts(): List<Script> =
+            listOf(script("montecarlo.js"))
 }
 
 val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringLoopTitle() }) {
@@ -354,22 +365,74 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         }
 //        slide("foldLeft vs foldRight") {}
     }
-    part("Qui est le meilleur") {
-        slide("Norme") {}
+    part("Qui est le meilleur ?") {
+        slide("Relation d'ordre") {
+            markdown {
+                """Si on veut déterminer le meilleur, ils nous faut une relation d'ordre, laquelle ?"""
+            }
+            ul(steps = true) {
+                markdown { "Le plus rapide ?" }
+                markdown { "Le moins couteux en mémoire ?" }
+                markdown { "Le plus maintenable ?" }
+                markdown { "Le plus lisible ?" }
+                markdown { "..." }
+            }
+        }
         slide("MonteCarlo π") {
-            // Explain
-            // code java 1,2,3
-            // code kotlin 1,2,3
-            // code scala 1,2,3
+            html { """<div class="montecarlo"></div>"""}
+            asciiMath { """((pi * r^2) / 4 ) / r^2 = pi  / 4 ~~ ("nb. in") / ("nb. total")""" }
+            html {"""<div>avec <span class="math-ascii">`r=1`</span></div>"""}
+
+            html {
+                """<div class="result">
+                    <div class="pi"><span class="math-ascii">`pi ~~`</span><output></output></div>
+                    <div class="info"><span class="in"></span><span class="out"></span><span class="count"></span></div>
+                   </div>
+                """.trimIndent()
+            }
+            html { """<button class="btn"></button> """}
+        }
+        slide("MonteCarlo - Java", setOf("steps-replace")) {
+            ul(steps = true) {
+                sourceCode("code/montecarlo/point.java")
+                sourceCode("code/montecarlo/for.java")
+                sourceCode("code/montecarlo/recursion.java")
+                sourceCode("code/montecarlo/stream.java")
+                sourceCode("code/montecarlo/streamP.java")
+            }
+        }
+        slide("MonteCarlo - Kotlin", setOf("steps-replace")) {
+            ul(steps = true) {
+                sourceCode("code/montecarlo/for.kt")
+                sourceCode("code/montecarlo/recursion.kt")
+                sourceCode("code/montecarlo/col.kt")
+                sourceCode("code/montecarlo/stream.kt")
+                sourceCode("code/montecarlo/streamP.kt")
+            }
+        }
+        slide("MonteCarlo - Scala", setOf("steps-replace")) {
+            ul(steps = true) {
+                sourceCode("code/montecarlo/for.scala")
+                sourceCode("code/montecarlo/recursion.scala")
+                sourceCode("code/montecarlo/col.scala")
+                sourceCode("code/montecarlo/stream.scala")
+                sourceCode("code/montecarlo/streamP.scala")
+            }
+        }
+        slide("MonteCarlo - performance 1/2") {
+
+        }
+        slide("MonteCarlo - performance 2/2") {
+
+        }
+        slide("Exemple plus classique") {
+            // ...
         }
         slide("Perforamce") {
             // logarithm axis ... Vs
         }
         slide("Élégance du code") {
             // cf mario fusco SoC
-        }
-        slide("Exemples classique") {
-            // ...
         }
         slide("Exemples Excel colonne") {
             // ...
@@ -383,9 +446,6 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             notice(Warning, classes = setOf("step")) {
                 html { "🙏 Faites-vous votre propre avis" }
             }
-        }
-        slide("Mon avis lisibilité") {
-            // Règle sur la lisibilités des streams
         }
     }
     part("Conclusion") {

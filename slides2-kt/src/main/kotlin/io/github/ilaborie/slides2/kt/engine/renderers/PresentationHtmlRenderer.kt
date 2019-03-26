@@ -27,8 +27,8 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
         return """<head>
                 |  <meta charset="utf-8">
                 |  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-                |${stylesheets.prependIndent("  ")}
-                |${scripts.prependIndent("  ")}
+                |$stylesheets
+                |$scripts
                 |  <title>${presentation.sTitle}</title>
                 |</head>""".trimMargin()
     }
@@ -88,16 +88,16 @@ object PresentationHtmlRenderer : Renderer<Presentation> {
             }
 
             """<!doctype html>
-            |<html lang="${content.lang}">
-            |${head(content)}
-            |<body class="${content.theme.name} line-numbers">
-            |${beforeMain(content).prependIndent("  ")}
-            |  <main>
-            |$body
-            |  </main>
-            |${afterMain().prependIndent("  ")}
-            |</body>
-            |</html>""".trimMargin()
+              |<html lang="${content.lang}">
+              |${head(content)}
+              |<body class="${content.theme.name} line-numbers">
+              |${beforeMain(content)}
+              |  <main>
+              |$body
+              |  </main>
+              |${afterMain()}
+              |</body>
+              |</html>""".trimMargin()
         }
 }
 

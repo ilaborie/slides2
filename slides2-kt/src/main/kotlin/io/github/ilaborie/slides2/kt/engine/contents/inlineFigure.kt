@@ -58,7 +58,7 @@ object InlineFigureHtmlRenderer : Renderer<InlineFigure> {
         with(SlideEngine) {
             val copyright = content.copyright?.let {
                 """<div class="copyright">
-                  |${render(mode, it).prependIndent("    ")}
+                  |${render(mode, it)}
                   |</div>""".trimMargin()
             } ?: ""
 

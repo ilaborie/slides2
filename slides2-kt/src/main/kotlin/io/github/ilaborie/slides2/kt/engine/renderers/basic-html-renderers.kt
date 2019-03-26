@@ -115,7 +115,7 @@ object OrderedListHtmlRenderer : Renderer<OrderedList> {
                 }
         }
         return """<ol${content.classes.asHtmlClass}>
-                |${body.prependIndent("  ")}
+                |$body
                 |</ol>""".trimMargin()
     }
 }
@@ -129,13 +129,13 @@ object UnorderedListHtmlRenderer : Renderer<UnorderedList> {
             content.inner
                 .joinToString("\n") {
                     """<li$step>
-                            |${render(mode, it).prependIndent("  ")}
-                            |</li>""".trimMargin()
+                      |${render(mode, it)}
+                      |</li>""".trimMargin()
                 }
         }
         return """<ul${content.classes.asHtmlClass}>
-                |${body.prependIndent("  ")}
-                |</ul>""".trimMargin()
+                 |$body
+                 |</ul>""".trimMargin()
     }
 }
 
@@ -192,7 +192,7 @@ object NoticeHtmlRenderer : Renderer<Notice> {
             """<div${allClasses.asHtmlClass}>
                 |${content.title?.let { "<header>$it</header>" } ?: ""}
                 |<div class="notice-body">
-                |${render(mode, content.content).prependIndent("  ")}
+                |${render(mode, content.content)}
                 |</div>
                 |</div>""".trimMargin()
         }
@@ -204,15 +204,14 @@ object FigureHtmlRenderer : Renderer<Figure> {
     override fun render(content: Figure): String =
         with(SlideEngine) {
             val copyright = content.copyright?.let {
-                """
-                |  <div class="copyright">
-                |${render(mode, it).prependIndent("    ")}
-                |  </div>""".trimMargin()
+                """<div class="copyright">
+                  |${render(mode, it)}
+                  |</div>""".trimMargin()
             } ?: ""
             """<figure${content.classes.asHtmlClass}>
-                |  <img src="${content.src}" alt="${content.title}">$copyright
-                |  <figcaption>${content.title}</figcaption>
-                |</figure>""".trimMargin()
+              |  <img src="${content.src}" alt="${content.title}">$copyright
+              |  <figcaption>${content.title}</figcaption>
+              |</figure>""".trimMargin()
         }
 }
 
@@ -230,7 +229,7 @@ object DefinitionsHtmlRender : Renderer<Definitions> {
             }
 
             """<dl${content.classes.asHtmlClass}>
-              |${content.definitions.joinToString("\n") { it.asHtml() }.prependIndent("  ")}
+              |${content.definitions.joinToString("\n") { it.asHtml() }}
               |</dl>""".trimMargin()
         }
 }

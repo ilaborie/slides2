@@ -26,13 +26,13 @@ object SlideHtmlRenderer : Renderer<Slide> {
 
             """<section id="${content.id.id}"${content.classes.asHtmlClass}>
               |  <header>
-              |${render(mode, content.title).prependIndent("    ")}
+              |${render(mode, content.title)}
               |  </header>
-              |${previous.prependIndent("  ")}
+              |$previous
               |  <article>
               |${content.content.joinToString("\n") { render(mode, it) }}
               |  </article>
-              |${next.prependIndent("  ")}
+              |$next
               |  <footer></footer>
               |</section>""".trimMargin()
         }

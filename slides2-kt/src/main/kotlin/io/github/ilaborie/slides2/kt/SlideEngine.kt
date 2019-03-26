@@ -156,9 +156,9 @@ object SlideEngine {
                 // lookup input
                 when {
                     script.src.startsWith("http")   ->
-                        (config.output / id.id).writeUrlContent(script.src)
+                        folder.writeUrlContent(script.src)
                     config.input.exists(script.src) ->
-                        config.input.copyOrUpdate(script.src, config.output)
+                        config.input.copyOrUpdate(script.src, folder)
                     else                            ->
                         javaClass.getResource("/scripts/${script.src}")
                             ?.also { r ->

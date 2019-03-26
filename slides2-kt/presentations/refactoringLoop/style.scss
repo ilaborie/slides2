@@ -31,6 +31,10 @@ h1 {
   text-align: center;
 }
 
+main > section > header::after {
+  font-size: .5em;
+}
+
 
 #speaker {
   .previous, .next, article {
@@ -289,9 +293,85 @@ h1 {
 #bilan_stream___java article,
 #kotlin_3_3 article,
 #scala_3_4 article,
-#scala_4_4 article{
+#scala_4_4 article {
   h4 {
     font-size: 2.5em;
+  }
+}
+
+#montecarlo_ article {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  grid-gap: .125em;
+
+  .montecarlo {
+    background-color: rgba(0, 0, 0, .1);
+    background-image: radial-gradient(circle at bottom left, var(--monkeyBof), var(--monkeyBof) 70.71%, transparent 0);
+    border: medium solid rgba(0, 0, 0, 25);
+    --size: 10em;
+    width: var(--size);
+    height: var(--size);
+    position: relative;
+    grid-column: 1 / -1;
+    justify-self: center;
+
+    .in, .out  {
+      position: absolute;
+      display: inline-block;
+      --size: 4px;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      opacity: .75;
+    }
+    .in {
+      background-color: yellow;
+    }
+    .out {
+      background-color: black;
+    }
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .result {
+    opacity: 0;
+
+    .in::before {
+      content: 'in: ';
+    }
+
+    .out::before {
+      content: 'out: ';
+      margin-left: 1em;
+    }
+
+    .count::before {
+      content: 'count: ';
+      margin-left: 1em;
+    }
+  }
+
+  .pi {
+    text-align: center;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+  button::after {
+    content: ' points';
+  }
+}
+
+
+#montecarlo___java article {
+  pre.language-java {
+    font-size: 66%;
   }
 }
 

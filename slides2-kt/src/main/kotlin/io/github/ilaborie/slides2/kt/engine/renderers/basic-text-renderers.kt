@@ -127,8 +127,8 @@ object NoticeTextRenderer : Renderer<Notice> {
     override fun render(content: Notice): String =
         with(SlideEngine) {
             """${content.kind.name.toLowerCase()}: ${content.title ?: ""}
-                |${render(mode, content.content).prependIndent("  ")}
-                |""".trimMargin()
+              |${render(mode, content.content)}
+              |""".trimMargin()
         }
 }
 
