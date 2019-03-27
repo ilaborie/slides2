@@ -16,8 +16,10 @@ main > section > article {
     margin-right: .75em;
     flex-shrink: 0;
 
-    align-self: stretch;
-
+    align-self: center;
+    max-width: calc(100% - 1em);
+    min-width: 60vw;
+    
     white-space: pre-wrap;
 
 

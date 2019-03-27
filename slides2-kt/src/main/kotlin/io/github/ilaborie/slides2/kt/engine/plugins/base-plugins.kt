@@ -15,7 +15,7 @@ object GridPlugin : WebPlugin {
     override val name = "Grid navigation"
 
     override fun scripts(): List<Script> =
-        listOf(module("grid.js"))
+        listOf(module("slide.js"), module("grid.js"))
 }
 
 object NavigatePlugin : WebPlugin {

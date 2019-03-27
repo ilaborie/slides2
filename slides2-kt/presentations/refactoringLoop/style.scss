@@ -6,18 +6,6 @@
 }
 
 
-main > section > article {
-  justify-content: space-evenly;
-
-  pre[class*=language-] {
-    padding-left: .5em;
-    width: calc(100% - 1em);
-    overflow: auto;
-    align-self: center;
-    white-space: pre-wrap;
-  }
-}
-
 h1, h2, h3, h4, h5, h6 {
   code {
     border-radius: .125em;
@@ -369,7 +357,21 @@ main > section > header::after {
 }
 
 
-#montecarlo___java article {
+#montecarlo___java_1 article,
+#montecarlo___java_2 article,
+#montecarlo___java_3 article,
+#montecarlo___java_4 article,
+#montecarlo___java_5 article,
+l#montecarlo___kotlin_1 article,
+l#montecarlo___kotlin_2 article,
+l#montecarlo___kotlin_3 article,
+l#montecarlo___kotlin_4 article,
+l#montecarlo___kotlin_5 article,
+l#montecarlo___scala_1 article,
+l#montecarlo___scala_2 article,
+l#montecarlo___scala_3 article,
+l#montecarlo___scala_4 article,
+l#montecarlo___scala_5 article {
   pre.language-java {
     font-size: 66%;
   }

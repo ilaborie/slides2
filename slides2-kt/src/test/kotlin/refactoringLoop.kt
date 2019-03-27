@@ -13,6 +13,7 @@ import io.github.ilaborie.slides2.kt.engine.contents.speaker
 import io.github.ilaborie.slides2.kt.engine.plugins.*
 import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.CanIUsePlugin
 import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.TweetPlugin
+import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.tweet
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 
 private const val id = "refactoringLoop"
@@ -24,7 +25,7 @@ fun main() {
         .use(CheckContentPlugin)
         .use(TocPlugin, NavigatePlugin, GridPlugin)
         .use(TweetPlugin, CanIUsePlugin)
-        .use(PrismJsPlugin(showLines = false, languages = listOf("java", "scala", "kotlin")))
+        .use(PrismJsPlugin(showLines = true, languages = listOf("java", "scala", "kotlin")))
         .use(MathJaxPlugin())
         .use(monteCarloPlugin)
         .run(config, refactoringLoop, listOf(Theme.jugTls))
@@ -33,11 +34,11 @@ fun main() {
     (config.input / "img").copyOrUpdate("sloth.jpg", config.output / id)
 }
 
-val monteCarloPlugin=  object: WebPlugin {
+val monteCarloPlugin = object : WebPlugin {
     override val name: String = "MonteCarlo Plugin"
 
     override fun scripts(): List<Script> =
-            listOf(script("montecarlo.js"))
+        listOf(script("montecarlo.js"))
 }
 
 val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringLoopTitle() }) {
@@ -81,13 +82,17 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         roadmap("Plan")
     }
     part("Anatomie d'une boucle") {
-        slide("Transformation", setOf("steps-replace")) {
-            ul(steps = true) {
-                sourceCode("code/loop/transformation1.java")
-                sourceCode("code/loop/transformation2.java")
-                sourceCode("code/loop/transformation3.java")
-                sourceCode("code/loop/transformation4.java")
-            }
+        slide("Transformation - Java 4-") {
+            sourceCode("code/loop/transformation1.java")
+        }
+        slide("Transformation - Java 5") {
+            sourceCode("code/loop/transformation2.java")
+        }
+        slide("Transformation - Java 8") {
+            sourceCode("code/loop/transformation3.java")
+        }
+        slide("Transformation - Java 10+") {
+            sourceCode("code/loop/transformation4.java")
         }
         slide("Filtre") {
             sourceCode("code/loop/filter.java")
@@ -104,19 +109,19 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
     }
     part("Récursion") {
         slide("Parcours - Java") {
-            sourceCode("code/recursion/transform.java") // FIXME why no linenumbers
+            sourceCode("code/recursion/transform.java")
         }
-        slide("Parcours - Kotlin", setOf("steps-replace")) {
-            ul(steps = true) {
-                sourceCode("code/recursion/transform.kt")
-                sourceCode("code/recursion/transform2.kt")
-            }
+        slide("Parcours - Kotlin 1") {
+            sourceCode("code/recursion/transform.kt")
         }
-        slide("Parcours - Scala", setOf("steps-replace")) {
-            ul(steps = true) {
-                sourceCode("code/recursion/transform.scala")
-                sourceCode("code/recursion/transform2.scala")
-            }
+        slide("Parcours - Kotlin 2") {
+            sourceCode("code/recursion/transform2.kt")
+        }
+        slide("Parcours - Scala 1") {
+            sourceCode("code/recursion/transform.scala")
+        }
+        slide("Parcours - Scala 2") {
+            sourceCode("code/recursion/transform2.scala")
         }
         slide("Filtre & Sortie rapide - Java") {
             sourceCode("code/recursion/find.java")
@@ -268,6 +273,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             }
         }
         slide("Illustration Java", setOf("header-hidden")) {
+            // TODO sandwitch
             sourceCode("code/stream/exemple.java")
         }
         slide("Et l'index ?") {
@@ -379,9 +385,9 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             }
         }
         slide("MonteCarlo π") {
-            html { """<div class="montecarlo"></div>"""}
+            html { """<div class="montecarlo"></div>""" }
             asciiMath { """((pi * r^2) / 4 ) / r^2 = pi  / 4 ~~ ("nb. in") / ("nb. total")""" }
-            html {"""<div>avec <span class="math-ascii">`r=1`</span></div>"""}
+            html { """<div>avec <span class="math-ascii">`r=1`</span></div>""" }
 
             html {
                 """<div class="result">
@@ -390,40 +396,58 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                    </div>
                 """.trimIndent()
             }
-            html { """<button class="btn"></button> """}
+            html { """<button class="btn"></button> """ }
         }
-        slide("MonteCarlo - Java", setOf("steps-replace")) {
-            ul(steps = true) {
-                sourceCode("code/montecarlo/point.java")
+        slide("MonteCarlo - Java 1") {
+            sourceCode("code/montecarlo/point.java")
+        }
+        slide("MonteCarlo - Java 2") {
                 sourceCode("code/montecarlo/for.java")
+        }
+        slide("MonteCarlo - Java 3") {
                 sourceCode("code/montecarlo/recursion.java")
+        }
+        slide("MonteCarlo - Java 4") {
                 sourceCode("code/montecarlo/stream.java")
+        }
+        slide("MonteCarlo - Java 5") {
                 sourceCode("code/montecarlo/streamP.java")
             }
+        slide("MonteCarlo - Kotlin 1") {
+            sourceCode("code/montecarlo/for.kt")
         }
-        slide("MonteCarlo - Kotlin", setOf("steps-replace")) {
-            ul(steps = true) {
-                sourceCode("code/montecarlo/for.kt")
+        slide("MonteCarlo - Kotlin 2") {
                 sourceCode("code/montecarlo/recursion.kt")
-                sourceCode("code/montecarlo/col.kt")
-                sourceCode("code/montecarlo/stream.kt")
-                sourceCode("code/montecarlo/streamP.kt")
-            }
         }
-        slide("MonteCarlo - Scala", setOf("steps-replace")) {
-            ul(steps = true) {
+        slide("MonteCarlo - Kotlin 3") {
+                sourceCode("code/montecarlo/col.kt")
+        }
+        slide("MonteCarlo - Kotlin 4") {
+                sourceCode("code/montecarlo/stream.kt")
+        }
+        slide("MonteCarlo - Kotlin 5") {
+                sourceCode("code/montecarlo/streamP.kt")
+        }
+        slide("MonteCarlo - Scala 1") {
                 sourceCode("code/montecarlo/for.scala")
+        }
+        slide("MonteCarlo - Scala 2") {
                 sourceCode("code/montecarlo/recursion.scala")
+        }
+        slide("MonteCarlo - Scala 3") {
                 sourceCode("code/montecarlo/col.scala")
+        }
+        slide("MonteCarlo - Scala 4") {
                 sourceCode("code/montecarlo/stream.scala")
+        }
+        slide("MonteCarlo - Scala 5") {
                 sourceCode("code/montecarlo/streamP.scala")
-            }
         }
         slide("MonteCarlo - performance 1/2") {
-
+            todo{"..."}
         }
         slide("MonteCarlo - performance 2/2") {
-
+            todo{"..."}
         }
         slide("Exemple plus classique") {
             // ...
@@ -450,13 +474,30 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
     }
     part("Conclusion") {
         slide("Bilan") {
+            // troll Guava, Scala,
+            // les styles de programamtion reste:
+            // traitement de flux
+            // ne pas jugé ce style mauvais si la syntaxe, api standard, ...
+            // ne rends pas ça utilisable
+
+            // c'est la faute du langauge, de l'API, de performances pontuel
+            // langage évolue, richesse des idées, ce que ça apporte
+
             // lien flatmapThatShit
         }
         slide("FP") {
-            // Hidden
+            // immutablilté, no side effect
+            // That
+            // https@ //xkcd.com/1270/
+            // https://imgs.xkcd.com/comics/functional.png
+            tweet("384105824315928577")
         }
         slide("Crafters") {
+            // Codez en se posans des questions
+            // quel style appliqué mutable/immutable ?
+            //
             // Code review
+            // On construit son
         }
     }
 }

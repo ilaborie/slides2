@@ -1,3 +1,6 @@
+import './prism.min.js';
+import './prism-line-numbers.min.js';
+
 document.body.classList.add('line-numbers');
 
 function highlight() {

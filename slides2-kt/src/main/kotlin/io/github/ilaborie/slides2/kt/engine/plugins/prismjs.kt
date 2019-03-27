@@ -25,8 +25,8 @@ class PrismJsPlugin(
                 // plugins
                 plugins.map { script("$cloudfare/prism/$version/plugins/$it/prism-$it.min.js") }
                 // Extra show Line
-//                (if (showLines) listOf(script("line-numbers.js")) else emptyList())
-
+//                (if (showLines) listOf(module("line-numbers.js")) else emptyList())
+//
     override fun stylesheets(): List<Stylesheet> =
         (listOf("$cloudfare/prism/$version/themes/prism.min.css") +
                 // Theme
