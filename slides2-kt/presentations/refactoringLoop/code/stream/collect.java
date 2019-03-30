@@ -1,4 +1,4 @@
-// T : Type du Stream
+// T: Type du Stream
 // A: Type de l'accumulateur
 // R: Type du résultat
 interface Collector<T,A,R> {

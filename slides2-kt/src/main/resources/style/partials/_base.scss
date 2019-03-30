@@ -101,3 +101,11 @@ dt {
     content: 'TODO: ';
   }
 }
+
+ins {
+  text-decoration: forestgreen wavy underline;
+}
+
+del {
+  text-decoration: firebrick wavy line-through;
+}

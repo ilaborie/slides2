@@ -304,7 +304,7 @@ main > section > header::after {
     grid-column: 1 / -1;
     justify-self: center;
 
-    .in, .out  {
+    .in, .out {
       position: absolute;
       display: inline-block;
       --size: 4px;
@@ -313,9 +313,11 @@ main > section > header::after {
       border-radius: 50%;
       opacity: .75;
     }
+
     .in {
       background-color: yellow;
     }
+
     .out {
       background-color: black;
     }
@@ -351,6 +353,7 @@ main > section > header::after {
   button {
     font-size: 1rem;
   }
+
   button::after {
     content: ' points';
   }
@@ -378,8 +381,38 @@ l#montecarlo___scala_5 article {
 }
 
 
-#mon_avis article {
-  ol {
-    margin: 0;
+#separation_of_concerns article {
+  figcaption {
+    display: none;
+  }
+
+  .copyright {
+    align-self: flex-start;
+  }
+}
+
+#pas_tous_du_meme_avis article {
+  a {
+    background: none;
+  }
+}
+
+#fp article {
+  figcaption {
+    display: none;
+  }
+}
+
+#fp_ article {
+  li:last-child {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+
+#crafters article {
+  ul {
+    max-width: 20em;
   }
 }

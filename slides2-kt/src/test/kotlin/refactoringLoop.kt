@@ -1,5 +1,6 @@
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
+import io.github.ilaborie.slides2.kt.dsl.markdown
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
@@ -45,10 +46,10 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
     part("Introduction", skipHeader = true) {
         slide("Back to Basics", styles = setOf("header-hidden")) {
             strong("#backToBasics")
-            quote("Les frameworks naissent et meurent, les bases restent")
+            quote("Les frameworks et bibliothèques naissent et meurent, les bases restent.")
         }
         slide("Quizz 1", styles = setOf("header-hidden")) {
-            h4("En quel langague est écrit ce code ?")
+            h4("En quel langage est écrit ce code ?")
             ul(steps = true) {
                 sourceCode("code/quizz1.java")
                 p("Java, JavaScript, C++, C, ?")
@@ -82,7 +83,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         roadmap("Plan")
     }
     part("Anatomie d'une boucle") {
-        slide("Transformation - Java 4-") {
+        slide("Transformation - Java 1.4") {
             sourceCode("code/loop/transformation1.java")
         }
         slide("Transformation - Java 5") {
@@ -229,9 +230,9 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             }
         }
         slide("Parallèle") {
-            markdown { "Les `Stream` peuvent être exécuté en parallèle, via le `ForkJoinPool`" }
+            markdown { "Les `Stream` peuvent être exécutées en parallèle, via le `ForkJoinPool`" }
             notice(Tips) {
-                markdown { "On peut utiliser `Stream#sequential()` ou `Stream#parallel()` pour basculer vers une exécution séquentiel, ou parallèle." }
+                markdown { "On peut utiliser `Stream#sequential()` ou `Stream#parallel()` pour basculer vers une exécution séquentielle, ou parallèle." }
             }
         }
         slide("flatMap 1/2") {
@@ -246,9 +247,6 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         }
         slide("Reduce 1/2") {
             sourceCode("code/stream/reduce1.java")
-            notice(Info) {
-                markdown { "On appel souvent cette méthode `foldLeft`" }
-            }
         }
         slide("Reduce 2/2") {
             notice(Tips, title = "Cas particulier") {
@@ -256,24 +254,26 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 markdown { "Les `count`, `min`, `max`, `sum`, ... sont des réductions particulières" }
             }
             sourceCode("code/stream/reduce2.java")
+            notice(Info) {
+                markdown { "On appel souvent cette méthode `foldLeft`" }
+            }
         }
         slide("collect & Collectors") {
-            markdown { "Les `Stream#collect` sont juste une généalisation du `reduce`" }
+            markdown { "Les `Stream#collect` sont justes une généralisation du `reduce`" }
             sourceCode("code/stream/collect.java")
         }
         slide("Collectors classiques") {
             markdown { "Dans `java.util.stream.Collectors`" }
             ul {
-                markdown { "`toXXX` pour constuire une collection XXX" }
-                markdown { "`toMap` pour constuire un `Map`" }
+                markdown { "`toXXX` pour construire une collection XXX" }
+                markdown { "`toMap` pour construire un `Map`" }
                 markdown { "`groupBy` pour grouper en une `Map<K,List<V>>`" }
-                markdown { "`joining` pour constuire une `String`" }
+                markdown { "`joining` pour construire une `String`" }
                 markdown { "`summarizingXXX` pour les statistiques sur un nombre XXX" }
                 html { "..." }
             }
         }
         slide("Illustration Java", setOf("header-hidden")) {
-            // TODO sandwitch
             sourceCode("code/stream/exemple.java")
         }
         slide("Et l'index ?") {
@@ -282,7 +282,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 markdown { "😢 pas faisable facilement et _proprement_ en Java" }
             }
         }
-        slide("Nouveauté Java 9+") {
+        slide("Nouveautés Java 9+") {
             definitions {
                 term("Java 9") {
                     html { "<code>Stream#takeWhile</code> et <code>Stream#dropWhile</code>" }
@@ -303,20 +303,19 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 }
             }
         }
-//        slide("Trucs et astuces") {
-//            // firstNotNull
-//            // read file
-//        }
         slide("Bilan Stream") {
             h4("🤗")
-            notice(Danger, title = "A proscire") {
+            notice(Danger, title = "À proscrire") {
                 markdown { "Les effets de bord ! (on tolère les _logs_ dans le `peek`)" }
-                markdown { "Les opérations non-associatives dans des `Stream` paralèlles" }
+                markdown { "Les opérations non associatives dans des `Stream` parallèles" }
                 markdown { "Les streams sur des `Integer`, `Double`, `Long`" }
             }
             notice(Warning) {
                 markdown { "Sans bonne raison, ne faites pas de `Stream` parallèles" }
-                markdown { "La lisibilité est important" }
+                markdown { "La lisibilité est importante" }
+            }
+            notice(Tips) {
+                markdown { "On peut utiliser intelligemment les aspects lazy" }
             }
         }
         slide("Bilan Stream - Java") {
@@ -354,10 +353,10 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 markdown { "API _lazy_ ou non" }
                 markdown { "API **immutable** ou mutable" }
                 markdown { "Pas de réutilisation de Java" }
-                markdown { "API de [`Stream`](https://www.scala-lang.org/api/2.12.3/scala/collection/immutable/Stream.html) avec la possibilité de construction recusive" }
+                markdown { "API de [`Stream`](https://www.scala-lang.org/api/2.12.3/scala/collection/immutable/Stream.html) avec la possibilité de construction récusive" }
 
                 notice(Info) {
-                    markdown { "De gros changement arrivent dans la [2.13](https://www.scala-lang.org/blog/2018/06/13/scala-213-collections.html)" }
+                    markdown { "De gros changements arrivent dans la [2.13](https://www.scala-lang.org/blog/2018/06/13/scala-213-collections.html)" }
                 }
             }
         }
@@ -388,7 +387,6 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             html { """<div class="montecarlo"></div>""" }
             asciiMath { """((pi * r^2) / 4 ) / r^2 = pi  / 4 ~~ ("nb. in") / ("nb. total")""" }
             html { """<div>avec <span class="math-ascii">`r=1`</span></div>""" }
-
             html {
                 """<div class="result">
                     <div class="pi"><span class="math-ascii">`pi ~~`</span><output></output></div>
@@ -402,102 +400,146 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             sourceCode("code/montecarlo/point.java")
         }
         slide("MonteCarlo - Java 2") {
-                sourceCode("code/montecarlo/for.java")
+            sourceCode("code/montecarlo/for.java")
         }
         slide("MonteCarlo - Java 3") {
-                sourceCode("code/montecarlo/recursion.java")
+            sourceCode("code/montecarlo/recursion.java")
         }
         slide("MonteCarlo - Java 4") {
-                sourceCode("code/montecarlo/stream.java")
+            sourceCode("code/montecarlo/stream.java")
         }
         slide("MonteCarlo - Java 5") {
-                sourceCode("code/montecarlo/streamP.java")
-            }
+            sourceCode("code/montecarlo/streamP.java")
+        }
         slide("MonteCarlo - Kotlin 1") {
             sourceCode("code/montecarlo/for.kt")
         }
         slide("MonteCarlo - Kotlin 2") {
-                sourceCode("code/montecarlo/recursion.kt")
+            sourceCode("code/montecarlo/recursion.kt")
         }
         slide("MonteCarlo - Kotlin 3") {
-                sourceCode("code/montecarlo/col.kt")
+            sourceCode("code/montecarlo/col.kt")
         }
         slide("MonteCarlo - Kotlin 4") {
-                sourceCode("code/montecarlo/stream.kt")
+            sourceCode("code/montecarlo/stream.kt")
         }
         slide("MonteCarlo - Kotlin 5") {
-                sourceCode("code/montecarlo/streamP.kt")
+            sourceCode("code/montecarlo/streamP.kt")
         }
         slide("MonteCarlo - Scala 1") {
-                sourceCode("code/montecarlo/for.scala")
+            sourceCode("code/montecarlo/for.scala")
         }
         slide("MonteCarlo - Scala 2") {
-                sourceCode("code/montecarlo/recursion.scala")
+            sourceCode("code/montecarlo/recursion.scala")
         }
         slide("MonteCarlo - Scala 3") {
-                sourceCode("code/montecarlo/col.scala")
+            sourceCode("code/montecarlo/col.scala")
         }
         slide("MonteCarlo - Scala 4") {
-                sourceCode("code/montecarlo/stream.scala")
+            sourceCode("code/montecarlo/stream.scala")
         }
         slide("MonteCarlo - Scala 5") {
-                sourceCode("code/montecarlo/streamP.scala")
+            sourceCode("code/montecarlo/streamP.scala")
         }
-        slide("MonteCarlo - performance 1/2") {
-            todo{"..."}
+        slide("MonteCarlo - performance 1/x") {
+            todo { "..." } // FIXME
         }
         slide("MonteCarlo - performance 2/2") {
-            todo{"..."}
+            todo { "..." } // FIXME
         }
-        slide("Exemple plus classique") {
-            // ...
+        slide("MonteCarlo - performance 3/x") {
+            todo { "Splittable Random" } // FIXME
         }
-        slide("Perforamce") {
-            // logarithm axis ... Vs
-        }
-        slide("Élégance du code") {
-            // cf mario fusco SoC
-        }
-        slide("Exemples Excel colonne") {
-            // ...
-        }
-        slide("Mon avis 1") {
-            ol(steps = true) {
-                html { "Privilégier la clarté du code" }
-                html { "Privilégier la maintenabilité du code" }
-                html { "Utilisez les bonnes structures de données" }
+        slide("Separation of Concerns") {
+            ul {
+                figure(
+                    "img/SoC-MarioFusco.jpg",
+                    "Separation of Concerns",
+                    copyrightBlock = "[**@mariofusco**](https://twitter.com/mariofusco/status/571999216039542784)".markdown
+                )
+                link("https://www.youtube.com/watch?v=84MfG4tp30s", "Lazy Java par Mario Fusco")
             }
-            notice(Warning, classes = setOf("step")) {
-                html { "🙏 Faites-vous votre propre avis" }
+        }
+        slide("Prédisposition aux 🐛") {
+            sourceCode("code/loop/transformation1.java")
+        }
+        slide("Prédisposition aux 🐛 dangereux") {
+            sourceCode("code/loop/transformation3.java")
+        }
+        slide("Pas tous du même avis") {
+            link("https://www.javacodegeeks.com/2015/12/3-reasons-shouldnt-replace-loops-stream-foreach.html") {
+                html { "3 Reasons why You Shouldn’t Replace Your for-loops by Stream forEach" }
             }
+        }
+        slide("Exemple colonnes d'Excel - for") {
+            span("<code>A</code>, <code>B</code>, ..., <code>Z</code>, <code>AA</code>, <code>AB</code>, ..., <code>ZZ</code>, <code>AAA</code>, ...")
+            sourceCode("code/excel/for.kt")
+        }
+        slide("Exemple colonnes d'Excel - récursif") {
+            sourceCode("code/excel/recursion.kt")
+        }
+        slide("Exemple colonnes d'Excel - séquence") {
+            sourceCode("code/excel/seq.kt")
         }
     }
     part("Conclusion") {
         slide("Bilan") {
-            // troll Guava, Scala,
-            // les styles de programamtion reste:
-            // traitement de flux
-            // ne pas jugé ce style mauvais si la syntaxe, api standard, ...
-            // ne rends pas ça utilisable
-
-            // c'est la faute du langauge, de l'API, de performances pontuel
-            // langage évolue, richesse des idées, ce que ça apporte
-
-            // lien flatmapThatShit
+            span("<code>goto</code> firstQuote")
+            quote {
+                markdown {
+                    """Les frameworks et bibliothèques naissent et meurent,
+                      |les bases <ins>et les styles de programmation</ins> restent.""".trimMargin()
+                }
+            }
+            quote {
+                markdown {
+                    """Il suffit de choisir le langage, les frameworks,
+                      |et les bibliothèques qui correspondent aux styles.<br>
+                      |Choisissiez un style qui correspond à vos contraintes et vos goûts.""".trimMargin()
+                }
+            }
+            link("http://www.flatmapthatshit.com/", "Si vous avez du mal à choisir")
         }
         slide("FP") {
-            // immutablilté, no side effect
-            // That
-            // https@ //xkcd.com/1270/
-            // https://imgs.xkcd.com/comics/functional.png
-            tweet("384105824315928577")
+            ul(steps = true) {
+                html { "Immutablilté" }
+                html { "Pas d'effet de bord" }
+                html { "Lambda et fonctions d'ordre supérieur" }
+                html { """<span class="math-ascii">`=>`</span> C'est une présentation sur la programmation fonctionnelle""" }
+                figure(
+                    "img/functional.png", "Functional",
+                    copyrightBlock = "[https://xkcd.com/1270/](https://xkcd.com/1270/)".markdown
+                )
+            }
+        }
+        slide("FP 🍌") {
+            ul(steps = true) {
+                markdown {
+                    """[Functional Programming with Bananas, Lenses, Envelopes and Barbed Wire](http://eprints.eemcs.utwente.nl/7281/01/db-utwente-40501F46.pdf) - Erik Meijer and J. Hughes and M.M. Fokkinga and Ross Paterson" - 1991
+                        |
+                        |> We develop a calculus for lazy functional programming based
+                        |on recursion operators associated with data type definitions.
+                        |For these operators we derive various algebraic laws that are useful
+                        |in deriving and manipulating programs.
+                        |We shall show that all example functions in
+                        |Bird and Wadler's "Introduction to Functional Programming"
+                        |can be expressed using these operators.
+                    """.trimMargin()
+                }
+                tweet("384105824315928577")
+            }
         }
         slide("Crafters") {
-            // Codez en se posans des questions
-            // quel style appliqué mutable/immutable ?
-            //
-            // Code review
-            // On construit son
+            ul(steps = true) {
+                html { "❓ Quand vous codez, posez-vous des questions !" }
+                html { "🔪 Aiguisez votre esprit critique !" }
+                html { "🗣 Partagez vos questionnements, vos solutions, vos idées farfelues !" }
+            }
+        }
+        slide("Fin", styles = setOf("header-hidden")) {
+            markdown {
+                """🍕 ou ❓"""
+            }
         }
     }
 }
