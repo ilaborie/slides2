@@ -41,6 +41,12 @@
       .charts.bar .body meter {
         transform: scaleX(1);
       }
+
+      a:after {
+        content: " <" attr(href) "> ";
+        font-size: .5em;
+        font-weight: normal;
+      }
     }
 
     &.steps {

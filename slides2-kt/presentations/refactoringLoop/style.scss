@@ -191,7 +191,7 @@ main > section > header::after {
     position: relative;
   }
 
-  li.step-done::after {
+  li.step-done:first-child::after {
     position: absolute;
     content: '✘';
     color: firebrick;
@@ -386,6 +386,10 @@ l#montecarlo___scala_5 article {
     display: none;
   }
 
+  img {
+    max-height: 60vh;
+  }
+
   .copyright {
     align-self: flex-start;
   }
@@ -408,11 +412,35 @@ l#montecarlo___scala_5 article {
     display: flex;
     justify-content: center;
   }
+
+  blockquote {
+    font-size: 80%;
+  }
 }
 
 
 #crafters article {
   ul {
     max-width: 20em;
+  }
+}
+
+@media print {
+
+  #stream_is_lazy article {
+
+    li:first-child::after {
+      position: absolute;
+      content: '✘';
+      color: firebrick;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4em;
+    }
   }
 }

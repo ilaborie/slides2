@@ -538,7 +538,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         }
         slide("Fin", styles = setOf("header-hidden")) {
             markdown {
-                """🍕 ou ❓"""
+                """### 🍕 ou ❓"""
             }
         }
     }
