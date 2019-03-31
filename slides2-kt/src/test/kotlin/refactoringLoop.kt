@@ -255,7 +255,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             }
             sourceCode("code/stream/reduce2.java")
             notice(Info) {
-                markdown { "On appel souvent cette méthode `foldLeft`" }
+                markdown { "On appelle souvent cette méthode `foldLeft`" }
             }
         }
         slide("collect & Collectors") {
@@ -311,7 +311,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 markdown { "Les streams sur des `Integer`, `Double`, `Long`" }
             }
             notice(Warning) {
-                markdown { "Sans bonne raison, ne faites pas de `Stream` parallèles" }
+                markdown { "Sans bonne raison, ne faites pas de `Stream` parallèle" }
                 markdown { "La lisibilité est importante" }
             }
             notice(Tips) {
@@ -353,7 +353,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 markdown { "API _lazy_ ou non" }
                 markdown { "API **immutable** ou mutable" }
                 markdown { "Pas de réutilisation de Java" }
-                markdown { "API de [`Stream`](https://www.scala-lang.org/api/2.12.3/scala/collection/immutable/Stream.html) avec la possibilité de construction récusive" }
+                markdown { "API de [`Stream`](https://www.scala-lang.org/api/2.12.3/scala/collection/immutable/Stream.html) avec la possibilité de construction récursive" }
 
                 notice(Info) {
                     markdown { "De gros changements arrivent dans la [2.13](https://www.scala-lang.org/blog/2018/06/13/scala-213-collections.html)" }
@@ -382,6 +382,25 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 markdown { "Le plus lisible ?" }
                 markdown { "..." }
             }
+        }
+        slide("Java & performances") {
+            ul(steps = true) {
+                markdown { "Faire des micro-benchmark en Java, c'est pas évident" }
+                markdown { "la JVM à besoin de chauffer (JIT)" }
+                link("http://openjdk.java.net/projects/code-tools/jmh/", "JMH")
+                link("https://daniel.mitterdorfer.name/articles/2014/jmh-microbenchmarking-intro/", "Microbenchmarking in Java with JMH (5 articles)")
+            }
+            notice(Tips, "Avis personel") {
+                markdown {
+                    """Quand on utilise des I/O (accès réseaux, base de données, accès disque),
+                      |il vaut mieux se concentrer sur la réduction de ces I/O et
+                      |de choisir les bonnes structures de données,
+                      |pour obtenir des performances raisonables.""".trimMargin()
+                }
+            }
+        }
+        slide("Rust", styles = setOf("header-hidden")) {
+            figure("img/rust.png", "Rewrite everything in Rust")
         }
         slide("MonteCarlo π") {
             html { """<div class="montecarlo"></div>""" }
@@ -442,10 +461,29 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             sourceCode("code/montecarlo/streamP.scala")
         }
         slide("MonteCarlo - performance 1/x") {
-            todo { "..." } // FIXME
+            markdown {
+                """#### Disclaimer
+                  |
+                  |REMEMBER: The numbers below are just data. To gain reusable insights,
+                  |you need to follow up on why the numbers are the way they are.
+                  |Use **profilers** (see `-prof`, `-lprof`), design factorial experiments,
+                  |perform baseline and negative tests that provide experimental control,
+                  |make sure the benchmarking environment is safe on JVM/OS/HW level,
+                  |**ask for reviews** from the domain experts.
+                  |
+                  |**Do not assume the numbers tell you what you want them to tell.**
+                  |
+                  |=> Venez lire, tester, critiquer, proposer des PR sur [dépôt Github](https://github.com/ilaborie/refactorLoops)""".trimMargin()
+            }
+        }
+        slide("MonteCarlo - performance 1/x") {
+            todo { "base" } // FIXME
+        }
+        slide("MonteCarlo - performance 1/x") {
+            todo { "scale with n" } // FIXME
         }
         slide("MonteCarlo - performance 2/2") {
-            todo { "..." } // FIXME
+            todo { "parallele" } // FIXME
         }
         slide("MonteCarlo - performance 3/x") {
             todo { "Splittable Random" } // FIXME

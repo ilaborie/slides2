@@ -359,6 +359,11 @@ main > section > header::after {
   }
 }
 
+#rust article {
+  figcaption {
+    display: none;
+  }
+}
 
 #montecarlo___java_1 article,
 #montecarlo___java_2 article,
