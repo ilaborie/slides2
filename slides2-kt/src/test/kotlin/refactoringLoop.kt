@@ -72,7 +72,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             }
         }
         slide("Quizz 2", styles = setOf("header-hidden", "two-columns")) {
-            markdown { "#### Existe-il des langagues de programmation sans `for` ?" }
+            markdown { "#### Existe-il des langages de programmation sans `for` ?" }
             ul(steps = true) {
                 html { "Haskell" }
                 html { "Scala <sup>*</sup>" }
@@ -94,9 +94,9 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         slide("Transformation - Java 8") {
             sourceCode("code/loop/transformation3.java")
         }
-        slide("Transformation - Java 10+") {
-            sourceCode("code/loop/transformation4.java")
-        }
+//        slide("Transformation - Java 10+") {
+//            sourceCode("code/loop/transformation4.java")
+//        }
         slide("Filtre") {
             sourceCode("code/loop/filter.java")
         }
@@ -181,14 +181,14 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 """.trimMargin()
             }
         }
-        slide("Bilan récusion") {
-            ul {
-                html { "🧩 découpage en petites tâches" }
-                html { "🤯 lisibilité" }
-                html { "✋ contrôle de l'arrêt" }
-                html { "📚 ATTENTION aux <code>StackOverflowError</code>" }
-            }
-        }
+//        slide("Bilan récusion") {
+//            ul {
+//                html { "🧩 découpage en petites tâches" }
+//                html { "🤯 lisibilité" }
+//                html { "✋ contrôle de l'arrêt" }
+//                html { "📚 ATTENTION aux <code>StackOverflowError</code>" }
+//            }
+//        }
     }
     part(partTitle = { markdown { "## `Stream`" } }, id = "stream") {
         slide("Création 1/2") {
@@ -282,6 +282,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             markdown { "Et si j'ai besoin de l'_index_ ?" }
             ul {
                 markdown { "😢 pas faisable facilement et _proprement_ en Java" }
+                markdown { "Mais il y a Kotlin et Scala..." }
             }
         }
         slide("Nouveautés Java 9+") {
