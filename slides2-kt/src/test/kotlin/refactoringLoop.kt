@@ -267,11 +267,11 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         slide("Collectors classiques") {
             markdown { "Dans `java.util.stream.Collectors`" }
             ul {
-                markdown { "`toXXX` pour construire une collection XXX" }
+                markdown { "`toSet`, `toList` pour construire une collection" }
                 markdown { "`toMap` pour construire un `Map`" }
                 markdown { "`groupBy` pour grouper en une `Map<K,List<V>>`" }
                 markdown { "`joining` pour construire une `String`" }
-                markdown { "`summarizingXXX` pour les statistiques sur un nombre XXX" }
+                markdown { "`summarizingInt`, `summarizingDouble`, `summarizingLong` pour les statistiques" }
                 html { "..." }
             }
         }
