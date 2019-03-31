@@ -291,7 +291,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                     html { "<code>Stream#takeWhile</code> et <code>Stream#dropWhile</code>" }
                     html { "<code>Stream#iterate</code> avec un predicat" }
                     html { "<code>Stream#ofNullable</code>" }
-                    html { "<code>Option#stream</code>" }
+                    html { "<code>Optional#stream</code>" }
                     html { "<code>Collectors#flatMapping</code> et <code>Collectors#filtering</code>" }
                     html { "<code>String#chars</code> et <code>String#codePoints</code>" }
                 }
