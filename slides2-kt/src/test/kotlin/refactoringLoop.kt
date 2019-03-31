@@ -77,7 +77,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 html { "Haskell" }
                 html { "Scala <sup>*</sup>" }
                 html { "Erlang" }
-                html { "Clojure" }
+                html { "Clojure <sup>*</sup>" }
                 html { "Assembleur" }
                 html { "ByteCode Java" }
                 html { "..." }
@@ -181,14 +181,14 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 """.trimMargin()
             }
         }
-//        slide("Bilan récusion") {
-//            ul {
-//                html { "🧩 découpage en petites tâches" }
-//                html { "🤯 lisibilité" }
-//                html { "✋ contrôle de l'arrêt" }
-//                html { "📚 ATTENTION aux <code>StackOverflowError</code>" }
-//            }
-//        }
+        slide("Bilan récusion") {
+            ul {
+                html { "🧩 découpage en petites tâches" }
+                html { "🤯 lisibilité" }
+                html { "✋ contrôle de l'arrêt" }
+                html { "📚 ATTENTION aux <code>StackOverflowError</code>" }
+            }
+        }
     }
     part(partTitle = { markdown { "## `Stream`" } }, id = "stream") {
         slide("Création 1/2") {
@@ -197,10 +197,10 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         slide("Création 2/2") {
             sourceCode("code/stream/create2.java")
         }
-        slide("map") {
+        slide("Transformation - map") {
             sourceCode("code/stream/map.java")
         }
-        slide("filter") {
+        slide("Filtre - filter") {
             sourceCode("code/stream/filter.java")
         }
         slide("Stream is Lazy", setOf("header-hidden")) {
@@ -231,26 +231,26 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 }
             }
         }
-        slide("Parallèle") {
-            markdown { "Les `Stream` peuvent être exécutées en parallèle, via le `ForkJoinPool`" }
-            notice(Tips) {
-                markdown { "On peut utiliser `Stream#sequential()` ou `Stream#parallel()` pour basculer vers une exécution séquentielle, ou parallèle." }
-            }
-        }
-        slide("flatMap 1/2") {
+        slide("Imbrication - flatMap 1/2") {
             sourceCode("code/stream/flatmap.java")
         }
-        slide("flatMap 2/2", setOf("header-hidden")) {
+        slide("Imbrication - flatMap 2/2", setOf("header-hidden")) {
             ul(steps = true) {
                 (0..6).forEach {
                     file("anim/flatmap-$it.html")
                 }
             }
         }
-        slide("Reduce 1/2") {
+        slide("Parallèle") {
+            markdown { "Les `Stream` peuvent être exécutées en parallèle, via le `ForkJoinPool`" }
+            notice(Tips) {
+                markdown { "On peut utiliser `Stream#sequential()` ou `Stream#parallel()` pour basculer vers une exécution séquentielle, ou parallèle." }
+            }
+        }
+        slide("Accumulation - Reduce 1/2") {
             sourceCode("code/stream/reduce1.java")
         }
-        slide("Reduce 2/2") {
+        slide("Accumulation - Reduce 2/2") {
             notice(Tips, title = "Cas particulier") {
                 markdown { "Si `Element == Accumulator`, on peut utiliser un `reduce`" }
                 markdown { "Les `count`, `min`, `max`, `sum`, ... sont des réductions particulières" }
@@ -260,7 +260,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 markdown { "On appelle souvent cette méthode `foldLeft`" }
             }
         }
-        slide("collect & Collectors") {
+        slide("Accumulation - collect & Collectors") {
             markdown { "Les `Stream#collect` sont justes une généralisation du `reduce`" }
             sourceCode("code/stream/collect.java")
         }
