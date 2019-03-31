@@ -12,7 +12,7 @@ const acc = {count: 0, inCircle: 0};
 function newPoint() {
     const x = Math.random();
     const y = Math.random();
-    const inCircle = (x * x + y * y) < 1;
+    const inCircle = (x * x + y * y) <= 1;
 
     acc.count += 1;
     if (inCircle) {

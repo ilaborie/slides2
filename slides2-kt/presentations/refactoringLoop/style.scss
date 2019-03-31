@@ -2,7 +2,7 @@
   --monkeyBof: #00b0ff;
 
   // Footer
-  --footerText: '@ilaborie @toulousejug #loop';
+  --footerText: '@ilaborie @toulousejug #flatmap';
 }
 
 
@@ -21,6 +21,34 @@ h1 {
 
 main > section > header::after {
   font-size: .5em;
+}
+
+.charts.bar .body label {
+
+  .java::before, .kotlin::before, .scala::before {
+    content: '';
+    width: 1em;
+    height: 1em;
+    font-size: 80%;
+    display: inline-block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .java::before {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTg1MCIgaGVpZ2h0PSIyNTAwIiB2aWV3Qm94PSIwIDAgMjU2IDM0NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWluWU1pbiBtZWV0Ij48cGF0aCBkPSJNODIuNTU0IDI2Ny40NzNzLTEzLjE5OCA3LjY3NSA5LjM5MyAxMC4yNzJjMjcuMzY5IDMuMTIyIDQxLjM1NiAyLjY3NSA3MS41MTctMy4wMzQgMCAwIDcuOTMgNC45NzIgMTkuMDAzIDkuMjc5LTY3LjYxMSAyOC45NzctMTUzLjAxOS0xLjY3OS05OS45MTMtMTYuNTE3bS04LjI2Mi0zNy44MTRzLTE0LjgwMyAxMC45NTggNy44MDUgMTMuMjk2YzI5LjIzNiAzLjAxNiA1Mi4zMjQgMy4yNjMgOTIuMjc2LTQuNDMgMCAwIDUuNTI2IDUuNjAyIDE0LjIxNSA4LjY2Ni04MS43NDcgMjMuOTA0LTE3Mi43OTggMS44ODUtMTE0LjI5Ni0xNy41MzIiIGZpbGw9IiM1MzgyQTEiLz48cGF0aCBkPSJNMTQzLjk0MiAxNjUuNTE1YzE2LjY2IDE5LjE4LTQuMzc3IDM2LjQ0LTQuMzc3IDM2LjQ0czQyLjMwMS0yMS44MzcgMjIuODc0LTQ5LjE4M2MtMTguMTQ0LTI1LjUtMzIuMDU5LTM4LjE3MiA0My4yNjgtODEuODU4IDAgMC0xMTguMjM4IDI5LjUzLTYxLjc2NSA5NC42IiBmaWxsPSIjRTc2RjAwIi8+PHBhdGggZD0iTTIzMy4zNjQgMjk1LjQ0MnM5Ljc2NyA4LjA0Ny0xMC43NTcgMTQuMjczYy0zOS4wMjYgMTEuODIzLTE2Mi40MzIgMTUuMzkzLTE5Ni43MTQuNDcxLTEyLjMyMy01LjM2IDEwLjc4Ny0xMi44IDE4LjA1Ni0xNC4zNjIgNy41ODEtMS42NDQgMTEuOTE0LTEuMzM3IDExLjkxNC0xLjMzNy0xMy43MDUtOS42NTUtODguNTgzIDE4Ljk1Ny0zOC4wMzQgMjcuMTUgMTM3Ljg1MyAyMi4zNTYgMjUxLjI5Mi0xMC4wNjYgMjE1LjUzNS0yNi4xOTVNODguOSAxOTAuNDhzLTYyLjc3MSAxNC45MS0yMi4yMjggMjAuMzIzYzE3LjExOCAyLjI5MiA1MS4yNDMgMS43NzQgODMuMDMtLjg5IDI1Ljk3OC0yLjE5IDUyLjA2My02Ljg1IDUyLjA2My02Ljg1cy05LjE2IDMuOTIzLTE1Ljc4NyA4LjQ0OGMtNjMuNzQ0IDE2Ljc2NS0xODYuODg2IDguOTY2LTE1MS40MzUtOC4xODMgMjkuOTgxLTE0LjQ5MiA1NC4zNTgtMTIuODQ4IDU0LjM1OC0xMi44NDhtMTEyLjYwNSA2Mi45NDJjNjQuOC0zMy42NzIgMzQuODM5LTY2LjAzIDEzLjkyNy02MS42Ny01LjEyNiAxLjA2Ni03LjQxMSAxLjk5LTcuNDExIDEuOTlzMS45MDMtMi45OCA1LjUzNy00LjI3YzQxLjM3LTE0LjU0NSA3My4xODcgNDIuODk3LTEzLjM1NSA2NS42NDcgMCAuMDAxIDEuMDAzLS44OTUgMS4zMDItMS42OTciIGZpbGw9IiM1MzgyQTEiLz48cGF0aCBkPSJNMTYyLjQzOS4zNzFzMzUuODg3IDM1LjktMzQuMDM3IDkxLjEwMWMtNTYuMDcxIDQ0LjI4Mi0xMi43ODYgNjkuNTMtLjAyMyA5OC4zNzctMzIuNzMtMjkuNTMtNTYuNzUtNTUuNTI2LTQwLjYzNS03OS43MkMxMTEuMzk1IDc0LjYxMiAxNzYuOTE4IDU3LjM5MyAxNjIuNDM5LjM3IiBmaWxsPSIjRTc2RjAwIi8+PHBhdGggZD0iTTk1LjI2OCAzNDQuNjY1YzYyLjE5OSAzLjk4MiAxNTcuNzEyLTIuMjA5IDE1OS45NzQtMzEuNjQgMCAwLTQuMzQ4IDExLjE1OC01MS40MDQgMjAuMDE4LTUzLjA4OCA5Ljk5LTExOC41NjQgOC44MjQtMTU3LjM5OSAyLjQyMS4wMDEgMCA3Ljk1IDYuNTggNDguODMgOS4yMDEiIGZpbGw9IiM1MzgyQTEiLz48L3N2Zz4=');
+    filter: drop-shadow(1px 1px 0 #fff);
+  }
+
+  .kotlin::before {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyBkYXRhLW5hbWU9IkxheWVyIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCAxMjUgMTI1IiB3aWR0aD0iMjUwMCIgaGVpZ2h0PSIyNTAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImIiIHgxPSItMjEuMDQ1IiB5MT0iMTE0LjkyNSIgeDI9Ijk1LjI3NCIgeTI9Ii0xLjM5NSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iLjEwOCIgc3RvcC1jb2xvcj0iI2M3NTdiYyIvPjxzdG9wIG9mZnNldD0iLjE3MyIgc3RvcC1jb2xvcj0iI2NkNWNhOSIvPjxzdG9wIG9mZnNldD0iLjQ5MiIgc3RvcC1jb2xvcj0iI2U4NzQ0ZiIvPjxzdG9wIG9mZnNldD0iLjcxNiIgc3RvcC1jb2xvcj0iI2Y4ODMxNiIvPjxzdG9wIG9mZnNldD0iLjgyMyIgc3RvcC1jb2xvcj0iI2ZmODkwMCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iMzkuODkzIiB5MT0iMTQ3LjU1MiIgeDI9Ijk2LjU4OSIgeTI9IjkwLjg1NiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iLjI5NiIgc3RvcC1jb2xvcj0iIzAwYWZmZiIvPjxzdG9wIG9mZnNldD0iLjY5NCIgc3RvcC1jb2xvcj0iIzUyODJmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzk0NWRmZiIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJjIiB4MT0iLTEuNTAxIiB5MT0iMzQuNTAxIiB4Mj0iMzguMjcyIiB5Mj0iLTUuMjczIiB4bGluazpocmVmPSIjYSIvPjwvZGVmcz48cGF0aCBmaWxsPSJ1cmwoI2IpIiBkPSJNNjIuNzU5IDBMMCA2NS45OTlWMTI1bDYyLjY2OS02Mi43NzlMMTI1IDBINjIuNzU5eiIvPjxwYXRoIGRhdGEtbmFtZT0iJmx0O1BhdGgmZ3Q7IiBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAxMjVsNjIuNjY5LTYyLjc3OEwxMjUgMTI1SDB6Ii8+PHBhdGggZmlsbD0idXJsKCNjKSIgZD0iTTAgMGg2Mi43NTlMMCA2NS45OTlWMHoiLz48L3N2Zz4=');
+  }
+
+  .scala::before {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUzOCIgaGVpZ2h0PSIyNTAwIiB2aWV3Qm94PSIwIDAgMjU2IDQxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWluWU1pbiBtZWV0Ij48ZGVmcz48bGluZWFyR3JhZGllbnQgeDE9IjAlIiB5MT0iNTAlIiB5Mj0iNTAlIiBpZD0iYSI+PHN0b3Agc3RvcC1jb2xvcj0iIzRGNEY0RiIgb2Zmc2V0PSIwJSIvPjxzdG9wIG9mZnNldD0iMTAwJSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IHgxPSIwJSIgeTE9IjUwJSIgeTI9IjUwJSIgaWQ9ImIiPjxzdG9wIHN0b3AtY29sb3I9IiNDNDAwMDAiIG9mZnNldD0iMCUiLz48c3RvcCBzdG9wLWNvbG9yPSIjRjAwIiBvZmZzZXQ9IjEwMCUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBkPSJNMCAyODh2LTMyYzAtNS4zOTQgMTE2LjM3Ny0xNC40MjggMTkyLjItMzIgMzYuNjI4IDguNDkgNjMuOCAxOC45NjkgNjMuOCAzMnYzMmMwIDEzLjAyNC0yNy4xNzIgMjMuNTEtNjMuOCAzMkMxMTYuMzc2IDMwMi40MjUgMCAyOTMuMzkgMCAyODgiIGZpbGw9InVybCgjYSkiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIC0xIDAgNTQ0KSIvPjxwYXRoIGQ9Ik0wIDE2MHYtMzJjMC01LjM5NCAxMTYuMzc3LTE0LjQyOCAxOTIuMi0zMiAzNi42MjggOC40OSA2My44IDE4Ljk2OSA2My44IDMydjMyYzAgMTMuMDI0LTI3LjE3MiAyMy41MS02My44IDMyQzExNi4zNzYgMTc0LjQyNSAwIDE2NS4zOSAwIDE2MCIgZmlsbD0idXJsKCNhKSIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgLTEgMCAyODgpIi8+PHBhdGggZD0iTTAgMjI0di05NmMwIDggMjU2IDI0IDI1NiA2NHY5NmMwLTQwLTI1Ni01Ni0yNTYtNjQiIGZpbGw9InVybCgjYikiIHRyYW5zZm9ybT0ibWF0cml4KDEgMCAwIC0xIDAgNDE2KSIvPjxwYXRoIGQ9Ik0wIDk2VjBjMCA4IDI1NiAyNCAyNTYgNjR2OTZjMC00MC0yNTYtNTYtMjU2LTY0IiBmaWxsPSJ1cmwoI2IpIiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAtMSAwIDE2MCkiLz48cGF0aCBkPSJNMCAzNTJ2LTk2YzAgOCAyNTYgMjQgMjU2IDY0djk2YzAtNDAtMjU2LTU2LTI1Ni02NCIgZmlsbD0idXJsKCNiKSIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgLTEgMCA2NzIpIi8+PC9zdmc+');
+  }
+
 }
 
 
@@ -123,7 +151,7 @@ main > section > header::after {
     margin: 0;
 
     color: #2f99ff;
-    text-shadow: 0px 2px #255fcc;
+    text-shadow: 0 2px #255fcc;
     animation: glitch-1 2s infinite linear;
   }
 
@@ -294,13 +322,13 @@ main > section > header::after {
   grid-gap: .125em;
 
   .montecarlo {
+    position: relative;
     background-color: rgba(0, 0, 0, .1);
     background-image: radial-gradient(circle at bottom left, var(--monkeyBof), var(--monkeyBof) 70.71%, transparent 0);
     border: medium solid rgba(0, 0, 0, 25);
     --size: 10em;
     width: var(--size);
     height: var(--size);
-    position: relative;
     grid-column: 1 / -1;
     justify-self: center;
 
@@ -320,6 +348,23 @@ main > section > header::after {
 
     .out {
       background-color: black;
+    }
+
+    &::before {
+      content: '(0, 0)';
+      font-family: var(--font-mono);
+      position: absolute;
+      left: -6ch;
+      bottom: -2ch;
+      font-size: .5em;
+    }
+    &::after {
+      content: '(1, 1)';
+      font-family: var(--font-mono);
+      position: absolute;
+      right: -6ch;
+      top: -2ch;
+      font-size: .5em;
     }
   }
 
@@ -360,29 +405,34 @@ main > section > header::after {
 }
 
 #rust article {
+  img {
+    min-height: 80vh;
+  }
   figcaption {
     display: none;
   }
 }
 
-#montecarlo___java_1 article,
-#montecarlo___java_2 article,
-#montecarlo___java_3 article,
-#montecarlo___java_4 article,
-#montecarlo___java_5 article,
-l#montecarlo___kotlin_1 article,
-l#montecarlo___kotlin_2 article,
-l#montecarlo___kotlin_3 article,
-l#montecarlo___kotlin_4 article,
-l#montecarlo___kotlin_5 article,
-l#montecarlo___scala_1 article,
-l#montecarlo___scala_2 article,
-l#montecarlo___scala_3 article,
-l#montecarlo___scala_4 article,
-l#montecarlo___scala_5 article {
+#montecarlo___point article {
   pre.language-java {
     font-size: 66%;
   }
+}
+
+#montecarlo___performance_parallele article, #montecarlo___performance_parallele_2 article{
+  .bar.charts .body {
+    font-size: 75%;
+  }
+}
+label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream_'],
+label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream_'],
+label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence_'] {
+  text-decoration: underline;
+}
+label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream__2'],
+label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream__2'],
+label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence__2'] {
+  text-decoration: double underline;
 }
 
 

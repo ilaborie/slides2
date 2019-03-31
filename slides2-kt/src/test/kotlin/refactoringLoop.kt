@@ -5,10 +5,12 @@ import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
 import io.github.ilaborie.slides2.kt.engine.Theme
+import io.github.ilaborie.slides2.kt.engine.contents.BarChart
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Danger
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Info
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Tips
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Warning
+import io.github.ilaborie.slides2.kt.engine.contents.barChart
 import io.github.ilaborie.slides2.kt.engine.contents.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
 import io.github.ilaborie.slides2.kt.engine.plugins.*
@@ -44,6 +46,20 @@ val monteCarloPlugin = object : WebPlugin {
 
 val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringLoopTitle() }) {
     part("Introduction", skipHeader = true) {
+        slide("Speaker", setOf("header-hidden")) {
+            speaker(
+                fullName = "Igor Laborie",
+                classes = setOf("monkeyPatch"),
+                src = "speakers/igor.jpg",
+                info = "Expert Web & Java",
+                links = mapOf(
+                    "@ilaborie" to "https://twitter.com/ilaborie",
+                    "igor@monkeypatch.io" to "mailto:igor@monkeypatch.io"
+                )
+            )
+            inlineFigure("logos/monkeypatch.svg", "MonkeyPatch")
+        }
+        roadmap("Plan")
         slide("Back to Basics", styles = setOf("header-hidden")) {
             strong("#backToBasics")
             quote("Les frameworks et bibliothèques naissent et meurent, les bases restent.")
@@ -67,20 +83,6 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 html { "..." }
             }
         }
-        slide("Speaker", setOf("header-hidden")) {
-            speaker(
-                fullName = "Igor Laborie",
-                classes = setOf("monkeyPatch"),
-                src = "speakers/igor.jpg",
-                info = "Expert Web & Java",
-                links = mapOf(
-                    "@ilaborie" to "https://twitter.com/ilaborie",
-                    "igor@monkeypatch.io" to "mailto:igor@monkeypatch.io"
-                )
-            )
-            inlineFigure("logos/monkeypatch.svg", "MonkeyPatch")
-        }
-        roadmap("Plan")
     }
     part("Anatomie d'une boucle") {
         slide("Transformation - Java 1.4") {
@@ -315,7 +317,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 markdown { "La lisibilité est importante" }
             }
             notice(Tips) {
-                markdown { "On peut utiliser intelligemment les aspects lazy" }
+                markdown { "On peut utiliser intelligemment les aspects paresseux" }
             }
         }
         slide("Bilan Stream - Java") {
@@ -324,7 +326,6 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 markdown { "`T  reduce(T identity, BinaryOperator<T> accumulator)` et <br>`Optional<T> reduce(BinaryOperator<T> accumulator)`" }
                 markdown { "`IntStream`, `DoubleStream`, `LongStream`, avec `mapToObj`, `mapToXXX`, ..." }
                 markdown { "Le _boilerplate_, par exemple `.collect(Collectors.toList())`, `Collectors.groupBy`, ..." }
-//                markdown { "💉 [∨∧∨r](http://www.vavr.io)" }
             }
         }
         slide("Kotlin 1/3") {
@@ -384,18 +385,21 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             }
         }
         slide("Java & performances") {
-            ul(steps = true) {
+            ul {
                 markdown { "Faire des micro-benchmark en Java, c'est pas évident" }
                 markdown { "la JVM à besoin de chauffer (JIT)" }
                 link("http://openjdk.java.net/projects/code-tools/jmh/", "JMH")
-                link("https://daniel.mitterdorfer.name/articles/2014/jmh-microbenchmarking-intro/", "Microbenchmarking in Java with JMH (5 articles)")
+                link(
+                    "https://daniel.mitterdorfer.name/articles/2014/jmh-microbenchmarking-intro/",
+                    "Microbenchmarking in Java with JMH (5 articles)"
+                )
             }
             notice(Tips, "Avis personel") {
                 markdown {
-                    """Quand on utilise des I/O (accès réseaux, base de données, accès disque),
-                      |il vaut mieux se concentrer sur la réduction de ces I/O et
-                      |de choisir les bonnes structures de données,
-                      |pour obtenir des performances raisonables.""".trimMargin()
+                    """Quand on utilise des I/O,
+                      |il suffit de se concentrer sur leur réduction et
+                      |choisir de bonnes structures de données,
+                      |pour avoir des performances raisonables.""".trimMargin()
                 }
             }
         }
@@ -415,78 +419,186 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             }
             html { """<button class="btn"></button> """ }
         }
-        slide("MonteCarlo - Java 1") {
+        slide("MonteCarlo - Point") {
             sourceCode("code/montecarlo/point.java")
         }
-        slide("MonteCarlo - Java 2") {
+        slide("MonteCarlo - Java for") {
             sourceCode("code/montecarlo/for.java")
         }
-        slide("MonteCarlo - Java 3") {
-            sourceCode("code/montecarlo/recursion.java")
-        }
-        slide("MonteCarlo - Java 4") {
+//        slide("MonteCarlo - Java 3") {
+//            sourceCode("code/montecarlo/recursion.java")
+//        }
+        slide("MonteCarlo - Java stream") {
             sourceCode("code/montecarlo/stream.java")
         }
-        slide("MonteCarlo - Java 5") {
+        slide("MonteCarlo - Java stream parallèle") {
             sourceCode("code/montecarlo/streamP.java")
         }
-        slide("MonteCarlo - Kotlin 1") {
+        slide("MonteCarlo - Kotlin for") {
             sourceCode("code/montecarlo/for.kt")
         }
-        slide("MonteCarlo - Kotlin 2") {
+        slide("MonteCarlo - Kotlin tailrec") {
             sourceCode("code/montecarlo/recursion.kt")
         }
-        slide("MonteCarlo - Kotlin 3") {
+        slide("MonteCarlo - Kotlin collection") {
             sourceCode("code/montecarlo/col.kt")
         }
-        slide("MonteCarlo - Kotlin 4") {
+        slide("MonteCarlo - Kotlin séquence") {
             sourceCode("code/montecarlo/stream.kt")
         }
-        slide("MonteCarlo - Kotlin 5") {
+        slide("MonteCarlo - Kotlin séquence parallèle") {
             sourceCode("code/montecarlo/streamP.kt")
         }
-        slide("MonteCarlo - Scala 1") {
+        slide("MonteCarlo - Scala for") {
             sourceCode("code/montecarlo/for.scala")
         }
-        slide("MonteCarlo - Scala 2") {
+        slide("MonteCarlo - Scala tailrec") {
             sourceCode("code/montecarlo/recursion.scala")
         }
-        slide("MonteCarlo - Scala 3") {
+        slide("MonteCarlo - Scala collection") {
             sourceCode("code/montecarlo/col.scala")
         }
-        slide("MonteCarlo - Scala 4") {
+        slide("MonteCarlo - Scala stream") {
             sourceCode("code/montecarlo/stream.scala")
         }
-        slide("MonteCarlo - Scala 5") {
+        slide("MonteCarlo - Scala stream parallèle") {
             sourceCode("code/montecarlo/streamP.scala")
         }
-        slide("MonteCarlo - performance 1/x") {
+        slide("Disclaimer", styles = setOf("header-hidden")) {
             markdown {
                 """#### Disclaimer
                   |
-                  |REMEMBER: The numbers below are just data. To gain reusable insights,
+                  |>REMEMBER: The numbers below are just data. To gain reusable insights,
                   |you need to follow up on why the numbers are the way they are.
                   |Use **profilers** (see `-prof`, `-lprof`), design factorial experiments,
                   |perform baseline and negative tests that provide experimental control,
                   |make sure the benchmarking environment is safe on JVM/OS/HW level,
-                  |**ask for reviews** from the domain experts.
-                  |
+                  |**ask for reviews** from the domain experts.<br>
                   |**Do not assume the numbers tell you what you want them to tell.**
                   |
-                  |=> Venez lire, tester, critiquer, proposer des PR sur [dépôt Github](https://github.com/ilaborie/refactorLoops)""".trimMargin()
+                  |=> Venez lire, tester, critiquer, proposer des PR sur le [dépôt Github](https://github.com/ilaborie/refactorLoops)""".trimMargin()
             }
         }
-        slide("MonteCarlo - performance 1/x") {
-            todo { "base" } // FIXME
+        slide("MonteCarlo - performance 1000 points") {
+            barChart(
+                "1_000 points sur OpenJDK (HotSpot) 8.0.202",
+                values = mapOf(
+                    "<span class=\"kotlin\"></span> tailrec" to 24803, //
+                    "<span class=\"scala\"></span> tailrec" to 24801,
+                    "<span class=\"scala\"></span> for" to 23318,
+                    "<span class=\"kotlin\"></span> for" to 23123,
+                    "<span class=\"java\"></span> for" to 21267, //
+                    "<span class=\"java\"></span> stream" to 20108,
+                    "<span class=\"scala\"></span> collection" to 18195, //
+                    "<span class=\"kotlin\"></span> sequence" to 17943,
+                    "<span class=\"kotlin\"></span> collection" to 17287,
+                    "<span class=\"scala\"></span> stream" to 11082
+                ),
+                factor = { it },
+                infoFn = { "$it ops/s" },
+                mode = BarChart.Companion.BarChartCustom(
+                    min = 0,
+                    max = 24803,
+                    low = 19000,
+                    high = 22000,
+                    optimum = 24803
+                )
+            )
+            asciiMath { """"tailrec" ~~ 40.3mus > "for" ~~ 47.0mus > "stream" ~~ 49.7mus > "collection" ~~ 55.0mus""" }
         }
-        slide("MonteCarlo - performance 1/x") {
-            todo { "scale with n" } // FIXME
+        slide("MonteCarlo - performance 10M points") {
+            barChart(
+                "10_000_000 points sur OpenJDK (HotSpot) 8.0.202",
+                values = mapOf(
+                    "<span class=\"scala\"></span> tailrec" to 2.482, // 403ms
+                    "<span class=\"kotlin\"></span> tailrec" to 2.472,
+                    "<span class=\"kotlin\"></span> for" to 2.310,
+                    "<span class=\"scala\"></span> for" to 2.278,
+                    "<span class=\"java\"></span> for" to 2.111, // 474ms
+                    "<span class=\"kotlin\"></span> sequence" to 1.987,
+                    "<span class=\"java\"></span> stream" to 1.967,
+                    "<span class=\"scala\"></span> collection" to 1.664, // 601ms
+                    "<span class=\"kotlin\"></span> collection" to 1.634,
+                    "<span class=\"scala\"></span> stream" to 0.277
+                ),
+                factor = { (it * 1000).toInt() },
+                infoFn = { "$it ops/s" },
+                mode = BarChart.Companion.BarChartCustom(
+                    min = 0,
+                    max = 2482,
+                    low = 1800,
+                    high = 2000,
+                    optimum = 2482
+                )
+            )
+            asciiMath { """"tailrec" ~~ 403ms > "for" ~~ 474ms > "stream" ~~ 508ms > "collection" ~~ 601ms""" }
         }
-        slide("MonteCarlo - performance 2/2") {
-            todo { "parallele" } // FIXME
+        slide("MonteCarlo - performance parallèle") {
+            barChart(
+                "10_000_000 points sur OpenJDK (HotSpot) 8.0.202",
+                values = mapOf(
+                    "<span class=\"scala\"></span> tailrec" to 2.482, // 403ms
+                    "<span class=\"kotlin\"></span> tailrec" to 2.472,
+                    "<span class=\"kotlin\"></span> for" to 2.310,
+                    "<span class=\"scala\"></span> for" to 2.278,
+                    "<span class=\"java\"></span> for" to 2.111, // 474ms
+                    "<span class=\"kotlin\"></span> sequence" to 1.987,
+                    "<span class=\"java\"></span> stream" to 1.967,
+                    "<span class=\"scala\"></span> collection" to 1.664, // 601ms
+                    "<span class=\"kotlin\"></span> collection" to 1.634,
+                    "<span class=\"kotlin\"></span> sequence ∥" to 1.571,
+                    "<span class=\"scala\"></span> stream ∥" to 0.468,
+                    "<span class=\"scala\"></span> stream" to 0.277,
+                    "<span class=\"java\"></span> stream ∥" to 0.194
+                ),
+                factor = { (it * 1000).toInt() },
+                infoFn = { "$it ops/s" },
+                mode = BarChart.Companion.BarChartCustom(
+                    min = 0,
+                    max = 2482,
+                    low = 1800,
+                    high = 2000,
+                    optimum = 2482
+                )
+            )
+            markdown { "😱 le code parallèle" }
         }
-        slide("MonteCarlo - performance 3/x") {
-            todo { "Splittable Random" } // FIXME
+        slide("MonteCarlo - performance parallèle 2", styles = setOf("header-hidden")) {
+            barChart(
+                "10_000_000 points sur OpenJDK (HotSpot) 8.0.202",
+                values = mapOf(
+                    "<span class=\"java\"></span> stream ∥ 2" to 7.654,
+                    "<span class=\"kotlin\"></span> sequence ∥ 2" to 7.224,
+                    "<span class=\"scala\"></span> tailrec" to 2.482, // 403ms
+                    "<span class=\"kotlin\"></span> tailrec" to 2.472,
+                    "<span class=\"kotlin\"></span> for" to 2.310,
+                    "<span class=\"scala\"></span> for" to 2.278,
+                    "<span class=\"java\"></span> for" to 2.111, // 474ms
+                    "<span class=\"kotlin\"></span> sequence" to 1.987,
+                    "<span class=\"java\"></span> stream" to 1.967,
+                    "<span class=\"scala\"></span> collection" to 1.664, // 601ms
+                    "<span class=\"kotlin\"></span> collection" to 1.634,
+                    "<span class=\"kotlin\"></span> sequence ∥" to 1.571,
+                    "<span class=\"scala\"></span> stream ∥ 2" to 0.598,
+                    "<span class=\"scala\"></span> stream ∥" to 0.468,
+                    "<span class=\"scala\"></span> stream" to 0.277,
+                    "<span class=\"java\"></span> stream ∥" to 0.194
+                ),
+                factor = { (it * 1000).toInt() },
+                infoFn = { "$it ops/s" },
+                mode = BarChart.Companion.BarChartCustom(
+                    min = 0,
+                    max = 7654,
+                    low = 6000,
+                    high = 7000,
+                    optimum = 7654
+                )
+            )
+        }
+        slide("SplittableRandom") {
+            markdown {
+                "Depuis Java 8 [`SplittableRandom`](https://docs.oracle.com/javase/8/docs/api/java/util/SplittableRandom.html)"
+            }
         }
         slide("Separation of Concerns") {
             ul {
@@ -540,10 +652,10 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         }
         slide("FP") {
             ul(steps = true) {
-                html { "Immutablilté" }
-                html { "Pas d'effet de bord" }
                 html { "Lambda et fonctions d'ordre supérieur" }
-                html { """<span class="math-ascii">`=>`</span> C'est une présentation sur la programmation fonctionnelle""" }
+                html { "Pas d'effet de bord" }
+                html { "Immutablilté" }
+                html { """<span class="math-ascii">`=>`</span> Ceci est une présentation sur la programmation fonctionnelle""" }
                 figure(
                     "img/functional.png", "Functional",
                     copyrightBlock = "[https://xkcd.com/1270/](https://xkcd.com/1270/)".markdown

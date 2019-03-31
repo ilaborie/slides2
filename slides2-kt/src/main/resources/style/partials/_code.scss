@@ -19,7 +19,7 @@ main > section > article {
     align-self: center;
     max-width: calc(100% - 1em);
     min-width: 60vw;
-    
+
     white-space: pre-wrap;
 
 
@@ -39,7 +39,7 @@ main > section > article {
       background-origin: content-box;
     }
 
-    &:after {
+    &::after {
       position: absolute;
       top: 0;
       right: 0;
