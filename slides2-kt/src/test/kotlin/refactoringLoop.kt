@@ -114,27 +114,27 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         slide("Parcours - Java") {
             sourceCode("code/recursion/transform.java")
         }
-        slide("Parcours - Kotlin 1") {
-            sourceCode("code/recursion/transform.kt")
-        }
-        slide("Parcours - Kotlin 2") {
+//        slide("Parcours - Kotlin 1") {
+//            sourceCode("code/recursion/transform.kt")
+//        }
+        slide("Parcours - Kotlin") {
             sourceCode("code/recursion/transform2.kt")
         }
-        slide("Parcours - Scala 1") {
-            sourceCode("code/recursion/transform.scala")
-        }
-        slide("Parcours - Scala 2") {
+//        slide("Parcours - Scala 1") {
+//            sourceCode("code/recursion/transform.scala")
+//        }
+        slide("Parcours - Scala") {
             sourceCode("code/recursion/transform2.scala")
         }
         slide("Filtre & Sortie rapide - Java") {
             sourceCode("code/recursion/find.java")
         }
-        slide("Filtre & Sortie rapide - Kotlin") {
-            sourceCode("code/recursion/find.kt")
-        }
-        slide("Filtre & Sortie rapide - Scala") {
-            sourceCode("code/recursion/find.scala")
-        }
+//        slide("Filtre & Sortie rapide - Kotlin") {
+//            sourceCode("code/recursion/find.kt")
+//        }
+//        slide("Filtre & Sortie rapide - Scala") {
+//            sourceCode("code/recursion/find.scala")
+//        }
         slide("Récursion non terminale") {
             asciiMath { "x! = x xx (x-1) xx ... xx 2 xx 1" }
             asciiMath { "1! = 0!  = 1" }
@@ -170,7 +170,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         slide("Récursion terminale - Scala") {
             sourceCode("code/recursion/tailrec.scala")
         }
-        slide("Principe  récursion terminale") {
+        slide("Principe récursion terminale") {
             code("javascript") {
                 """tailRecFunc(scope, state) =
                   |  if (isFinish(scope)) computeResult(state)
@@ -181,14 +181,14 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 """.trimMargin()
             }
         }
-        slide("Bilan récusion") {
-            ul {
-                html { "🧩 découpage en petites tâches" }
-                html { "🤯 lisibilité" }
-                html { "✋ contrôle de l'arrêt" }
-                html { "📚 ATTENTION aux <code>StackOverflowError</code>" }
-            }
-        }
+//        slide("Bilan récusion") {
+//            ul {
+//                html { "🧩 découpage en petites tâches" }
+//                html { "🤯 lisibilité" }
+//                html { "✋ contrôle de l'arrêt" }
+//                html { "📚 ATTENTION aux <code>StackOverflowError</code>" }
+//            }
+//        }
     }
     part(partTitle = { markdown { "## `Stream`" } }, id = "stream") {
         slide("Création 1/2") {
@@ -241,12 +241,12 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 }
             }
         }
-        slide("Parallèle") {
-            markdown { "Les `Stream` peuvent être exécutées en parallèle, via le `ForkJoinPool`" }
-            notice(Tips) {
-                markdown { "On peut utiliser `Stream#sequential()` ou `Stream#parallel()` pour basculer vers une exécution séquentielle, ou parallèle." }
-            }
-        }
+//        slide("Parallèle") {
+//            markdown { "Les `Stream` peuvent être exécutées en parallèle, via le `ForkJoinPool`" }
+//            notice(Tips) {
+//                markdown { "On peut utiliser `Stream#sequential()` ou `Stream#parallel()` pour basculer vers une exécution séquentielle, ou parallèle." }
+//            }
+//        }
         slide("Accumulation - Reduce 1/2") {
             sourceCode("code/stream/reduce1.java")
         }
@@ -256,9 +256,9 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 markdown { "Les `count`, `min`, `max`, `sum`, ... sont des réductions particulières" }
             }
             sourceCode("code/stream/reduce2.java")
-            notice(Info) {
-                markdown { "On appelle souvent cette méthode `foldLeft`" }
-            }
+//            notice(Info) {
+//                markdown { "On appelle souvent cette méthode `foldLeft`" }
+//            }
         }
         slide("Accumulation - collect & Collectors") {
             markdown { "Les `Stream#collect` sont justes une généralisation du `reduce`" }
@@ -694,7 +694,6 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         }
     }
 }
-
 
 private fun ContainerBuilder.refactoringLoopTitle() {
     h1("🏋️‍♂️ Refactoring sans les <code>for</code>")
