@@ -287,10 +287,11 @@ h1 {
 
   ul {
     position: relative;
-    align-self: stretch;
+    align-self: center;
     margin: 2em 1.5em;
     list-style: none;
     min-height: 25%;
+    min-width: 50vw;
 
     li {
       position: absolute;
@@ -347,6 +348,26 @@ h1 {
     }
   }
 }
+
+//
+#reinventing_2 {
+  background-image: url('doitdoit.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  article {
+    color: var(--colLight);
+
+    .step.step-done {
+      opacity: 1;
+    }
+
+    a {
+      font-size: 50%;
+    }
+  }
+}
+
 
 //
 #components article {
@@ -523,7 +544,7 @@ h1 {
 }
 
 // Print
-@media print{
+@media print {
   #speakers article {
     grid-column: 1 / -1;
   }

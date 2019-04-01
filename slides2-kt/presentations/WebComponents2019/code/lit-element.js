@@ -10,7 +10,7 @@ class MyElement extends LitElement {
 		return css`.mood { color: green; }`;
 	}
 	render() {
-		return html `Web Components are 
+		return html`Web Components are 
 			<span class="mood">${this.mood}</span>!`;
 	}
 }

@@ -275,9 +275,9 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 html { "..." }
             }
         }
-        slide("Illustration Java", setOf("header-hidden")) {
-            sourceCode("code/stream/exemple.java")
-        }
+//        slide("Illustration Java", setOf("header-hidden")) {
+//            sourceCode("code/stream/exemple.java")
+//        }
         slide("Et l'index ?") {
             markdown { "Et si j'ai besoin de l'_index_ ?" }
             ul {
@@ -329,31 +329,31 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 markdown { "Le _boilerplate_, par exemple `.collect(Collectors.toList())`, `Collectors.groupBy`, ..." }
             }
         }
-        slide("Kotlin 1/3") {
-            sourceCode("code/stream/exemple1.kt")
-        }
-        slide("Kotlin 2/3") {
-            sourceCode("code/stream/exemple2.kt")
-        }
-        slide("Kotlin 3/3") {
+//        slide("Kotlin 1/3") {
+//            sourceCode("code/stream/exemple1.kt")
+//        }
+//        slide("Kotlin 2/3") {
+//            sourceCode("code/stream/exemple2.kt")
+//        }
+        slide("Kotlin") {
             h4("😍")
             ul(steps = true) {
-                markdown { "API _lazy_ ou non" }
-                markdown { "API **immutable** ou mutable" }
+                markdown { "API _lazy_ avec les `Sequence` ou non directement sur les collections" }
+                markdown { "API collection **immutable** ou mutable" }
                 markdown { "🎭 utilise juste les classes de Java" }
             }
         }
-        slide("Scala 1/4") {
-            sourceCode("code/stream/exemple1.scala")
-        }
-        slide("Scala 2/4") {
-            sourceCode("code/stream/exemple2.scala")
-        }
-        slide("Scala 3/4") {
+//        slide("Scala 1/4") {
+//            sourceCode("code/stream/exemple1.scala")
+//        }
+//        slide("Scala 2/4") {
+//            sourceCode("code/stream/exemple2.scala")
+//        }
+        slide("Scala") {
             h4("😻")
             ul(steps = true) {
-                markdown { "API _lazy_ ou non" }
-                markdown { "API **immutable** ou mutable" }
+                markdown { "API _lazy_ avec les `Stream` ou non directement sur les collections" }
+                markdown { "API collection **immutable** ou mutable" }
                 markdown { "Pas de réutilisation de Java" }
                 markdown { "API de [`Stream`](https://www.scala-lang.org/api/2.12.3/scala/collection/immutable/Stream.html) avec la possibilité de construction récursive" }
 
@@ -362,7 +362,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 }
             }
         }
-        slide("Scala 4/4") {
+        slide("Scala for") {
             h4("🤢")
             sourceCode("code/stream/exemple-for.scala")
             ul {

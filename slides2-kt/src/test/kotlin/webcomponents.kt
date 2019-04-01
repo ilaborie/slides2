@@ -34,6 +34,9 @@ fun main() {
     listOf("background_v1.png", "background_v2.png", "background_white_v1.png", "footer_v2.png").forEach {
         devoxxImgs.copyOrUpdate(it, outputDir)
     }
+
+    // Copy images
+    (config.input / "img").copyOrUpdate("doitdoit.gif", config.output / id)
 }
 
 val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() }) {
@@ -134,8 +137,9 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             }
         }
         slide("Reinventing 2", setOf("header-hidden")) {
-            todo {
-                "Meme Luci Do It: add another one in WebComponent LitElement..."
+            ul(steps=true) {
+                figure("img/material-add.png", "Material Web Components")
+                link("https://github.com/material-components/material-components-web-components")
             }
         }
         slide("Solution", setOf("header-hidden")) {
@@ -375,7 +379,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             ul(steps = true) {
                 markdown { "Projet **Open Source**, [BSD 3-Clause License](https://github.com/Polymer/lit-element/blob/master/LICENSE)" }
                 markdown { "Créer par l'équipe **Polymer Team** en 2017" }
-                markdown { "1.7k ⭐️ sur github" }
+                markdown { "1.8k ⭐️ sur github" }
             }
         }
         slide("Templating", setOf("header-hidden")) {
