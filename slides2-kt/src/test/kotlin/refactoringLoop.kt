@@ -64,14 +64,14 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             strong("#backToBasics")
             quote("Les frameworks et bibliothèques naissent et meurent, les bases restent.")
         }
-        slide("Quizz 1", styles = setOf("header-hidden")) {
-            h4("En quel langage est écrit ce code ?")
-            ul(steps = true) {
-                sourceCode("code/quizz1.java")
-                p("Java, JavaScript, C++, C, ?")
-            }
-        }
-        slide("Quizz 2", styles = setOf("header-hidden", "two-columns")) {
+//        slide("Quizz 1", styles = setOf("header-hidden")) {
+//            h4("En quel langage est écrit ce code ?")
+//            ul(steps = true) {
+//                sourceCode("code/quizz1.java")
+//                p("Java, JavaScript, C++, C, ?")
+//            }
+//        }
+        slide("Quizz", styles = setOf("header-hidden", "two-columns")) {
             markdown { "#### Existe-il des langages de programmation sans `for` ?" }
             ul(steps = true) {
                 html { "Haskell" }
@@ -158,6 +158,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 asciiMath { "fact(x-2, x xx (x-1))" }
                 asciiMath { "fact(... , x xx (x-1) xx (x-2) xx ...)" }
                 asciiMath { "fact(1, x xx (x-1) xx (x-2) xx ... xx 2)" }
+                markdown { "⚠️ Nécessite une optimisation par le compilateur" }
             }
         }
         slide("Récursion terminale - Java") {
@@ -395,14 +396,14 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                     "Microbenchmarking in Java with JMH (5 articles)"
                 )
             }
-            notice(Tips, "Avis personel") {
-                markdown {
-                    """Quand on utilise des I/O,
-                      |il suffit de se concentrer sur leur réduction et
-                      |choisir de bonnes structures de données,
-                      |pour avoir des performances raisonables.""".trimMargin()
-                }
-            }
+//            notice(Tips, "Avis personel") {
+//                markdown {
+//                    """Quand on utilise des I/O,
+//                      |il suffit de se concentrer sur leur réduction et
+//                      |choisir de bonnes structures de données,
+//                      |pour avoir des performances raisonables.""".trimMargin()
+//                }
+//            }
         }
         slide("Rust", styles = setOf("header-hidden")) {
             figure("img/rust.png", "Rewrite everything in Rust")

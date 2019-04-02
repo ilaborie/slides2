@@ -74,16 +74,6 @@ main > section > header::after {
 
 }
 
-#quizz_1 article {
-  justify-content: center;
-  align-items: center;
-
-  pre.language-java::after {
-    display: none;
-  }
-
-}
-
 .steps.steps-replace {
   .step {
     display: none;
