@@ -328,6 +328,8 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 markdown { "`T  reduce(T identity, BinaryOperator<T> accumulator)` et <br>`Optional<T> reduce(BinaryOperator<T> accumulator)`" }
                 markdown { "`IntStream`, `DoubleStream`, `LongStream`, avec `mapToObj`, `mapToXXX`, ..." }
                 markdown { "Le _boilerplate_, par exemple `.collect(Collectors.toList())`, `Collectors.groupBy`, ..." }
+                markdown { "Pas de tuples en Java" }
+                markdown { "Des 🐛 dans le _lazy_ du `flatMap`, voir [Java Stream API was Broken Before JDK10](https://4comprehension.com/java-stream-api-was-broken-before-jdk10/)" }
             }
         }
 //        slide("Kotlin 1/3") {
