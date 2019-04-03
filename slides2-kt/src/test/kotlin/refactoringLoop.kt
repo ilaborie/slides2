@@ -605,12 +605,18 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             }
         }
         slide("Separation of Concerns") {
+            ul(classes = setOf("compare")) {
+                file("code/soc/imp.html")
+                file("code/soc/stream.html")
+            }
             ul {
-                figure(
-                    "img/SoC-MarioFusco.jpg",
-                    "Separation of Concerns",
-                    copyrightBlock = "[**@mariofusco**](https://twitter.com/mariofusco/status/571999216039542784)".markdown
-                )
+//                figure(
+//                    "img/SoC-MarioFusco.jpg",
+//                    "Separation of Concerns",
+//                    copyrightBlock = "[**@mariofusco**](https://twitter.com/mariofusco/status/571999216039542784)".markdown
+//                )
+
+                markdown { "[**@mariofusco**](https://twitter.com/mariofusco/status/571999216039542784)" }
                 link("https://www.youtube.com/watch?v=84MfG4tp30s", "Lazy Java par Mario Fusco")
             }
         }

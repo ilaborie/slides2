@@ -298,7 +298,7 @@ main > section > header::after {
 #bilan_stream article,
 #bilan_stream___java article,
 #bilan_stream___kotlin article,
-#bilan_stream___Scala,
+#bilan_stream___scala,
 #scala_for article {
   h4 {
     font-size: 2.5em;
@@ -348,6 +348,7 @@ main > section > header::after {
       bottom: -2ch;
       font-size: .5em;
     }
+
     &::after {
       content: '(1, 1)';
       font-family: var(--font-mono);
@@ -398,6 +399,7 @@ main > section > header::after {
   img {
     min-height: 80vh;
   }
+
   figcaption {
     display: none;
   }
@@ -409,16 +411,18 @@ main > section > header::after {
   }
 }
 
-#montecarlo___performance_parallele article, #montecarlo___performance_parallele_2 article{
+#montecarlo___performance_parallele article, #montecarlo___performance_parallele_2 article {
   .bar.charts .body {
     font-size: 75%;
   }
 }
+
 label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream_'],
 label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream_'],
 label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence_'] {
   text-decoration: underline;
 }
+
 label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream__2'],
 label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream__2'],
 label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence__2'] {
@@ -427,13 +431,61 @@ label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin__
 
 
 #separation_of_concerns article {
-  figcaption {
-    display: none;
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 70%;
+
+    pre[class*="language-"], pre[class*="raw-"] {
+      min-width: auto;
+
+      mark {
+        .token.function, .token.number, .token.string, .token.class-name, .token.keyword {
+          color: black;
+        }
+        .token.operator, .token.punctuation {
+          color: rgba(0,0,0,.5);
+        }
+      }
+
+      .cls1 {
+        background-color: transparent;
+        color: #a9b7c6;
+
+        .token.function {
+          color: #a9b7c6;
+        }
+        .token.operator, .token.punctuation {
+          color: rgba(169, 183, 198, 0.5);
+        }
+      }
+
+      .cls2 {
+        background-color: rgba(200, 200, 0, 1);
+      }
+
+      .cls3 {
+        background-color: rgba(200, 0, 200, 1);
+      }
+
+      .cls4 {
+        background-color: rgba(0, 200, 200, 1);
+      }
+
+      .cls5 {
+        background-color: rgba(0, 200, 0, 1);
+      }
+    }
+
   }
 
-  img {
-    max-height: 60vh;
-  }
+  //figcaption {
+  //  display: none;
+  //}
+  //
+  //img {
+  //  max-height: 60vh;
+  //}
 
   .copyright {
     align-self: flex-start;
