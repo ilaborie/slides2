@@ -71,20 +71,20 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
 //                p("Java, JavaScript, C++, C, ?")
 //            }
 //        }
-        slide("Quizz", styles = setOf("header-hidden", "two-columns")) {
-            markdown { "#### Existe-il des langages de programmation sans `for` ?" }
-            ul(steps = true) {
-                html { "Haskell" }
-                html { "Scala <sup>*</sup>" }
-                html { "Erlang" }
-                html { "Clojure <sup>*</sup>" }
-                html { "Assembleur" }
-                html { "ByteCode Java" }
-                html { "..." }
-            }
-        }
+//        slide("Quizz", styles = setOf("header-hidden", "two-columns")) {
+//            markdown { "#### Existe-il des langages de programmation sans `for` ?" }
+//            ul(steps = true) {
+//                html { "Haskell" }
+//                html { "Scala <sup>*</sup>" }
+//                html { "Erlang" }
+//                html { "Clojure <sup>*</sup>" }
+//                html { "Assembleur" }
+//                html { "ByteCode Java" }
+//                html { "..." }
+//            }
+//        }
     }
-    part("Anatomie d'une boucle") {
+    part("🔬 Anatomie d'une boucle") {
         slide("Transformation - Java 1.4") {
             sourceCode("code/loop/transformation1.java")
         }
@@ -110,7 +110,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             sourceCode("code/loop/other.java")
         }
     }
-    part("Récursion") {
+    part("🔃 Récursion") {
         slide("Parcours - Java") {
             sourceCode("code/recursion/transform.java")
         }
@@ -161,16 +161,6 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 markdown { "⚠️ Nécessite une optimisation par le compilateur" }
             }
         }
-        slide("Récursion terminale - Java") {
-            h4("Game Over")
-            span("Insert Kotlin or Scala<br>To continue")
-        }
-        slide("Récursion terminale - Kotlin") {
-            sourceCode("code/recursion/tailrec.kt")
-        }
-        slide("Récursion terminale - Scala") {
-            sourceCode("code/recursion/tailrec.scala")
-        }
         slide("Principe récursion terminale") {
             code("javascript") {
                 """tailRecFunc(scope, state) =
@@ -182,6 +172,16 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 """.trimMargin()
             }
         }
+        slide("Récursion terminale - Java") {
+            h4("Game Over")
+            span("Insert Kotlin or Scala<br>To continue")
+        }
+        slide("Récursion terminale - Kotlin") {
+            sourceCode("code/recursion/tailrec.kt")
+        }
+        slide("Récursion terminale - Scala") {
+            sourceCode("code/recursion/tailrec.scala")
+        }
 //        slide("Bilan récusion") {
 //            ul {
 //                html { "🧩 découpage en petites tâches" }
@@ -191,7 +191,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
 //            }
 //        }
     }
-    part(partTitle = { markdown { "## `Stream`" } }, id = "stream") {
+    part(partTitle = { markdown { "## 🌊 `Stream`" } }, id = "stream") {
         slide("Création 1/2") {
             sourceCode("code/stream/create1.java")
         }
@@ -203,6 +203,16 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         }
         slide("Filtre - filter") {
             sourceCode("code/stream/filter.java")
+        }
+        slide("Imbrication - flatMap 1/2") {
+            sourceCode("code/stream/flatmap.java")
+        }
+        slide("Imbrication - flatMap 2/2", setOf("header-hidden")) {
+            ul(steps = true) {
+                (0..6).forEach {
+                    file("anim/flatmap-$it.html")
+                }
+            }
         }
         slide("Stream is Lazy", setOf("header-hidden")) {
             sourceCode("code/stream/lazy.java")
@@ -229,16 +239,6 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                     html { "<code>forEach</code>" }
                     html { "<code>count</code>" }
                     html { "..." }
-                }
-            }
-        }
-        slide("Imbrication - flatMap 1/2") {
-            sourceCode("code/stream/flatmap.java")
-        }
-        slide("Imbrication - flatMap 2/2", setOf("header-hidden")) {
-            ul(steps = true) {
-                (0..6).forEach {
-                    file("anim/flatmap-$it.html")
                 }
             }
         }
@@ -283,7 +283,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             markdown { "Et si j'ai besoin de l'_index_ ?" }
             ul {
                 markdown { "😢 pas faisable facilement et _proprement_ en Java" }
-                markdown { "Mais il y a Kotlin et Scala..." }
+                markdown { "✌️ mais il y a Kotlin et Scala..." }
             }
         }
         slide("Nouveautés Java 9+") {
@@ -338,7 +338,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
 //        slide("Kotlin 2/3") {
 //            sourceCode("code/stream/exemple2.kt")
 //        }
-        slide("Kotlin") {
+        slide("Bilan Stream - Kotlin") {
             h4("😍")
             ul(steps = true) {
                 markdown { "API _lazy_ avec les `Sequence` ou non directement sur les collections" }
@@ -352,7 +352,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
 //        slide("Scala 2/4") {
 //            sourceCode("code/stream/exemple2.scala")
 //        }
-        slide("Scala") {
+        slide("Bilan Stream - Scala") {
             h4("😻")
             ul(steps = true) {
                 markdown { "API _lazy_ avec les `Stream` ou non directement sur les collections" }
@@ -375,23 +375,23 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         }
 //        slide("foldLeft vs foldRight") {}
     }
-    part("Qui est le meilleur ?") {
+    part("🏆 Qui est le meilleur ?") {
         slide("Relation d'ordre") {
             markdown {
                 """Si on veut déterminer le meilleur, ils nous faut une relation d'ordre, laquelle ?"""
             }
             ul(steps = true) {
-                markdown { "Le plus rapide ?" }
-                markdown { "Le moins couteux en mémoire ?" }
-                markdown { "Le plus maintenable ?" }
-                markdown { "Le plus lisible ?" }
+                markdown { "🏎 le plus rapide ?" }
+                markdown { "💾 le moins couteux en mémoire ?" }
+                markdown { "🧱 le plus maintenable ?" }
+                markdown { "🈂 le plus lisible ?" }
                 markdown { "..." }
             }
         }
         slide("Java & performances") {
             ul {
-                markdown { "Faire des micro-benchmark en Java, c'est pas évident" }
-                markdown { "la JVM à besoin de chauffer (JIT)" }
+                markdown { "📏 faire des micro-benchmark en Java, c'est pas évident" }
+                markdown { "♨️ la JVM à besoin de chauffer (JIT)" }
                 link("http://openjdk.java.net/projects/code-tools/jmh/", "JMH")
                 link(
                     "https://daniel.mitterdorfer.name/articles/2014/jmh-microbenchmarking-intro/",
@@ -480,7 +480,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                   |**ask for reviews** from the domain experts.<br>
                   |**Do not assume the numbers tell you what you want them to tell.**
                   |
-                  |=> Venez lire, tester, critiquer, proposer des PR sur le [dépôt Github](https://github.com/ilaborie/refactorLoops)""".trimMargin()
+                  |<span class="math-ascii">`=>`</span>  🎳 venez lire, tester, critiquer, proposer des PR sur le [dépôt Github](https://github.com/ilaborie/refactorLoops)""".trimMargin()
             }
         }
         slide("MonteCarlo - performance 1000 points") {
@@ -601,7 +601,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
         }
         slide("SplittableRandom") {
             markdown {
-                "Depuis Java 8 [`SplittableRandom`](https://docs.oracle.com/javase/8/docs/api/java/util/SplittableRandom.html)"
+                "🎲 depuis Java 8 [`SplittableRandom`](https://docs.oracle.com/javase/8/docs/api/java/util/SplittableRandom.html)"
             }
         }
         slide("Separation of Concerns") {
