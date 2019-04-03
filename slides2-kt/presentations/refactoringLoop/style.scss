@@ -405,6 +405,12 @@ main > section > header::after {
   }
 }
 
+#disclaimer article {
+  .math-ascii {
+    background: transparent;
+  }
+}
+
 #montecarlo___point article {
   pre.language-java {
     font-size: 66%;

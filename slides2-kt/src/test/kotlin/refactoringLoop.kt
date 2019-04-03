@@ -290,7 +290,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
             definitions {
                 term("Java 9") {
                     html { "<code>Stream#takeWhile</code> et <code>Stream#dropWhile</code>" }
-                    html { "<code>Stream#iterate</code> avec un predicat" }
+                    html { "<code>Stream#iterate</code> avec un prédicat" }
                     html { "<code>Stream#ofNullable</code>" }
                     html { "<code>Optional#stream</code>" }
                     html { "<code>Collectors#flatMapping</code> et <code>Collectors#filtering</code>" }
@@ -479,8 +479,10 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                   |make sure the benchmarking environment is safe on JVM/OS/HW level,
                   |**ask for reviews** from the domain experts.<br>
                   |**Do not assume the numbers tell you what you want them to tell.**
-                  |
-                  |<span class="math-ascii">`=>`</span>  🎳 venez lire, tester, critiquer, proposer des PR sur le [dépôt Github](https://github.com/ilaborie/refactorLoops)""".trimMargin()
+                  |""".trimMargin()
+            }
+            html {
+                """<span class="math-ascii">`=>`</span> 🎳 venez lire, tester, critiquer, proposer des PR sur le <a href="https://github.com/ilaborie/refactorLoops">dépôt Github</a>"""
             }
         }
         slide("MonteCarlo - performance 1000 points") {
@@ -610,7 +612,7 @@ val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringL
                 file("code/soc/stream.html")
             }
             ul {
-//                figure(
+                //                figure(
 //                    "img/SoC-MarioFusco.jpg",
 //                    "Separation of Concerns",
 //                    copyrightBlock = "[**@mariofusco**](https://twitter.com/mariofusco/status/571999216039542784)".markdown
