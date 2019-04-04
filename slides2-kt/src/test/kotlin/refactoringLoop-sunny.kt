@@ -31,7 +31,7 @@ fun main() {
         .use(PrismJsPlugin(showLines = true, languages = listOf("java", "scala", "kotlin")))
         .use(MathJaxPlugin())
         .use(monteCarloPlugin)
-        .run(config, refactoringLoop, listOf(Theme.jugTls))
+        .run(config, refactoringLoop, listOf(Theme.sunnyTech19))
 
     // Copy images
     (config.input / "img").copyOrUpdate("sloth.jpg", config.output / id)
@@ -117,6 +117,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
 //        slide("Parcours - Kotlin 1") {
 //            sourceCode("code/recursion/transform.kt")
 //        }
+        // FIXME merge kt, scala
         slide("Parcours - Kotlin") {
             sourceCode("code/recursion/transform2.kt")
         }
@@ -176,6 +177,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
             h4("Game Over")
             span("Insert Kotlin or Scala<br>To continue")
         }
+        // FIXME merge kt, scala
         slide("Récursion terminale - Kotlin") {
             sourceCode("code/recursion/tailrec.kt")
         }
@@ -192,12 +194,14 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
 //        }
     }
     part(partTitle = { markdown { "## 🌊 `Stream`" } }, id = "stream") {
+        // FIXME merge creation
         slide("Création 1/2") {
             sourceCode("code/stream/create1.java")
         }
         slide("Création 2/2") {
             sourceCode("code/stream/create2.java")
         }
+        // FIXME merge map, filter, flatMap
         slide("Transformation - map") {
             sourceCode("code/stream/map.java")
         }
@@ -248,6 +252,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
 //                markdown { "On peut utiliser `Stream#sequential()` ou `Stream#parallel()` pour basculer vers une exécution séquentielle, ou parallèle." }
 //            }
 //        }
+        // FIXME merge reduce
         slide("Accumulation - Reduce 1/2") {
             sourceCode("code/stream/reduce1.java")
         }
@@ -622,6 +627,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 link("https://www.youtube.com/watch?v=84MfG4tp30s", "Lazy Java par Mario Fusco")
             }
         }
+        // FIXME slide
         slide("Prédisposition aux 🐛") {
             sourceCode("code/loop/transformation1.java")
         }
@@ -653,7 +659,6 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                       |les bases <ins>et les styles de programmation</ins> restent.""".trimMargin()
                 }
             }
-            markdown { "RxJava, Reactor, Spark, Kafka stream, ..." }
             quote {
                 markdown {
                     """Il suffit de choisir le langage, les frameworks,
@@ -699,6 +704,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 html { "🗣 Partagez vos questionnements, vos solutions, vos idées farfelues !" }
             }
         }
+        // FIXME flamy
         slide("Fin", styles = setOf("header-hidden")) {
             markdown {
                 """### 🍕 ou ❓"""
