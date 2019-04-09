@@ -425,6 +425,12 @@ h1 {
   }
 }
 
+#shadow_dom_exemple article {
+  figcaption {
+    display: none;
+  }
+}
+
 #polyfill_support article {
   .legend {
     display: none;

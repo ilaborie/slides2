@@ -194,6 +194,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
 //        }
     }
     part(partTitle = { markdown { "## 🌊 `Stream`" } }, id = "stream") {
+        // FIXME idée, before -> after slides
         // FIXME merge creation
         slide("Création 1/2") {
             sourceCode("code/stream/create1.java")
@@ -211,7 +212,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         slide("Imbrication - flatMap 1/2") {
             sourceCode("code/stream/flatmap.java")
         }
-        slide("Imbrication - flatMap 2/2", setOf("header-hidden")) {
+        slide("Imbrication - flatMap 2/2", setOf("header-hidden")) {  // TODO keep
             ul(steps = true) {
                 (0..6).forEach {
                     file("anim/flatmap-$it.html")
@@ -370,6 +371,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 }
             }
         }
+        // FIXME Juste une note
         slide("Scala for") {
             h4("🤢")
             sourceCode("code/stream/exemple-for.scala")
@@ -403,14 +405,6 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                     "Microbenchmarking in Java with JMH (5 articles)"
                 )
             }
-//            notice(Tips, "Avis personel") {
-//                markdown {
-//                    """Quand on utilise des I/O,
-//                      |il suffit de se concentrer sur leur réduction et
-//                      |choisir de bonnes structures de données,
-//                      |pour avoir des performances raisonables.""".trimMargin()
-//                }
-//            }
         }
         slide("Rust", styles = setOf("header-hidden")) {
             figure("img/rust.png", "Rewrite everything in Rust")

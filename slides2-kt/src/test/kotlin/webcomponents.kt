@@ -228,6 +228,9 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
         slide("Natif code", setOf("header-hidden")) {
             sourceCode("code/natif.js")
         }
+        slide("Shadow DOM Exemple", setOf("header-hidden")) {
+            figure("img/shadowDom.png", "Shadow Dom")
+        }
         slide("Browser support", setOf("header-hidden")) {
             caniuse("Support des navigateurs",
                     features = listOf("custom-elementsv1", "shadowdomv1", "template"),
