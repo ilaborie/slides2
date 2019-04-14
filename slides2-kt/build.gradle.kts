@@ -5,6 +5,7 @@ buildscript {
 
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath("com.github.jengelman.gradle.plugins:shadow:5.0.0")
@@ -12,7 +13,7 @@ buildscript {
 }
 
 plugins {
-    kotlin("jvm") version "1.3.21"
+    kotlin("jvm") version "1.3.30"
     id("com.github.johnrengelman.shadow") version "5.0.0"
     application
 }
@@ -25,6 +26,7 @@ application {
 
 repositories {
     jcenter()
+    mavenCentral()
 }
 
 

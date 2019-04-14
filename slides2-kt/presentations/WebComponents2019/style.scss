@@ -429,6 +429,10 @@ h1 {
   figcaption {
     display: none;
   }
+  img {
+    width: 100%;
+    min-height: 24vh;
+  }
 }
 
 #polyfill_support article {

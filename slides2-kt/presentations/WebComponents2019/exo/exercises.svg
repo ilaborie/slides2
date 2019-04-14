@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 262 332">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 262 262">
 
     <g>
         <circle cx="127" cy="17" r="10"/>
@@ -22,16 +22,10 @@
             <text x="29" y="12" font-family="Open Sans" font-size="12px" text-anchor="middle">LitElement</text>
         </g>
     </g>
-    <g>
-        <rect x="87" y="237" width="80" height="30" rx="4.5" ry="4.5" stroke="#000" fill="#fff"/>
-        <g transform="translate(93.5,245.5)">
-            <text x="34" y="12" font-family="Open Sans" font-size="12px" text-anchor="middle">Big Exercice</text>
-        </g>
-    </g>
 
     <g>
-        <circle cx="127" cy="307" r="8"/>
-        <circle cx="127" cy="307" r="10" fill="none" stroke="#000"/>
+        <circle cx="127" cy="240" r="8"/>
+        <circle cx="127" cy="240" r="10" fill="none" stroke="#000"/>
     </g>
 
     <g>
@@ -65,21 +59,20 @@
               stroke-miterlimit="10"/>
     </g>
 
-    <g>
-        <path d="M 127.31 267.31 L 127.31 290.6" fill="none" stroke="#000" stroke-miterlimit="10"/>
-        <path d="M 127.31 295.85 L 123.81 288.85 L 127.31 290.6 L 130.81 288.85 Z" stroke="#000"
-              stroke-miterlimit="10"/>
-    </g>
 
     <g>
-        <path d="M 47.31 187.31 L 102.4 232.91" fill="none" stroke="#000" stroke-miterlimit="10"/>
-        <path d="M 106.45 236.25 L 98.82 234.49 L 102.4 232.91 L 103.29 229.09 Z" stroke="#000"
-              stroke-miterlimit="10"/>
+        <path d="M 47.31 187.31 L 118 235" fill="none" stroke="#000" stroke-miterlimit="10"/>
+        <g transform="translate(11,-1)">
+            <path d="M 106.45 236.25 L 98.82 234.49 L 102.4 232.91 L 103.29 229.09 Z" stroke="#000"
+                  stroke-miterlimit="10"/>
+        </g>
     </g>
     <g>
-        <path d="M 207.31 187.31 L 150.58 233.01" fill="none" stroke="#000" stroke-miterlimit="10"/>
-        <path d="M 146.49 236.3 L 149.75 229.18 L 150.58 233.01 L 154.14 234.63 Z" stroke="#000"
-              stroke-miterlimit="10"/>
+        <path d="M 200.31 187.31 L 135 235" fill="none" stroke="#000" stroke-miterlimit="10"/>
+        <g transform="translate(-10,-2)">
+            <path d="M 146.49 236.3 L 149.75 229.18 L 150.58 233.01 L 154.14 234.63 Z" stroke="#000"
+                  stroke-miterlimit="10"/>
+        </g>
     </g>
 
     <g>

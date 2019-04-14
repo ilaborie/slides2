@@ -76,6 +76,9 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             }
         }
         slide("Instructions") {
+            link("http://bit.ly/devoxx-webc")
+            markdown { "Puis `npm install`" }
+            markdown { "Wifi `NAME` / `Password`" }
             todo { "Installation instructions, Wifi" } // TODO
         }
     }
@@ -137,7 +140,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             }
         }
         slide("Reinventing 2", setOf("header-hidden")) {
-            ul(steps=true) {
+            ul(steps = true) {
                 figure("img/material-add.png", "Material Web Components")
                 link("https://github.com/material-components/material-components-web-components")
             }
@@ -176,9 +179,9 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
                 "Le temps ça compte (FMP 3G 📱 en ms)",
                 values = mapOf(
                     "Angular" to 2957,
-                    "Native" to 991,
                     "LitElement" to 1125,
                     "Stencil" to 1129,
+                    "Native" to 991,
                     "Stencil Pre Rendered" to 869
                 ), unit = "ms",
                 factor = { it },
@@ -301,7 +304,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             ul(steps = true) {
                 markdown { "Projet **Open Source**, [MIT License](https://github.com/ionic-team/stencil/blob/master/LICENSE)" }
                 markdown { "Créé par l'équipe d'**Ionic** en 2017" }
-                markdown { "5.1k ⭐️ sur github" }
+                markdown { "5.2k ⭐️ sur github" }
             }
         }
         slide("Not a framework", setOf("header-hidden")) {
@@ -382,7 +385,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             ul(steps = true) {
                 markdown { "Projet **Open Source**, [BSD 3-Clause License](https://github.com/Polymer/lit-element/blob/master/LICENSE)" }
                 markdown { "Créer par l'équipe **Polymer Team** en 2017" }
-                markdown { "1.8k ⭐️ sur github" }
+                markdown { "1.9k ⭐️ sur github" }
             }
         }
         slide("Templating", setOf("header-hidden")) {
@@ -391,6 +394,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             }
             link("https://lit-html.polymer-project.org/")
             ul {
+                markdown { "4.3k ⭐️ sur github" }
                 markdown { "Basé sur les **templates HTML**" }
                 markdown {
                     "Avec les [_Template literals_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) de ES2015"
@@ -419,29 +423,36 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
     }
     part("Workshop") {
         slide("Exercises", setOf("header-hidden")) {
-            //            inlineFigure("exo/exercises.svg", "Exercises")
             figure("exo/exercises.svg", "Exercises")
+            link("http://bit.ly/devoxx-webc")
         }
     }
     part("Conclusion") {
-        slide("Issues", setOf("header-hidden")) {
-            ul(steps = true) {
-                markdown { "Construire une application" }
-                markdown { "Utiliser un gestionnaire d'état externe" }
-
-                markdown { "Style avec un thème" }
-                markdown { "Utilisez les _custom properties_ CSS " }
-
+        slide("Les limites") {
+            ul {
                 markdown { "Support des navigateurs" }
+                markdown { "Gestion de l'état d'une application" }
+                markdown { "Thème" }
+                markdown { "Utilisez les _custom properties_ CSS " }
                 markdown { "Utiliser le polyfill ou Electron" }
             }
             todo { "..." } // TODO
         }
-        slide("Alternatives modernes") {
+        slide("Les alternatives modernes") {
             ul {
                 markdown { "[SkateJS](https://skatejs.netlify.com/)" }
                 markdown { "[Svelte](https://svelte.technology/)" }
                 markdown { "[Slim.js](http://slimjs.com)" }
+                markdown { "..." }
+            }
+        }
+        slide("Le future") {
+            h4("🔮")
+            ul {
+                markdown { "Pseudo elements avec [`::part` and `::theme`, an ::explainer](https://meowni.ca/posts/part-theme-explainer/), [CSS Shadow Parts](https://www.w3.org/TR/css-shadow-parts-1/)" }
+                markdown { "Pseudo elements avec [`::part` and `::theme`, an `::explainer`](https://meowni.ca/posts/part-theme-explainer/), [CSS Shadow Parts](https://www.w3.org/TR/css-shadow-parts-1/)" }
+                markdown { "[Scoped Custom Element Registries](https://github.com/w3c/webcomponents/issues/716)" }
+                markdown { "SSR pour lit-html et litElement" }
                 markdown { "..." }
             }
         }
