@@ -19,7 +19,7 @@ pushd slides2-kt
 # WebComponent
 ./gradlew webComponent19
 # Refactoring Loop
-./gradlew refactoringLoop
+# ./gradlew refactoringLoop
 popd
 
 # Build web & publish

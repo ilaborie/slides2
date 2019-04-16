@@ -76,10 +76,15 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             }
         }
         slide("Instructions") {
-            link("http://bit.ly/devoxx-webc")
-            markdown { "Puis `npm install`" }
-            markdown { "Wifi `NAME` / `Password`" }
-            todo { "Installation instructions, Wifi" } // TODO
+            markdown { "#### Wifi `devoxxfr-hol` / `hola#4321`" }
+            link("https://github.com/ilaborie/webcomponents-devoxx-19")
+            markdown { "Puis dans les répertoires `native`, `stencil`, `lit-element`, faire" }
+            markdown {
+                """
+                  |```bash
+                  | $ npm ci
+                  |```""".trimMargin()
+            }
         }
     }
     part("Modern Web Development Issues", skipHeader = true) {
@@ -454,6 +459,16 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
                 markdown { "[Scoped Custom Element Registries](https://github.com/w3c/webcomponents/issues/716)" }
                 markdown { "SSR pour lit-html et litElement" }
                 markdown { "..." }
+            }
+        }
+        slide("Des liens") {
+            ul {
+                markdown { "[Web Components sur MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components)" }
+                markdown { "[Série d'articles sur _css-tricks_](https://css-tricks.com/an-introduction-to-web-components/)" }
+                markdown { "[A curated list of awesome lit-html resources.](https://github.com/web-padawan/awesome-lit-html)" }
+                markdown { "[Web Components Todo](https://wc-todo.firebaseapp.com/)" }
+                markdown { "[🚧 (WIP) Les articles de Ph. Charrière](https://k33g.gitlab.io/BLOG.html#articles-from-this-blog)" }
+                todo { "Qui suivre sur Twitter ?" }
             }
         }
         slide("Fin") {
