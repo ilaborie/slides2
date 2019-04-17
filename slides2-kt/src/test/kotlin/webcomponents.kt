@@ -372,6 +372,9 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
         slide("Stencil is concise", setOf("header-hidden")) {
             figure("img/stencil/stencil-syntax.png", "La syntaxe de Stencil est concise")
         }
+        slide("stencil code", setOf("header-hidden")) {
+            sourceCode("code/stencil.tsx")
+        }
         slide("Pour démarrer") {
             code("sh") { "\$ npm init stencil" }
             code("sh") {
@@ -381,16 +384,13 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
                   |   component     Collection of web components that can be used anywhere""".trimMargin()
             }
         }
-        slide("stencil code", setOf("header-hidden")) {
-            sourceCode("code/stencil.tsx")
-        }
     }
     part(partTitle = { litElementTitle() }, id = "lit-element_part") {
         slide("What-Lit", setOf("header-hidden")) {
             ul(steps = true) {
                 markdown { "Projet **Open Source**, [BSD 3-Clause License](https://github.com/Polymer/lit-element/blob/master/LICENSE)" }
                 markdown { "Créer par l'équipe **Polymer Team** en 2017" }
-                markdown { "1.9k ⭐️ sur github" }
+                markdown { "2.0k ⭐️ sur github" }
             }
         }
         slide("Templating", setOf("header-hidden")) {
@@ -399,7 +399,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             }
             link("https://lit-html.polymer-project.org/")
             ul {
-                markdown { "4.3k ⭐️ sur github" }
+                markdown { "4.4k ⭐️ sur github" }
                 markdown { "Basé sur les **templates HTML**" }
                 markdown {
                     "Avec les [_Template literals_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) de ES2015"
@@ -472,10 +472,9 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
         slide("Fin") {
             markdown {
                 """
-                #### Merci
-
-                Pensez à nous faire des retours (votez !)
-            """.trimIndent()
+                  |#### Merci
+                  |
+                  |Pensez à nous faire des retours (votez !)""".trimMargin()
             }
         }
     }
