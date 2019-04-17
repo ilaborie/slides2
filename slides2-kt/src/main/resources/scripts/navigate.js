@@ -20,6 +20,13 @@ const home = () => navigateTo("section.cover");
 // const nextSlide = () => navigateTo(nextSelector);
 
 const nextStep = () => {
+    const currentSlide = document.querySelector("section:target");
+    if (!currentSlide) {
+        // assume we are on the first slide
+        navigateTo('section .next a');
+        return;
+    }
+
     const currentStepSlide = document.querySelector('section.steps:target');
     if (currentStepSlide) {
         const current = currentStepSlide.querySelector('.step-current');
@@ -30,10 +37,10 @@ const nextStep = () => {
             current.classList.toggle('step-done');
         }
         next ? next.classList.toggle('step-current') : navigateTo(nextSelector);
-    } else {
-        // no step, go to next slide
-        navigateTo(nextSelector)
+        return
     }
+    // no step, go to next slide
+    navigateTo(nextSelector)
 };
 const previousStep = () => {
     const currentStepSlide = document.querySelector('section.steps:target');

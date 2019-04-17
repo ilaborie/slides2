@@ -429,6 +429,7 @@ h1 {
   figcaption {
     display: none;
   }
+
   img {
     width: 100%;
     min-height: 24vh;
@@ -557,5 +558,8 @@ h1 {
 @media print {
   #speakers article {
     grid-column: 1 / -1;
+  }
+  #instructions article h4 {
+    display: none;
   }
 }

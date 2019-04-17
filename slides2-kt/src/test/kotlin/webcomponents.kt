@@ -184,8 +184,8 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
                 "Le temps ça compte (FMP 3G 📱 en ms)",
                 values = mapOf(
                     "Angular" to 2957,
-                    "LitElement" to 1125,
                     "Stencil" to 1129,
+                    "LitElement" to 1125,
                     "Native" to 991,
                     "Stencil Pre Rendered" to 869
                 ), unit = "ms",
@@ -435,19 +435,18 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
     part("Conclusion") {
         slide("Les limites") {
             ul {
-                markdown { "Support des navigateurs" }
-                markdown { "Gestion de l'état d'une application" }
+                markdown { "Support des navigateurs " }
                 markdown { "Thème" }
-                markdown { "Utilisez les _custom properties_ CSS " }
-                markdown { "Utiliser le polyfill ou Electron" }
+                markdown { "Ce n'est pas un framework" }
+                markdown {"[ Beyond the polyfills: how Web Components affect us today? ](https://dev.to/webpadawan/beyond-the-polyfills-how-web-components-affect-us-today-3j0a) et [The journey of Web Components: wrong ways, lacking parts and promising paths](https://dev.to/webpadawan/the-journey-of-web-components-wrong-ways-lacking-parts-and-promising-paths-1d5a)"}
             }
-            todo { "..." } // TODO
         }
         slide("Les alternatives modernes") {
             ul {
                 markdown { "[SkateJS](https://skatejs.netlify.com/)" }
                 markdown { "[Svelte](https://svelte.technology/)" }
                 markdown { "[Slim.js](http://slimjs.com)" }
+                markdown { "[Atomico](https://github.com/atomicojs/core)" }
                 markdown { "..." }
             }
         }
@@ -455,7 +454,6 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             h4("🔮")
             ul {
                 markdown { "Pseudo elements avec [`::part` and `::theme`, an ::explainer](https://meowni.ca/posts/part-theme-explainer/), [CSS Shadow Parts](https://www.w3.org/TR/css-shadow-parts-1/)" }
-                markdown { "Pseudo elements avec [`::part` and `::theme`, an `::explainer`](https://meowni.ca/posts/part-theme-explainer/), [CSS Shadow Parts](https://www.w3.org/TR/css-shadow-parts-1/)" }
                 markdown { "[Scoped Custom Element Registries](https://github.com/w3c/webcomponents/issues/716)" }
                 markdown { "SSR pour lit-html et litElement" }
                 markdown { "..." }
@@ -465,10 +463,10 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
             ul {
                 markdown { "[Web Components sur MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components)" }
                 markdown { "[Série d'articles sur _css-tricks_](https://css-tricks.com/an-introduction-to-web-components/)" }
-                markdown { "[A curated list of awesome lit-html resources.](https://github.com/web-padawan/awesome-lit-html)" }
                 markdown { "[Web Components Todo](https://wc-todo.firebaseapp.com/)" }
-                markdown { "[🚧 (WIP) Les articles de Ph. Charrière](https://k33g.gitlab.io/BLOG.html#articles-from-this-blog)" }
-                todo { "Qui suivre sur Twitter ?" }
+                markdown { "[Web Components specifications](https://github.com/w3c/webcomponents)"}
+                markdown { "[A curated list of awesome Web Components resources.](https://github.com/mateusortiz/webcomponents-the-right-way)"}
+                markdown { "[A curated list of awesome lit-html resources.](https://github.com/web-padawan/awesome-lit-html)" }
             }
         }
         slide("Fin") {
