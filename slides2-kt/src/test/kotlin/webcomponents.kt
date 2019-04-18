@@ -205,6 +205,16 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
                 markdown { "Débuté en **2012**" }
             }
         }
+        slide("Today", setOf("header-hidden")) {
+
+            span("~10%", setOf("huge"))
+            span("of page view in Chrome use Web Components")
+            ul {
+                figure("img/github.png", "Github")
+                figure("img/youtube.png", "Youtubbe")
+                figure("img/tesla.png", "Tesla")
+            }
+        }
         slide("Components", setOf("header-hidden")) {
             ul(steps = true, classes = setOf("list-inline")) {
                 inlineFigure("img/webcomponents/custom-elements.svg", "Custom Elements")
@@ -436,10 +446,11 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
     part("Conclusion") {
         slide("Les limites") {
             ul {
-                markdown { "Support des navigateurs " }
-                markdown { "Thème" }
-                markdown { "Ce n'est pas un framework" }
-                markdown {"[ Beyond the polyfills: how Web Components affect us today? ](https://dev.to/webpadawan/beyond-the-polyfills-how-web-components-affect-us-today-3j0a) et [The journey of Web Components: wrong ways, lacking parts and promising paths](https://dev.to/webpadawan/the-journey-of-web-components-wrong-ways-lacking-parts-and-promising-paths-1d5a)"}
+                markdown { "Support des navigateurs" }
+                markdown { "Ne remplacera pas vos frameworks" }
+                markdown { "Accessibilité" }
+                markdown { "Theming" }
+                markdown { "Form validation / submission / autofill" }
             }
         }
         slide("Les alternatives modernes") {
@@ -454,7 +465,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
         slide("Le future") {
             h4("🔮")
             ul {
-                markdown { "Pseudo elements avec [`::part` and `::theme`, an ::explainer](https://meowni.ca/posts/part-theme-explainer/), [CSS Shadow Parts](https://www.w3.org/TR/css-shadow-parts-1/)" }
+                markdown { "[Pseudo elements `::part` & `::theme`](https://meowni.ca/posts/part-theme-explainer/)" }
                 markdown { "[Scoped Custom Element Registries](https://github.com/w3c/webcomponents/issues/716)" }
                 markdown { "SSR pour lit-html et litElement" }
                 markdown { "..." }
@@ -465,9 +476,11 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
                 markdown { "[Web Components sur MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components)" }
                 markdown { "[Série d'articles sur _css-tricks_](https://css-tricks.com/an-introduction-to-web-components/)" }
                 markdown { "[Web Components Todo](https://wc-todo.firebaseapp.com/)" }
-                markdown { "[Web Components specifications](https://github.com/w3c/webcomponents)"}
-                markdown { "[A curated list of awesome Web Components resources.](https://github.com/mateusortiz/webcomponents-the-right-way)"}
+                markdown { "[Web Components specifications](https://github.com/w3c/webcomponents)" }
+                markdown { "[A curated list of awesome Web Components resources.](https://github.com/mateusortiz/webcomponents-the-right-way)" }
                 markdown { "[A curated list of awesome lit-html resources.](https://github.com/web-padawan/awesome-lit-html)" }
+                markdown { "[ Beyond the polyfills: how Web Components affect us today? ](https://dev.to/webpadawan/beyond-the-polyfills-how-web-components-affect-us-today-3j0a)" }
+                markdown { "[The journey of Web Components: wrong ways, lacking parts and promising paths](https://dev.to/webpadawan/the-journey-of-web-components-wrong-ways-lacking-parts-and-promising-paths-1d5a)" }
             }
         }
         slide("Fin") {
