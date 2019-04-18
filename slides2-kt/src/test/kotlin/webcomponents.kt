@@ -85,6 +85,7 @@ val webComponents = pres(id = id, extraStyle = "style", title = { mainTitle() })
                   | $ npm ci
                   |```""".trimMargin()
             }
+            link("http://bit.ly/dvx-wc-slides")
         }
     }
     part("Modern Web Development Issues", skipHeader = true) {
