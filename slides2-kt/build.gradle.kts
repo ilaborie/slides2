@@ -41,12 +41,8 @@ val vJackson: String by project
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    implementation(kotlin("compiler-embeddable"))
-    implementation(kotlin("script-runtime"))
     implementation(kotlin("script-util"))
-    implementation("com.github.ajalt:clikt:$vClikt")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$vJackson")
-    testImplementation("io.kotlintest:kotlintest-runner-junit5:$vKotlintest")
 }
 
 tasks.withType<KotlinCompile> {
