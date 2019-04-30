@@ -1,0 +1,12 @@
+Compiled from "tailrec-factorial.kt"
+public final class _09_structures.recusion.Tailrec_factorialKt {
+  public static final int tailRecFactorial(int);
+    Code:
+       0: getstatic     #12                 // Field _09_structures/recusion/Tailrec_factorialKt$tailRecFactorial$1.INSTANCE:L_09_structures/recusion/Tailrec_factorialKt$tailRecFactorial$1;
+       3: astore_1
+       4: aload_1
+       5: iload_0
+       6: iconst_1
+       7: invokevirtual #16                 // Method _09_structures/recusion/Tailrec_factorialKt$tailRecFactorial$1.invoke:(II)I
+      10: ireturn
+}

@@ -1,0 +1,24 @@
+Compiled from "for.kt"
+public final class _09_structures.ForKt {
+  public static final void main(java.lang.String[]);
+    Code:
+       0: aload_0
+       1: ldc           #9                  // String args
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: getstatic     #21                 // Field astronomy/SolarSystem.INSTANCE:Lastronomy/SolarSystem;
+       9: invokevirtual #25                 // Method astronomy/SolarSystem.getBodies:()Ljava/util/Collection;
+      12: invokeinterface #31,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      17: astore_2
+      18: aload_2
+      19: invokeinterface #37,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      24: ifeq          47
+      27: aload_2
+      28: invokeinterface #41,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      33: checkcast     #43                 // class astronomy/AstronomicalBody
+      36: astore_1
+      37: getstatic     #49                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      40: aload_1
+      41: invokevirtual #55                 // Method java/io/PrintStream.print:(Ljava/lang/Object;)V
+      44: goto          18
+      47: return
+}

@@ -1,0 +1,6 @@
+* [Référence](http://kotlinlang.org/docs/reference/)
+* [Blog](https://blog.jetbrains.com/kotlin/)
+* [Forum](https://discuss.kotlinlang.org/)
+* [Slack](https://kotlinslack.herokuapp.com/)
+* [Koans](https://kotlinlang.org/docs/tutorials/koans.html)
+* [KEEP - Kotlin Evolution and Enhancement Process](https://github.com/Kotlin/KEEP)

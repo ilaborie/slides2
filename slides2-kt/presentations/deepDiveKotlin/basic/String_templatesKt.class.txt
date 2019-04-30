@@ -1,0 +1,43 @@
+Compiled from "string-templates.kt"
+public final class _01_basic.String_templatesKt {
+  public static final void greeting(_01_basic.Someone);
+    Code:
+       0: aload_0
+       1: ldc           #9                  // String who
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: new           #17                 // class java/lang/StringBuilder
+       9: dup
+      10: invokespecial #21                 // Method java/lang/StringBuilder."<init>":()V
+      13: ldc           #23                 // String Hello
+      15: invokevirtual #27                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      18: aload_0
+      19: invokevirtual #30                 // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+      22: bipush        33
+      24: invokevirtual #33                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+      27: invokevirtual #37                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      30: astore_1
+      31: getstatic     #43                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      34: aload_1
+      35: invokevirtual #49                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+      38: new           #17                 // class java/lang/StringBuilder
+      41: dup
+      42: invokespecial #21                 // Method java/lang/StringBuilder."<init>":()V
+      45: ldc           #23                 // String Hello
+      47: invokevirtual #27                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      50: aload_0
+      51: invokevirtual #54                 // Method _01_basic/Someone.getFirstName:()Ljava/lang/String;
+      54: invokevirtual #27                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      57: bipush        32
+      59: invokevirtual #33                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+      62: aload_0
+      63: invokevirtual #57                 // Method _01_basic/Someone.getLastName:()Ljava/lang/String;
+      66: invokevirtual #27                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      69: bipush        33
+      71: invokevirtual #33                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+      74: invokevirtual #37                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      77: astore_1
+      78: getstatic     #43                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      81: aload_1
+      82: invokevirtual #49                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+      85: return
+}

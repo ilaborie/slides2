@@ -1,0 +1,511 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+     viewBox="0 0 814 563" preserveAspectRatio="xMidYMid meet">
+    <defs/>
+    <g transform="translate(0.5,0.5)">
+        <path d="M 331 11 L 331 10.35 L 341 11.5 L 351 11.1 L 361 11.73 L 371 11.5 L 381 11.35 L 391 11.68 L 401 11.32 L 411 11.66 L 421 10.42 L 431 11.2 L 441 11 L 440.81 11 L 441.12 19 L 441.07 27 L 440.77 35 L 440.88 43 L 441 51 L 441 50.98 L 431 51.68 L 421 50.9 L 411 51.07 L 401 51.32 L 391 51.48 L 381 50.37 L 371 51.62 L 361 51.1 L 351 51.29 L 341 51.2 L 331 51 L 330.83 51 L 331.03 43 L 331.16 35 L 330.89 27 L 331.01 19 L 331 11 L 331 11 Z Z"
+              fill="#dae8fc" stroke="#000000" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(371.5,24.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="29" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Any?
+                            <br/>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="15" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">Any?&lt;br&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 99 201 L 99 200.29 L 109 201.05 L 119 201.59 L 129 200.28 L 139 200.93 L 149 201.3 L 159 201.35 L 169 201 L 169.19 201 L 169.19 207 L 169.23 213 L 169.09 219 L 168.89 225 L 169 231 L 169 230.47 L 159 230.39 L 149 231.26 L 139 231.42 L 129 230.92 L 119 230.53 L 109 231.16 L 99 231 L 98.97 231 L 99.02 225 L 98.75 219 L 99.08 213 L 99.03 207 L 99 201 L 99 201 Z Z"
+              fill="#fff2cc" stroke="#d6b656" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(119.5,209.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="29" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Int?
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="15" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">Int?
+                </text>
+            </switch>
+        </g>
+        <path d="M 99 251 L 99 251.23 L 109 250.33 L 119 250.71 L 129 250.58 L 139 251.66 L 149 251.38 L 159 250.59 L 169 251 L 169.09 251 L 168.95 257 L 168.75 263 L 169.24 269 L 169.12 275 L 169 281 L 169 280.38 L 159 281.72 L 149 280.98 L 139 280.58 L 129 280.37 L 119 280.99 L 109 280.85 L 99 281 L 99.24 281 L 98.94 275 L 98.91 269 L 98.94 263 L 99.19 257 L 99 251 L 99 251 Z Z"
+              fill="#fff2cc" stroke="#d6b656" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(115.5,259.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="36" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Long?
+                            <br/>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="18" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">Long?&lt;br&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 99 301 L 99 300.33 L 109 300.86 L 119 301.37 L 129 301.19 L 139 301.5 L 149 301.62 L 159 300.49 L 169 301 L 168.99 301 L 169.12 307 L 169.01 313 L 168.99 319 L 169.22 325 L 169 331 L 169 330.95 L 159 330.81 L 149 330.55 L 139 331.16 L 129 330.48 L 119 331.15 L 109 331.33 L 99 331 L 99.14 331 L 98.94 325 L 99.2 319 L 98.95 313 L 98.81 307 L 99 301 L 99 301 Z Z"
+              fill="#fff2cc" stroke="#d6b656" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(108.5,309.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="50" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Double?
+                            <br/>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="25" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">Double?&lt;br&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 99 351 L 99 351.01 L 109 350.3 L 119 350.76 L 129 351.25 L 139 350.73 L 149 351.56 L 159 351.22 L 169 351 L 169.2 351 L 169.04 357 L 168.91 363 L 168.98 369 L 169 375 L 169 381 L 169 380.27 L 159 381.71 L 149 381.03 L 139 380.77 L 129 381.59 L 119 380.47 L 109 380.55 L 99 381 L 98.8 381 L 98.88 375 L 98.99 369 L 99.09 363 L 99.05 357 L 99 351 L 99 351 Z Z"
+              fill="#fff2cc" stroke="#d6b656" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(119.5,359.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="29" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">...?
+                            <br/>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="15" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">...?&lt;br&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 11 111 L 11 110.36 L 21 111.07 L 31 111.7 L 41 110.96 L 51 110.72 L 61 110.57 L 71 110.71 L 81 110.51 L 91 110.44 L 101 110.86 L 111 111 L 111.01 111 L 110.96 119 L 111.21 127 L 111.19 135 L 110.96 143 L 111 151 L 111 150.44 L 101 150.26 L 91 151.45 L 81 150.64 L 71 150.3 L 61 151.37 L 51 151.31 L 41 151 L 31 150.85 L 21 151.38 L 11 151 L 11.06 151 L 10.85 143 L 11.07 135 L 11.08 127 L 11.17 119 L 11 111 L 11 111 Z Z"
+              fill="#fff2cc" stroke="#d6b656" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(35.5,124.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="50" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; font-style: italic; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Number?
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="25" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold" font-style="italic">Number?
+                </text>
+            </switch>
+        </g>
+        <path d="M 227.5 111 L 227.5 110.29 L 237.3 111.55 L 247.1 110.56 L 256.9 111.28 L 266.7 111.52 L 276.5 110.89 L 286.3 110.69 L 296.1 111.48 L 305.9 110.96 L 315.7 110.83 L 325.5 111 L 325.29 111 L 325.62 119 L 325.49 127 L 325.55 135 L 325.34 143 L 325.5 151 L 325.5 151.11 L 315.7 150.47 L 305.9 151.64 L 296.1 150.63 L 286.3 150.59 L 276.5 151.42 L 266.7 150.61 L 256.9 151.4 L 247.1 150.98 L 237.3 150.68 L 227.5 151 L 227.28 151 L 227.57 143 L 227.72 135 L 227.45 127 L 227.49 119 L 227.5 111 L 227.5 111 Z Z"
+              fill="#f5f5f5" stroke="#666666" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(251.5,124.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="50" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">String?
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="25" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">String?
+                </text>
+            </switch>
+        </g>
+        <path d="M 335.5 111 L 335.5 110.84 L 345.94 110.91 L 356.39 111.58 L 366.83 111.37 L 377.28 110.39 L 387.72 110.44 L 398.17 110.67 L 408.61 110.35 L 419.06 111.73 L 429.5 111 L 429.74 111 L 429.4 119 L 429.59 127 L 429.38 135 L 429.27 143 L 429.5 151 L 429.5 151.71 L 419.06 150.87 L 408.61 150.46 L 398.17 151.41 L 387.72 150.89 L 377.28 151.41 L 366.83 150.96 L 356.39 150.5 L 345.94 151.49 L 335.5 151 L 335.46 151 L 335.52 143 L 335.59 135 L 335.39 127 L 335.73 119 L 335.5 111 L 335.5 111 Z Z"
+              fill="#f5f5f5" stroke="#666666" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(364.5,124.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="36" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Unit?
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="18" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">Unit?
+                </text>
+            </switch>
+        </g>
+        <path d="M 461 461 L 461 461.07 L 470.5 460.48 L 480 461.26 L 489.5 461.72 L 499 461.34 L 508.5 461.63 L 518 460.65 L 527.5 461.63 L 537 461.27 L 546.5 460.33 L 556 461 Q 566 461 566 451 L 566.11 451 L 566.07 445.05 L 566.11 439.09 L 565.84 433.14 L 565.8 427.19 L 566 421.24"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 566 413.24 L 565.85 413.16 L 566.75 414.81 L 567.69 416.48 L 568.27 417.97 L 569.04 419.55 L 570 421.24 L 570 421.07 L 568.4 421.05 L 566.8 421.04 L 565.2 421.35 L 563.6 421.35 L 562 421.24 L 562.18 421.32 L 562.98 419.72 L 563.68 418.07 L 564.21 416.34 L 565.4 414.94 L 566 413.24 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 351 471 L 351 471.45 L 341 471.57 L 331 471.48 L 321 471.07 L 311 470.8 L 301 470.66 L 291 471.51 L 281 471.51 L 271 471.34 L 261 470.51 L 251 471.23 L 241 470.79 L 231 470.93 L 221 470.39 L 211 471 Q 201 471 201 461 L 200.43 461 L 201.71 451 L 201.73 441 L 200.58 431 L 201.45 421 L 201.41 411 L 200.29 401 L 200.46 391 L 201.3 381 L 200.86 371 L 200.95 361 L 200.77 351 L 200.79 341 L 201.07 331 L 200.48 321 L 201.53 311 L 201.48 301 L 200.92 291 L 201.32 281 L 201.24 271 L 200.86 261 L 201.13 251 L 201.64 241 L 200.36 231 L 200.28 221 L 200.26 211 L 201.27 201 L 201 191 Q 201 181 191 181 L 191 181.58 L 181.5 181.61 L 172 181.14 L 162.5 181.45 L 153 181.07 L 143.5 181.4 L 134 180.34 L 124.5 180.89 L 115 181.63 L 105.5 181.61 L 96 181 Q 86 181 86 172.62 L 85.86 172.62 L 85.87 170.94 L 85.79 169.27 L 86.1 167.59 L 85.78 165.91 L 86 164.24"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 86 156.24 L 86.01 156.24 L 86.71 157.79 L 87.46 159.36 L 88.35 161.01 L 89.35 162.71 L 90 164.24 L 90 164.16 L 88.4 164.39 L 86.8 164.46 L 85.2 164.27 L 83.6 164.34 L 82 164.24 L 82.03 164.25 L 82.94 162.71 L 83.5 160.99 L 84.49 159.48 L 85.4 157.93 L 86 156.24 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 201 366 L 201 366.16 L 196.65 365.9 L 192.29 365.89 L 187.94 365.96 L 183.59 365.92 L 179.24 366"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 171.24 366 L 171.22 365.96 L 172.78 365.08 L 174.47 364.48 L 176.04 363.61 L 177.53 362.59 L 179.24 362 L 179.42 362 L 179.05 363.6 L 179.39 365.2 L 179.45 366.8 L 179.43 368.4 L 179.24 370 L 179.2 369.92 L 177.59 369.1 L 175.94 368.2 L 174.52 367.76 L 172.92 366.96 L 171.24 366 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 351 461 L 351 461.14 L 340.83 461.65 L 330.67 460.49 L 320.5 460.54 L 310.33 460.51 L 300.17 460.29 L 290 461 Q 280 461 280 451 L 280.02 451 L 279.58 441.01 L 280.39 431.02 L 279.93 421.02 L 279.5 411.03 L 279.71 401.04 L 279.7 391.05 L 279.34 381.06 L 280.41 371.07 L 279.57 361.07 L 279.85 351.08 L 279.9 341.09 L 280.17 331.1 L 280.2 321.11 L 280.64 311.11 L 279.5 301.12 L 280.11 291.13 L 280.1 281.14 L 280.64 271.15 L 280.01 261.15 L 279.94 251.16 L 280.55 241.17 L 280.03 231.18 L 280.69 221.19 L 279.75 211.2 L 280.73 201.2 L 280.52 191.21 L 279.65 181.22 L 279.75 171.23 L 280 161.24"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 280 153.24 L 280.17 153.32 L 280.93 154.9 L 281.53 156.4 L 282.19 157.93 L 283.17 159.62 L 284 161.24 L 284 161.07 L 282.4 161.03 L 280.8 161.32 L 279.2 161.03 L 277.6 161.33 L 276 161.24 L 276.05 161.26 L 276.73 159.6 L 277.66 158.07 L 278.43 156.45 L 278.98 154.73 L 280 153.24 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 406 451 L 406.29 451 L 406.46 441 L 405.89 431 L 405.67 421 L 405.51 411 L 406.73 401 L 405.66 391 L 406.72 381 L 406.47 371 L 405.39 361 L 406.7 351 L 406.64 341 L 406.49 331 L 406.58 321 L 405.41 311 L 406.26 301 L 405.36 291 L 405.44 281 L 405.95 271 L 406.05 261 L 405.81 251 L 406.43 241 L 406.29 231 L 406.03 221 L 406 211 Q 406 201 416 201 L 416 200.44 L 425.72 201.03 L 435.44 201.17 L 445.17 200.89 L 454.89 200.4 L 464.61 201.09 L 474.33 201.36 L 484.06 201.71 L 493.78 200.53 L 503.5 201.63 L 513.22 200.99 L 522.94 201.61 L 532.67 201.7 L 542.39 200.75 L 552.11 200.78 L 561.83 201.52 L 571.56 201.67 L 581.28 200.97 L 591 201 Q 601 201 601 191 L 600.96 191 L 601.13 185.05 L 600.97 179.09 L 600.8 173.14 L 600.85 167.19 L 601 161.24"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 601 153.24 L 600.8 153.14 L 601.77 154.82 L 602.77 156.52 L 603.46 158.07 L 604 159.54 L 605 161.24 L 605 161.01 L 603.4 161.34 L 601.8 161.09 L 600.2 161.41 L 598.6 161.34 L 597 161.24 L 596.86 161.17 L 597.95 159.71 L 598.39 157.93 L 599.46 156.46 L 600.42 154.95 L 601 153.24 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 434 451 L 433.98 451 L 433.45 441.28 L 434 431.56 L 434.4 421.83 L 434.58 412.11 L 434.53 402.39 L 433.32 392.67 L 433.94 382.94 L 433.52 373.22 L 433.27 363.5 L 434.16 353.78 L 434.09 344.06 L 434.25 334.33 L 433.75 324.61 L 434.18 314.89 L 433.95 305.17 L 434.25 295.44 L 434.72 285.72 L 434 276 Q 434 266 444 266 L 444 265.6 L 454.09 266.3 L 464.18 266.49 L 474.26 266.17 L 484.35 266.45 L 494.44 265.26 L 504.53 265.9 L 514.62 265.79 L 524.71 265.75 L 534.79 265.37 L 544.88 265.95 L 554.97 265.38 L 565.06 265.91 L 575.15 265.49 L 585.23 266.58 L 595.32 265.84 L 605.41 266.63 L 615.5 265.85 L 625.59 265.48 L 635.68 266.2 L 645.76 266"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 653.76 266 L 653.76 265.99 L 652.21 266.89 L 650.57 267.61 L 648.93 268.34 L 647.45 269.37 L 645.76 270 L 646 270 L 645.73 268.4 L 645.61 266.8 L 645.83 265.2 L 645.57 263.6 L 645.76 262 L 645.67 261.81 L 647.26 262.59 L 648.89 263.45 L 650.5 264.26 L 652.2 265.27 L 653.76 266 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 351 451 L 351 451.51 L 361 451.38 L 371 451.56 L 381 451.03 L 391 450.63 L 401 450.64 L 411 450.41 L 421 450.97 L 431 451.71 L 441 450.65 L 451 450.39 L 461 451 L 461.02 451 L 460.82 459 L 460.86 467 L 461.11 475 L 460.89 483 L 461 491 L 461 491.46 L 451 490.39 L 441 491.74 L 431 490.88 L 421 490.38 L 411 491.4 L 401 490.63 L 391 491.44 L 381 490.43 L 371 490.7 L 361 490.45 L 351 491 L 350.81 491 L 351.18 483 L 351.07 475 L 350.92 467 L 351.04 459 L 351 451 L 351 451 Z Z"
+              fill="#dae8fc" stroke="#000000" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(376.5,464.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="58" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Nothing?
+                            <br/>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="29" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">Nothing?&lt;br&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 651 111 L 651 110.28 L 661 111.66 L 671 111.72 L 681 110.67 L 691 110.63 L 701 111.48 L 711 110.63 L 721 110.78 L 731 111.13 L 741 110.57 L 751 111 L 750.83 111 L 750.94 119 L 751.23 127 L 751.01 135 L 750.96 143 L 751 151 L 751 150.37 L 741 150.79 L 731 150.3 L 721 151.16 L 711 151.08 L 701 150.85 L 691 151.53 L 681 151.21 L 671 150.35 L 661 151.73 L 651 151 L 650.87 151 L 650.82 143 L 650.9 135 L 651.18 127 L 650.89 119 L 651 111 L 651 111 Z Z"
+              fill="#ffe6cc" stroke="#d79b00" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(679.5,124.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="43" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Array?
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="22" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">Array?
+                </text>
+            </switch>
+        </g>
+        <path d="M 656 201 L 656 200.71 L 666 201.13 L 676 201.11 L 686 200.74 L 696 201.38 L 706 201.25 L 716 201.64 L 726 200.55 L 736 200.26 L 746 201 L 745.76 201 L 746.11 207 L 745.94 213 L 745.86 219 L 746.13 225 L 746 231 L 746 230.52 L 736 231.17 L 726 230.31 L 716 230.6 L 706 231.59 L 696 231.68 L 686 231.21 L 676 231.45 L 666 231.25 L 656 231 L 655.94 231 L 655.78 225 L 655.93 219 L 655.83 213 L 656.06 207 L 656 201 L 656 201 Z Z"
+              fill="#ffe6cc" stroke="#d79b00" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(668.5,209.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="65" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">IntArray?
+                            <br/>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="33" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">IntArray?&lt;br&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 656 251 L 656 250.95 L 666 250.78 L 676 251.43 L 686 251 L 696 251.54 L 706 251.16 L 716 250.58 L 726 251.22 L 736 250.37 L 746 251 L 745.8 251 L 745.92 257 L 745.98 263 L 745.97 269 L 745.83 275 L 746 281 L 746 280.66 L 736 280.65 L 726 281.03 L 716 280.73 L 706 280.77 L 696 280.63 L 686 280.84 L 676 281.53 L 666 280.94 L 656 281 L 656.19 281 L 655.82 275 L 656.03 269 L 655.83 263 L 655.78 257 L 656 251 L 656 251 Z Z"
+              fill="#ffe6cc" stroke="#d79b00" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(657.5,259.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="86" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">DoubleArray?
+                            <br/>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="43" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">DoubleArray?&lt;br&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 441 111 L 441 110.33 L 451.44 111.03 L 461.89 110.41 L 472.33 110.75 L 482.78 111.1 L 493.22 111.26 L 503.67 110.47 L 514.11 111.03 L 524.56 111.37 L 535 111 L 535.07 111 L 534.98 119 L 535.14 127 L 535.1 135 L 534.91 143 L 535 151 L 535 150.98 L 524.56 151.62 L 514.11 151.45 L 503.67 150.5 L 493.22 150.66 L 482.78 151.06 L 472.33 150.37 L 461.89 151.58 L 451.44 151.08 L 441 151 L 441.07 151 L 440.94 143 L 441.05 135 L 440.86 127 L 440.97 119 L 441 111 L 441 111 Z Z"
+              fill="#e1d5e7" stroke="#9673a6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(469.5,124.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="36" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Pair?
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="18" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">Pair?
+                </text>
+            </switch>
+        </g>
+        <path d="M 551 111 L 551 110.93 L 561.44 111.62 L 571.89 111.41 L 582.33 111.3 L 592.78 111 L 603.22 111.7 L 613.67 110.36 L 624.11 110.82 L 634.56 110.5 L 645 111 L 644.87 111 L 644.76 119 L 644.92 127 L 644.99 135 L 645.14 143 L 645 151 L 645 150.89 L 634.56 150.9 L 624.11 150.64 L 613.67 150.84 L 603.22 151.36 L 592.78 150.79 L 582.33 151.08 L 571.89 150.98 L 561.44 150.6 L 551 151 L 551.04 151 L 550.76 143 L 550.76 135 L 551.25 127 L 550.76 119 L 551 111 L 551 111 Z Z"
+              fill="#e1d5e7" stroke="#9673a6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(572.5,124.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="50" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Triple?
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="25" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">Triple?
+                </text>
+            </switch>
+        </g>
+        <path d="M 121 111 L 121 110.91 L 130.6 111.5 L 140.2 110.63 L 149.8 111.63 L 159.4 110.64 L 169 110.28 L 178.6 111.3 L 188.2 110.35 L 197.8 111.43 L 207.4 110.54 L 217 111 L 217.11 111 L 217.07 119 L 216.75 127 L 217.17 135 L 216.92 143 L 217 151 L 217 150.76 L 207.4 151.23 L 197.8 150.53 L 188.2 151.13 L 178.6 151.24 L 169 151.5 L 159.4 151.46 L 149.8 150.83 L 140.2 151.48 L 130.6 151.68 L 121 151 L 120.81 151 L 120.83 143 L 120.79 135 L 120.75 127 L 120.79 119 L 121 111 L 121 111 Z Z"
+              fill="#f5f5f5" stroke="#666666" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(139.5,124.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="58" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Boolean?
+                            <br/>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="29" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">Boolean?&lt;br&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 61 111 L 61.1 111 L 60.78 107 L 60.91 103 L 60.8 99 L 60.95 95 L 61 91 Q 61 81 71 81 L 71 80.55 L 80.84 80.85 L 90.68 81.56 L 100.52 80.28 L 110.35 81.6 L 120.19 81.47 L 130.03 81.58 L 139.87 80.52 L 149.71 81.11 L 159.55 80.45 L 169.39 81.47 L 179.23 81.44 L 189.06 80.38 L 198.9 81.21 L 208.74 81.08 L 218.58 81.51 L 228.42 80.66 L 238.26 80.29 L 248.1 80.92 L 257.94 81.68 L 267.77 81.74 L 277.61 81.31 L 287.45 80.95 L 297.29 81.12 L 307.13 81.17 L 316.97 81.7 L 326.81 80.37 L 336.65 80.37 L 346.48 81.22 L 356.32 80.58 L 366.16 80.48 L 376 81 Q 386 81 386 76.12 L 385.95 76.12 L 385.78 75.14 L 386.03 74.17 L 385.86 73.19 L 386.11 72.21 L 386 71.24"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 386 53.24 L 385.94 53.2 L 387.85 56.86 L 389.47 60.37 L 391.3 63.99 L 393.36 67.71 L 395 71.24 L 395 71.37 L 391.4 71.32 L 387.8 71.03 L 384.2 71.28 L 380.6 71.15 L 377 71.24 L 376.8 71.13 L 378.75 67.61 L 380.42 63.95 L 382.26 60.37 L 384.4 56.94 L 386 53.24 Z Z"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 169 111 L 169.06 111 L 169.13 105 L 169.04 99 L 169.03 93 L 168.98 87 L 169 81" fill="none"
+              stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10"
+              pointer-events="none"/>
+        <path d="M 277 111 L 276.95 111 L 277.03 105 L 276.79 99 L 276.91 93 L 277.01 87 L 277 81" fill="none"
+              stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10"
+              pointer-events="none"/>
+        <path d="M 383 111 L 382.83 111 L 383.07 105 L 382.87 99 L 383.23 93 L 383.17 87 L 383 81" fill="none"
+              stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10"
+              pointer-events="none"/>
+        <path d="M 488 111 L 488.24 111 L 488.1 105 L 487.76 99 L 487.83 93 L 487.93 87 L 488 81" fill="none"
+              stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10"
+              pointer-events="none"/>
+        <path d="M 598 111 L 598.07 111 L 597.81 105 L 597.83 99 L 597.81 93 L 597.91 87 L 598 81" fill="none"
+              stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10"
+              pointer-events="none"/>
+        <path d="M 701 111 L 701.09 111 L 700.89 105 L 700.97 99 L 701.14 93 L 701.02 87 L 701 81" fill="none"
+              stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10"
+              pointer-events="none"/>
+        <path d="M 701 81 L 701 81.08 L 691 81.61 L 681 81.01 L 671 81.49 L 661 81.3 L 651 81.65 L 641 81.55 L 631 81.75 L 621 80.58 L 611 81.55 L 601 80.93 L 591 80.31 L 581 81.73 L 571 81.66 L 561 81.25 L 551 81.02 L 541 80.63 L 531 81.1 L 521 80.75 L 511 81.05 L 501 81.29 L 491 81.32 L 481 81.42 L 471 81.65 L 461 80.91 L 451 80.85 L 441 81.33 L 431 81.23 L 421 81.44 L 411 81.62 L 401 81.28 L 391 80.89 L 381 80.58 L 371 81"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 656 301 L 656 300.42 L 666 300.43 L 676 301.59 L 686 301.59 L 696 301.36 L 706 301.19 L 716 301.11 L 726 300.6 L 736 300.9 L 746 301 L 745.87 301 L 745.96 307 L 745.84 313 L 745.85 319 L 746.12 325 L 746 331 L 746 330.77 L 736 331.42 L 726 330.85 L 716 331.07 L 706 330.72 L 696 330.3 L 686 330.53 L 676 330.9 L 666 330.73 L 656 331 L 655.92 331 L 655.77 325 L 656.19 319 L 656.04 313 L 655.85 307 L 656 301 L 656 301 Z Z"
+              fill="#ffe6cc" stroke="#d79b00" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(668.5,309.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="65" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">...Array?
+                            <br/>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="33" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">...Array?&lt;br&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 99 366 L 99 365.94 L 93.4 365.97 L 87.8 365.95 L 82.2 365.91 L 76.6 365.76 L 71 366 Q 61 366 61 356 L 61.6 356 L 61.57 345.74 L 60.62 335.47 L 60.79 325.21 L 61.08 314.94 L 60.76 304.68 L 61.6 294.41 L 61.07 284.15 L 61.44 273.88 L 61.13 263.62 L 61.16 253.35 L 60.44 243.09 L 61.07 232.82 L 61.26 222.56 L 60.34 212.29 L 61.67 202.03 L 61.55 191.77 L 61.15 181.5 L 61 171.24"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 61 153.24 L 60.89 153.18 L 62.65 156.76 L 64.6 160.44 L 66.61 164.14 L 68 167.53 L 70 171.24 L 70 171.34 L 66.4 171.4 L 62.8 171.08 L 59.2 171.18 L 55.6 171.11 L 52 171.24 L 51.98 171.22 L 54.01 167.74 L 55.76 164.12 L 57.43 160.45 L 59.18 156.83 L 61 153.24 Z Z"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 99 216 L 99 215.94 L 91.4 216.17 L 83.8 215.79 L 76.2 215.81 L 68.6 215.97 L 61 216" fill="none"
+              stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10"
+              pointer-events="none"/>
+        <path d="M 99 266 L 99 266.05 L 91.4 265.86 L 83.8 265.78 L 76.2 266.09 L 68.6 265.98 L 61 266" fill="none"
+              stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10"
+              pointer-events="none"/>
+        <path d="M 61 316 L 61 316.18 L 68.6 315.77 L 76.2 316.1 L 83.8 315.78 L 91.4 315.78 L 99 316" fill="none"
+              stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10"
+              pointer-events="none"/>
+        <path d="M 461 471 L 461 471.6 L 471 471.41 L 481 471.01 L 491 470.4 L 501 470.34 L 511 471.5 L 521 471.4 L 531 470.41 L 541 471.54 L 551 471.64 L 561 471.52 L 571 470.66 L 581 471.43 L 591 471.67 L 601 470.54 L 611 470.37 L 621 471.2 L 631 471.5 L 641 470.5 L 651 471.18 L 661 471.75 L 671 471.57 L 681 471.51 L 691 470.86 L 701 471.36 L 711 471.52 L 721 471.35 L 731 470.72 L 741 470.39 L 751 470.76 L 761 471.12 L 771 471.68 L 781 471.23 L 791 471 Q 801 471 801 461 L 801.31 461 L 801.32 451 L 801.23 441 L 800.86 431 L 801.74 421 L 801.12 411 L 801.72 401 L 800.54 391 L 801.18 381 L 801.1 371 L 800.58 361 L 800.86 351 L 801.05 341 L 800.56 331 L 800.29 321 L 800.58 311 L 800.9 301 L 801.72 291 L 800.56 281 L 800.8 271 L 800.88 261 L 800.86 251 L 801.58 241 L 800.45 231 L 801.4 221 L 801.29 211 L 801.14 201 L 800.27 191 L 801.31 181 L 801.12 171 L 801.41 161 L 801.23 151 L 800.55 141 L 800.57 131 L 801.09 121 L 800.79 111 L 801.46 101 L 801 91 Q 801 81 791 81 L 791 81.57 L 781 81.42 L 771 81.75 L 761 80.65 L 751 81.04 L 741 81.74 L 731 81.53 L 721 80.66 L 711 80.71 L 701 81"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 746 266 L 746 265.38 L 755.17 265.77 L 764.33 266.29 L 773.5 265.33 L 782.67 266.6 L 791.83 266.55 L 801 266"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 746 216 L 746 216.31 L 755.17 215.33 L 764.33 216.65 L 773.5 216.29 L 782.67 215.51 L 791.83 215.49 L 801 216"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 511 371 L 511 371.36 L 521 371.41 L 531 371.5 L 541 371.47 L 551 370.65 L 561 370.77 L 571 371.12 L 581 370.41 L 591 370.38 L 601 371.53 L 611 370.92 L 621 371 L 620.84 371 L 620.95 379 L 621.05 387 L 620.83 395 L 620.82 403 L 621 411 L 621 410.98 L 611 411.6 L 601 410.54 L 591 411.74 L 581 411.39 L 571 411.04 L 561 410.86 L 551 411.27 L 541 410.28 L 531 410.97 L 521 411 L 511 411 L 511.11 411 L 510.81 403 L 511.24 395 L 511.17 387 L 511.1 379 L 511 371 L 511 371 Z Z"
+              fill="#d5e8d4" stroke="#82b366" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(529.5,384.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="72" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">YourClass?
+                            <br/>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="36" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">YourClass?&lt;br&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 134 201 L 134 201" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round"
+              stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 134 201 L 134 201 L 134 201 L 134 201 Z Z" fill="none" stroke="#000000" stroke-width="2"
+              stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 746 316 L 746 316.08 L 755.17 316.3 L 764.33 316.32 L 773.5 315.37 L 782.67 315.3 L 791.83 316.64 L 801 316"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 621 391 L 621 390.53 L 631 391.39 L 641 391.69 L 651 390.91 L 661 390.63 L 671 391.44 L 681 391.32 L 691 390.92 L 701 391.45 L 711 391.71 L 721 390.57 L 731 391.64 L 741 390.61 L 751 391.35 L 761 391.51 L 771 391.49 L 781 391 L 791 390.7 L 801 391"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 201 216 L 201 216.12 L 196.65 215.78 L 192.29 215.88 L 187.94 215.88 L 183.59 216.08 L 179.24 216"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 171.24 216 L 171.24 216.01 L 172.76 215.05 L 174.42 214.37 L 176.01 213.55 L 177.64 212.8 L 179.24 212 L 179.41 212 L 179.22 213.6 L 179.43 215.2 L 179.19 216.8 L 179.49 218.4 L 179.24 220 L 179.19 219.91 L 177.73 219.39 L 176.14 218.61 L 174.47 217.68 L 172.74 216.61 L 171.24 216 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 201 266 L 201 266.02 L 196.65 265.86 L 192.29 265.95 L 187.94 265.97 L 183.59 266.09 L 179.24 266"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 171.24 266 L 171.23 265.99 L 172.89 265.3 L 174.49 264.51 L 175.94 263.41 L 177.58 262.68 L 179.24 262 L 179.39 262 L 179.3 263.6 L 179.13 265.2 L 179.29 266.8 L 179.18 268.4 L 179.24 270 L 179.21 269.95 L 177.73 269.39 L 176.08 268.49 L 174.39 267.52 L 172.94 267 L 171.24 266 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 201 316 L 201 316.05 L 196.65 316.16 L 192.29 315.84 L 187.94 316.02 L 183.59 316.15 L 179.24 316"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 171.24 316 L 171.28 316.09 L 172.77 315.07 L 174.35 314.22 L 175.94 313.41 L 177.61 312.74 L 179.24 312 L 179.03 312 L 179.45 313.6 L 179.3 315.2 L 179.38 316.8 L 179.23 318.4 L 179.24 320 L 179.26 320.04 L 177.56 319.05 L 176.1 318.53 L 174.34 317.41 L 172.88 316.9 L 171.24 316 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 281 171 L 281 171.69 L 270.8 170.97 L 260.6 171.39 L 250.4 170.84 L 240.2 170.28 L 230 171.16 L 219.8 170.3 L 209.6 170.84 L 199.4 170.65 L 189.2 171.65 L 179 171 Q 169 171 169 166.12 L 168.87 166.12 L 169.19 165.14 L 169.21 164.17 L 169.24 163.19 L 168.86 162.21 L 169 161.24"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 169 153.24 L 168.85 153.16 L 169.78 154.83 L 170.82 156.54 L 171.36 158.01 L 172.31 159.69 L 173 161.24 L 173 161.06 L 171.4 161.22 L 169.8 161.17 L 168.2 161.19 L 166.6 161.13 L 165 161.24 L 165.12 161.3 L 165.95 159.71 L 166.45 157.96 L 167.37 156.42 L 168.3 154.88 L 169 153.24 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 281 171 L 281 171.67 L 291.44 171.34 L 301.89 170.3 L 312.33 170.68 L 322.78 170.82 L 333.22 171.61 L 343.67 171.36 L 354.11 170.59 L 364.56 170.94 L 375 171 Q 385 171 385 166.62 L 385.02 166.62 L 385.19 165.74 L 385.19 164.87 L 384.87 163.99 L 385.1 163.11 L 385 162.24"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 385 154.24 L 384.85 154.16 L 385.9 155.89 L 386.7 157.49 L 387.54 159.11 L 388.41 160.74 L 389 162.24 L 389 162.13 L 387.4 162.08 L 385.8 162.2 L 384.2 162.17 L 382.6 162.37 L 381 162.24 L 381 162.23 L 381.92 160.7 L 382.71 159.09 L 383.35 157.41 L 383.99 155.73 L 385 154.24 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 488 201 L 487.85 201 L 487.94 193.05 L 487.94 185.09 L 488.09 177.14 L 488.16 169.19 L 488 161.24"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 488 153.24 L 487.89 153.18 L 488.78 154.82 L 489.78 156.52 L 490.41 158.04 L 490.98 159.53 L 492 161.24 L 492 161.19 L 490.4 161.37 L 488.8 161.39 L 487.2 161.46 L 485.6 161.08 L 484 161.24 L 483.98 161.23 L 484.74 159.6 L 485.72 158.09 L 486.41 156.44 L 487.34 154.91 L 488 153.24 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 601 271 L 601.74 271 L 600.26 262 L 600.84 253 L 601.38 244 L 600.95 235 L 601 226 Q 601 216 611 216 L 611 216.25 L 617.95 216.08 L 624.91 216.06 L 631.86 215.94 L 638.81 215.81 L 645.76 216"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 653.76 216 L 653.7 215.88 L 652.23 216.94 L 650.58 217.63 L 649 218.46 L 647.45 219.37 L 645.76 220 L 645.69 220 L 645.61 218.4 L 645.86 216.8 L 645.53 215.2 L 645.96 213.6 L 645.76 212 L 645.83 212.14 L 647.31 212.69 L 648.88 213.43 L 650.62 214.52 L 652.23 215.34 L 653.76 216 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 601 271 L 601.14 271 L 600.83 278 L 600.77 285 L 600.97 292 L 601.18 299 L 601 306 Q 601 316 611 316 L 611 315.78 L 617.95 315.94 L 624.91 315.77 L 631.86 315.98 L 638.81 315.98 L 645.76 316"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 653.76 316 L 653.82 316.12 L 652.06 316.6 L 650.5 317.47 L 649.01 318.49 L 647.28 319.03 L 645.76 320 L 645.74 320 L 645.64 318.4 L 645.84 316.8 L 645.99 315.2 L 645.76 313.6 L 645.76 312 L 645.86 312.19 L 647.38 312.83 L 648.94 313.56 L 650.51 314.3 L 652.12 315.12 L 653.76 316 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 351 511 L 351 511.67 L 361 510.74 L 371 511.08 L 381 511.34 L 391 510.85 L 401 510.95 L 411 511.57 L 421 511.64 L 431 511.4 L 441 510.6 L 451 511.24 L 461 511 L 461.24 511 L 460.78 519 L 460.78 527 L 461.05 535 L 460.78 543 L 461 551 L 461 551.69 L 451 551.67 L 441 551.37 L 431 551.59 L 421 550.44 L 411 551.41 L 401 550.41 L 391 551.67 L 381 550.3 L 371 550.6 L 361 551.37 L 351 551 L 350.97 551 L 351.04 543 L 351.24 535 L 351.05 527 L 351.07 519 L 351 511 L 351 511 Z Z"
+              fill="#dae8fc" stroke="#000000" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(380.5,524.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="50" height="12"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; font-weight: bold; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">Nothing
+                            <br/>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="25" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code"
+                      font-weight="bold">Nothing&lt;br&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 406 511 L 405.78 511 L 406.09 509.05 L 406.05 507.09 L 405.87 505.14 L 406.16 503.19 L 406 501.24"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 406 493.24 L 406.07 493.27 L 406.67 494.77 L 407.49 496.38 L 408.22 497.95 L 409.42 499.74 L 410 501.24 L 410 501.01 L 408.4 501.21 L 406.8 501.22 L 405.2 501.01 L 403.6 501.08 L 402 501.24 L 402.12 501.3 L 402.78 499.62 L 403.7 498.09 L 404.41 496.44 L 404.99 494.73 L 406 493.24 Z Z"
+              fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+    </g>
+</svg>

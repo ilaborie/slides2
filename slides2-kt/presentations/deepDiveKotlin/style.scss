@@ -1,0 +1,194 @@
+:root {
+
+  font-size: 5vh;
+
+  // Companies
+  --monkeyBof: #00b0ff;
+
+  --accent: var(--col3);
+  --slides: green;
+  --work: purple;
+
+  // Colors
+
+  //--baseFg: var(--colDark);
+  //--partFg: var(--colDark);
+  //--headerFg: var(--colDark);
+  //--tocFg: var(--colDark);
+
+  // Footer
+  --footerText: '@julienrenaux @ilaborie #DevoxxFR #webcomponents';
+}
+
+// TODO use a https://www.heropatterns.com/ as background with
+
+.monkeyPatch {
+  background: var(--monkeyBof);
+  color: white;
+}
+
+.list-inline li > figure > img {
+  height: 4em;
+}
+
+figure > svg {
+  height: 4em;
+  max-width: 6em;
+
+  path {
+    background-color: hsla(0, 100%, 100%, .25);
+  }
+}
+
+table thead figure {
+  font-size: 67%;
+}
+
+body > header {
+  font-size: 60%;
+}
+
+main > section.part > article {
+  figure > svg {
+    height: 8em;
+    max-width: 8em;
+
+  }
+}
+
+main > section {
+  & > article {
+    text-align: center;
+
+    ul, pre {
+      text-align: left;
+    }
+
+    strong {
+      color: var(--accent);
+    }
+
+    .charts.bar {
+      label {
+        font-size: 66%;
+      }
+    }
+
+    & > a {
+      color: var(--accent);
+
+      &::before {
+        content: '';
+      }
+    }
+
+    table td {
+      font-size: 2em;
+    }
+
+    blockquote {
+      background-color: rgba(0, 0, 0, .1);
+    }
+
+    pre.language-typescript, pre.language-javascript {
+      font-size: 50%;
+    }
+
+    pre.line-numbers.language-sh {
+      padding-left: .5em;
+
+      .line-numbers-rows {
+        display: none;
+      }
+    }
+  }
+
+  & > footer {
+    font-size: 80%;
+
+    &::before {
+      text-shadow: none;
+    }
+  }
+
+  & > nav a {
+    padding: .5em;
+  }
+}
+
+
+// Slides
+h1 {
+  font-size: 200%;
+
+  &::after {
+    content: ':'
+  }
+
+  & ~ ul {
+    display: flex;
+    justify-content: space-around;
+    align-self: stretch;
+    list-style: none;
+  }
+}
+
+.part {
+  img {
+    height: 6em;
+  }
+
+  figcaption {
+    display: none;
+  }
+}
+
+//
+#speakers {
+
+  .previous {
+    @extend .monkeyPatch;
+    // Fix a glitch
+    box-shadow: 0 0 0 1px var(--colLight);
+  }
+
+  .next {
+    @extend .monkeyPatch;
+    // Fix a glitch
+    box-shadow: 0 0 0 1px var(--monkeyBof);
+  }
+
+  footer {
+    display: none;
+  }
+
+  article {
+    font-size: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: stretch;
+    grid-column-gap: 2em;
+    //background: linear-gradient(to right, white 50%, var(--monkeyBof) 0);
+    background: var(--monkeyBof);
+
+    figure {
+      align-self: center;
+
+      img {
+        max-height: 25vh;
+        width: 100%;
+      }
+
+      figcaption {
+        display: none;
+      }
+    }
+  }
+}
+
+//
+.roadmap article {
+
+}
+

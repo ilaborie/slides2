@@ -1,0 +1,17 @@
+Compiled from "rec-factorial.kt"
+public final class _09_structures.recusion.Rec_factorialKt {
+  public static final int recFactorial(int);
+    Code:
+       0: iload_0
+       1: iconst_1
+       2: if_icmpge     9
+       5: iconst_1
+       6: goto          17
+       9: iload_0
+      10: iload_0
+      11: iconst_1
+      12: isub
+      13: invokestatic  #8                  // Method recFactorial:(I)I
+      16: imul
+      17: ireturn
+}

@@ -17,7 +17,7 @@ done
 pushd slides2-kt
 ./gradlew assemble
 # WebComponent
-./gradlew webComponent19
+./gradlew deepDiveKotlin
 # Refactoring Loop
 # ./gradlew refactoringLoop
 popd

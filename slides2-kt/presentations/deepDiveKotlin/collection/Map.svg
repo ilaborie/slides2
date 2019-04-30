@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 489 192" preserveAspectRatio="xMidYMid meet">
+    <defs/>
+    <g transform="translate(0.5,0.5)">
+        <path d="M 31 17.5 L 31 17.55 L 41 17.34 L 51 17.61 L 61 17.86 L 71 17.45 L 81 17.97 L 91 16.95 L 101 17.09 L 111 18.02 L 121 16.91 L 131 17.2 L 141 17.5 L 141.73 17.5 L 140.61 27.5 L 140.64 37.5 L 140.86 47.5 L 141.32 57.5 L 141 67.5 L 141 67.73 L 131 66.8 L 121 67.9 L 111 68.01 L 101 68.01 L 91 66.97 L 81 66.83 L 71 66.79 L 61 67.89 L 51 67.14 L 41 67.57 L 31 67.5 L 31.6 67.5 L 31 57.5 L 30.79 47.5 L 31.29 37.5 L 31.66 27.5 L 31 17.5 L 31 17.5 Z Z"
+              fill="#000000" stroke="#000000" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" transform="translate(2,3)" opacity="0.25"/>
+        <path d="M 31 17.5 L 31 17.55 L 41 17.34 L 51 17.61 L 61 17.86 L 71 17.45 L 81 17.97 L 91 16.95 L 101 17.09 L 111 18.02 L 121 16.91 L 131 17.2 L 141 17.5 L 141.73 17.5 L 140.61 27.5 L 140.64 37.5 L 140.86 47.5 L 141.32 57.5 L 141 67.5 L 141 67.73 L 131 66.8 L 121 67.9 L 111 68.01 L 101 68.01 L 91 66.97 L 81 66.83 L 71 66.79 L 61 67.89 L 51 67.14 L 41 67.57 L 31 67.5 L 31.6 67.5 L 31 57.5 L 30.79 47.5 L 31.29 37.5 L 31.66 27.5 L 31 17.5 L 31 17.5 Z Z"
+              fill="#d5e8d4" stroke="#82b366" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(46.5,28.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="79" height="27"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">«interface»
+                            <br/>
+                            <b>Map&lt;K,V&gt;</b>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="40" y="20" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code">[Not
+                    supported by viewer]
+                </text>
+            </switch>
+        </g>
+        <path d="M 316 42.5 L 316 42.42 L 305.7 43.13 L 295.4 41.92 L 285.11 41.84 L 274.81 43.23 L 264.51 42.78 L 254.21 42.81 L 243.92 43 L 233.62 42.28 L 223.32 42.63 L 213.02 42.96 L 202.72 43.18 L 192.43 42.01 L 182.13 42.72 L 171.83 41.91 L 161.53 42.97 L 151.24 42.5"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" stroke-dasharray="6 6" pointer-events="none"/>
+        <path d="M 143.24 42.5 L 143.32 42.66 L 144.9 41.83 L 146.36 40.75 L 147.97 39.98 L 149.63 39.28 L 151.24 38.5 L 151.38 38.5 L 151.48 40.1 L 151.12 41.7 L 151.06 43.3 L 151.42 44.9 L 151.24 46.5 L 151.26 46.55 L 149.53 45.49 L 148.09 45.02 L 146.5 44.22 L 144.9 43.42 L 143.24 42.5 Z Z"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 316 17.5 L 316 17.37 L 326 17.05 L 336 17.16 L 346 17.41 L 356 18.15 L 366 17.64 L 376 17.75 L 386 16.77 L 396 17.07 L 406 18.15 L 416 18.06 L 426 18.13 L 436 17.5 L 436.05 17.5 L 436.33 27.5 L 436.15 37.5 L 435.93 47.5 L 436.37 57.5 L 436 67.5 L 436 67.52 L 426 67.78 L 416 67.83 L 406 66.94 L 396 67.85 L 386 67.19 L 376 67.32 L 366 67.77 L 356 67.64 L 346 67.46 L 336 68.16 L 326 67.37 L 316 67.5 L 315.49 67.5 L 316.21 57.5 L 316.16 47.5 L 316.56 37.5 L 316.72 27.5 L 316 17.5 L 316 17.5 Z Z"
+              fill="#000000" stroke="#000000" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" transform="translate(2,3)" opacity="0.25"/>
+        <path d="M 316 17.5 L 316 17.37 L 326 17.05 L 336 17.16 L 346 17.41 L 356 18.15 L 366 17.64 L 376 17.75 L 386 16.77 L 396 17.07 L 406 18.15 L 416 18.06 L 426 18.13 L 436 17.5 L 436.05 17.5 L 436.33 27.5 L 436.15 37.5 L 435.93 47.5 L 436.37 57.5 L 436 67.5 L 436 67.52 L 426 67.78 L 416 67.83 L 406 66.94 L 396 67.85 L 386 67.19 L 376 67.32 L 366 67.77 L 356 67.64 L 346 67.46 L 336 68.16 L 326 67.37 L 316 67.5 L 315.49 67.5 L 316.21 57.5 L 316.16 47.5 L 316.56 37.5 L 316.72 27.5 L 316 17.5 L 316 17.5 Z Z"
+              fill="#e1d5e7" stroke="#9673a6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(321.5,28.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="108" height="27"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">«interface»
+                            <br/>
+                            <b>MutableMap&lt;K,V&gt;</b>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="54" y="20" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code">
+                    «interface»&lt;br&gt;&lt;b&gt;MutableMap&lt;K,V&gt;&lt;/b&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 86 127.5 L 86.5 127.5 L 85.7 117.65 L 85.8 107.79 L 86.54 97.94 L 86.56 88.09 L 86 78.24" fill="none"
+              stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10"
+              stroke-dasharray="6 6" pointer-events="none"/>
+        <path d="M 86 70.24 L 85.86 70.17 L 86.85 71.86 L 87.39 73.33 L 88.18 74.93 L 89.19 76.63 L 90 78.24 L 90 78 L 88.4 78.33 L 86.8 78.09 L 85.2 78.08 L 83.6 78.47 L 82 78.24 L 82.12 78.3 L 82.75 76.61 L 83.79 75.13 L 84.47 73.47 L 85.28 71.87 L 86 70.24 Z Z"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 11.5 127.5 L 11.5 127.29 L 21.43 127.42 L 31.37 127.22 L 41.3 127.52 L 51.23 127.02 L 61.17 127.97 L 71.1 128.22 L 81.03 126.77 L 90.97 127.11 L 100.9 127.75 L 110.83 127.69 L 120.77 127.92 L 130.7 127.36 L 140.63 126.78 L 150.57 127.94 L 160.5 127.5 L 160.53 127.5 L 160.66 137.5 L 159.79 147.5 L 160.44 157.5 L 160.94 167.5 L 160.5 177.5 L 160.5 177.09 L 150.57 176.89 L 140.63 177.44 L 130.7 177.75 L 120.77 177.1 L 110.83 176.9 L 100.9 177.79 L 90.97 177.4 L 81.03 177.49 L 71.1 177.68 L 61.17 178.06 L 51.23 177.86 L 41.3 176.83 L 31.37 178.24 L 21.43 178.15 L 11.5 177.5 L 11.11 177.5 L 11.87 167.5 L 12.08 157.5 L 12.02 147.5 L 11.32 137.5 L 11.5 127.5 L 11.5 127.5 Z Z"
+              fill="#000000" stroke="#000000" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" transform="translate(2,3)" opacity="0.25"/>
+        <path d="M 11.5 127.5 L 11.5 127.29 L 21.43 127.42 L 31.37 127.22 L 41.3 127.52 L 51.23 127.02 L 61.17 127.97 L 71.1 128.22 L 81.03 126.77 L 90.97 127.11 L 100.9 127.75 L 110.83 127.69 L 120.77 127.92 L 130.7 127.36 L 140.63 126.78 L 150.57 127.94 L 160.5 127.5 L 160.53 127.5 L 160.66 137.5 L 159.79 147.5 L 160.44 157.5 L 160.94 167.5 L 160.5 177.5 L 160.5 177.09 L 150.57 176.89 L 140.63 177.44 L 130.7 177.75 L 120.77 177.1 L 110.83 176.9 L 100.9 177.79 L 90.97 177.4 L 81.03 177.49 L 71.1 177.68 L 61.17 178.06 L 51.23 177.86 L 41.3 176.83 L 31.37 178.24 L 21.43 178.15 L 11.5 177.5 L 11.11 177.5 L 11.87 167.5 L 12.08 157.5 L 12.02 147.5 L 11.32 137.5 L 11.5 127.5 L 11.5 127.5 Z Z"
+              fill="#d5e8d4" stroke="#82b366" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(17.5,138.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="137" height="27"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">«interface»
+                            <br/>
+                            <b>MapWithDefault&lt;K,V&gt;</b>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="69" y="20" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code">
+                    «interface»&lt;br&gt;&lt;b&gt;MapWithDefault&lt;K,V&gt;&lt;/b&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 376 127.5 L 375.7 127.5 L 375.66 117.65 L 375.43 107.79 L 376.41 97.94 L 375.94 88.09 L 376 78.24"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" stroke-dasharray="6 6" pointer-events="none"/>
+        <path d="M 376 70.24 L 375.96 70.22 L 376.58 71.73 L 377.62 73.45 L 378.34 75.01 L 379.01 76.54 L 380 78.24 L 380 78.3 L 378.4 78.33 L 376.8 78.18 L 375.2 78.34 L 373.6 78.06 L 372 78.24 L 372.05 78.26 L 372.9 76.68 L 373.4 74.93 L 374.32 73.4 L 375.02 71.74 L 376 70.24 Z Z"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 276.5 152.73 L 276.5 153.03 L 266.93 152.89 L 257.36 152.81 L 247.79 152.89 L 238.22 152.26 L 228.65 152.83 L 219.08 153.54 L 209.51 153.12 L 199.94 152.94 L 190.37 152.69 L 180.81 152.86 L 171.24 152.98"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" stroke-dasharray="6 6" pointer-events="none"/>
+        <path d="M 163.24 152.99 L 163.18 152.88 L 164.77 152.07 L 166.52 151.56 L 168.03 150.58 L 169.52 149.57 L 171.23 148.98 L 171.19 148.98 L 171.38 150.58 L 171.3 152.18 L 171 153.78 L 171.03 155.38 L 171.25 156.98 L 171.14 156.76 L 169.67 156.24 L 168.07 155.44 L 166.35 154.4 L 164.76 153.64 L 163.24 152.99 Z Z"
+              fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 276.5 127.5 L 276.5 126.84 L 286.45 127.57 L 296.4 127.07 L 306.35 126.98 L 316.3 128.22 L 326.25 127.08 L 336.2 128.06 L 346.15 126.98 L 356.1 128.04 L 366.05 127.99 L 376 127.28 L 385.95 128.24 L 395.9 127.47 L 405.85 127.36 L 415.8 128.03 L 425.75 127.23 L 435.7 127.89 L 445.65 126.91 L 455.6 126.85 L 465.55 127.8 L 475.5 127.5 L 475.96 127.5 L 475.92 137.5 L 475.87 147.5 L 475.17 157.5 L 475.48 167.5 L 475.5 177.5 L 475.5 177.93 L 465.55 178.08 L 455.6 177.91 L 445.65 178.05 L 435.7 177.84 L 425.75 177.97 L 415.8 177.55 L 405.85 177.13 L 395.9 176.94 L 385.95 178.09 L 376 177.05 L 366.05 176.97 L 356.1 177.06 L 346.15 177.63 L 336.2 177.52 L 326.25 177.63 L 316.3 178.17 L 306.35 176.94 L 296.4 177.92 L 286.45 177.03 L 276.5 177.5 L 276.97 177.5 L 276.01 167.5 L 277.09 157.5 L 275.99 147.5 L 275.8 137.5 L 276.5 127.5 L 276.5 127.5 Z Z"
+              fill="#000000" stroke="#000000" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" transform="translate(2,3)" opacity="0.25"/>
+        <path d="M 276.5 127.5 L 276.5 126.84 L 286.45 127.57 L 296.4 127.07 L 306.35 126.98 L 316.3 128.22 L 326.25 127.08 L 336.2 128.06 L 346.15 126.98 L 356.1 128.04 L 366.05 127.99 L 376 127.28 L 385.95 128.24 L 395.9 127.47 L 405.85 127.36 L 415.8 128.03 L 425.75 127.23 L 435.7 127.89 L 445.65 126.91 L 455.6 126.85 L 465.55 127.8 L 475.5 127.5 L 475.96 127.5 L 475.92 137.5 L 475.87 147.5 L 475.17 157.5 L 475.48 167.5 L 475.5 177.5 L 475.5 177.93 L 465.55 178.08 L 455.6 177.91 L 445.65 178.05 L 435.7 177.84 L 425.75 177.97 L 415.8 177.55 L 405.85 177.13 L 395.9 176.94 L 385.95 178.09 L 376 177.05 L 366.05 176.97 L 356.1 177.06 L 346.15 177.63 L 336.2 177.52 L 326.25 177.63 L 316.3 178.17 L 306.35 176.94 L 296.4 177.92 L 286.45 177.03 L 276.5 177.5 L 276.97 177.5 L 276.01 167.5 L 277.09 157.5 L 275.99 147.5 L 275.8 137.5 L 276.5 127.5 L 276.5 127.5 Z Z"
+              fill="#e1d5e7" stroke="#9673a6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(282.5,138.5)">
+            <switch>
+                <foreignObject style="overflow:visible;" pointer-events="all" width="187" height="27"
+                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">«interface»
+                            <br/>
+                            <b>MutableMapWithDefault&lt;K,V&gt;</b>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="94" y="20" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code">
+                    «interface»&lt;br&gt;&lt;b&gt;MutableMapWithDefault&lt;K,V&gt;&lt;/b&gt;
+                </text>
+            </switch>
+        </g>
+        <path d="M 406 18 L 406 18" fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round"
+              stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="6 6" pointer-events="none"/>
+        <path d="M 406 18 L 406 18 L 406 18 L 406 18 Z Z" fill="none" stroke="#808080" stroke-width="2"
+              stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
+    </g>
+</svg>

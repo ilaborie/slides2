@@ -1,0 +1,25 @@
+Compiled from "for-factorial.kt"
+public final class _09_structures.recusion.For_factorialKt {
+  public static final int forFactorial(int);
+    Code:
+       0: iconst_1
+       1: istore_1
+       2: iconst_1
+       3: istore_2
+       4: iload_0
+       5: istore_3
+       6: iload_2
+       7: iload_3
+       8: if_icmpgt     26
+      11: iload_1
+      12: iload_2
+      13: imul
+      14: istore_1
+      15: iload_2
+      16: iload_3
+      17: if_icmpeq     26
+      20: iinc          2, 1
+      23: goto          11
+      26: iload_1
+      27: ireturn
+}

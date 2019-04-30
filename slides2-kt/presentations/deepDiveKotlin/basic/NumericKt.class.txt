@@ -1,0 +1,13 @@
+Compiled from "numeric.kt"
+public final class _01_basic.NumericKt {
+  public static final void tryNumeric();
+    Code:
+       0: bipush        42
+       2: istore_0
+       3: ldc2_w        #7                  // long 42l
+       6: lstore_1
+       7: aconst_null
+       8: checkcast     #10                 // class java/lang/Double
+      11: astore_3
+      12: return
+}
