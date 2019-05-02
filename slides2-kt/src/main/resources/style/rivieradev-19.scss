@@ -12,7 +12,8 @@
   --header-font: 'Product Sans', var(--system-font);
 
   // Header
-  --headerBg: transparent;
+  --headerBg: var(--col2);
+  --headerFg: var(--col1);
 
   // Part
   --partBg: var(--col3);

@@ -25,7 +25,7 @@ interface Script {
         fun script(src: String, extraTags: List<String> = emptyList()): Script =
             BaseScript(src = src, defer = false, module = false, async = false, extraTags = extraTags)
 
-        fun raw(type: String, module: Boolean = false, block: () -> String): Script =
+        fun raw(type: String="text/javascript", module: Boolean = false, block: () -> String): Script =
             RawScript(type, block(), module)
 
         private data class RawScript(

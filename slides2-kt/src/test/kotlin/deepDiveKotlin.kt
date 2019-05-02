@@ -1,17 +1,10 @@
 import io.github.ilaborie.slides2.kt.SlideEngine
-import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
-import io.github.ilaborie.slides2.kt.dsl.markdown
 import io.github.ilaborie.slides2.kt.dsl.pres
+import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.rivieraDev19
-import io.github.ilaborie.slides2.kt.engine.contents.BarChart.Companion.BarChartCustom
-import io.github.ilaborie.slides2.kt.engine.contents.BarChart.Companion.BarChartSmallerBetter
-import io.github.ilaborie.slides2.kt.engine.contents.barChart
 import io.github.ilaborie.slides2.kt.engine.contents.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
-import io.github.ilaborie.slides2.kt.engine.contents.table
 import io.github.ilaborie.slides2.kt.engine.plugins.*
-import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.caniuse
-import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.tweet
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 
 private const val id = "deepDiveKotlin"
@@ -19,16 +12,23 @@ private const val id = "deepDiveKotlin"
 fun main() {
     val config = jvmConfig("presentations/deepDiveKotlin")
 
+    val deepDiveKotlinPlugin = object :WebPlugin {
+        override val name: String = "DeepDiveKotlinPlugin"
+        override fun scripts(): List<Script> =
+                listOf(Script.module("./deepDiveKotlin.js"))
+    }
+
     SlideEngine
         .use(CheckContentPlugin)
         .use(TocPlugin, NavigatePlugin, GridPlugin)
         .use(PrismJsPlugin(showLines = true, languages = listOf("kotlin", "java")))
+        .use(CatnipPlugin(), deepDiveKotlinPlugin)
         .run(config, deepDiveKotlin, listOf(rivieraDev19))
 
     val outputDir = config.output / id
     // Copy Script
     val scriptDir = config.input / "scripts"
-    listOf("catnip.js", "catnip-deepDiveKotlin.js", "deepDiveKotlin.js").forEach {
+    listOf("deepDiveKotlin.js").forEach {
         scriptDir.copyOrUpdate(it, outputDir)
     }
     // Copy extra images
@@ -37,7 +37,10 @@ fun main() {
     }
 }
 
-val deepDiveKotlin = pres(id = id, extraStyle = "style", title = { h1{ html{"Deep Dive Kotlin :<br> du Hello World au ByteCode"}}}) {
+val deepDiveKotlin = pres(
+    id = id,
+    extraStyle = "style",
+    title = { h1 { html { "Deep Dive Kotlin :<br> du Hello World au ByteCode" } } }) {
     part("Introduction", skipHeader = true) {
         slide("Speakers", setOf("header-hidden")) {
             speaker(
@@ -80,21 +83,19 @@ val deepDiveKotlin = pres(id = id, extraStyle = "style", title = { h1{ html{"Dee
             code("bash") { "javap -c HelloWorld.class" }
             sourceCode("bytecode/HelloWorld.class.txt")
         }
-        slide("À propos du ByteCode",setOf("details", "contrast", "igor"), "bytecode-details") {
-            ul(steps = true) {
-                html {"Environ 200 opérations possibles (maxi. 256 opscodes)"}
-                markdown {"Préfix pour le type d'opérations (`i` pour entier, `d` pour double, ...)"}
-            }
-            ul(steps = true) {
-                markdown {"Manipulation de la pile, des variables locales (`iconst_0`, `istore`, `iload`, ...)"}
-                markdown {"Contrôle du flux des instructions (`if_icmpgt`, `goto`, ...)"}
-                markdown {"Arithmétiques et conversion de type (`iadd`, `iinc`, `i2d`, ...)"}
-                markdown {"Manipulation d'objets (`invokevirtual`, `invokedynamic`, ...)"}
-                markdown {"Autres (`athrow`, ...)"}
+        slide("À propos du ByteCode", setOf("details", "contrast", "igor", "steps"), "bytecode-details") {
+            ul(steps = true, classes = setOf("bullet")) {
+                html { "Environ 200 opérations possibles (maxi. 256 opscodes)" }
+                markdown { "Préfix pour le type d'opérations (`i` pour entier, `d` pour double, ...)" }
+                markdown { "Manipulation de la pile, des variables locales (`iconst_0`, `istore`, `iload`, ...)" }
+                markdown { "Contrôle du flux des instructions (`if_icmpgt`, `goto`, ...)" }
+                markdown { "Arithmétiques et conversion de type (`iadd`, `iinc`, `i2d`, ...)" }
+                markdown { "Manipulation d'objets (`invokevirtual`, `invokedynamic`, ...)" }
+                markdown { "Autres (`athrow`, ...)" }
             }
         }
-        slide("Jouons un peu", id =  "bytecode-play") {
-            html {"<div class=\"catnip\"></div>" }
+        slide("Jouons un peu", id = "bytecode-play", styles = setOf("steps")) {
+            html { "<div class=\"catnip\"></div>" }
         }
         slide("Liens", setOf("bilan", "contrast", "igor"), "bytecode-links") {
             markdown {

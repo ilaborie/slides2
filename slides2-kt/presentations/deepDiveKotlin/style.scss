@@ -52,6 +52,12 @@ section article {
   }
 }
 
+section.code.hex article {
+  pre.language-hex {
+    overflow: auto;
+  }
+}
+
 // Slides
 
 .cover {
@@ -130,3 +136,57 @@ section article {
   }
 }
 
+#java_bytecode_binary article {
+  pre.language-bash {
+    font-size: 75%;
+    flex: 0 0 auto;
+  }
+  pre.language-hex {
+    font-size: 50%;
+    flex: 0 1 auto;
+  }
+}
+
+#explorons_le_bytecode article {
+  justify-content: space-evenly;
+  pre.language-bash {
+    font-size: 75%;
+    flex: 0 0 auto;
+  }
+  pre.language-txt {
+    font-size: 50%;
+    flex: 0 1 auto;
+  }
+}
+
+
+#bytecode-details article {
+  ul li:nth-child(2) {
+    margin-bottom: 1.5em;
+  }
+}
+#bytecode-play > article {
+  font-size: 50%;
+
+  .constants {
+    //font-size: 50%;
+    max-height: 50vh;
+    overflow: auto;
+  }
+  menu {
+    position: relative;
+  }
+  .catnip .frames {
+    background: transparent;
+    margin-left: 5vh;
+    margin-right: 5vh;
+    max-height: 50vh;
+    overflow: auto;
+  }
+  menu button {
+    font-size: 1rem;
+    position: absolute;
+    top: -1.5em;
+    right: 1em;
+  }
+}
