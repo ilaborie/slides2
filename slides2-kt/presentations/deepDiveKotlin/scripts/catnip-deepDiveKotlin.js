@@ -1,0 +1,1 @@
+catnip(document.querySelector('.catnip'));

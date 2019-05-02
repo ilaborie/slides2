@@ -10,7 +10,28 @@ import io.github.ilaborie.slides2.kt.engine.contents.*
 object TextTextRenderer : Renderer<TextContent> {
     override val mode = Text
     override fun render(content: TextContent): String =
-        content.text
+        listOf(
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "br",
+            "small",
+            "strong",
+            "em",
+            "i",
+            "u",
+            "ul",
+            "li",
+            "span",
+            "div",
+            "header",
+            "footer"
+        )
+            .flatMap { tag -> listOf("<$tag>", "</$tag>", "<$tag />", "<$tag/>") }
+            .fold(content.text) {acc, s -> acc.replace(s, "") }
 }
 
 object MarkdownTextRenderer : Renderer<MarkdownContent> {

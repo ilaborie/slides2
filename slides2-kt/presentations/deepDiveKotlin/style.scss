@@ -1,24 +1,14 @@
 :root {
 
-  font-size: 5vh;
-
   // Companies
   --monkeyBof: #00b0ff;
 
-  --accent: var(--col3);
-  --slides: green;
-  --work: purple;
-
-  // Colors
-
-  //--baseFg: var(--colDark);
-  //--partFg: var(--colDark);
-  //--headerFg: var(--colDark);
-  //--tocFg: var(--colDark);
-
   // Footer
-  --footerText: '@julienrenaux @ilaborie #DevoxxFR #webcomponents';
+  --footerText: '@RivieraDEV @EmmanuelVinas @ilaborie #Kotlin';
 }
+
+// FIXME try a https://github.com/codrops/LiquidDistortion/ for cover
+// FIXME or https://codepen.io/pierrinho/pen/wrEaEV
 
 // TODO use a https://www.heropatterns.com/ as background with
 
@@ -48,88 +38,29 @@ body > header {
   font-size: 60%;
 }
 
-main > section.part > article {
-  figure > svg {
-    height: 8em;
-    max-width: 8em;
+//main > section.part > article {
+//  figure > svg {
+//    height: 8em;
+//    max-width: 8em;
+//
+//  }
+//}
 
+section article {
+  figure figcaption {
+    display: none;
   }
 }
-
-main > section {
-  & > article {
-    text-align: center;
-
-    ul, pre {
-      text-align: left;
-    }
-
-    strong {
-      color: var(--accent);
-    }
-
-    .charts.bar {
-      label {
-        font-size: 66%;
-      }
-    }
-
-    & > a {
-      color: var(--accent);
-
-      &::before {
-        content: '';
-      }
-    }
-
-    table td {
-      font-size: 2em;
-    }
-
-    blockquote {
-      background-color: rgba(0, 0, 0, .1);
-    }
-
-    pre.language-typescript, pre.language-javascript {
-      font-size: 50%;
-    }
-
-    pre.line-numbers.language-sh {
-      padding-left: .5em;
-
-      .line-numbers-rows {
-        display: none;
-      }
-    }
-  }
-
-  & > footer {
-    font-size: 80%;
-
-    &::before {
-      text-shadow: none;
-    }
-  }
-
-  & > nav a {
-    padding: .5em;
-  }
-}
-
 
 // Slides
-h1 {
-  font-size: 200%;
 
-  &::after {
-    content: ':'
-  }
+.cover {
+  background-image: url('cover.png');
+  background-size: cover;
 
-  & ~ ul {
-    display: flex;
-    justify-content: space-around;
-    align-self: stretch;
-    list-style: none;
+  h1 {
+    color: var(--col1);
+    text-shadow: 0.025rem 0.025rem .125em rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -143,16 +74,9 @@ h1 {
   }
 }
 
-//
 #speakers {
 
-  .previous {
-    @extend .monkeyPatch;
-    // Fix a glitch
-    box-shadow: 0 0 0 1px var(--colLight);
-  }
-
-  .next {
+  .previous, .next {
     @extend .monkeyPatch;
     // Fix a glitch
     box-shadow: 0 0 0 1px var(--monkeyBof);
@@ -173,6 +97,7 @@ h1 {
     background: var(--monkeyBof);
 
     figure {
+      grid-column: span 2;
       align-self: center;
 
       img {
@@ -190,5 +115,18 @@ h1 {
 //
 .roadmap article {
 
+}
+
+
+#javac article {
+  figure {
+    height: 100%;
+    align-self: stretch;
+  }
+  svg {
+    height: 100%;
+    width: 75vw;
+    max-width: 75vw;
+  }
 }
 
