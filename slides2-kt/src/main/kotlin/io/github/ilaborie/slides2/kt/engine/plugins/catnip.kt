@@ -13,7 +13,7 @@ class CatnipPlugin(private val selector: String = ".catnip") : WebPlugin {
 
     override fun scripts(): List<Script> =
         listOf(
-            script("$github/catnip.0478872c.js"),
+            script("$github/catnip.e92a29bd.js"),
             raw {
                 """document.querySelectorAll('$selector')
                   | .forEach(elt => catnip(elt));""".trimMargin()
@@ -21,5 +21,5 @@ class CatnipPlugin(private val selector: String = ".catnip") : WebPlugin {
         )
 
     override fun stylesheets(): List<Stylesheet> =
-        listOf(Stylesheet("$github/catnip.42b131b3.css"))
+        listOf(Stylesheet("$github/catnip.e77795ee.css"))
 }

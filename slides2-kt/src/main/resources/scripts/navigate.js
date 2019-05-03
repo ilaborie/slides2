@@ -11,8 +11,8 @@ if (isFirefox) {
 }
 
 // Navigation
-const prevSelector = "section:target .previous a";
-const nextSelector = "section:target .next a";
+const prevSelector = "section:target .previous > *";
+const nextSelector = "section:target .next > *";
 
 const home = () => navigateTo("section.cover");
 

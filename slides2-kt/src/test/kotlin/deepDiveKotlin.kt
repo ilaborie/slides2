@@ -1,6 +1,7 @@
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.Script
+import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.rivieraDev19
 import io.github.ilaborie.slides2.kt.engine.contents.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
@@ -15,7 +16,11 @@ fun main() {
     val deepDiveKotlinPlugin = object :WebPlugin {
         override val name: String = "DeepDiveKotlinPlugin"
         override fun scripts(): List<Script> =
-                listOf(Script.module("./deepDiveKotlin.js"))
+                listOf(
+                    script("https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.8.7/pixi.min.js"),
+                    script("deepDiveKotlin.js"),
+                    script("water.js")
+                )
     }
 
     SlideEngine
@@ -28,11 +33,11 @@ fun main() {
     val outputDir = config.output / id
     // Copy Script
     val scriptDir = config.input / "scripts"
-    listOf("deepDiveKotlin.js").forEach {
+    listOf("deepDiveKotlin.js", "water.js").forEach {
         scriptDir.copyOrUpdate(it, outputDir)
     }
     // Copy extra images
-    listOf("cover.png").forEach {
+    listOf("cover.jpg", "clouds.jpg").forEach {
         config.input.copyOrUpdate(it, outputDir)
     }
 }
