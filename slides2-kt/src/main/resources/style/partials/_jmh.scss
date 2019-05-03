@@ -1,0 +1,10 @@
+.jmh {
+  thead tr th {
+    text-align: right;
+  }
+  tbody tr th,
+  thead tr th:first-child {
+    text-align: right;
+  }
+}
+

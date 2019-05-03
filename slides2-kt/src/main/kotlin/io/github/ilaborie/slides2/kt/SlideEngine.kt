@@ -48,6 +48,7 @@ object SlideEngine {
         registerRenderers(FigureTextRenderer, FigureHtmlRenderer)
         registerRenderers(TableTextRenderer, TableHtmlRenderer)
         registerRenderers(DefinitionsTextRender, DefinitionsHtmlRender)
+        registerRenderers(JmhBenchmarkTextRenderer, JmhBenchmarkHtmlRenderer)
 
         // Extra
         registerRenderers(SpeakerTextRenderer, SpeakerHtmlRenderer)

@@ -47,7 +47,7 @@ body > header {
 //}
 
 section article {
-  figure figcaption {
+  figure figcaption, table caption, .caption {
     display: none;
   }
 }
@@ -118,9 +118,6 @@ section.code.play article::after {
     height: 6em;
   }
 
-  figcaption {
-    display: none;
-  }
 }
 
 #speakers {
@@ -154,9 +151,6 @@ section.code.play article::after {
         width: 100%;
       }
 
-      figcaption {
-        display: none;
-      }
     }
   }
 }
@@ -203,7 +197,7 @@ section.code.play article::after {
     flex: 0 0 auto;
   }
 
-  pre.language-txt {
+  pre.language-java {
     font-size: 50%;
     flex: 0 1 auto;
   }
@@ -408,16 +402,18 @@ section#historique article {
     text-align: center;
     font-size: 1em;
   }
+
   h4 {
     align-items: flex-start;
   }
 }
 
-#java_bytecode article{
+#java_bytecode article {
   pre {
     font-size: 50%;
   }
 }
+
 #helloworld_java article {
   pre {
     font-size: 50%;
@@ -428,9 +424,9 @@ section#historique article {
 
   table {
     font-size: 80%;
-    th{ text-align: right }
-    caption {
-      display: none;
+
+    th {
+      text-align: right
     }
   }
 }

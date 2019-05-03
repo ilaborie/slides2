@@ -4,9 +4,7 @@ import io.github.ilaborie.slides2.kt.dsl.raw
 import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.rivieraDev19
-import io.github.ilaborie.slides2.kt.engine.contents.inlineFigure
-import io.github.ilaborie.slides2.kt.engine.contents.speaker
-import io.github.ilaborie.slides2.kt.engine.contents.table
+import io.github.ilaborie.slides2.kt.engine.contents.*
 import io.github.ilaborie.slides2.kt.engine.plugins.*
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 
@@ -27,7 +25,7 @@ fun main() {
 
     SlideEngine
         .use(CheckContentPlugin)
-        .use(TocPlugin, NavigatePlugin, GridPlugin)
+        .use(TocPlugin, NavigatePlugin)
         .use(PrismJsPlugin(showLines = true, languages = listOf("kotlin", "java")))
         .use(CatnipPlugin(), deepDiveKotlinPlugin)
         .run(config, deepDiveKotlin, listOf(rivieraDev19))
@@ -155,8 +153,8 @@ val deepDiveKotlin = pres(
         }
         slide("Bilan HelloWorld.kt", setOf("bilan", "contrast", "manu")) {
             ul(steps = true) {
-                html {"👮‍♂️️ Kotlin ajoute des contrôles"}
-                html {"du coup on a besoin de JARs en plus"}
+                html { "👮‍♂️️ Kotlin ajoute des contrôles" }
+                html { "du coup on a besoin de JARs en plus" }
             }
             table(
                 caption = "Taille des JAR".raw,
@@ -168,8 +166,8 @@ val deepDiveKotlin = pres(
                     "lombok",
                     "spring-core",
                     "jackson-databind"
-                    ),
-                columns = listOf("jar","version","taille"),
+                ),
+                columns = listOf("jar", "version", "taille"),
                 values = mapOf
                     (
                     ("kotlin-stdlib" to "jar") to "kotlin-stdlib",
@@ -199,7 +197,7 @@ val deepDiveKotlin = pres(
                 classes = setOf("step")
             )
             ul(steps = true) {
-                html {"🏎 Performances ?"}
+                html { "🏎 Performances ?" }
             }
         }
         slide("Performance HelloWorld.kt", setOf("bilan", "contrast", "igor")) {
@@ -208,13 +206,29 @@ val deepDiveKotlin = pres(
 
 * <https://github.com/JetBrains/kotlin-benchmarks>
 * <https://github.com/MonkeyPatchIo/kotlin-perf>
-
-| Benchmark  |  Mode | Cnt |     Score |     Error | Units |
-|------------|-------|-----|-----------|-----------|-------|
-| testJava   | thrpt | 200 | 66490.271 | ± 879.996 | ops/s |
-| testKotlin | thrpt | 200 | 72393.914 | ± 935.962 | ops/s |
 """
             }
+            jmh(
+                listOf(
+                    Benchmark("testJava", score = 66490.271, error = 879.996, mode = "thrpt", cnt = 200, unit = "ops/s"),
+                    Benchmark("testKotlin", score = 72393.914, error = 935.962, mode = "thrpt", cnt = 200, unit = "ops/s"))
+            )
+            barChart(
+                "Benchmark Hello World",
+                values = mapOf(
+                    "testJava" to 66490,
+                    "testKotlin" to 72393
+                ),
+                factor = {it},
+                infoFn = { "$it ops/s" },
+                mode =  BarChart.Companion.BarChartCustom(
+                    min = 0,
+                    max = 72393,
+                    low = 0,
+                    high = 72393,
+                    optimum = 66490
+                )
+            )
         }
     }
     /// FIXME
