@@ -188,16 +188,16 @@ open class ContainerBuilder(internal val input: Folder) {
     fun sourceCode(file: String) {
         val extension = file.split(".").last()
         val language = when (extension) {
-            "class.txt" -> "java"
-            "dex.dump"  -> "java"
-            "smali"     -> "java"
-            "kt"        -> "kotlin"
-            "ts"        -> "typescript"
-            "tsx"       -> "typescript"
-            "js"        -> "javascript"
-            "sh"        -> "bash"
-            "re"        -> "reason"
-            else        -> extension
+            "txt"   -> "java"
+            "dump"  -> "java"
+            "smali" -> "java"
+            "kt"    -> "kotlin"
+            "ts"    -> "typescript"
+            "tsx"   -> "typescript"
+            "js"    -> "javascript"
+            "sh"    -> "bash"
+            "re"    -> "reason"
+            else    -> extension
         }
 
         if (!input.exists(file)) {

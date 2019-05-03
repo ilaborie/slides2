@@ -22,7 +22,7 @@
                     </div>
                 </foreignObject>
                 <text x="19" y="20" fill="#000000" text-anchor="middle" font-size="12px" font-family="Comic Sans MS"
-                      font-weight="bold">[Not supported by viewer]
+                      font-weight="bold">source (.java)
                 </text>
             </switch>
         </g>
@@ -42,7 +42,7 @@
                     </div>
                 </foreignObject>
                 <text x="27" y="20" fill="#000000" text-anchor="middle" font-size="12px" font-family="Comic Sans MS"
-                      font-weight="bold">Java 8&lt;br&gt;File.class
+                      font-weight="bold">Java 8 File.class
                 </text>
             </switch>
         </g>

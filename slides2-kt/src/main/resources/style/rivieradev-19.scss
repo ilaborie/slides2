@@ -16,7 +16,7 @@
   --headerFg: var(--col1);
 
   // Part
-  --partBg: var(--col3);
+  --partBg: var(--col2);
   --partFg: var(--col1);
 
   // Footer
@@ -24,8 +24,4 @@
 
   --footerFg: var(--col1);
   --footerBg: var(--col3);
-}
-
-section.part {
-  --footerBg: var(--col2);
 }

@@ -1,10 +1,12 @@
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.pres
+import io.github.ilaborie.slides2.kt.dsl.raw
 import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.rivieraDev19
 import io.github.ilaborie.slides2.kt.engine.contents.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
+import io.github.ilaborie.slides2.kt.engine.contents.table
 import io.github.ilaborie.slides2.kt.engine.plugins.*
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 
@@ -13,14 +15,14 @@ private const val id = "deepDiveKotlin"
 fun main() {
     val config = jvmConfig("presentations/deepDiveKotlin")
 
-    val deepDiveKotlinPlugin = object :WebPlugin {
+    val deepDiveKotlinPlugin = object : WebPlugin {
         override val name: String = "DeepDiveKotlinPlugin"
         override fun scripts(): List<Script> =
-                listOf(
-                    script("https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.8.7/pixi.min.js"),
-                    script("deepDiveKotlin.js"),
-                    script("water.js")
-                )
+            listOf(
+                script("https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.8.7/pixi.min.js"),
+                script("deepDiveKotlin.js"),
+                script("water.js")
+            )
     }
 
     SlideEngine
@@ -117,32 +119,104 @@ val deepDiveKotlin = pres(
             }
         }
     }
+
+
+    part(title = "Introduction Kotlin") {
+        slide("Historique", setOf("manu", "contrast")) {
+            // FIXME Igor
+            file("introduction_kotlin/historique.html")
+        }
+        slide("Cibles", setOf("manu")) {
+            figure("introduction_kotlin/java.svg", "JVM")
+            figure("introduction_kotlin/android.svg", "Android")
+            figure("introduction_kotlin/javascript.svg", "JavaScript")
+            figure("introduction_kotlin/LLVM.svg", "LLVM")
+
+            h4("JVM et Android")
+            h4("JavaScript")
+            h4("Native avec LLVM")
+        }
+
+        slide("HelloWorld.kt", setOf("code", "kotlin", "manu", "live-code"), "hw-kotlin") {
+            sourceCode("introduction_kotlin/HelloWorld.kt")
+            code("bash") { "kotlinc HelloWorld.kt" }
+        }
+        slide("kotlinc", setOf("diagram", "manu")) {
+            inlineFigure("introduction_kotlin/Compile Kotlin.svg", "kotlinc")
+        }
+        slide("hexdump", setOf("code", "hex", "manu")) {
+            sourceCode("introduction_kotlin/HelloWorldKt.class.hex")
+        }
+        slide("Java ByteCode", setOf("code", "bytecode", "manu")) {
+            sourceCode("introduction_kotlin/HelloWorldKt.class.txt")
+        }
+        slide("HelloWorld-java", setOf("code", "java", "manu")) {
+            sourceCode("introduction_kotlin/HelloWorldKt.java")
+        }
+        slide("Bilan HelloWorld.kt", setOf("bilan", "contrast", "manu")) {
+            ul(steps = true) {
+                html {"👮‍♂️️ Kotlin ajoute des contrôles"}
+                html {"du coup on a besoin de JARs en plus"}
+            }
+            table(
+                caption = "Taille des JAR".raw,
+                rows = listOf(
+                    "kotlin-stdlib",
+                    "kotlin-stdlib-jdk7",
+                    "kotlin-stdlib-jdk8",
+                    "kotlin-reflect",
+                    "lombok",
+                    "spring-core",
+                    "jackson-databind"
+                    ),
+                columns = listOf("jar","version","taille"),
+                values = mapOf
+                    (
+                    ("kotlin-stdlib" to "jar") to "kotlin-stdlib",
+                    ("kotlin-stdlib" to "version") to "1.3.31",
+                    ("kotlin-stdlib" to "taille") to "1.3M",
+
+                    ("kotlin-stdlib-jdk7" to "jar") to "kotlin-stdlib-jdk7",
+                    ("kotlin-stdlib-jdk7" to "version") to "1.3.31",
+                    ("kotlin-stdlib-jdk7" to "taille") to "3.1k",
+
+                    ("kotlin-stdlib-jdk8" to "jar") to "kotlin-stdlib-jdk8",
+                    ("kotlin-stdlib-jdk8" to "version") to "1.3.31",
+                    ("kotlin-stdlib-jdk8" to "taille") to "13k",
+
+                    ("kotlin-reflect" to "jar") to "kotlin-reflect",
+                    ("kotlin-reflect" to "version") to "1.3.31",
+                    ("kotlin-reflect" to "taille") to "2.8M",
+
+                    ("lombok" to "jar") to "lombok",
+                    ("lombok" to "version") to "1.18.6",
+                    ("lombok" to "taille") to "1.7M",
+
+                    ("spring-core" to "jar") to "spring-core",
+                    ("spring-core" to "version") to "5.1.6",
+                    ("spring-core" to "taille") to "1.3M"
+                ),
+                classes = setOf("step")
+            )
+            ul(steps = true) {
+                html {"🏎 Performances ?"}
+            }
+        }
+        slide("Performance HelloWorld.kt", setOf("bilan", "contrast", "igor")) {
+            markdown {
+                """> Ne croyez pas les benchmarks, faites les vous-même !
+
+* <https://github.com/JetBrains/kotlin-benchmarks>
+* <https://github.com/MonkeyPatchIo/kotlin-perf>
+
+| Benchmark  |  Mode | Cnt |     Score |     Error | Units |
+|------------|-------|-----|-----------|-----------|-------|
+| testJava   | thrpt | 200 | 66490.271 | ± 879.996 | ops/s |
+| testKotlin | thrpt | 200 | 72393.914 | ± 935.962 | ops/s |
+"""
+            }
+        }
+    }
+    /// FIXME
+
 }
-//
-//private fun ContainerBuilder.litElementTitle() {
-//    h2("Lit-Elements")
-//    figure("logos/lit-element.svg", "LitElement")
-//    link("https://lit-element.polymer-project.org/")
-//}
-//
-//private fun ContainerBuilder.stencilTitle() {
-//    h2("StencilJS")
-//    inlineFigure("logos/stencil.svg", "StencilJS")
-//    link("https://stenciljs.com/")
-//}
-//
-//private fun ContainerBuilder.webComponentTitle() {
-//    h2("Web Components")
-//    inlineFigure("logos/web-components.svg", "Web Components")
-//}
-//
-//private fun ContainerBuilder.mainTitle() {
-//    h1("Web Components")
-//    ul(classes = setOf("list-inline")) {
-//        listOf(
-//            inlineFigure("logos/web-components.svg", "Natif"),
-//            inlineFigure("logos/stencil.svg", "StencilJS"),
-//            figure("logos/lit-element.svg", "LitElement")
-//        )
-//    }
-//}

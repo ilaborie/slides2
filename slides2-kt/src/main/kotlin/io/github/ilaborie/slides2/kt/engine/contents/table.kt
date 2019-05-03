@@ -33,10 +33,11 @@ fun <R, C, V> ContainerBuilder.table(
     rowsFn: (R) -> Content = { it.toString().raw },
     columnFn: (C) -> Content = { it.toString().raw },
     valueFn: (V) -> Content = { it.toString().raw },
-    valueClassesFn: (V) -> Set<String> = { emptySet() }
+    valueClassesFn: (V) -> Set<String> = { emptySet() },
+    classes: Set<String> = emptySet()
 ) {
     val valuesFunction = { row: R, col: C -> values[row to col] }
-    table(caption, rows, columns, valuesFunction, rowsFn, columnFn, valueFn, valueClassesFn)
+    table(caption, rows, columns, valuesFunction, rowsFn, columnFn, valueFn, valueClassesFn, classes)
 }
 
 fun <R, C, V> ContainerBuilder.table(

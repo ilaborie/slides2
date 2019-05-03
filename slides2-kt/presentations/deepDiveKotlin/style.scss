@@ -58,6 +58,40 @@ section.code.hex article {
   }
 }
 
+
+section.code.live-code, section.code.play, section.blur {
+  article {
+    position: relative;
+
+    & > * {
+      filter: blur(8px);
+    }
+
+    &::after {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      font-size: 6rem;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 100%;
+      filter: drop-shadow(0 0 1rem white);
+    }
+  }
+}
+
+section.code.live-code article::after {
+  content: '✏️';
+}
+
+section.code.play article::after {
+  content: '⚙️';
+}
+
 // Slides
 
 .cover {
@@ -129,11 +163,14 @@ section.code.hex article {
 
 //
 .roadmap article {
-
+  ul, ol {
+    column-count: 2;
+    column-gap: 2em;
+  }
 }
 
 
-#javac article {
+#javac article, #kotlinc article {
   figure {
     height: 100%;
     align-self: stretch;
@@ -146,7 +183,7 @@ section.code.hex article {
   }
 }
 
-#java_bytecode_binary article {
+#java_bytecode_binary article, #hexdump article {
   pre.language-bash {
     font-size: 75%;
     flex: 0 0 auto;
@@ -198,6 +235,7 @@ section.code.hex article {
       max-height: 75vh;
       overflow: auto;
     }
+
     .frames {
       background: transparent;
       max-height: 75vh;
@@ -216,5 +254,183 @@ section.code.hex article {
     }
 
   }
+}
 
+section#historique article {
+  color: white;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: .125rem;
+    width: 100%;
+
+    li {
+      position: relative;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+
+      strong {
+        text-shadow: 1px 1px rgba(0, 0, 0, .5);
+        display: inline-block;
+        text-align: center;
+      }
+
+      div {
+        display: inline-block;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: .5rem;
+        padding: 0 0.5rem;
+        font-size: .5rem;
+        transform: rotate(-20deg);
+
+        mark {
+          padding: 0 .125rem;
+          border-radius: .125rem;
+        }
+      }
+    }
+
+    li:nth-child(2n) {
+      flex-grow: 1;
+    }
+
+    li.start, li.sep, li.end {
+      border: 1rem solid transparent;
+      display: inline-block;
+      height: 0;
+    }
+
+    li.start {
+      border-color: darkslategray;
+      border-left-color: transparent;
+    }
+
+    li:nth-child(2) {
+      background: darkslategray;
+
+      div {
+        top: -2.5rem;
+        left: 2.25rem;
+        width: 5rem;
+      }
+    }
+
+    li:nth-child(3) {
+      background: darkmagenta;
+      border-left-color: darkslategray;
+    }
+
+    li:nth-child(4) {
+      background: darkmagenta;
+
+      div {
+        bottom: -3.5rem;
+        left: -3.5rem;
+        width: 5.5rem;
+
+      }
+    }
+
+    li:nth-child(5) {
+      background: darkslateblue;
+      border-left-color: darkmagenta;
+    }
+
+    li:nth-child(6) {
+      background: darkslateblue;
+
+      div {
+        top: -3.75rem;
+        left: 0.25rem;
+        width: 7rem;
+      }
+    }
+
+    li:nth-child(7) {
+      background: teal;
+      border-left-color: darkslateblue;
+    }
+
+    li:nth-child(8) {
+      background: teal;
+
+      div {
+        bottom: -4.5rem;
+        left: -3.5rem;
+        width: 6rem;
+      }
+    }
+
+    li:nth-child(9) {
+      background: forestgreen;
+      border-left-color: teal;
+    }
+
+    li:nth-child(10) {
+      background: forestgreen;
+
+      div {
+        top: -2.5rem;
+        left: 0.25rem;
+        width: 4rem;
+      }
+    }
+
+    li:nth-child(11) {
+      background: coral;
+      border-left-color: forestgreen;
+    }
+
+    li:nth-child(12) {
+      background: coral;
+    }
+
+    li.end {
+      border-color: transparent;
+      border-left-color: coral;
+    }
+  }
+
+}
+
+#cibles article {
+  padding: 2em;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em 2em;
+
+  h4:first-of-type {
+    grid-column-end: span 2;
+    text-align: center;
+    font-size: 1em;
+  }
+  h4 {
+    align-items: flex-start;
+  }
+}
+
+#java_bytecode article{
+  pre {
+    font-size: 50%;
+  }
+}
+#helloworld_java article {
+  pre {
+    font-size: 50%;
+  }
+}
+
+#bilan_helloworld_kt article {
+
+  table {
+    font-size: 80%;
+    th{ text-align: right }
+    caption {
+      display: none;
+    }
+  }
 }
