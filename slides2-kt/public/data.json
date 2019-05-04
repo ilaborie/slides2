@@ -1,20 +1,10 @@
 [
   {
-    "title": "Web Components  * Natif * StencilJS * LitElement",
+    "title": "deepDiveKotlin",
     "instances": [
       {
-        "label": "devoxxfr-19",
-        "path": "webComponents-19",
-        "metadata": {}
-      }
-    ]
-  },
-  {
-    "title": "🏋️‍♂️️ Refactoring sans les for",
-    "instances": [
-      {
-        "label": "jug-tls",
-        "path": "refactoringLoop",
+        "label": "rivieradev-19",
+        "path": "deepDiveKotlin",
         "metadata": {}
       }
     ]
