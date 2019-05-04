@@ -101,7 +101,7 @@ object CodeTextRenderer : Renderer<Code> {
     override val mode: RenderMode = Text
 
     override fun render(content: Code): String =
-        """```${content.language}"
+        """```${content.language}
             |${content.code}
             |```""".trimMargin()
 }

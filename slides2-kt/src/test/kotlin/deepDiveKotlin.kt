@@ -94,7 +94,7 @@ val deepDiveKotlin = pres(
         slide("À propos du ByteCode", setOf("details", "contrast", "igor", "steps"), "bytecode-details") {
             ul(steps = true, classes = setOf("bullet")) {
                 html { "Environ 200 opérations possibles (maxi. 256 opscodes)" }
-                markdown { "Préfix pour le type d'opérations (`i` pour entier, `d` pour double, ...)" }
+                markdown { "Préfixe pour le type d'opérations (`i` pour entier, `d` pour double, ...)" }
                 markdown { "Manipulation de la pile, des variables locales (`iconst_0`, `istore`, `iload`, ...)" }
                 markdown { "Contrôle du flux des instructions (`if_icmpgt`, `goto`, ...)" }
                 markdown { "Arithmétiques et conversion de type (`iadd`, `iinc`, `i2d`, ...)" }
@@ -155,7 +155,7 @@ val deepDiveKotlin = pres(
         slide("Bilan HelloWorld.kt", setOf("bilan", "contrast", "manu")) {
             ul(steps = true) {
                 html { "👮‍♂️️ Kotlin ajoute des contrôles" }
-                html { "du coup on a besoin de JARs en plus" }
+                html { "du coup, on a besoin de JARs en plus" }
             }
             table(
                 caption = "Taille des JAR".raw,
@@ -203,7 +203,7 @@ val deepDiveKotlin = pres(
         }
         slide("Performance HelloWorld.kt", setOf("bilan", "contrast", "igor")) {
             markdown {
-                """> Ne croyez pas les benchmarks, faites les vous-même !
+                """> Ne croyez pas les benchmarks, faites-les vous-même !
 
 * <https://github.com/JetBrains/kotlin-benchmarks>
 * <https://github.com/MonkeyPatchIo/kotlin-perf>
@@ -302,7 +302,7 @@ val deepDiveKotlin = pres(
             ul(steps = true) {
                 markdown { "🎸 Elvis operator: `?:`" }
                 markdown { "🙌 plus de `NullPointerException`" }
-                markdown { "⚠️ quand on appel du Java" }
+                markdown { "⚠️ quand on appelle du Java" }
             }
         }
     }
@@ -317,7 +317,7 @@ val deepDiveKotlin = pres(
         slide("todo.kt", setOf("code", "kotlin", "igor", "play")) {
             sourceCode("types/todo.kt")
         }
-        slide("Hierarchie des types", setOf("bilan", "contrast", "igor")) {
+        slide("Hiérarchie des types", setOf("bilan", "contrast", "igor")) {
             ul(steps = true) {
                 markdown { "🤝 le `TODO()` est l'ami du TDD" }
             }
@@ -497,7 +497,7 @@ val deepDiveKotlin = pres(
         slide("rec-factorial.kt", setOf("code", "kotlin", "igor")) {
             sourceCode("structure/rec-factorial.kt")
         }
-        slide("ByteCode factoriel avec recursivité", setOf("code", "bytecode", "igor")) {
+        slide("ByteCode factoriel avec récursivité", setOf("code", "bytecode", "igor")) {
             sourceCode("structure/Rec_factorialKt.class.txt")
         }
         slide("Récursion non terminale") {
@@ -530,13 +530,13 @@ val deepDiveKotlin = pres(
             sourceCode("structure/tailrec-factorial.kt")
         }
         slide(
-            "ByteCode factoriel avec recursivité terminal 1/2",
+            "ByteCode factoriel avec recursivité terminale 1/2",
             setOf("code", "bytecode", "igor")
         ) {
             sourceCode("structure/Tailrec_factorialKt.class.txt")
         }
         slide(
-            "ByteCode factoriel avec recursivité terminal 2/2",
+            "ByteCode factoriel avec recursivité terminale 2/2",
             setOf("code", "bytecode", "igor")
         ) {
             sourceCode("structure/Tailrec_factorialKt${'$'}tailRecFactorial$1.class.txt")
@@ -639,7 +639,7 @@ val deepDiveKotlin = pres(
         slide("Bilan structures", setOf("details", "contrast", "igor"), id = "bilan-structures") {
 
             ul(steps = true) {
-                markdown { "`when` peut être utiliser avec" }
+                markdown { "`when` peut être utilisé avec" }
                 ul(steps = true, classes = setOf("bullet")) {
                     markdown { "des constantes" }
                     markdown { "plusieurs valeurs séparées par `,`" }
@@ -696,7 +696,7 @@ val deepDiveKotlin = pres(
         slide("sequence.kt", setOf("code", "kotlin", "manu", "live-code")) {
             sourceCode("collection/sequence.kt")
         }
-        slide("Performance des sequences 1/2", setOf("measure", "contrast", "manu"), id = "performance_des_sequences") {
+        slide("Performance des séquences 1/2", setOf("measure", "contrast", "manu"), id = "performance_des_sequences") {
             jmh(
                 listOf(
                     Benchmark(
@@ -718,7 +718,7 @@ val deepDiveKotlin = pres(
                 )
             )
             barChart(
-                "Benchmark sequences 1",
+                "Benchmark séquences 1",
                 values = mapOf(
                     "ApiClassic" to 44535,
                     "ApiSequence" to 23652
@@ -738,7 +738,7 @@ val deepDiveKotlin = pres(
             sourceCode("collection/sequence2.kt")
         }
         slide(
-            "Performance des sequences 2/2",
+            "Performance des séquences 2/2",
             setOf("measure", "contrast", "manu"),
             id = "performance_des_sequences2"
         ) {
@@ -854,7 +854,7 @@ val deepDiveKotlin = pres(
             }
             ul(steps = true) {
                 markdown { "Quand on utilise `reified`" }
-                markdown { "Quand on sait se qu'on fait, [https://kotlinlang.org/docs/reference/inline-functions.html](https://kotlinlang.org/docs/reference/inline-functions.html)" }
+                markdown { "Quand on sait ce qu'on fait, [https://kotlinlang.org/docs/reference/inline-functions.html](https://kotlinlang.org/docs/reference/inline-functions.html)" }
             }
         }
     }
@@ -862,7 +862,7 @@ val deepDiveKotlin = pres(
     part("Conclusion") {
         slide("Android", setOf("contrast", "manu")) {
             ul {
-                markdown { "Faible surchage" }
+                markdown { "Faible surcharge" }
                 markdown { "Support officiel par Google" }
                 markdown { "[Using Project Kotlin for Android](https://docs.google.com/document/d/1ReS3ep-hjxWA8kZi0YqDbEhCqTt29hG8P44aA9W0DM8/edit)" }
                 markdown { "[Kotlin Guide](https://android.github.io/kotlin-guides/)" }
@@ -912,7 +912,7 @@ val deepDiveKotlin = pres(
                 markdown { "C'est déjà mature" }
                 markdown { "✊ Code plus expressif, plus sûr, plus simple" }
                 markdown { "🤝 Interopérable avec Java" }
-                markdown { "👍 Outillage (editeur, gradle, maven)" }
+                markdown { "👍 Outillage (éditeur, gradle, maven)" }
                 markdown { "👍 Ecosystème et communauté" }
                 markdown { "🚀 Évolution rapide" }
                 markdown { "🐣 Code multiplatform" }

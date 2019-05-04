@@ -161,7 +161,7 @@
 const local = location.protocol + '//' + location.host;
 
 const spriteImagesSrc = [
-    `${local}/cover.3be24397.jpg`
+    `${local}/cover.2e02e947.jpg`
 ];
 
 
@@ -173,7 +173,7 @@ const spriteImagesSrc = [
 const initCanvasSlideshow = new CanvasSlideshow({
     sprites: spriteImagesSrc,
     // displacementImage: 'https://raw.githubusercontent.com/Pierrinho/elephant/master/pattern-clouds.jpg',
-    displacementImage: `${local}/clouds.85c6ce22.jpg`,
+    displacementImage: `${local}/clouds.adb2f3e2.jpg`,
     autoPlay: true,
     autoPlaySpeed: [0, 6],
     interactive: false,

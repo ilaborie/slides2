@@ -20,7 +20,7 @@ async function generate() {
             await page.goto(url, {
                 waitUntil: 'networkidle2'
             });
-            await page.waitFor(10 * 1000); // 10s
+            await page.waitFor(20 * 1000); // 10s
             await screenshot(page, base);
             await printPdf(page, base);
         }
