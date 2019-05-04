@@ -26,6 +26,6 @@ public final class Default_valueKt {
 
    @NotNull
    public static final String greetings2() {
-      return buildString2$default((String)null, "Devoxx", false, 5, (Object)null);
+      return buildString2$default((String)null, "RivieraDev", false, 5, (Object)null);
    }
 }

@@ -8,5 +8,5 @@ fun main(args: Array<String>) {
 
 class MyDelegateClass : ReadOnlyProperty<Nothing?, String> {
     override operator fun getValue(thisRef: Nothing?,
-                                   property: KProperty<*>) = "Hello Devoxx"
+                                   property: KProperty<*>) = "Hello RivieraDev"
 }

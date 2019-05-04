@@ -27,7 +27,7 @@ public final class NamedKt {
    @NotNull
    public static final String greetings() {
       String var0 = "Hello";
-      String var1 = "Devoxx";
+      String var1 = "RivieraDev";
       boolean var2 = true;
       return buildString(var0, var1, var2);
    }

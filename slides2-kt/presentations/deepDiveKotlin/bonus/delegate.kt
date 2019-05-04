@@ -25,7 +25,7 @@ fun main(args: Array<String>) {
 
     // lateinit
     // println(str) kotlin.UninitializedPropertyAccessException
-    str = "Hello Devoxx"
+    str = "Hello RivieraDev"
     println(str)
 }
 

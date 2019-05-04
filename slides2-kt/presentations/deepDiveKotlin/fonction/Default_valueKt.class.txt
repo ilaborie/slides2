@@ -59,7 +59,7 @@ public final class _03_fun.Default_valueKt {
   public static final java.lang.String greetings2();
     Code:
        0: aconst_null
-       1: ldc           #51                 // String Devoxx
+       1: ldc           #51                 // String RivieraDev
        3: iconst_0
        4: iconst_5
        5: aconst_null

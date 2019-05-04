@@ -21,14 +21,6 @@
   height: 4em;
 }
 
-figure > svg {
-  height: 4em;
-  max-width: 6em;
-
-  path {
-    background-color: hsla(0, 100%, 100%, .25);
-  }
-}
 
 table thead figure {
   font-size: 67%;
@@ -47,6 +39,25 @@ section article {
   pre {
     max-height: 75vh;
     overflow: auto;
+  }
+
+  ul li> ul {
+    padding-left: 2em;
+  }
+
+  &> figure {
+    height: 100%;
+    align-self: stretch;
+    &> svg {
+      height: 100%;
+      width: 75vw;
+      max-width: 75vw;
+    }
+    &> img {
+      height: 100%;
+      width: 75vw;
+      max-width: 75vw;
+    }
   }
 }
 
@@ -93,6 +104,44 @@ section.code.live-code article::after {
 section.code.play article::after {
   content: '⚙️';
 }
+
+section.igor {
+  --footerText: '@RivieraDEV @ilaborie #Kotlin';
+}
+
+section.manu {
+  --footerText: '@RivieraDEV @EmmanuelVinas #Kotlin';
+}
+
+section.igor.manu {
+  --footerText: '@RivieraDEV @ilaborie @EmmanuelVinas #Kotlin';
+}
+
+@media print {
+  section {
+    font-size: .9rem;
+  }
+  section.code.live-code, section.code.play, section.blur {
+    article {
+      & > * {
+        filter: none;
+      }
+      &::after {
+        content: '';
+      }
+    }
+  }
+  section {
+    pre code {
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+  section#part_pause {
+    filter: none;
+  }
+}
+
 
 // Slides
 
@@ -165,19 +214,6 @@ section.code.play article::after {
   }
 }
 
-
-#javac article, #kotlinc article {
-  figure {
-    height: 100%;
-    align-self: stretch;
-  }
-
-  svg {
-    height: 100%;
-    width: 75vw;
-    max-width: 75vw;
-  }
-}
 
 #java_bytecode_binary article, #hexdump article {
   pre.language-bash {
@@ -412,12 +448,132 @@ section#historique article {
 
 
 #bilan_helloworld_kt article {
-
   table {
     font-size: 80%;
 
     th {
       text-align: right
     }
+  }
+}
+
+#null_safety_kt article {
+  pre {
+    font-size: 66%;
+  }
+}
+
+#function_kt article {
+  pre {
+    font-size: 66%;
+  }
+}
+
+#astronomy_kt article {
+  pre {
+    font-size: 50%;
+  }
+}
+
+#heritage_en_kotlin article {
+  pre {
+    font-size: 50%;
+  }
+}
+
+#dalvik_executable_format article {
+  pre.language-bash {
+    font-size: 66%;
+  }
+  pre.language-hex {
+    font-size: 50%;
+    max-height: 55vh;
+  }
+}
+
+#dexdump article {
+  pre.language-bash {
+    font-size: 66%;
+  }
+  pre.language-java {
+    font-size: 50%;
+    max-height: 55vh;
+  }
+}
+
+
+#smali article {
+  pre.language-bash {
+    font-size: 66%;
+  }
+  pre.language-java {
+    font-size: 50%;
+    max-height: 55vh;
+  }
+}
+
+#recursion_non_terminale article, #recursion_terminale article {
+  font-size: 60%;
+
+  & > ul {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: flex-end;
+    grid-gap: 1em 1ch;
+
+
+    .stack {
+      display: grid;
+      grid-auto-rows: 1rem;
+      justify-items: center;
+      background: var(--col4);
+      color: var(--col1);
+      border: thin solid rgba(0, 0, 0, .25);
+
+      li {
+        padding: .125em;
+        border: thin solid rgba(0, 0, 0, .25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  }
+}
+
+#recursion_terminale article > ul {
+  grid-template-columns: 1fr;
+}
+
+#immutable_mutable_kt article,
+#break_immutable_kt article,
+#timed_sequence_kt article {
+  pre {
+    font-size: 50%;
+  }
+}
+
+#lazy_kt article {
+  pre {
+    font-size: 66%;
+  }
+}
+
+#inline_kt article {
+  pre {
+    font-size: 50%;
+  }
+}
+
+#reified_kt article {
+  pre {
+    font-size: 66%;
+  }
+}
+
+#tendance article {
+  figure {
+    max-height: 80%;
   }
 }

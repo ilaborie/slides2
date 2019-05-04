@@ -9,4 +9,4 @@ fun buildString(prefix: String,
 }
 
 fun greetings(): String =
-    buildString(enhanced = true, who = "Devoxx", prefix = "Hello")
+    buildString(enhanced = true, who = "RivieraDev", prefix = "Hello")

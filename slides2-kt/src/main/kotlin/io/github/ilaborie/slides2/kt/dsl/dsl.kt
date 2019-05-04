@@ -5,7 +5,9 @@ import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.Id
 import io.github.ilaborie.slides2.kt.engine.Presentation
 import io.github.ilaborie.slides2.kt.engine.Theme
+import io.github.ilaborie.slides2.kt.engine.contents.StyledText
 import io.github.ilaborie.slides2.kt.engine.contents.TextContent
+import io.github.ilaborie.slides2.kt.engine.contents.TextStyle
 import io.github.ilaborie.slides2.kt.jvm.asKey
 import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml
 
@@ -25,9 +27,12 @@ interface PresentationDsl {
 
 val String.raw: TextContent
     get() = TextContent(this, escape = false)
+
 val String.markdown: TextContent
     get() = TextContent(MarkdownToHtml.markdownToHtml(this), escape = false)
 
+val String.em: StyledText
+    get() = StyledText(TextStyle.Emphasis, this.raw, emptySet())
 
 fun pres(
     title: ContainerBuilder.() -> Unit,

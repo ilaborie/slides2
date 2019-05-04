@@ -38,7 +38,7 @@
   .registers 2
     const-string v0, "args"
     invoke-static { p0, v0 }, Lkotlin/jvm/internal/Intrinsics;->checkParameterIsNotNull(Ljava/lang/Object;Ljava/lang/String;)V
-    const-string p0, "Hello Devoxx"
+    const-string p0, "Hello RivieraDev"
   .line 4
     sget-object v0, Ljava/lang/System;->out:Ljava/io/PrintStream;
     invoke-virtual { v0, p0 }, Ljava/io/PrintStream;->println(Ljava/lang/Object;)V

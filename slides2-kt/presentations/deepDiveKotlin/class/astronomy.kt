@@ -39,4 +39,3 @@ fun getMoons(planet: Planet): List<Moon> {
     val (_, moons) = planet
     return moons
 }
-
