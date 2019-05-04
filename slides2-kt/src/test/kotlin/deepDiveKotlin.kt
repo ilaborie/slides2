@@ -72,6 +72,7 @@ val deepDiveKotlin = pres(
         }
         roadmap(title = "Roadmap")
     }
+
     part("ByteCode Java ?", "bytecode") {
         slide("javac", setOf("diagram", "igor")) {
             inlineFigure("bytecode/Compile Java.svg", "Java compiler")
@@ -118,10 +119,8 @@ val deepDiveKotlin = pres(
         }
     }
 
-
-    part(title = "Introduction Kotlin") {
+    part("Introduction Kotlin") {
         slide("Historique", setOf("manu", "contrast")) {
-            // FIXME Igor
             file("introduction_kotlin/historique.html")
         }
         slide("Cibles", setOf("manu")) {
@@ -210,8 +209,23 @@ val deepDiveKotlin = pres(
             }
             jmh(
                 listOf(
-                    Benchmark("testJava", score = 66490.271, error = 879.996, mode = "thrpt", cnt = 200, unit = "ops/s"),
-                    Benchmark("testKotlin", score = 72393.914, error = 935.962, mode = "thrpt", cnt = 200, unit = "ops/s"))
+                    Benchmark(
+                        "testJava",
+                        score = 66490.271,
+                        error = 879.996,
+                        mode = "thrpt",
+                        cnt = 200,
+                        unit = "ops/s"
+                    ),
+                    Benchmark(
+                        "testKotlin",
+                        score = 72393.914,
+                        error = 935.962,
+                        mode = "thrpt",
+                        cnt = 200,
+                        unit = "ops/s"
+                    )
+                )
             )
             barChart(
                 "Benchmark Hello World",
@@ -219,9 +233,9 @@ val deepDiveKotlin = pres(
                     "testJava" to 66490,
                     "testKotlin" to 72393
                 ),
-                factor = {it},
+                factor = { it },
                 infoFn = { "$it ops/s" },
-                mode =  BarChart.Companion.BarChartCustom(
+                mode = BarChart.Companion.BarChartCustom(
                     min = 0,
                     max = 72393,
                     low = 0,
@@ -231,6 +245,39 @@ val deepDiveKotlin = pres(
             )
         }
     }
+
     /// FIXME
+    part("Les bases", id = "basic") {
+        slide("val-var.kt", setOf("code", "kotlin", "igor")) {
+            sourceCode("basic/val-var.kt")
+        }
+        slide("string-template.kt", setOf("code", "kotlin", "igor")) {
+            sourceCode("basic/string-template.kt")
+        }
+        slide("string-template.java", setOf("code", "java", "igor")) {
+            sourceCode("basic/String_templatesKt.java")
+        }
+        slide("ByteCode de string-template", setOf("code", "bytecode", "igor")) {
+            sourceCode("basic/String_templatesKt.class.txt")
+        }
+        slide("numeric.kt", setOf("code", "kotlin", "igor")) {
+            sourceCode("basic/numeric.kt")
+        }
+        slide("numeric.java", setOf("code", "java", "igor")) {
+            sourceCode("basic/NumericKt.java")
+        }
+        slide("ByteCode de numeric", setOf("code", "bytecode", "igor")) {
+            sourceCode("basic/NumericKt.class.txt")
+        }
+        slide("C'est simple", setOf("bilan", "contrast", "igor"), "basic-bilan") {
+            ul(steps = true) {
+                markdown { "Plus de `;` <sup>*</sup>" }
+                html { "😍 String templating" }
+                html { "😘 Plus de types primitifs (avant la compilation)" }
+                html { "🧐 Inférence de type" }
+                html { "🤝 On peut mélanger du code Java et Kotlin" }
+            }
+        }
+    }
 
 }

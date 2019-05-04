@@ -38,26 +38,28 @@ body > header {
   font-size: 60%;
 }
 
-//main > section.part > article {
-//  figure > svg {
-//    height: 8em;
-//    max-width: 8em;
-//
-//  }
-//}
 
 section article {
   figure figcaption, table caption, .caption {
     display: none;
   }
-}
 
-section.code.hex article {
-  pre.language-hex {
+  pre {
+    max-height: 75vh;
     overflow: auto;
   }
 }
 
+section.code.java article {
+  pre  {
+    font-size: 50%;
+  }
+}
+section.code.bytecode article {
+  pre  {
+    font-size: 50%;
+  }
+}
 
 section.code.live-code, section.code.play, section.blur {
   article {
@@ -408,17 +410,6 @@ section#historique article {
   }
 }
 
-#java_bytecode article {
-  pre {
-    font-size: 50%;
-  }
-}
-
-#helloworld_java article {
-  pre {
-    font-size: 50%;
-  }
-}
 
 #bilan_helloworld_kt article {
 
