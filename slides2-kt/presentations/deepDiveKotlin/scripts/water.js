@@ -158,22 +158,13 @@
 
 })();
 
-const local = location.protocol + '//' + location.host;
-
 const spriteImagesSrc = [
-    `${local}/cover.2e02e947.jpg`
+    `https://raw.githubusercontent.com/ilaborie/slides2/gh-pages/cover.2e02e947.jpg`
 ];
-
-
-// const spriteImagesSrc = [
-//     'https://raw.githubusercontent.com/Pierrinho/elephant/master/bg-novius-1920.jpg'
-// ];
-// console.log({spriteImagesSrc});
 
 const initCanvasSlideshow = new CanvasSlideshow({
     sprites: spriteImagesSrc,
-    // displacementImage: 'https://raw.githubusercontent.com/Pierrinho/elephant/master/pattern-clouds.jpg',
-    displacementImage: `${local}/clouds.adb2f3e2.jpg`,
+    displacementImage: `https://raw.githubusercontent.com/ilaborie/slides2/gh-pages/clouds.adb2f3e2.jpg`,
     autoPlay: true,
     autoPlaySpeed: [0, 6],
     interactive: false,

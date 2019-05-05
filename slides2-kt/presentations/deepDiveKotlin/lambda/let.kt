@@ -1,4 +1,4 @@
-val other = sumf(1,2)
+val other = sumf(1, 2)
     .let { it + 1 }
 
 val nullable = maybeAnInt()

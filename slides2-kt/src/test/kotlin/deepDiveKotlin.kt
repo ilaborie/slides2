@@ -42,6 +42,8 @@ fun main() {
     listOf("cover.jpg", "clouds.jpg").forEach {
         config.input.copyOrUpdate(it, outputDir)
     }
+
+    // TODO list speaker
 }
 
 val deepDiveKotlin = pres(
@@ -97,7 +99,7 @@ val deepDiveKotlin = pres(
                 markdown { "Préfixe pour le type d'opérations (`i` pour entier, `d` pour double, ...)" }
                 markdown { "Manipulation de la pile, des variables locales (`iconst_0`, `istore`, `iload`, ...)" }
                 markdown { "Contrôle du flux des instructions (`if_icmpgt`, `goto`, ...)" }
-                markdown { "Arithmétiques et conversion de type (`iadd`, `iinc`, `i2d`, ...)" }
+                markdown { "Arithmétique et conversion de type (`iadd`, `iinc`, `i2d`, ...)" }
                 markdown { "Manipulation d'objets (`invokevirtual`, `invokedynamic`, ...)" }
                 markdown { "Autres (`athrow`, ...)" }
             }
@@ -303,6 +305,11 @@ val deepDiveKotlin = pres(
                 markdown { "🎸 Elvis operator: `?:`" }
                 markdown { "🙌 plus de `NullPointerException`" }
                 markdown { "⚠️ quand on appelle du Java" }
+                link(
+                    "https://kotlinlang.org/docs/reference/java-interop.html#nullability-annotations",
+                    "Le compilateur Kotlin peut interpréter des annotions de nullabilité (JSR-305, Android, ...)"
+                )
+                markdown { "Pas de `Optional`, si nécessaire voir [Arrow](https://arrow-kt.io/)" }
             }
         }
     }
@@ -334,6 +341,15 @@ val deepDiveKotlin = pres(
         slide("default-value.kt", setOf("code", "kotlin", "igor")) {
             sourceCode("fonction/default-value.kt")
         }
+        slide("Comment ça marche", setOf("code", "kotlin", "igor")) {
+            sourceCode("fonction/quizz.kt")
+            ul(steps = true) {
+                markdown { "Compile `my-app` avec `lib-v1.0.0`" }
+                markdown { "`java my-app.jar -cp lib-v1.0.0`" }
+                markdown { "`java my-app.jar -cp lib-v1.0.1`" }
+                markdown {"Résultat ?"}
+            }
+        }
         slide("default-value.java", setOf("code", "java", "igor")) {
             sourceCode("fonction/Default_valueKt.java")
         }
@@ -344,7 +360,7 @@ val deepDiveKotlin = pres(
             h4("✨ Conseils", setOf("step"))
             ul(steps = true) {
                 html { "Toujours typer le retour de vos fonctions" }
-                html { "(sauf si c'est évident et une surcharge comme le `toString`)" }
+                markdown { "(sauf si c'est évident et une surcharge comme le `toString`)" }
                 html { "Kotlin est plus concis que Java => évitez de faire des fonctions trop longues" }
                 ul(steps = true, classes = setOf("bullet")) {
                     markdown { "Sautez une ligne après le `=`" }

@@ -1,8 +1,12 @@
 // Declare lambda
-val suml: (Int, Int) -> Int = { x: Int, y: Int -> x + y }
+val suml: (Int, Int) -> Int = { x: Int, y: Int ->
+    x + y
+}
 
-// call apply with suml lambda
-val sum3 = apply(1, 2, suml)
+// call compute with suml lambda
+val sum3 = compute(1, 2, suml)
 
-// call apply with lamda
-val sum4 = apply(1, 3) { x, y -> x + y }
+// call compute with lamda
+val sum4 = compute(1, 3) { x, y ->
+    x + y
+}
