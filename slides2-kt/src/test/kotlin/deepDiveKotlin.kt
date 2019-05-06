@@ -204,49 +204,51 @@ val deepDiveKotlin = pres(
             }
         }
         slide("Performance HelloWorld.kt", setOf("bilan", "contrast", "igor")) {
-            markdown {
-                """> Ne croyez pas les benchmarks, faites-les vous-même !
+            ul(steps = true) {
+                markdown {
+                    """> Ne croyez pas les benchmarks, faites-les vous-même !
 
 * <https://github.com/JetBrains/kotlin-benchmarks>
 * <https://github.com/MonkeyPatchIo/kotlin-perf>
 """
-            }
-            jmh(
-                listOf(
-                    Benchmark(
-                        "testJava",
-                        score = 66490.271,
-                        error = 879.996,
-                        mode = "thrpt",
-                        cnt = 200,
-                        unit = "ops/s"
-                    ),
-                    Benchmark(
-                        "testKotlin",
-                        score = 72393.914,
-                        error = 935.962,
-                        mode = "thrpt",
-                        cnt = 200,
-                        unit = "ops/s"
+                }
+                jmh(
+                    listOf(
+                        Benchmark(
+                            "testJava",
+                            score = 66490.271,
+                            error = 879.996,
+                            mode = "thrpt",
+                            cnt = 200,
+                            unit = "ops/s"
+                        ),
+                        Benchmark(
+                            "testKotlin",
+                            score = 72393.914,
+                            error = 935.962,
+                            mode = "thrpt",
+                            cnt = 200,
+                            unit = "ops/s"
+                        )
                     )
                 )
-            )
-            barChart(
-                "Benchmark Hello World",
-                values = mapOf(
-                    "testJava" to 66490,
-                    "testKotlin" to 72393
-                ),
-                factor = { it },
-                infoFn = { "$it ops/s" },
-                mode = BarChart.Companion.BarChartCustom(
-                    min = 0,
-                    max = 72393,
-                    low = 0,
-                    high = 72393,
-                    optimum = 66490
+                barChart(
+                    "Benchmark Hello World",
+                    values = mapOf(
+                        "testJava" to 66490,
+                        "testKotlin" to 72393
+                    ),
+                    factor = { it },
+                    infoFn = { "$it ops/s" },
+                    mode = BarChart.Companion.BarChartCustom(
+                        min = 0,
+                        max = 72393,
+                        low = 0,
+                        high = 72393,
+                        optimum = 66490
+                    )
                 )
-            )
+            }
         }
     }
 
@@ -347,14 +349,16 @@ val deepDiveKotlin = pres(
                 markdown { "Compile `my-app` avec `lib-v1.0.0`" }
                 markdown { "`java my-app.jar -cp lib-v1.0.0`" }
                 markdown { "`java my-app.jar -cp lib-v1.0.1`" }
-                markdown {"Résultat ?"}
+                markdown { "Résultat ?" }
             }
         }
         slide("default-value.java", setOf("code", "java", "igor")) {
-            sourceCode("fonction/Default_valueKt.java")
+            todo { "bytecode myapp" }
+//            sourceCode("fonction/Default_valueKt.java")
         }
         slide("ByteCode de default-value", setOf("code", "bytecode", "igor")) {
-            sourceCode("fonction/Default_valueKt.class.txt")
+            //            sourceCode("fonction/Default_valueKt.class.txt")
+            todo { "bytecode lib" }
         }
         slide("Kotlin c'est fun !", setOf("bilan", "contrast", "igor"), id = "fun-bilan") {
             h4("✨ Conseils", setOf("step"))
@@ -419,19 +423,6 @@ val deepDiveKotlin = pres(
         slide("Génériques", setOf("details", "contrast", "igor"), id = "generics") {
             file("class/generics.md")
         }
-        slide("Projection *", setOf("details", "igor"), id = "star") {
-            code("kotlin") {
-                """
-                interface Function<in T, out U>
-
-                Function<*, String> // correspond à Function<in Nothing, String>
-
-                Function<Int, *> // correspond à Function<Int, out Any?>
-
-                Function<*, *> // correspond à Function<in Nothing, out Any?>
-                """.trimIndent()
-            }
-        }
         slide("Sealed", setOf("code", "kotlin", "igor")) {
             sourceCode("class/json.kt")
         }
@@ -495,12 +486,6 @@ val deepDiveKotlin = pres(
             markdown { "Mais aussi des `while` et `do while`" }
             markdown { "et des `break`, `continue`, et label" }
         }
-//        slide("for.java", setOf("code", "java", "igor")) {
-//            sourceCode("structure/ForKt.java")
-//        }
-//        slide("ByteCode du for", setOf("code", "bytecode", "igor")) {
-//            sourceCode("structure/ForKt.class.txt")
-//        }
         slide("when.kt", setOf("code", "kotlin", "igor")) {
             sourceCode("structure/when.kt")
         }
@@ -516,7 +501,7 @@ val deepDiveKotlin = pres(
         slide("ByteCode factoriel avec récursivité", setOf("code", "bytecode", "igor")) {
             sourceCode("structure/Rec_factorialKt.class.txt")
         }
-        slide("Récursion non terminale") {
+        slide("Récursion non terminale", setOf("igor")) {
             asciiMath { "x! = x xx (x-1) xx ... xx 2 xx 1" }
             asciiMath { "1! = 0!  = 1" }
             ul(steps = true) {
@@ -532,7 +517,7 @@ val deepDiveKotlin = pres(
                 stack("`1`", "`2`", "...", "`x - 1`", "`x`")
             }
         }
-        slide("Récursion terminale") {
+        slide("Récursion terminale", setOf("igor")) {
             ul(steps = true) {
                 asciiMath { "fact(x) = fact(x, 1)" }
                 asciiMath { "fact(x-1, x xx 1)" }
@@ -557,78 +542,7 @@ val deepDiveKotlin = pres(
         ) {
             sourceCode("structure/Tailrec_factorialKt${'$'}tailRecFactorial$1.class.txt")
         }
-        slide("Performances sur 10! 1/2", setOf("measure", "contrast", "igor"), id = "performances_sur_10_") {
-
-            jmh(
-                listOf(
-                    Benchmark(
-                        "factorialJavaFor",
-                        score = 433372258.508,
-                        error = 1218796.228,
-                        mode = "thrpt",
-                        cnt = 200,
-                        unit = "ops/s"
-                    ),
-                    Benchmark(
-                        "factorialKotlinFor",
-                        score = 374900724.013,
-                        error = 1836466.839,
-                        mode = "thrpt",
-                        cnt = 200,
-                        unit = "ops/s"
-                    ),
-                    Benchmark(
-                        "factorialJavaRec",
-                        score = 71945600.003,
-                        error = 1621282.609,
-                        mode = "thrpt",
-                        cnt = 200,
-                        unit = "ops/s"
-                    ),
-                    Benchmark(
-                        "factorialKotlinRec",
-                        score = 75889169.327,
-                        error = 803516.130,
-                        mode = "thrpt",
-                        cnt = 200,
-                        unit = "ops/s"
-                    ),
-                    Benchmark(
-                        "factorialJavaTailRec",
-                        score = 74708348.540,
-                        error = 385285.112,
-                        mode = "thrpt",
-                        cnt = 200,
-                        unit = "ops/s"
-                    ),
-                    Benchmark(
-                        "factorialKotlinTailRec",
-                        score = 432005903.950,
-                        error = 2558012.821,
-                        mode = "thrpt",
-                        cnt = 200,
-                        unit = "ops/s"
-                    ),
-                    Benchmark(
-                        "factorialJavaReduce",
-                        score = 21560855.907,
-                        error = 586144.742,
-                        mode = "thrpt",
-                        cnt = 200,
-                        unit = "ops/s"
-                    ),
-                    Benchmark(
-                        "factorialKotlinReduce",
-                        score = 99169022.775,
-                        error = 52711794.007,
-                        mode = "thrpt",
-                        cnt = 200,
-                        unit = "ops/s"
-                    )
-                )
-            )
-        }
-        slide("Performances sur 10! 2/2", setOf("measure", "contrast", "igor"), id = "performances_sur_10_2") {
+        slide("Performances sur 10!", setOf("measure", "contrast", "igor"), id = "performances_sur_10_2") {
             barChart(
                 "Benchmark Factoriel",
                 values = mapOf(
@@ -682,16 +596,15 @@ val deepDiveKotlin = pres(
             ul(steps = true) {
                 markdown { "Permet d'enrichir les APIs Java" }
                 ul(steps = true, classes = setOf("bullet")) {
+                    markdown {"[Android KTX](https://developer.android.com/kotlin/ktx)"}
                     markdown { "[Spring](https://docs.spring.io/spring/docs/current/spring-framework-reference/languages.html#kotlin-spring-projects-in-kotlin)" }
                     markdown { "[RxKotlin](https://github.com/ReactiveX/RxKotlin)" }
-                    markdown { "[SparkJava](http://sparkjava.com/news#spark-kotlin-released)" }
                     markdown { "..." }
                 }
                 markdown { "Permet la _SoC_ (Separation of Concerns)" }
             }
         }
     }
-
 
     part("Les collections", id = "collection") {
         slide("Collections", setOf("diagram", "igor")) {
@@ -702,9 +615,6 @@ val deepDiveKotlin = pres(
         }
         slide("api.kt", setOf("code", "kotlin", "igor", "live-code")) {
             sourceCode("collection/api.kt")
-        }
-        slide("immutable-mutable.kt", setOf("code", "kotlin", "igor", "play")) {
-            sourceCode("collection/immutable-mutable.kt")
         }
         slide("break-immutable.kt", setOf("code", "kotlin", "igor", "play")) {
             sourceCode("collection/break-immutable.kt")
@@ -795,26 +705,27 @@ val deepDiveKotlin = pres(
                 )
             )
         }
-        slide("timed-sequence.kt", setOf("code", "play", "kotlin", "manu")) {
-            sourceCode("collection/timed-sequence.kt")
-        }
-        slide("ranges.kt", setOf("code", "kotlin", "manu")) {
-            sourceCode("collection/ranges.kt")
-        }
-        slide("ranges.java", setOf("code", "java", "manu")) {
-            sourceCode("collection/RangesKt.java")
-        }
-        slide("tuples.kt", setOf("code", "kotlin", "manu")) {
-            sourceCode("collection/tuples.kt")
-        }
-        slide("tuples.java", setOf("code", "java", "manu")) {
-            sourceCode("collection/TuplesKt.java")
-        }
+//        slide("timed-sequence.kt", setOf("code", "play", "kotlin", "manu")) {
+//            sourceCode("collection/timed-sequence.kt")
+//        }
+//        slide("ranges.kt", setOf("code", "kotlin", "manu")) {
+//            sourceCode("collection/ranges.kt")
+//        }
+//        slide("ranges.java", setOf("code", "java", "manu")) {
+//            sourceCode("collection/RangesKt.java")
+//        }
+//        slide("tuples.kt", setOf("code", "kotlin", "manu")) {
+//            sourceCode("collection/tuples.kt")
+//        }
+//        slide("tuples.java", setOf("code", "java", "manu")) {
+//            sourceCode("collection/TuplesKt.java")
+//        }
         slide("Bilan collection", setOf("details", "contrast", "igor", "manu"), id = "collection") {
             ul(steps = true) {
                 markdown { "💪 Super on a de l'immutabilité, des `map`, `flatMap`, `fold`, `aggregate`,..." }
                 markdown { "🤨 Mais ça reste des collections Java" }
-                markdown { "⚖️ Avant d'utiliser les `Sequence`, faites des mesures" }
+                markdown { "API standard avec `Range`, `Pair`, et `Triple`" }
+                markdown { "📏 Avant d'utiliser les `Sequence`, faites des mesures" }
             }
         }
     }
@@ -932,7 +843,6 @@ val deepDiveKotlin = pres(
                 markdown { "👍 Ecosystème et communauté" }
                 markdown { "🚀 Évolution rapide" }
                 markdown { "🐣 Code multiplatform" }
-                markdown { "DSL" }
                 markdown { "> Kotlin réussit une belle alchimie entre pragmatisme, puissance, sûreté, accessibilité." }
             }
         }

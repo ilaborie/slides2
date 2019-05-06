@@ -43,6 +43,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("script-util"))
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$vJackson")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
 }
 
 tasks.withType<KotlinCompile> {

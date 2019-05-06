@@ -5,7 +5,7 @@ object DeepThought {
     }
 }
 
-fun main(args: Array<String>) {
+fun main() {
 
     val ultimateQuestionOfLife: Int by lazy {
         DeepThought.answer()

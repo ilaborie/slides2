@@ -1,12 +1,12 @@
 * ⚠️ Les contrôles de types génériques ne sont faits qu'au moment de la compilation
 * Covariant: `out`, en java `? extends T`
 * Contravariant: `in`, en java `? super T`
+* Projection `*` correspondant à `Any?` ou `Nothing`
 
+#### Borne supérieure
 
-<div>
-    <h4>Borne supérieure</h4>
-    <pre class="lang-kotlin"><code><span class="token keyword">fun</span> <span class="token operator">&lt;</span>T <span class="token operator">:</span> Comparable<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span><span class="token operator">&gt;</span> <span class="token function">sort</span><span class="token punctuation">(</span>list<span class="token operator">:</span> List<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator">:</span> List<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span></code></pre>
-</div>
-
+```kotlin
+fun <T : Comparable<T>> sort(list: List<T>): List<T>
+```
 
 Les détails: <https://kotlinlang.org/docs/reference/generics.html>
