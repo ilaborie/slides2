@@ -11,7 +11,8 @@ data class Slide(
     val classes: Set<String> = emptySet(),
     val content: List<Content> = emptyList(),
     val previous: Id? = null,
-    val next: Id? = null
+    val next: Id? = null,
+    val notes: String? = null
 ) : Content {
 
     val isCover: Boolean by lazy {

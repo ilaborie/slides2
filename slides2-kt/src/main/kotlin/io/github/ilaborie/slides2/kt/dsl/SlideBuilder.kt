@@ -7,13 +7,16 @@ import io.github.ilaborie.slides2.kt.engine.Slide
 @PresentationMarker
 class SlideBuilder(partDsl: PartBuilder) : ContainerBuilder(partDsl.presentationDsl.input) {
 
+    var notes: String? = null
+
     internal fun build(id: Id, title: Content, styles: Set<String>): Slide {
         val contents = super.build()
         return Slide(
             id = id,
             title = title,
             classes = styles + (if (contents.any { it.steps }) setOf("steps") else emptySet()),
-            content = contents
+            content = contents,
+            notes = notes
         )
     }
 

@@ -596,7 +596,7 @@ val deepDiveKotlin = pres(
             ul(steps = true) {
                 markdown { "Permet d'enrichir les APIs Java" }
                 ul(steps = true, classes = setOf("bullet")) {
-                    markdown {"[Android KTX](https://developer.android.com/kotlin/ktx)"}
+                    markdown { "[Android KTX](https://developer.android.com/kotlin/ktx)" }
                     markdown { "[Spring](https://docs.spring.io/spring/docs/current/spring-framework-reference/languages.html#kotlin-spring-projects-in-kotlin)" }
                     markdown { "[RxKotlin](https://github.com/ReactiveX/RxKotlin)" }
                     markdown { "..." }
@@ -786,6 +786,64 @@ val deepDiveKotlin = pres(
         }
     }
 
+    part("Coroutines") {
+        slide("Callback hell problem", setOf("code", "kotlin", "manu")) {
+            sourceCode("coroutines/co1.kt")
+
+            notes = """
+Pour expliquer un des intérets des coroutines, on va partir d’un problème que vous avez surement tous eu, le callback hell.
+On a une function assez simple, main, qui prend un paramètres et qui contient à l’intérieur deux étapes de calcul, la deuxieme étape nécessitant le résultat de la seconde.
+Au niveau écriture, on ne se préoccupe pas vraiment du temps que peut prendre step1 pour répondre, on est bloquant.""".trimIndent()
+
+        }
+        slide("Utilisons un callback", setOf("code", "kotlin", "manu")) {
+            ul(steps = true) {
+                sourceCode("coroutines/co1.kt")
+                asciiMath { "=>" }
+                sourceCode("coroutines/co2.kt")
+            }
+            notes = """
+Avec kotlin, on peut s’implement l’écrire avec des lambdas, ce qui donne ceci à droite. On vient de créer une callback."""
+        }
+        slide("Ajoutons une étape", setOf("code", "kotlin", "manu")) {
+            ul(steps = true) {
+                sourceCode("coroutines/co3.kt")
+                asciiMath { "=>" }
+                sourceCode("coroutines/co3b.kt")
+            }
+            notes = """
+Maintenant si on rajoute une autre étape, on se rend vite compte qu’autant le code écrit de facon directe à gauche continue d’etre lisible, autant le code à droite l’est moins.
+Donc pour une besoin de lisibilité, j’aurai tendance à préférer écrire le code de gauche. Mais imaginons maintenant que mes étapes soient non blocantes, comment faire en sorte de pouvoir écrire ce code ?
+La réponse c’est les coroutines.""".trimIndent()
+        }
+
+        slide("suspend", setOf("code", "kotlin", "manu")) {
+            sourceCode("coroutines/co4.kt")
+
+        }
+        slide("Continuation", setOf("code", "java", "manu")) {
+            sourceCode("coroutines/base.kt")
+            sourceCode("coroutines/base.java")
+            link(
+                "https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-continuation/index.html",
+                "API Continuation"
+            )
+        }
+        slide("Plus sur les coroutines", setOf("manu")) {
+            ul(classes = setOf("bullet")) {
+                markdown { "Channel (expérimental)" }
+                markdown { "Context" }
+                markdown { "dispatchers" }
+                markdown { "Jobs" }
+                markdown { "Scope" }
+            }
+            markdown { "On atteind les [limites du décompilateur](https://discuss.kotlinlang.org/t/decompiled-file-is-extremely-large-when-it-includes-coroutine-builder-functions-such-as-launch-async/10882)" }
+            notes =
+                """On va pas aller beaucoup plus loin sur les coroutines parce que d’une 3H ca serait pas assez, et de deux on est pas mal limité par la quantité de bytecode généré et par pas mal de bugs sur le décompilateur qui pour des cas assez simples génèrent des fichiers énormes.
+"""
+        }
+    }
+
     part("Conclusion") {
         slide("Android", setOf("contrast", "manu")) {
             ul {
@@ -834,7 +892,10 @@ val deepDiveKotlin = pres(
                 "Stackoverflow insights"
             )
             link("https://octoverse.github.com/projects#languages", "The State of the Octoverse")
-            link("https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted", "Stackoverflow insights")
+            link(
+                "https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted",
+                "Stackoverflow insights"
+            )
         }
         slide("Kotlin vs Java", setOf("contrast", "manu", "igor"), id = "kotlin_vs_java") {
             ul(steps = true) {
