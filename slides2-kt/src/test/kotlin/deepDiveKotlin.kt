@@ -3,6 +3,7 @@ import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.em
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.dsl.raw
+import io.github.ilaborie.slides2.kt.engine.Renderer
 import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.rivieraDev19
@@ -43,7 +44,31 @@ fun main() {
         config.input.copyOrUpdate(it, outputDir)
     }
 
-    // TODO list speaker
+    // Write notes
+    outputDir.writeTextFile("notes.md") {
+        with(SlideEngine) {
+            deepDiveKotlin(config.input)
+                .allSlides
+                .asSequence()
+                .mapIndexed { i, slide ->
+                    val prefix = when {
+                        "cover" in slide.classes -> "#"
+                        "part" in slide.classes  -> "##"
+                        else                     -> "###"
+                    }
+                    val suffix = when {
+                        "igor" in slide.classes && "manu" in slide.classes -> "[EV-IL]"
+                        "manu" in slide.classes                            -> "[EV]"
+                        "igor" in slide.classes                            -> "[IL]"
+                        else                                               -> "[EV-IL]"
+                    }
+
+                    """$prefix [${i+1}] ${render(Renderer.Companion.RenderMode.Text, slide.title)} $suffix
+                      |${slide.notes ?: "Pas de notes"}
+                      |---""".trimMargin()
+                }.joinToString("\n")
+        }
+    }
 }
 
 val deepDiveKotlin = pres(
@@ -84,14 +109,19 @@ val deepDiveKotlin = pres(
         slide("HelloWorld.java", setOf("code", "java", "igor", "live-code"), "hw-java") {
             sourceCode("bytecode/HelloWorld.java")
             code("bash") { "javac HelloWorld.java" }
+            notes = """
+                * `javac HelloWorld.java`
+                * `java HelloWorld` """.trimIndent()
         }
         slide("Java ByteCode binary", setOf("code", "hex", "igor", "live-code")) {
             code("bash") { "hexdump -C HelloWorld.class" }
             sourceCode("bytecode/HelloWorld.class.hex")
+            notes = """* `hexdump -C HelloWorld.class`"""
         }
         slide("Explorons le ByteCode", setOf("code", "bytecode", "igor", "live-code")) {
             code("bash") { "javap -c HelloWorld.class" }
             sourceCode("bytecode/HelloWorld.class.txt")
+            notes = """* `javap -c -v HelloWorld.class`"""
         }
         slide("À propos du ByteCode", setOf("details", "contrast", "igor", "steps"), "bytecode-details") {
             ul(steps = true, classes = setOf("bullet")) {
@@ -141,6 +171,10 @@ val deepDiveKotlin = pres(
         slide("HelloWorld.kt", setOf("code", "kotlin", "manu", "live-code"), "hw-kotlin") {
             sourceCode("introduction_kotlin/HelloWorld.kt")
             code("bash") { "kotlinc HelloWorld.kt" }
+            notes = """
+                * transform to kotlin (tooling IntelliJ)
+                * nettoyage (pas d'object, pas d'annotation, pas d'args)
+                * `java HelloWorldKt`""".trimIndent()
         }
         slide("kotlinc", setOf("diagram", "manu")) {
             inlineFigure("introduction_kotlin/Compile Kotlin.svg", "kotlinc")
@@ -199,57 +233,57 @@ val deepDiveKotlin = pres(
                 ),
                 classes = setOf("step")
             )
-            ul(steps = true) {
-                html { "🏎 Performances ?" }
-            }
+//            ul(steps = true) {
+//                html { "🏎 Performances ?" }
+//            }
         }
-        slide("Performance HelloWorld.kt", setOf("bilan", "contrast", "igor")) {
-            ul(steps = true) {
-                markdown {
-                    """> Ne croyez pas les benchmarks, faites-les vous-même !
-
-* <https://github.com/JetBrains/kotlin-benchmarks>
-* <https://github.com/MonkeyPatchIo/kotlin-perf>
-"""
-                }
-                jmh(
-                    listOf(
-                        Benchmark(
-                            "testJava",
-                            score = 66490.271,
-                            error = 879.996,
-                            mode = "thrpt",
-                            cnt = 200,
-                            unit = "ops/s"
-                        ),
-                        Benchmark(
-                            "testKotlin",
-                            score = 72393.914,
-                            error = 935.962,
-                            mode = "thrpt",
-                            cnt = 200,
-                            unit = "ops/s"
-                        )
-                    )
-                )
-                barChart(
-                    "Benchmark Hello World",
-                    values = mapOf(
-                        "testJava" to 66490,
-                        "testKotlin" to 72393
-                    ),
-                    factor = { it },
-                    infoFn = { "$it ops/s" },
-                    mode = BarChart.Companion.BarChartCustom(
-                        min = 0,
-                        max = 72393,
-                        low = 0,
-                        high = 72393,
-                        optimum = 66490
-                    )
-                )
-            }
-        }
+//        slide("Performance HelloWorld.kt", setOf("bilan", "contrast", "igor")) {
+//            ul(steps = true) {
+//                markdown {
+//                    """> Ne croyez pas les benchmarks, faites-les vous-même !
+//
+//* <https://github.com/JetBrains/kotlin-benchmarks>
+//* <https://github.com/MonkeyPatchIo/kotlin-perf>
+//"""
+//                }
+//                jmh(
+//                    listOf(
+//                        Benchmark(
+//                            "testJava",
+//                            score = 66490.271,
+//                            error = 879.996,
+//                            mode = "thrpt",
+//                            cnt = 200,
+//                            unit = "ops/s"
+//                        ),
+//                        Benchmark(
+//                            "testKotlin",
+//                            score = 72393.914,
+//                            error = 935.962,
+//                            mode = "thrpt",
+//                            cnt = 200,
+//                            unit = "ops/s"
+//                        )
+//                    )
+//                )
+//                barChart(
+//                    "Benchmark Hello World",
+//                    values = mapOf(
+//                        "testJava" to 66490,
+//                        "testKotlin" to 72393
+//                    ),
+//                    factor = { it },
+//                    infoFn = { "$it ops/s" },
+//                    mode = BarChart.Companion.BarChartCustom(
+//                        min = 0,
+//                        max = 72393,
+//                        low = 0,
+//                        high = 72393,
+//                        optimum = 66490
+//                    )
+//                )
+//            }
+//        }
     }
 
     part("Les bases", id = "basic") {
@@ -347,18 +381,16 @@ val deepDiveKotlin = pres(
             sourceCode("fonction/quizz.kt")
             ul(steps = true) {
                 markdown { "Compile `my-app` avec `lib-v1.0.0`" }
-                markdown { "`java my-app.jar -cp lib-v1.0.0`" }
-                markdown { "`java my-app.jar -cp lib-v1.0.1`" }
+                markdown { "`java my-app.jar -cp lib-v1.0.0.jar`" }
+                markdown { "`java my-app.jar -cp lib-v1.0.1.jar`" }
                 markdown { "Résultat ?" }
             }
         }
         slide("default-value.java", setOf("code", "java", "igor")) {
-            todo { "bytecode myapp" }
-//            sourceCode("fonction/Default_valueKt.java")
+            sourceCode("fonction/my-app.java")
         }
-        slide("ByteCode de default-value", setOf("code", "bytecode", "igor")) {
-            //            sourceCode("fonction/Default_valueKt.class.txt")
-            todo { "bytecode lib" }
+        slide("ByteCode de default-value", setOf("code", "java", "igor")) {
+            sourceCode("fonction/lib.java")
         }
         slide("Kotlin c'est fun !", setOf("bilan", "contrast", "igor"), id = "fun-bilan") {
             h4("✨ Conseils", setOf("step"))
@@ -705,21 +737,6 @@ val deepDiveKotlin = pres(
                 )
             )
         }
-//        slide("timed-sequence.kt", setOf("code", "play", "kotlin", "manu")) {
-//            sourceCode("collection/timed-sequence.kt")
-//        }
-//        slide("ranges.kt", setOf("code", "kotlin", "manu")) {
-//            sourceCode("collection/ranges.kt")
-//        }
-//        slide("ranges.java", setOf("code", "java", "manu")) {
-//            sourceCode("collection/RangesKt.java")
-//        }
-//        slide("tuples.kt", setOf("code", "kotlin", "manu")) {
-//            sourceCode("collection/tuples.kt")
-//        }
-//        slide("tuples.java", setOf("code", "java", "manu")) {
-//            sourceCode("collection/TuplesKt.java")
-//        }
         slide("Bilan collection", setOf("details", "contrast", "igor", "manu"), id = "collection") {
             ul(steps = true) {
                 markdown { "💪 Super on a de l'immutabilité, des `map`, `flatMap`, `fold`, `aggregate`,..." }
@@ -756,32 +773,31 @@ val deepDiveKotlin = pres(
         }
     }
 
-    part("Un peu plus sur les fonctions", id = "plus_sur_les_fonctions") {
+    part("inline", id = "plus_sur_les_fonctions") {
         slide("inline.kt", setOf("code", "kotlin", "igor")) {
-            sourceCode("plus_sur_les_fonctions/inline.kt")
+            sourceCode("inline/inline-fun.kt")
         }
-        slide("Logger.java", setOf("code", "java", "igor")) {
-            sourceCode("plus_sur_les_fonctions/Logger.java")
+        slide("Logger.java", setOf("code", "bytecode", "igor")) {
+            sourceCode("inline/inline-fun.class.txt")
         }
-        slide("reified.kt", setOf("code", "kotlin", "igor", "play")) {
-            sourceCode("plus_sur_les_fonctions/reified.kt")
+        slide("reified.kt", setOf("code", "kotlin", "igor")) {
+            sourceCode("inline/reified.kt")
         }
         slide("reified.java", setOf("code", "java", "igor")) {
-            sourceCode("plus_sur_les_fonctions/ReifiedKt.java")
+            sourceCode("inline/ReifiedKt.java")
         }
-        slide("Plus sur les fonctions", setOf("details", "contrast", "igor")) {
-            h4(classes = setOf("step")) {
-                markdown { "Cas d'utilisation du `reified`" }
-            }
-            ul(steps = true) {
-                markdown { "Pour créer des extensions Kotlin des fonctions Java qui utilisent des `Class<T>`" }
-            }
-            h4(classes = setOf("step")) {
-                markdown { "Cas d'utilisation du `inline`, `noinline`, `crossinline`" }
-            }
-            ul(steps = true) {
-                markdown { "Quand on utilise `reified`" }
-                markdown { "Quand on sait ce qu'on fait, [https://kotlinlang.org/docs/reference/inline-functions.html](https://kotlinlang.org/docs/reference/inline-functions.html)" }
+        slide("geoloc.kt", setOf("code", "kotlin", "igor")) {
+            sourceCode("inline/geoloc.kt")
+        }
+        slide("geoloc bytecode", setOf("code", "bytecode", "igor")) {
+            sourceCode("inline/geoloc.class.txt")
+        }
+        slide("Bilan inline", setOf("details", "contrast", "igor")) {
+            ul(steps=true) {
+                markdown { "⚠️ les `inline`, `reified`, ... sont à manier avec précaution" }
+                markdown {"[Inline Functions](https://kotlinlang.org/docs/reference/inline-functions.html)"}
+                markdown { "⚠️ les `inline class` sont encore expérimentales" }
+                markdown {"[Inline classes](https://kotlinlang.org/docs/reference/inline-classes.html)"}
             }
         }
     }
@@ -887,15 +903,8 @@ La réponse c’est les coroutines.""".trimIndent()
         }
         slide("Tendance", setOf("contrast", "trends", "igor", "manu")) {
             figure("conclusion/trends.svg", "Tendance")
-            link(
-                "https://insights.stackoverflow.com/trends?tags=kotlin%2Cscala%2Cgroovy%2Cclojure",
-                "Stackoverflow insights"
-            )
+            markdown {"[Stackoverflow trends](https://insights.stackoverflow.com/trends?tags=kotlin%2Cscala%2Cgroovy%2Cclojure), et [Stackoverflow insights](https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted)"}
             link("https://octoverse.github.com/projects#languages", "The State of the Octoverse")
-            link(
-                "https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted",
-                "Stackoverflow insights"
-            )
         }
         slide("Kotlin vs Java", setOf("contrast", "manu", "igor"), id = "kotlin_vs_java") {
             ul(steps = true) {

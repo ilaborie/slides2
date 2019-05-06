@@ -1,13 +1,31 @@
 Compiled from "numeric.kt"
-public final class _01_basic.NumericKt {
-  public static final void tryNumeric();
+public final class NumericKt {
+  public static final int getAnInt();
+    Code:
+       0: getstatic     #11                 // Field anInt:I
+       3: ireturn
+
+  public static final long getALong();
+    Code:
+       0: getstatic     #19                 // Field aLong:J
+       3: lreturn
+
+  public static final java.lang.Double getADouble();
+    Code:
+       0: getstatic     #26                 // Field aDouble:Ljava/lang/Double;
+       3: areturn
+
+  public static final void setADouble(java.lang.Double);
+    Code:
+       0: aload_0
+       1: putstatic     #26                 // Field aDouble:Ljava/lang/Double;
+       4: return
+
+  static {};
     Code:
        0: bipush        42
-       2: istore_0
-       3: ldc2_w        #7                  // long 42l
-       6: lstore_1
-       7: aconst_null
-       8: checkcast     #10                 // class java/lang/Double
-      11: astore_3
-      12: return
+       2: putstatic     #11                 // Field anInt:I
+       5: ldc2_w        #14                 // long 42l
+       8: putstatic     #19                 // Field aLong:J
+      11: return
 }

@@ -1,5 +1,5 @@
 Compiled from "rec-factorial.kt"
-public final class _09_structures.recusion.Rec_factorialKt {
+public final class Rec_factorialKt {
   public static final int recFactorial(int);
     Code:
        0: iload_0

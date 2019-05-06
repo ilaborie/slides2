@@ -1,6 +1,6 @@
-Compiled from "string-templates.kt"
-public final class _01_basic.String_templatesKt {
-  public static final void greeting(_01_basic.Someone);
+Compiled from "greeting.kt"
+public final class GreetingKt {
+  public static final void greeting(Someone);
     Code:
        0: aload_0
        1: ldc           #9                  // String who
@@ -16,28 +16,49 @@ public final class _01_basic.String_templatesKt {
       24: invokevirtual #33                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
       27: invokevirtual #37                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
       30: astore_1
-      31: getstatic     #43                 // Field java/lang/System.out:Ljava/io/PrintStream;
-      34: aload_1
-      35: invokevirtual #49                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
-      38: new           #17                 // class java/lang/StringBuilder
-      41: dup
-      42: invokespecial #21                 // Method java/lang/StringBuilder."<init>":()V
-      45: ldc           #23                 // String Hello
-      47: invokevirtual #27                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
-      50: aload_0
-      51: invokevirtual #54                 // Method _01_basic/Someone.getFirstName:()Ljava/lang/String;
-      54: invokevirtual #27                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
-      57: bipush        32
-      59: invokevirtual #33                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
-      62: aload_0
-      63: invokevirtual #57                 // Method _01_basic/Someone.getLastName:()Ljava/lang/String;
-      66: invokevirtual #27                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
-      69: bipush        33
-      71: invokevirtual #33                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
-      74: invokevirtual #37                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
-      77: astore_1
-      78: getstatic     #43                 // Field java/lang/System.out:Ljava/io/PrintStream;
-      81: aload_1
-      82: invokevirtual #49                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
-      85: return
+      31: iconst_0
+      32: istore_2
+      33: getstatic     #43                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      36: aload_1
+      37: invokevirtual #49                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+      40: new           #17                 // class java/lang/StringBuilder
+      43: dup
+      44: invokespecial #21                 // Method java/lang/StringBuilder."<init>":()V
+      47: ldc           #23                 // String Hello
+      49: invokevirtual #27                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      52: aload_0
+      53: invokevirtual #54                 // Method Someone.getFirstName:()Ljava/lang/String;
+      56: invokevirtual #27                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      59: bipush        32
+      61: invokevirtual #33                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+      64: aload_0
+      65: invokevirtual #57                 // Method Someone.getLastName:()Ljava/lang/String;
+      68: invokevirtual #27                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      71: bipush        33
+      73: invokevirtual #33                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+      76: invokevirtual #37                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      79: astore_1
+      80: iconst_0
+      81: istore_2
+      82: getstatic     #43                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      85: aload_1
+      86: invokevirtual #49                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+      89: new           #17                 // class java/lang/StringBuilder
+      92: dup
+      93: invokespecial #21                 // Method java/lang/StringBuilder."<init>":()V
+      96: ldc           #59                 // String \n        multi\n        line \"
+      98: invokevirtual #27                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     101: aload_0
+     102: invokevirtual #30                 // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+     105: ldc           #61                 // String \"\n        string
+     107: invokevirtual #27                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     110: invokevirtual #37                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     113: invokestatic  #67                 // Method kotlin/text/StringsKt.trimIndent:(Ljava/lang/String;)Ljava/lang/String;
+     116: astore_1
+     117: iconst_0
+     118: istore_2
+     119: getstatic     #43                 // Field java/lang/System.out:Ljava/io/PrintStream;
+     122: aload_1
+     123: invokevirtual #49                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+     126: return
 }

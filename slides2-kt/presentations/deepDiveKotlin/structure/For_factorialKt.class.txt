@@ -1,5 +1,5 @@
 Compiled from "for-factorial.kt"
-public final class _09_structures.recusion.For_factorialKt {
+public final class For_factorialKt {
   public static final int forFactorial(int);
     Code:
        0: iconst_1

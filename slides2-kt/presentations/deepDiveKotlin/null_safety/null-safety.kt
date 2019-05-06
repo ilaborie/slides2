@@ -1,5 +1,4 @@
-fun main(args: Array<String>) {
-
+fun main() {
     val somethingNotNull: String = "aString"
     // somethingNotNull: String = null => compilation error
 
@@ -7,14 +6,13 @@ fun main(args: Array<String>) {
 
     var something: String? = null
     length = something?.length ?: 0
+    length = createSomething()?.length ?: 0
 
-    length = something()?.length ?: 0
-
-    // length = something()!!.length // throw kotlin.KotlinNullPointerException
+    // length = createSomething()!!.length // throw kotlin.KotlinNullPointerException
 
     // SmartCast
     something = "aString"
-    length = something.length
+    length = something.length // auto cast to String (no need of `?.`)
 }
 
-fun something(): String? = null
+fun createSomething(): String? = null

@@ -1,0 +1,38 @@
+Compiled from "geoloc.kt"
+public final class Geoloc {
+  public final double distanceTo(Geoloc);
+    Code:
+       0: aload_1
+       1: ldc           #9                  // String other
+       3: invokestatic  #15                 // Method kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+       6: iconst_0
+       7: istore_2
+       8: new           #17                 // class kotlin/NotImplementedError
+      11: dup
+      12: aconst_null
+      13: iconst_1
+      14: aconst_null
+      15: invokespecial #21                 // Method kotlin/NotImplementedError."<init>":(Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+      18: checkcast     #23                 // class java/lang/Throwable
+      21: athrow
+
+  public final double getLat();
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field lat:D
+       4: dreturn
+
+  public final double getLng();
+    Code:
+       0: aload_0
+       1: getfield      #35                 // Field lng:D
+       4: dreturn
+
+  public Geoloc(double, double, kotlin.jvm.internal.DefaultConstructorMarker);
+    Code:
+       0: aload_0
+       1: dload_1
+       2: dload_3
+       3: invokespecial #42                 // Method "<init>":(DD)V
+       6: return
+}

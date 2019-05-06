@@ -1,0 +1,28 @@
+Compiled from "inline-fun.kt"
+public final class Inline_funKt {
+  public static final void main();
+    Code:
+       0: getstatic     #15                 // Field Logger.INSTANCE:LLogger;
+       3: astore_0
+       4: iconst_0
+       5: istore_1
+       6: aload_0
+       7: invokevirtual #19                 // Method Logger.getEnable:()Z
+      10: ifeq          27
+      13: iconst_0
+      14: istore_2
+      15: ldc           #21                 // String Hello
+      17: astore_2
+      18: iconst_0
+      19: istore_3
+      20: getstatic     #27                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      23: aload_2
+      24: invokevirtual #33                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+      27: nop
+      28: return
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: invokestatic  #9                  // Method main:()V
+       3: return
+}

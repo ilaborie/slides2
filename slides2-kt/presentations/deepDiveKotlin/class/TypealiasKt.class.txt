@@ -1,7 +1,7 @@
 Compiled from "typealias.kt"
-public final class _06_class_2.TypealiasKt {
-  public static final java.util.Map<kotlin.Pair<java.lang.String, java.lang.Integer>, java.util.List<_06_class_2.Entity>> getAllEntities();
+public final class TypealiasKt {
+  public static final java.util.Map<kotlin.Pair<java.lang.String, java.lang.Integer>, java.util.List<Entity>> getAllEntities();
     Code:
-       0: invokestatic  #12                 // Method kotlin/collections/MapsKt.emptyMap:()Ljava/util/Map;
+       0: invokestatic  #13                 // Method kotlin/collections/MapsKt.emptyMap:()Ljava/util/Map;
        3: areturn
 }
