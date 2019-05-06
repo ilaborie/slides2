@@ -833,6 +833,8 @@ val deepDiveKotlin = pres(
                 "https://insights.stackoverflow.com/trends?tags=kotlin%2Cscala%2Cgroovy%2Cclojure",
                 "Stackoverflow insights"
             )
+            link("https://octoverse.github.com/projects#languages", "The State of the Octoverse")
+            link("https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted", "Stackoverflow insights")
         }
         slide("Kotlin vs Java", setOf("contrast", "manu", "igor"), id = "kotlin_vs_java") {
             ul(steps = true) {
