@@ -3,12 +3,10 @@ import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Theme
+import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
 import io.github.ilaborie.slides2.kt.engine.plugins.*
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
-
-// HTML semantic
-// https://twitter.com/garabatokid/status/1124252258865156097
 
 private const val id = "cssClockwork"
 
@@ -64,10 +62,10 @@ val cssClockwork = pres(
                 markdown { "> The [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html) suggests choosing the least powerful language suitable for a given purpose" }
                 markdown { "Bien connaitre les [sélecteurs](https://developer.mozilla.org/fr/docs/Web/CSS/S%C3%A9lecteurs_CSS), et les [unités](https://developer.mozilla.org/fr/docs/Web/CSS/length)" }
 
-                markdown { "Evitez trop d'adhérence aux pré-processeur, pensez aussi aux post-processeurs" }
-                markdown { "[Flexbox](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Flexible_Box_Layout) et [CSS Grid](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Grid_Layout) c'est géniaux !" }
-                markdown { "Les [pseudo-éléments](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) `::before` et `::after` sont géniaux !" }
-                markdown { "Les [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) commme `:checked` sont puissantes" }
+                markdown { "Evitez trop d'adhérences aux pré-processeur" }
+                markdown { "[Flexbox](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Flexible_Box_Layout) et [CSS Grid](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Grid_Layout) c'est génial !" }
+                markdown { "Les [pseudo-éléments](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) `::before` et `::after` sont génial !" }
+                markdown { "Les [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) commme `:checked` c'est puissant" }
                 strong("Traitez le CSS comme du code !")
             }
         }
@@ -75,6 +73,7 @@ val cssClockwork = pres(
             ul(steps = true) {
                 markdown { "SVG et du CSS pour déssiner une 🦄 " }
                 markdown { "Live-coding CSS sans JS" }
+                file("code/unicorn.html")
                 link("https://www.youtube.com/watch?v=fPObs60585w", "CSS is Awesome au Devfest Toulouse 2017")
                 link("http://www.monkeypatch.io/blog/2017/2017-05-02-makingof_css_is_awesome/", "Blog  Making Of")
             }
@@ -93,6 +92,9 @@ val cssClockwork = pres(
                 markdown { "[`box-sizing`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)" }
                 markdown { "[`border-radius`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius)" }
                 markdown { "[`box-shadow`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow)" }
+            }
+            notice(NoticeKind.Tips) {
+                markdown { "`currentColor` et les `em` peuvent être utilisé comme des variables." }
             }
         }
         slide("une aiguille", setOf("live-code")) {
