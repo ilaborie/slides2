@@ -17,5 +17,8 @@
     "gh-pages": "^2.0.1",
     "parcel-bundler": "^1.11.0",
     "puppeteer": "^1.15.0"
+  },
+  "dependencies": {
+    "code": "^5.2.4"
   }
 }

@@ -1,5 +1,7 @@
 import io.github.ilaborie.slides2.kt.SlideEngine
+import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.pres
+import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Theme
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
 import io.github.ilaborie.slides2.kt.engine.plugins.*
@@ -13,16 +15,28 @@ private const val id = "cssClockwork"
 fun main() {
     val config = jvmConfig(from = "presentations/cssClockwork", notes = "notes.md")
 
+    val cssClockworkPlugin = object : WebPlugin {
+        override val name: String = "CssClockworkPlugin"
+        override fun scripts(): List<Script> =
+            listOf(Script.script("cssClockwork.js"))
+    }
+
     SlideEngine
         .use(CheckContentPlugin)
         .use(TocPlugin, NavigatePlugin)
-        .use(PrismJsPlugin(), MathJaxPlugin())
+        .use(PrismJsPlugin(), MathJaxPlugin(), cssClockworkPlugin)
         .run(config, cssClockwork, listOf(Theme.mixit19))
 
-    // Copy video
+
     val outputDir = config.output / id
-    val scriptDir = config.input / "video"
+    // Copy video
+    val videoDir = config.input / "video"
     listOf("css-wtf.mp4").forEach {
+        videoDir.copyOrUpdate(it, outputDir)
+    }
+    // Copy script
+    val scriptDir = config.input / "script"
+    listOf("cssClockwork.js").forEach {
         scriptDir.copyOrUpdate(it, outputDir)
     }
 }
@@ -30,7 +44,7 @@ fun main() {
 val cssClockwork = pres(
     id = id,
     extraStyle = "style",
-    title = { h1 { html { "⏰ CSS Clockworks<br><div class=\"clock\"></div>" } } }) {
+    title = { h1 { html { "⏰ CSS Clockworks" } } }) {
     part("Introduction", skipHeader = true) {
         slide("Speakers", setOf("header-hidden")) {
             speaker(
@@ -45,7 +59,7 @@ val cssClockwork = pres(
             )
             figure("logos/monkeypatch.svg", "MonkeyPatch")
         }
-        slide("CSS is Awesome 1/2") {
+        slide("CSS is Awesome! 1/2") {
             ul(steps = true) {
                 markdown { "> The [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html) suggests choosing the least powerful language suitable for a given purpose" }
                 markdown { "Bien connaitre les [sélecteurs](https://developer.mozilla.org/fr/docs/Web/CSS/S%C3%A9lecteurs_CSS), et les [unités](https://developer.mozilla.org/fr/docs/Web/CSS/length)" }
@@ -57,7 +71,7 @@ val cssClockwork = pres(
                 strong("Traitez le CSS comme du code !")
             }
         }
-        slide("CSS is Awesome 2/2") {
+        slide("CSS is Awesome! 2/2") {
             ul(steps = true) {
                 markdown { "SVG et du CSS pour déssiner une 🦄 " }
                 markdown { "Live-coding CSS sans JS" }
@@ -68,20 +82,24 @@ val cssClockwork = pres(
     }
 
     part("Live-coding") {
-
-        slide("La forme") {
-            markdown {
-                """
-                border-radius
-                border & shadow
-            """.trimIndent()
-            }
+        // Step 1
+        slide("Le cadre", setOf("live-code")) {
+            sourceCode("code/step1.css")
+            demo(1)
         }
-        slide("La forme - liens") {
+        slide("La cadre - liens") {
             ul {
                 markdown { "[L'élément `<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time)" }
+                markdown { "[`box-sizing`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)" }
+                markdown { "[`border-radius`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius)" }
+                markdown { "[`box-shadow`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow)" }
             }
         }
+        slide("une aiguille", setOf("live-code")) {
+            sourceCode("code/step2.css")
+            demo(1)
+        }
+
 
         slide("Heure et minutes") {
             markdown {
@@ -162,4 +180,10 @@ val cssClockwork = pres(
             }
         }
     }
+}
+
+fun ContainerBuilder.demo(step: Int, inner: String = "") {
+    html { """<div class="demo">
+             |  <div class="clock-step$step">$inner</div>
+             |</div>""".trimMargin() }
 }
