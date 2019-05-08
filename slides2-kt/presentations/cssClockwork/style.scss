@@ -31,11 +31,15 @@ body > header {
 }
 
 
-section article {
+section > article {
 
   pre {
     max-height: 75vh;
     overflow: auto;
+  }
+
+  ul .notice {
+    margin-top: 1em;
   }
 
   .demo {
@@ -93,6 +97,9 @@ section article {
       img {
         max-height: 25vh;
         width: 50%;
+      }
+      figcaption {
+        display: none;
       }
     }
   }

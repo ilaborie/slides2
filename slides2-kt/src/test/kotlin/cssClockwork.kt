@@ -88,13 +88,15 @@ val cssClockwork = pres(
         }
         slide("La cadre - liens") {
             ul {
-                markdown { "[L'élément `<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time)" }
+                markdown { "[L'élément `<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time) existe !" }
+                markdown { "[`currentColor`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentColor_keyword)"}
                 markdown { "[`box-sizing`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)" }
                 markdown { "[`border-radius`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius)" }
                 markdown { "[`box-shadow`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow)" }
-            }
-            notice(NoticeKind.Tips) {
-                markdown { "`currentColor` et les `em` peuvent être utilisé comme des variables." }
+
+                notice(NoticeKind.Tips) {
+                    markdown { "`currentColor` et `em` peuvent être utilisé comme des variables." }
+                }
             }
         }
         slide("une aiguille", setOf("live-code")) {
