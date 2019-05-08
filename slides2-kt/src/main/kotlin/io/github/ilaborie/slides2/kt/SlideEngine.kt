@@ -205,6 +205,7 @@ object SlideEngine {
         val instances = time("Generate all `${pres.sTitle}`") {
             with(SlideEngine) {
                 pres.renderText(config)
+                if (config.notes != null) renderNotes(pres, config.output, config.notes)
                 themes
                     .map {
                         info("🎨: theme") { "using ${it.name}" }
@@ -215,6 +216,26 @@ object SlideEngine {
         }
         return PresentationOutput(pres.sTitle, instances)
     }
+
+    private fun renderNotes(pres: Presentation, output: Folder, notes: String): Unit =
+        (output / pres.id.id).writeTextFile(notes) {
+            info("📝: notes") { "Generate notes to  ${highlight(notes)}" }
+            with(SlideEngine) {
+                pres.allSlides
+                    .asSequence()
+                    .mapIndexed { i, slide ->
+                        val prefix = when {
+                            "cover" in slide.classes -> "#"
+                            "part" in slide.classes  -> "##"
+                            else                     -> "###"
+                        }
+                        """$prefix [${i + 1}] ${render(Text, slide.title)}
+                      |${slide.notes ?: "Pas de notes"}
+                      |---
+                      |""".trimMargin()
+                    }.joinToString("\n")
+            }
+        }
 
 
     private fun plugContent(content: Content): Content =

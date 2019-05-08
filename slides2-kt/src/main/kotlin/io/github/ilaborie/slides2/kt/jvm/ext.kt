@@ -29,8 +29,9 @@ fun ByteArray.readAsBase64(): String =
 
 
 
-fun jvmConfig(from: String, to: String="public"): Config =
+fun jvmConfig(from: String, to: String="public", notes: String? = null): Config =
     Config(
         input = JvmFolder(File(from)),
-        output = JvmFolder(File(to))
+        output = JvmFolder(File(to)),
+        notes = notes
     )

@@ -6,6 +6,7 @@
   --col2: #2c233d;
   --col3: #ff8d4e;
   --col4: #aecbd6;
+  --col5: hsla(196, 33%, 76%, .5);
 
   --base-font: 'Lato', var(--system-font);
   --header-font: 'Lato', var(--system-font);
@@ -25,8 +26,12 @@
   --footerBg: var(--col2);
 }
 
-
 section.part footer {
   box-shadow: none;
   padding: .1em;
+}
+
+main > section > article code:not([class*="language-"]):not([class*="raw-"]) {
+  background: var(--col5);
+  border: thin solid rgba(0,0,0,.25);
 }

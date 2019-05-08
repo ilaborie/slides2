@@ -11,13 +11,20 @@ import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 private const val id = "cssClockwork"
 
 fun main() {
-    val config = jvmConfig("presentations/cssClockwork")
+    val config = jvmConfig(from = "presentations/cssClockwork", notes = "notes.md")
 
     SlideEngine
         .use(CheckContentPlugin)
         .use(TocPlugin, NavigatePlugin)
         .use(PrismJsPlugin(), MathJaxPlugin())
         .run(config, cssClockwork, listOf(Theme.mixit19))
+
+    // Copy video
+    val outputDir = config.output / id
+    val scriptDir = config.input / "video"
+    listOf("css-wtf.mp4").forEach {
+        scriptDir.copyOrUpdate(it, outputDir)
+    }
 }
 
 val cssClockwork = pres(
@@ -40,7 +47,7 @@ val cssClockwork = pres(
         }
         slide("CSS is Awesome 1/2") {
             ul(steps = true) {
-                markdown { "The [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html) suggests choosing the least powerful language suitable for a given purpose" }
+                markdown { "> The [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html) suggests choosing the least powerful language suitable for a given purpose" }
                 markdown { "Bien connaitre les [sélecteurs](https://developer.mozilla.org/fr/docs/Web/CSS/S%C3%A9lecteurs_CSS), et les [unités](https://developer.mozilla.org/fr/docs/Web/CSS/length)" }
 
                 markdown { "Evitez trop d'adhérence aux pré-processeur, pensez aussi aux post-processeurs" }
@@ -61,12 +68,18 @@ val cssClockwork = pres(
     }
 
     part("Live-coding") {
+
         slide("La forme") {
             markdown {
                 """
                 border-radius
                 border & shadow
             """.trimIndent()
+            }
+        }
+        slide("La forme - liens") {
+            ul {
+                markdown { "[L'élément `<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time)" }
             }
         }
 
@@ -95,38 +108,58 @@ val cssClockwork = pres(
         }
     }
 
+    part("Support") {
+
+        slide("Ça marche partout") {
+            ul(steps = true) {
+                markdown { "`border-radius`" }
+                markdown { "..." }
+            }
+        }
+        slide("Ça sur les navigateurs modernes") {
+            ul(steps = true) {
+                markdown { "..." }
+            }
+        }
+    }
+
     part("Conclusion") {
-        slide("Le pourquoi ?") {
-            h4("A quoi ça sert ?")
+        slide("A quoi ça sert ?") {
             ul(steps = true) {
                 markdown { "à rien." }
             }
         }
-        slide("Les moments 'WTF' avec le CSS") {
+
+        slide("Les moments 'WTF'") {
+            html { """<video autoplay loop src="css-wtf.mp4" type="video/mp4"></video>""" }
+        }
+
+        slide("Pourquoi on en est là") {
             ul(steps = true) {
+                markdown { "🕳 <del>Incompatibilité</del>" }
                 markdown { "🚫 pas de cours CSS" }
                 markdown { "⌛️ Pas le temps sur les projets" }
                 markdown { "😡 technologie mésestimé" }
                 markdown { "🛑 **Il faut changer celà !**" }
             }
         }
+
         slide("Comment apprendre") {
             ul(steps = true) {
-                markdown { "🤹‍♂️ présentaion" }
+                markdown { "🤹‍♂️ regardez des présentations" }
                 markdown { "🎓 mentoring" }
                 markdown { "📚 livres, par exemple [CSS Secrets](http://www.amazon.com/CSS-Secrets-Lea-Verou/dp/1449372635?tag=leaverou-20)" }
                 markdown { "... les _side-projects_" }
-                html { "maximiser `(whaou)/(wtf)`" }
+                html { "maximiser `(wow)/(wtf)`" }
             }
         }
+
         slide("Merci") {
             h4("Questions ?")
             em { html { "(les retours sont bienvenus)" } }
             html {
                 """<div class="clock unicorn"></div>"""
             }
-
         }
     }
-
 }

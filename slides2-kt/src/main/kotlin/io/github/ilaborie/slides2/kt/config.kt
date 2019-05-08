@@ -51,4 +51,4 @@ interface Folder {
 }
 
 
-data class Config(val output: Folder, val input: Folder)
+data class Config(val output: Folder, val input: Folder, val notes: String?)
