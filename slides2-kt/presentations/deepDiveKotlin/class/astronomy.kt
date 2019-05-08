@@ -16,8 +16,8 @@ data class Planet(override val name: String,
 data class Moon(override val name: String) : AstronomicalBody
 
 object SolarSystem {
-    val earth = Planet(name = "Earth")
     val moon = Moon(name = "Moon")
+    val earth = Planet(name = "Earth") + moon
 
     val bodies: List<AstronomicalBody> = listOf(
         earth,

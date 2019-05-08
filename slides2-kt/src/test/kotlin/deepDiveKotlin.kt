@@ -332,6 +332,16 @@ val deepDiveKotlin = pres(
         }
         slide("null-safety.kt", setOf("code", "kotlin", "manu", "live-code")) {
             sourceCode("null_safety/null-safety.kt")
+            notes = """* `somethingNotNull` mettre `null`, ça plante car `val`
+* passage à `var`, ça plante car type pas nullable
+* `length = something.length` ça plante
+* on met le `?.`, ça plante car type `Int?`
+* on met le `?:0` ça marche
+* `length = createSomething()?.length?:0` pareil avec la fonction
+* `length = createSomething()!!.length` ça plante au runtime
+* `length = createSomething()?.length?:throw IllegalStateException("WTF")` c'est moins mauvais
+* `something = "aString"` et `length = something.length`, pas besoin de `?.` car smart Cast
+* Profiter pour montrer le tooling 'Show Kotlin Bycode' et 'Decompile' """
         }
         slide("null-safety.java", setOf("code", "java", "manu")) {
             sourceCode("null_safety/NullSafetyKt.java")
@@ -419,6 +429,10 @@ val deepDiveKotlin = pres(
         }
         slide("lambda.kt", setOf("code", "kotlin", "manu", "live-code")) {
             sourceCode("lambda/lambda.kt")
+            notes = """* `val suml: (Int, Int) -> Int = { a, b -> a + b }` notation Lambda
+* montrer l'ajout des types dans la lambda
+* `val sum4 = compute(1, 2, { a, b -> a + b })`, puis sortie de la lambda
+* `val sum4 = compute(1, 2) { a, b -> a + b }`"""
         }
         slide("lambda.java", setOf("code", "java", "manu")) {
             sourceCode("lambda/LambdaKt.java")
@@ -445,12 +459,33 @@ val deepDiveKotlin = pres(
     part("Les classes", id = "class") {
         slide("astronomy.kt", setOf("code", "kotlin", "manu", "live-code")) {
             sourceCode("class/astronomy.kt")
+            notes = """--Planet--
+* dans `AstronomicalBody` ajouter un `val name: String`
+* `Planet(plantName: String, moons: List<Moon> = emptyList())` ajout constructeur avec 2 params
+* `: AstronomicalBody`, et `val override name = plantName`
+* déplacement du `val override` dans le constructeur
+* ajout ` init { require(name.isNotEmpty()) }` pour controller le name
+* ajout de `data`
+--Moon--
+* `data class Moon(override val name: String) : AstronomicalBody`
+--SolarSystem--
+* utilisation du `object` pour les singletons
+* `val earth = Planet(name = "Earth") + moon` => ajout de l'opérateur avec le `copy`
+--PlanetKind--
+* création de l'enum
+* ajout du companion object avec `fun fromName(name: String): PlanetKind = PlanetKind.valueOf(name)`
+--getMoons--
+* `val (_, moons) = planet` deconstruction puis retour des lunes
+* utiliser `_`"""
         }
         slide("astronomy.java", setOf("code", "java", "manu")) {
             sourceCode("class/Planet.java")
         }
         slide("Héritage en Kotlin", setOf("code", "kotlin", "igor", "live-code")) {
             sourceCode("class/inheritance.kt")
+            notes = """* `: SmallBody()`,  utiliser `open` sur la class
+* `: SmallBody()` et `override sizeRange()`,  utiliser `open` sur la `fun`
+* montrer type inférence sur le `bodies`"""
         }
         slide("Génériques", setOf("details", "contrast", "igor"), id = "generics") {
             file("class/generics.md")
@@ -620,6 +655,8 @@ val deepDiveKotlin = pres(
     part("Extensions de fonctions", id = "extensions_de_fonction") {
         slide("extension.kt", setOf("code", "kotlin", "live-code", "manu")) {
             sourceCode("extensions_de_fonction/extension.kt")
+            notes = """* ajouter `val AstronomicalBody.size: Int` avec `name.length`
+* ajouter `fun AstronomicalBody.fullName(): String` en utilisant le `name, et la size`"""
         }
         slide("extension.java", setOf("java", "code", "manu")) {
             sourceCode("extensions_de_fonction/ExtensionKt.java")
@@ -647,12 +684,19 @@ val deepDiveKotlin = pres(
         }
         slide("api.kt", setOf("code", "kotlin", "igor", "live-code")) {
             sourceCode("collection/api.kt")
+            notes = """* on démarre par `SolarSystem.bodies`, une liste de corps celeste
+* on filtre sur les `Planet`
+* on `flatMap` sur les `moons`, on utilise `it`
+* on `filterNot` pour retirer les "S/"
+* on `sortBy` name
+* on `joinToString(",\n")`"""
         }
         slide("break-immutable.kt", setOf("code", "kotlin", "igor", "play")) {
             sourceCode("collection/break-immutable.kt")
         }
         slide("sequence.kt", setOf("code", "kotlin", "manu", "live-code")) {
             sourceCode("collection/sequence.kt")
+            notes ="* ajout du `asSequence()`, y compris dans le `flatMap`"
         }
         slide("Performance des séquences 1/2", setOf("measure", "contrast", "manu"), id = "performance_des_sequences") {
             jmh(
@@ -753,6 +797,8 @@ val deepDiveKotlin = pres(
         }
         slide("lazy.kt", setOf("code", "kotlin", "manu", "live-code")) {
             sourceCode("delegate/lazy.kt")
+            notes = """* test sans lazy
+* ajout du `by lazy`"""
         }
         slide("observable.kt", setOf("code", "kotlin", "manu", "play")) {
             sourceCode("delegate/observables.kt")

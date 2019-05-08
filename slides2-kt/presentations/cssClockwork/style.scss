@@ -1,0 +1,120 @@
+:root {
+
+  // Companies
+  --monkeyBof: #00b0ff;
+
+  // Footer
+  --footerText: '@mixitconf @ilaborie #CSS #⏰';
+}
+
+// FIXME try a https://github.com/codrops/LiquidDistortion/ for cover
+// FIXME or https://codepen.io/pierrinho/pen/wrEaEV
+
+// TODO use a https://www.heropatterns.com/ as background with
+
+.monkeyPatch {
+  background: var(--monkeyBof);
+  color: white;
+}
+
+.list-inline li > figure > img {
+  height: 4em;
+}
+
+
+table thead figure {
+  font-size: 67%;
+}
+
+body > header {
+  font-size: 60%;
+}
+
+
+section article {
+  figure figcaption, table caption, .caption {
+    display: none;
+  }
+
+  pre {
+    max-height: 75vh;
+    overflow: auto;
+  }
+
+  ul li > ul {
+    padding-left: 2em;
+  }
+
+  & > figure {
+    height: 100%;
+    align-self: stretch;
+
+    & > svg {
+      height: 100%;
+      width: 75vw;
+      max-width: 75vw;
+    }
+
+    & > img {
+      height: 100%;
+      width: 75vw;
+      max-width: 75vw;
+    }
+  }
+}
+
+
+@media print {
+  section {
+    font-size: .9rem;
+  }
+  section {
+    pre code {
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+}
+
+
+// Slides
+
+.cover {
+  // TODO
+}
+
+.part {
+  img {
+    height: 6em;
+  }
+}
+
+#speakers {
+
+  .previous, .next {
+    @extend .monkeyPatch;
+    // Fix a glitch
+    box-shadow: 0 0 0 1px var(--monkeyBof);
+  }
+
+  footer {
+    display: none;
+  }
+
+  article {
+    font-size: 80%;
+    background: var(--monkeyBof);
+    justify-content: space-evenly;
+
+    figure {
+      width: 100%;
+      align-self: center;
+      max-height: 33vh;
+
+      img {
+        max-height: 25vh;
+        width: 50%;
+      }
+    }
+  }
+}
