@@ -116,7 +116,7 @@ val cssClockwork = pres(
 
         // Step 3
         slide("La rotation", setOf("live-code")) {
-            demo(3)
+            demo(3, data = mapOf("line" to "27-33,37-40"))
         }
         slide("La rotation - liens") {
             ul {
@@ -132,7 +132,7 @@ val cssClockwork = pres(
 
         // Step 4
         slide("Heure et minutes", setOf("live-code")) {
-            demo(4)
+            demo(4, data = mapOf("line" to "38-50"))
         }
         slide("Un peu de JavaScript") {
             sourceCode("code/setHourMinSec.js")

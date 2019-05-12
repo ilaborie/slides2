@@ -8,25 +8,17 @@
     // currentTime
     const currentTime = () => {
         const now = new Date();
-        const h = now.getHours();
-        const min = now.getMinutes();
-        const sec = now.getSeconds();
-        return { h, min, sec };
+        const hour = now.getHours();
+        const minute = now.getMinutes();
+        const second = now.getSeconds();
+        return {hour, minute, second};
     };
 
-    // Set --hour, --minute and --second
-    // const setHourMinuteSecond = () => (elt) => {
-    //     const {h, min, sec} = currentTime();
-    //     elt.style.setProperty("--hour", "" + h);
-    //     elt.style.setProperty("--minute", "" + min);
-    //     elt.style.setProperty("--second", "" + sec);
-    // };
 
-    // setInterval(setHourMinuteSecond(document.body), 1000 /* 1s */);
-
-    const { h, min, sec } = currentTime();
-
-    const delay = 60 * (min + 60 * h) + sec;
-    document.body.style.setProperty("--delay", "" + delay);
+    const {hour, minute, second} = currentTime();
+    const delay = 60 * (minute + 60 * hour) + second;
+    Object.entries({hour, minute, second, delay})
+        .forEach(([key, value]) =>
+            document.body.style.setProperty(`--${key}`, `${value}`));
 
 })();
