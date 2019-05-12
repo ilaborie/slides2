@@ -38,6 +38,13 @@ section > article {
     overflow: auto;
   }
 
+  //& > nav.previous {
+  //  background: rgba(0,0,0,0.05);
+  //}
+  //& > nav.previous:hover {
+  //  background: rgba(0,0,0,0.1);
+  //}
+
   pre.language-css code {
     .token.string {
       background: transparent;
@@ -136,28 +143,11 @@ section.live-code article {
     max-width: 40vh;
 
     code {
-      filter: blur(.25em);
-    }
-
-    code::before {
-      content: '✏️';
-      position: absolute;
-      font-family: var(--base-font);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
-      font-size: 4rem;
-      top: .5em;
-      left: 0;
-      width: 40vw;
-      //height: 100%;
-      border-radius: 100%;
-      filter: drop-shadow(0 0 1rem white);
+      opacity: .01;
     }
 
     &.reveal code {
-      filter: blur(0);
+      opacity: 1;
     }
 
     &.reveal code::before {
@@ -215,6 +205,28 @@ section.live-code article {
 #un_peu_de_javascript article {
   pre {
     font-size: 66%;
+  }
+}
+
+#ca_sur_les_navigateurs_modernes article {
+  figcaption {
+    display: none;
+  }
+  figure {
+    position: relative;
+    max-height: 4em;
+    max-width: 4em;
+  }
+  figure::after {
+    position: absolute;
+    opacity: .8;
+    content: '💩';
+    font-size: 2em;
+    bottom: -.3em;
+    right: -.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 

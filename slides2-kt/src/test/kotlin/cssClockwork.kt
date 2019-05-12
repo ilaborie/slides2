@@ -3,7 +3,6 @@ import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Theme
-import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Info
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Tips
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Warning
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
@@ -102,8 +101,8 @@ val cssClockwork = pres(
             ul {
                 markdown { "[L'élément `<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time) existe !" }
                 markdown { "[`currentColor`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentColor_keyword)" }
-                markdown { "[`box-sizing`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)" }
                 markdown { "[`border-radius`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius)" }
+                markdown { "[`box-sizing`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)" }
                 markdown { "[`box-shadow`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow)" }
 
                 notice(Tips) {
@@ -277,7 +276,7 @@ val cssClockwork = pres(
         }
         slide("Les marqueurs - liens") {
             ul {
-                markdown {"[Using CSS counters](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters)"}
+                markdown { "[Using CSS counters](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters)" }
                 markdown { "[`@counter-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style) (que sur Firefox)" }
                 markdown { "[Emmet](https://docs.emmet.io/cheat-sheet/)" }
 
@@ -291,11 +290,11 @@ val cssClockwork = pres(
     part("Support") {
 
         slide("Ça marche partout") {
+            link("http://caniuse.com")
             ul(steps = true) {
-                markdown { "`border-radius`" }
-                markdown { "..." }
-                todo { "..." } // FIXME
-
+                markdown { "`currentColor`, `border-radius`, `box-shadow`, `box-sizing`," }
+                markdown { "CSS Generated content for pseudo-elements, `calc`," }
+                markdown { "CSS3 2D Transforms, CSS Animation" }
                 notice(Warning) {
                     html { "Pensez à l'accessibilité" }
                 }
@@ -303,8 +302,10 @@ val cssClockwork = pres(
         }
         slide("Ça sur les navigateurs modernes") {
             ul(steps = true) {
-                markdown { "..." }
-                todo { "..." } // FIXME
+                markdown { "CSS Variables (Custom Properties)" }
+                figure("logos/ie.svg", "😡 Pas sur IE")
+                markdown { "Alternative statique: [postcss-preset-env](https://preset-env.cssdb.org/)" }
+                markdown { "Alternative dynamique: JavaScript" }
 
                 notice(Warning) {
                     html { "PENSEZ vraiement à l'accessibilité !" }
@@ -317,6 +318,7 @@ val cssClockwork = pres(
         slide("A quoi ça sert ?") {
             ul(steps = true) {
                 markdown { "à rien." }
+                file("code/clock-unicorn.html")
             }
         }
 
@@ -344,16 +346,21 @@ val cssClockwork = pres(
             }
         }
 
-        slide("Présent, passé, et future") {
+        slide("Passé, présent et future") {
             ul(steps = true) {
                 markdown { "🔮 Que sera le web demain ?" }
-                markdown { "TODO citation Lorsque tu ne sais pas où tu vas, regarde d'où tu viens." }
-                markdown { "Stablilité" }
-                markdown { "Renaissance de Mozilla, Google avec Chrome" }
-                markdown { "Compétition, standard, perfomance, évolution" }
-                markdown { "Platforme universel" }
-                markdown { "WASM & WebComponents ?" }
+                quote("Lorsque tu ne sais pas où tu vas, regarde d'où tu viens.")
+                markdown { "🧱 Donnez vous du temps pour les bases: HTML, CSS, JS" }
             }
+
+            notes = """
+                      | * Moyen age: IE
+                      | * Renaissance: Mozilla, puis Chrome & Smartphone
+                      | * compétition: perf JS, standard
+                      | * évolution: HTML, ES2015, ...
+                      | * Platform universel
+                      | * Hope: WASM & WebComponents
+                      |""".trimMargin()
         }
 
         slide("Merci") {
