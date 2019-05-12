@@ -7,7 +7,7 @@ const currentTime = () => {
 };
 
 // Set --hour, --minute and --second
-const setHourMinuteSecond = () => (elt) => {
+const setHourMinuteSecond = (elt) => () => {
     const {h, min, sec} = currentTime();
     elt.style.setProperty("--hour", "" + h);
     elt.style.setProperty("--minute", "" + min);

@@ -73,8 +73,8 @@ section > article {
 
   pre[data-line] .line-highlight {
     background: #39703f;
-    margin-top: 0;
-    margin-left: -.5em;
+    margin-top: 1.5em;
+    //margin-left: -.5em;
     width: .5em;
   }
 
@@ -99,9 +99,6 @@ section > article {
       font-size: 16px;
       line-height: 18px;
     }
-  }
-  section.live-code article pre.language-css code {
-    opacity: 1;
   }
 }
 
@@ -156,17 +153,17 @@ section.live-code article {
     min-width: 100%;
     max-width: 40vh;
 
-    code {
-      opacity: .01;
-    }
+    //code {
+    //  opacity: .01;
+    //}
 
-    &.reveal code {
-      opacity: 1;
-    }
-
-    &.reveal code::before {
-      content: '';
-    }
+    //&.reveal code {
+    //  opacity: 1;
+    //}
+    //
+    //&.reveal code::before {
+    //  content: '';
+    //}
   }
 
   [class*='clock'] {
@@ -256,7 +253,6 @@ section.live-code article {
 
   figure::after {
     position: absolute;
-    opacity: .8;
     content: '💩';
     font-size: 2em;
     bottom: -.3em;

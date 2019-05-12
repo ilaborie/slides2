@@ -40,10 +40,7 @@ fun main() {
     }
 }
 
-val cssClockwork = pres(
-    id = id,
-    extraStyle = "style",
-    title = { h1 { html { "⏰ CSS Clockworks" } } }) {
+val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "style") {
     part("Introduction", skipHeader = true) {
         slide("Speakers", setOf("header-hidden")) {
             speaker(
@@ -58,7 +55,7 @@ val cssClockwork = pres(
             )
             figure("logos/monkeypatch.svg", "MonkeyPatch")
         }
-        slide("CSS is Awesome! 1/2") {
+        slide("CSS is Awesome!") {
             ul(steps = true) {
                 markdown { "> The [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html) suggests choosing the least powerful language suitable for a given purpose" }
                 markdown { "Bien connaître les [sélecteurs](https://developer.mozilla.org/fr/docs/Web/CSS/S%C3%A9lecteurs_CSS), et les [unités](https://developer.mozilla.org/fr/docs/Web/CSS/length)" }
@@ -68,17 +65,19 @@ val cssClockwork = pres(
                 markdown { "Les [pseudo-éléments](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) `::before` et `::after` sont géniaux !" }
                 markdown { "Les [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) comme `:checked` c'est puissant" }
                 strong("Traitez le CSS comme du code !")
-            }
-        }
-        slide("CSS is Awesome! 2/2") {
-            ul(steps = true) {
-                markdown { "Live-coding CSS sans JS" }
-                markdown { "SVG et du CSS pour dessiner une 🦄 " }
-                file("code/unicorn.html")
                 link("https://www.youtube.com/watch?v=fPObs60585w", "CSS is Awesome au Devfest Toulouse 2017")
                 link("http://www.monkeypatch.io/blog/2017/2017-05-02-makingof_css_is_awesome/", "Blog  Making Of")
             }
         }
+//        slide("CSS is Awesome! 2/2") {
+//            ul(steps = true) {
+//                markdown { "Live-coding CSS sans JS" }
+//                markdown { "SVG et du CSS pour dessiner une 🦄 " }
+//                file("code/unicorn.html")
+//                link("https://www.youtube.com/watch?v=fPObs60585w", "CSS is Awesome au Devfest Toulouse 2017")
+//                link("http://www.monkeypatch.io/blog/2017/2017-05-02-makingof_css_is_awesome/", "Blog  Making Of")
+//            }
+//        }
     }
 
     part("Live-coding") {

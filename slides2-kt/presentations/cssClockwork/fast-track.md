@@ -7,8 +7,8 @@ Fast Track
 # Step 5 - La trotteuse
 
 ```css
-.clock-step5 .pin::before,
-.clock-step5 .pin::after {
+.pin::before,
+.pin::after {
 	position: absolute;
 	display: block;
 	content: '';
@@ -16,14 +16,14 @@ Fast Track
 	border-radius: 50%;
 }
 
-.clock-step5 .pin::before {
+.pin::before {
 	width: calc(2 * var(--width));
 	height: calc(2 * var(--width));
 	top: calc(-1 * var(--width));
 	left: calc(-.5 * var(--width));
 }
 
-.clock-step5 .pin::after {
+.pin::after {
 	width: 100%;
 	height: calc(2 * var(--width));
 	top: calc(-2 * var(--width));
@@ -41,7 +41,7 @@ document.body.style.setProperty("--delay", "" + delay);
 
 ```css
 /* Ticks */
-.clock .tick {
+.tick {
     background: teal;
     position: absolute;
     top: 50%;
@@ -53,7 +53,7 @@ document.body.style.setProperty("--delay", "" + delay);
     transform: rotate(calc(.5turn + 1turn / 12 * var(--count)));
 }
 
-.clock .tick::before {
+.tick::before {
     position: absolute;
     display: block;
     font-size: 8%;
