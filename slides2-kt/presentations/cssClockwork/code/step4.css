@@ -1,0 +1,50 @@
+.clock-step4 {
+	position: relative;
+	background: white;
+	display: block;
+	width: 1em;
+	height: 1em;
+	margin: .25em;
+
+	border: .05em solid currentColor;
+	box-sizing: border-box;
+	border-radius: 50%;
+
+	box-shadow:
+			.05em .05em .1em rgba(0, 0, 0, .5),
+			inset 0 0 0 .02em white,
+			inset .05em .05em .1em rgba(0, 0, 0, .5),
+			inset .5em .5em 1em rgba(0, 0, 0, .1);
+}
+
+/* pins */
+.clock-step4::before, .clock-step4::after {
+	background: currentColor;
+	border-bottom-left-radius: 100% 10%;
+	border-bottom-right-radius: 100% 10%;
+	content: '';
+
+	width: var(--width);
+	height: var(--height);
+
+	position: absolute;
+	top: 50%;
+	left: calc(50% - var(--width) / 2);
+
+	transform: rotate(var(--angle));
+	transform-origin: top center;
+}
+
+/* hour pin */
+.clock-step4::before {
+	--width: .035em;
+	--height: .2em;
+	--angle: calc(1turn / 12 * var(--hour) - .5turn);
+}
+
+/* minute pin */
+.clock-step4::after {
+	--width: .02em;
+	--height: .4em;
+	--angle: calc(1turn / 60 * var(--minute) - .5turn);
+}

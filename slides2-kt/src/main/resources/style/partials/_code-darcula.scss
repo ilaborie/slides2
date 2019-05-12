@@ -28,7 +28,7 @@ main > section > article {
   pre[class*="language-"]:not(.language-sh), pre[class*="raw-"] {
     background-image: linear-gradient(transparent 50%, hsla(0,100%,100%,.025) 0);
     background-size: auto 3em;
-    //background-origin: content-box;
+    background-attachment: local;
   }
 
   pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,

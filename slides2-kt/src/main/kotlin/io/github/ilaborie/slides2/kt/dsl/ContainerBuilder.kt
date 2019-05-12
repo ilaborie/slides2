@@ -185,7 +185,7 @@ open class ContainerBuilder(internal val input: Folder) {
         styledText(Span, classes) { html { text } }
     }
 
-    fun sourceCode(file: String) {
+    fun sourceCode(file: String, classes: Set<String> = emptySet(), data: Map<String, String> = emptyMap()) {
         val extension = file.split(".").last()
         val language = when (extension) {
             "txt"   -> "java"
@@ -206,11 +206,16 @@ open class ContainerBuilder(internal val input: Folder) {
                 "No file ${Styles.highlight(file)}, it has been created with dummy content"
             }
         }
-        code(language) { input.readFileAsString(file) }
+        code(language, classes = classes, data = data) { input.readFileAsString(file) }
     }
 
-    fun code(language: String, codeBlock: () -> String) {
-        content.add { Code(language, codeBlock()) }
+    fun code(
+        language: String,
+        classes: Set<String> = emptySet(),
+        data: Map<String, String> = emptyMap(),
+        codeBlock: () -> String
+    ) {
+        content.add { Code(language, codeBlock(), classes, data) }
     }
 
     fun p(classes: Set<String> = emptySet(), block: ContainerBuilder.() -> Unit) {

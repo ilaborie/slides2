@@ -1,0 +1,97 @@
+.clock-step6 {
+	position: relative;
+	background: white;
+	display: block;
+	width: 1em;
+	height: 1em;
+	margin: .25em;
+
+	border: .05em solid currentColor;
+	box-sizing: border-box;
+	border-radius: 50%;
+
+	box-shadow:
+			.05em .05em .1em rgba(0, 0, 0, .5),
+			inset 0 0 0 .02em white,
+			inset .05em .05em .1em rgba(0, 0, 0, .5),
+			inset .5em .5em 1em rgba(0, 0, 0, .1);
+}
+
+/* pins */
+@keyframes rotatePin {
+	from {
+		transform: rotate(.5turn);
+	}
+
+	to {
+		transform: rotate(1.5turn);
+	}
+}
+
+.clock-step6 .pin {
+	background: currentColor;
+	border-bottom-left-radius: 100% 80%;
+	border-bottom-right-radius: 100% 80%;
+	content: '';
+
+	width: var(--width);
+	height: var(--height);
+
+	position: absolute;
+	top: 50%;
+	left: calc(50% - var(--width) / 2);
+
+	transform-origin: top center;
+
+	border: .001em solid rgba(0, 0, 0, .15);
+	box-shadow: 0 0 .005em rgba(0, 0, 0, .25);
+
+	animation: rotatePin var(--duration) linear infinite;
+	/* animation-play-state: paused; */
+	animation-delay: calc(-1s * var(--delay));
+}
+
+.clock-step6 .pin::before,
+.clock-step6 .pin::after {
+	position: absolute;
+	display: block;
+	content: '';
+	background-color: inherit;
+	border-radius: 50%;
+}
+
+.clock-step6 .pin::before {
+	width: calc(2 * var(--width));
+	height: calc(2 * var(--width));
+	top: calc(-1 * var(--width));
+	left: calc(-.5 * var(--width));
+}
+
+.clock-step6 .pin::after {
+	width: 100%;
+	height: calc(2 * var(--width));
+	top: calc(-2 * var(--width));
+}
+
+/* hour pin */
+.clock-step6 .pin.hourhand {
+	color: gray;
+	--width: .035em;
+	--height: .2em;
+	--duration: calc(60s * 60 * 12);
+}
+
+/* minute pin */
+.clock-step6 .pin.minutehand {
+	color: silver;
+	--width: .02em;
+	--height: .3em;
+	--duration: calc(60s * 60);
+}
+
+/* second pin */
+.clock-step6 .pin.secondhand {
+	--width: .015em;
+	--height: .4em;
+	--duration: 60s;
+}

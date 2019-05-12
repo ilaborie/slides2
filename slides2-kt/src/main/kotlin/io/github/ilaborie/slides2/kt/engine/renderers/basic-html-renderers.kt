@@ -24,6 +24,12 @@ import io.github.ilaborie.slides2.kt.jvm.escapeHtml
 val Set<String>.asHtmlClass: String
     get() = if (isEmpty()) "" else """ class="${joinToString(" ")}""""
 
+val Map<String, String>.asHtmlData: String
+    get() =
+        if (isEmpty()) ""
+        else map { (key, value) -> "data-$key=\"$value\"" }
+            .joinToString(" ", prefix = " ")
+
 
 abstract class HtmlTagRenderer<T : Content> : Renderer<T> {
     override val mode = Html
@@ -143,9 +149,9 @@ object CodeHtmlRenderer : Renderer<Code> {
     override val mode: RenderMode = Html
 
     override fun render(content: Code): String =
-        """<pre>
-            |<code class="lang-${content.language}">${content.code.escapeHtml()}</code>
-            |</pre>""".trimMargin()
+        """<pre${content.data.asHtmlData}>
+          |<code${content.classes.asHtmlClass}>${content.code.escapeHtml()}</code>
+          |</pre>""".trimMargin()
 }
 
 object LinkHtmlRenderer : Renderer<Link> {

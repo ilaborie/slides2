@@ -1,0 +1,84 @@
+.clock-step7 {
+	position: relative;
+	background: white;
+	display: block;
+	width: 1em;
+	height: 1em;
+	margin: .25em;
+
+	border: .05em solid currentColor;
+	box-sizing: border-box;
+	border-radius: 50%;
+
+	box-shadow:
+			.05em .05em .1em rgba(0, 0, 0, .5),
+			inset 0 0 0 .02em white,
+			inset .05em .05em .1em rgba(0, 0, 0, .5),
+			inset .5em .5em 1em rgba(0, 0, 0, .1);
+}
+
+/* pins */
+.clock-step7 .pin {
+	background: currentColor;
+	border-bottom-left-radius: 100% 80%;
+	border-bottom-right-radius: 100% 80%;
+	content: '';
+
+	width: var(--width);
+	height: var(--height);
+
+	position: absolute;
+	top: 50%;
+	left: calc(50% - var(--width) / 2);
+
+	transform: rotate(var(--angle));
+	transform-origin: top center;
+
+	border: .001em solid rgba(0, 0, 0, .15);
+	box-shadow: 0 0 .005em rgba(0, 0, 0, .25);
+}
+
+.clock-step7 .pin::before,
+.clock-step7 .pin::after {
+	position: absolute;
+	display: block;
+	content: '';
+	background-color: inherit;
+	border-radius: 50%;
+}
+
+.clock-step7 .pin::before {
+	width: calc(2 * var(--width));
+	height: calc(2 * var(--width));
+	top: calc(-1 * var(--width));
+	left: calc(-.5 * var(--width));
+}
+
+.clock-step7 .pin::after {
+	width: 100%;
+	height: calc(2 * var(--width));
+	top: calc(-2 * var(--width));
+}
+
+/* hour pin */
+.clock-step7 .pin.hourhand {
+	color: gray;
+	--width: .035em;
+	--height: .2em;
+	--angle: calc(1turn / 12 * var(--hour) - .5turn);
+}
+
+/* minute pin */
+.clock-step7 .pin.minutehand {
+	color: silver;
+	--width: .02em;
+	--height: .3em;
+	--angle: calc(1turn / 60 * var(--minute) - .5turn);
+}
+
+/* second pin */
+.clock-step7 .pin.secondhand {
+	--width: .015em;
+	--height: .4em;
+	--angle: calc(1turn / 60 * var(--second) - .5turn);
+}

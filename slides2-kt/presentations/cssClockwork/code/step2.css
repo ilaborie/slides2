@@ -1,4 +1,5 @@
 .clock-step2 {
+	position: relative;
 	display: inline-block;
 	width: 1em;
 	height: 1em;
@@ -14,4 +15,19 @@
 		inset 0 0 0 .02em white,
 		inset .05em .05em .1em rgba(0, 0, 0, .5),
 		inset .5em .5em 1em rgba(0, 0, 0, .1);
+}
+
+/* pin */
+.clock-step2::before {
+	background: currentColor;
+	border-bottom-left-radius: 100% 10%;
+	border-bottom-right-radius: 100% 10%;
+	content: '';
+
+	width: .02em;
+	height: .4em;
+
+	position: absolute;
+	top: 50%;
+	left: calc(50% - .01em);
 }

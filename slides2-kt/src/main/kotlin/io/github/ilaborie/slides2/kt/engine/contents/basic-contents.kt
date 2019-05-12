@@ -57,7 +57,15 @@ data class OrderedList(
     override val classes: Set<String>
 ) : ContainerContent
 
-data class Code(val language: String?, val code: String) : Content
+data class Code(
+    val language: String?,
+    val code: String,
+    val extraClasses: Set<String>,
+    val data: Map<String, String>
+) : Content {
+    val classes: Set<String>
+        get() = (language?.let { setOf("lang-$it") } ?: emptySet()) + extraClasses
+}
 
 data class Link(
     val href: String,
