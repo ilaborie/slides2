@@ -20,8 +20,8 @@
 /* pins */
 .clock-step4::before, .clock-step4::after {
 	background: currentColor;
-	border-bottom-left-radius: 100% 10%;
-	border-bottom-right-radius: 100% 10%;
+	border-bottom-left-radius: 100% 80%;
+	border-bottom-right-radius: 100% 80%;
 	content: '';
 
 	width: var(--width);
@@ -45,6 +45,6 @@
 /* minute pin */
 .clock-step4::after {
 	--width: .02em;
-	--height: .4em;
+	--height: .3em;
 	--angle: calc(1turn / 60 * var(--minute) - .5turn);
 }

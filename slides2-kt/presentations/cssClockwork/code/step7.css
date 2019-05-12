@@ -15,9 +15,21 @@
 			inset 0 0 0 .02em white,
 			inset .05em .05em .1em rgba(0, 0, 0, .5),
 			inset .5em .5em 1em rgba(0, 0, 0, .1);
+
+	counter-reset: tick;
 }
 
 /* pins */
+@keyframes rotatePin {
+	from {
+		transform: rotate(.5turn);
+	}
+
+	to {
+		transform: rotate(1.5turn);
+	}
+}
+
 .clock-step7 .pin {
 	background: currentColor;
 	border-bottom-left-radius: 100% 80%;
@@ -31,11 +43,14 @@
 	top: 50%;
 	left: calc(50% - var(--width) / 2);
 
-	transform: rotate(var(--angle));
 	transform-origin: top center;
 
 	border: .001em solid rgba(0, 0, 0, .15);
 	box-shadow: 0 0 .005em rgba(0, 0, 0, .25);
+
+	animation: rotatePin var(--duration) linear infinite;
+	/* animation-play-state: paused; */
+	animation-delay: calc(-1s * var(--delay));
 }
 
 .clock-step7 .pin::before,
@@ -65,7 +80,7 @@
 	color: gray;
 	--width: .035em;
 	--height: .2em;
-	--angle: calc(1turn / 12 * var(--hour) - .5turn);
+	--duration: calc(60s * 60 * 12);
 }
 
 /* minute pin */
@@ -73,12 +88,43 @@
 	color: silver;
 	--width: .02em;
 	--height: .3em;
-	--angle: calc(1turn / 60 * var(--minute) - .5turn);
+	--duration: calc(60s * 60);
 }
 
 /* second pin */
 .clock-step7 .pin.secondhand {
 	--width: .015em;
 	--height: .4em;
-	--angle: calc(1turn / 60 * var(--second) - .5turn);
+	--duration: 60s;
+}
+
+/* Ticks */
+.clock-step7 .tick {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: .4em;
+	transform-origin: top center;
+	transform: rotate(calc(.5turn + 1turn / 12 * var(--count)));
+
+	counter-increment: tick;
+}
+
+.clock-step7 .tick::before {
+	position: absolute;
+	display: block;
+	font-size: 8%;
+	top: calc(100% - .8em);
+	transform: translateX(-40%) rotate(.5turn);
+	text-align: center;
+
+	content: counter(tick, upper-roman);
+}
+
+.clock-step7 .tick {
+	opacity: .25;
+}
+
+.clock-step7 .tick:nth-child(3n) {
+	opacity: .8;
 }

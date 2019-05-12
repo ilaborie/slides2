@@ -212,6 +212,12 @@ section.live-code article {
 @import "code/step6";
 @import "code/step7";
 
+#un_peu_de_javascript article {
+  pre {
+    font-size: 66%;
+  }
+}
+
 #les_moments__wtf_ article {
   video {
     height: 75vh;

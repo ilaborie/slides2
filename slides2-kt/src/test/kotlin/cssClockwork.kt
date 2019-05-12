@@ -3,6 +3,7 @@ import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Theme
+import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Info
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Tips
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Warning
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
@@ -85,6 +86,17 @@ val cssClockwork = pres(
         // Step 1
         slide("Le cadre", setOf("live-code")) {
             demo(1)
+
+            notes = """
+                      | * using 1em as size
+                      | * using `currentColor` as border `.05em`
+                      | * radius 50%
+                      | * `box-sizing: border-box`
+                      | * box-shadow: `.05em .05em .1em rgba(0, 0, 0, .5)`
+                      | * spread-radius et inset `inset 0 0 0 .02em white`
+                      | *    `inset .05em .05em .1em rgba(0, 0, 0, .5)`
+                      | *    `inset .5em .5em 1em rgba(0, 0, 0, .1)`
+                      |""".trimMargin()
         }
         slide("La cadre - liens") {
             ul {
@@ -103,6 +115,16 @@ val cssClockwork = pres(
         // Step 2
         slide("Une aiguille", setOf("live-code")) {
             demo(2, data = mapOf("line" to "2,20-33"))
+
+            notes = """
+                      | * `::before`
+                      | * `width: .02em`
+                      | * `height: .4em;`
+                      | * position relative & absolute
+                      | * top: 50%
+                      | * left: calc(50% - .01em); // -1/2 width
+                      | * border-bottom-{left,right}-radius: 100% 80%
+                      |""".trimMargin()
         }
         slide("Une aiguille - liens") {
             ul {
@@ -117,6 +139,14 @@ val cssClockwork = pres(
         // Step 3
         slide("La rotation", setOf("live-code")) {
             demo(3, data = mapOf("line" to "27-33,37-40"))
+
+            notes = """
+                      | * use var width, height
+                      | * `left: calc(50% - var(--width) / 2);`
+                      | * transform: rotate(10deg);
+                      | * `transform-origin: top center`
+                      | * `--angle: calc(1turn / 60 * 37 - .5turn)` // 37 min
+                      |""".trimMargin()
         }
         slide("La rotation - liens") {
             ul {
@@ -133,6 +163,15 @@ val cssClockwork = pres(
         // Step 4
         slide("Heure et minutes", setOf("live-code")) {
             demo(4, data = mapOf("line" to "38-50"))
+
+            notes = """
+                      | * hour: --width: .035em
+                      | *       --height: .2em;
+                      | *       --angle: calc(1turn / 12 * var(--hour) - .5turn);
+                      | * min:  --width: .02em;
+                      | *       --height: .3em;
+                      | *       --angle: calc(1turn / 60 * var(--minute) - .5turn);
+                      |""".trimMargin()
         }
         slide("Un peu de JavaScript") {
             sourceCode("code/setHourMinSec.js")
@@ -140,14 +179,19 @@ val cssClockwork = pres(
 
         // Step 5
         slide("La trotteuse", setOf("live-code")) {
-            demo(5) {
+            demo(5, data = mapOf("line" to "21,37-38,41-61,64-65,72-73,79-84")) {
                 """
                   |  <span class="pin hourhand"></span>
                   |  <span class="pin minutehand"></span>
                   |  <span class="pin secondhand"></span>""".trimMargin()
             }
+
             notes = """
+                      | * use --hour, --minute, --second
+                      | * second w: .015em, h: .4em
                       | * Fast track for ::after, ::before
+                      | *    `::before` circle `r: 2*width`, `top: -1 width`, `left: -1/2 width`
+                      | *    `::after` `width: 100%`, `height: 2*width`, `top: -1 width`, `left: -1/2 width`
                       | * Issue, not very pleased by the setInterval
                       |""".trimMargin()
         }
@@ -162,7 +206,7 @@ val cssClockwork = pres(
             }
             notes = """
                       | * hide other pin
-                      | * Clean transform rotate, --amgle
+                      | * Clean transform rotate, --angle
                       | * Create rotatePin `@keyframes` rotate from `.5turn` to `1.5turn`
                       | * `animation: rotatePin 10s`
                       | * add linear timing
@@ -172,7 +216,7 @@ val cssClockwork = pres(
                       | * use --duration, `60s`, `calc(60s * 60)`, `calc(60s * 60 * 12)`,
                       | * compute delay in JS `const delay = 60 * (min + 60 * h) + sec;`
                       | * `animation-delay: calc(-1s * var(--delay))`
-                      | * remoge play-state;
+                      | * remove play-state;
                       |""".trimMargin()
         }
         slide("Encore du JavaScript") {
@@ -186,19 +230,57 @@ val cssClockwork = pres(
             }
         }
 
-        // FIXME Step 7
-        slide("Les marques", setOf("live-code")) {
-            demo(7) {
-
-                """${"  <span class=\"tick\"></span>\n".repeat(12)}
+        // Step 7
+        slide("Les marqueurs", setOf("live-code")) {
+            demo(7, data = mapOf("line" to "19,101-130")) {
+                """${(1..12).joinToString("\n  ") { "  <span class=\"tick\" style=\"--count: $it\"></span>\n" }}
                   |
                   |  <span class="pin hourhand"></span>
                   |  <span class="pin minutehand"></span>
                   |  <span class="pin secondhand"></span>""".trimMargin()
             }
+
+            notes = """
+                      | * emmet `span.tick[style="--count: ${'$'}"]*12`
+                      | *  `upper-roman`
+                      | * Fast track
+                      | ```css
+                      | /* Ticks */
+                      | .clock .tick {
+                      |     background: teal;
+                      |     position: absolute;
+                      |     top: 50%;
+                      |     left: calc(50% - .01em);
+                      |     height: .4em;
+                      |     width: .02em;
+                      |     opacity: .5;
+                      |     transform-origin: top center;
+                      |     transform: rotate(calc(.5turn + 1turn / 12 * var(--count)));
+                      | }
+                      |
+                      | .clock .tick::before {
+                      |     position: absolute;
+                      |     display: block;
+                      |     font-size: 8%;
+                      |     top: calc(100% - .8em);
+                      |     transform: translateX(-40%) rotate(.5turn);
+                      |     text-align: center;
+                      |
+                      |     content: 'W';
+                      | }
+                      | ```
+                      |
+                      | * counter-increment, counter(tick), counter reset
+                      | * upper-roman
+                      | * opacity .25, :nth-child(3n), .8
+                      |""".trimMargin()
         }
-        slide("Les marques - liens") {
+        slide("Les marqueurs - liens") {
             ul {
+                markdown {"[Using CSS counters](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters)"}
+                markdown { "[`@counter-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style) (que sur Firefox)" }
+                markdown { "[Emmet](https://docs.emmet.io/cheat-sheet/)" }
+
                 notice(Warning) {
                     markdown { "[enable the use of `counter()` inside `calc()`](https://github.com/w3c/csswg-drafts/issues/1026)" }
                 }

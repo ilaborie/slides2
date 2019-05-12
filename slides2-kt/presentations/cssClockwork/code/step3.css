@@ -20,8 +20,8 @@
 /* pin */
 .clock-step3::before {
 	background: currentColor;
-	border-bottom-left-radius: 100% 10%;
-	border-bottom-right-radius: 100% 10%;
+	border-bottom-left-radius: 100% 80%;
+	border-bottom-right-radius: 100% 80%;
 	content: '';
 
 	--width: .02em;
