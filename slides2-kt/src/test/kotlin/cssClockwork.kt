@@ -61,19 +61,19 @@ val cssClockwork = pres(
         slide("CSS is Awesome! 1/2") {
             ul(steps = true) {
                 markdown { "> The [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html) suggests choosing the least powerful language suitable for a given purpose" }
-                markdown { "Bien connaitre les [sélecteurs](https://developer.mozilla.org/fr/docs/Web/CSS/S%C3%A9lecteurs_CSS), et les [unités](https://developer.mozilla.org/fr/docs/Web/CSS/length)" }
+                markdown { "Bien connaître les [sélecteurs](https://developer.mozilla.org/fr/docs/Web/CSS/S%C3%A9lecteurs_CSS), et les [unités](https://developer.mozilla.org/fr/docs/Web/CSS/length)" }
 
-                markdown { "Evitez trop d'adhérences aux pré-processeurs" }
+                markdown { "Évitez trop d'adhérences aux pré-processeurs" }
                 markdown { "[Flexbox](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Flexible_Box_Layout) et [CSS Grid](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Grid_Layout) sont géniaux !" }
                 markdown { "Les [pseudo-éléments](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) `::before` et `::after` sont géniaux !" }
-                markdown { "Les [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) commme `:checked` c'est puissant" }
+                markdown { "Les [pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) comme `:checked` c'est puissant" }
                 strong("Traitez le CSS comme du code !")
             }
         }
         slide("CSS is Awesome! 2/2") {
             ul(steps = true) {
                 markdown { "Live-coding CSS sans JS" }
-                markdown { "SVG et du CSS pour déssiner une 🦄 " }
+                markdown { "SVG et du CSS pour dessiner une 🦄 " }
                 file("code/unicorn.html")
                 link("https://www.youtube.com/watch?v=fPObs60585w", "CSS is Awesome au Devfest Toulouse 2017")
                 link("http://www.monkeypatch.io/blog/2017/2017-05-02-makingof_css_is_awesome/", "Blog  Making Of")
@@ -106,7 +106,7 @@ val cssClockwork = pres(
                 markdown { "[`box-shadow`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow)" }
 
                 notice(Tips) {
-                    markdown { "`currentColor` et `em` peuvent être utilisé comme des variables." }
+                    markdown { "`currentColor` et `em` peuvent être utilisés comme des variables." }
                 }
             }
         }
@@ -295,9 +295,6 @@ val cssClockwork = pres(
                 markdown { "`currentColor`, `border-radius`, `box-shadow`, `box-sizing`," }
                 markdown { "CSS Generated content for pseudo-elements, `calc`," }
                 markdown { "CSS3 2D Transforms, CSS Animation" }
-                notice(Warning) {
-                    html { "Pensez à l'accessibilité" }
-                }
             }
         }
         slide("Ça sur les navigateurs modernes") {
@@ -306,19 +303,15 @@ val cssClockwork = pres(
                 figure("logos/ie.svg", "😡 Pas sur IE")
                 markdown { "Alternative statique: [postcss-preset-env](https://preset-env.cssdb.org/)" }
                 markdown { "Alternative dynamique: JavaScript" }
-
-                notice(Warning) {
-                    html { "PENSEZ vraiement à l'accessibilité !" }
-                }
             }
         }
     }
 
     part("Conclusion") {
-        slide("A quoi ça sert ?") {
+        slide("À quoi ça sert ?") {
             ul(steps = true) {
-                markdown { "à rien." }
-                file("code/clock-unicorn.html")
+                //                file("code/clock-unicorn.html")
+                markdown { "À rien." }
             }
         }
 
@@ -326,13 +319,13 @@ val cssClockwork = pres(
             html { """<video autoplay loop src="css-wtf.mp4" type="video/mp4"></video>""" }
         }
 
-        slide("Pourquoi on en est là") {
+        slide("Pourquoi en est on là ?") {
             ul(steps = true) {
                 markdown { "🕳 <del>Incompatibilité</del>" }
                 markdown { "🚫 pas de cours CSS" }
                 markdown { "⌛️ Pas le temps sur les projets" }
-                markdown { "😡 technologie mésestimé" }
-                markdown { "🛑 **Il faut changer celà !**" }
+                markdown { "😡 technologie mésestimée" }
+                markdown { "🛑 **Il faut changer cela !**" }
             }
         }
 
@@ -350,7 +343,7 @@ val cssClockwork = pres(
             ul(steps = true) {
                 markdown { "🔮 Que sera le web demain ?" }
                 quote("Lorsque tu ne sais pas où tu vas, regarde d'où tu viens.")
-                markdown { "🧱 Donnez vous du temps pour les bases: HTML, CSS, JS" }
+                markdown { "🧱 Donnez-vous du temps pour les bases: HTML, CSS, JS" }
             }
 
             notes = """

@@ -8,5 +8,15 @@
         "metadata": {}
       }
     ]
+  },
+  {
+    "title": "cssClockwork",
+    "instances": [
+      {
+        "label": "mixit-19",
+        "path": "cssClockwork",
+        "metadata": {}
+      }
+    ]
   }
 ]

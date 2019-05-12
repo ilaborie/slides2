@@ -31,6 +31,14 @@ body > header {
 }
 
 
+main > section > nav.previous {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+main > section > nav.previous:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
 section > article {
 
   pre {
@@ -38,12 +46,6 @@ section > article {
     overflow: auto;
   }
 
-  //& > nav.previous {
-  //  background: rgba(0,0,0,0.05);
-  //}
-  //& > nav.previous:hover {
-  //  background: rgba(0,0,0,0.1);
-  //}
 
   pre.language-css code {
     .token.string {
@@ -81,6 +83,14 @@ section > article {
 
 
 @media print {
+  main > section > article {
+    grid-column: 1 / -1;
+  }
+
+  main > section > nav.previous {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
   section {
     font-size: .9rem;
   }
@@ -90,11 +100,15 @@ section > article {
       line-height: 18px;
     }
   }
+  section.live-code article pre.language-css code {
+    opacity: 1;
+  }
 }
 
 // Slides
 
 #speakers {
+  background: var(--monkeyBof);
 
   .previous, .next {
     @extend .monkeyPatch;
@@ -202,6 +216,27 @@ section.live-code article {
 @import "code/step6";
 @import "code/step7";
 
+
+//.clock-step7.unicorn {
+//  font-size: 40vh;
+//
+//  &::after {
+//    position: absolute;
+//    font-size: 50%;
+//    width: 100%;
+//    height: 100%;
+//    display: flex;
+//    align-items: center;
+//    justify-content: center;
+//    content: '🦄';
+//    opacity: .5;
+//  }
+//
+//  .tick:nth-child(12)::before {
+//    content: '🦄';
+//  }
+//}
+
 #un_peu_de_javascript article {
   pre {
     font-size: 66%;
@@ -212,11 +247,13 @@ section.live-code article {
   figcaption {
     display: none;
   }
+
   figure {
     position: relative;
     max-height: 4em;
     max-width: 4em;
   }
+
   figure::after {
     position: absolute;
     opacity: .8;
@@ -236,7 +273,7 @@ section.live-code article {
   }
 }
 
-#pourquoi_on_en_est_la article {
+#pourquoi_en_est_on_la__ article {
 
   del {
     color: #444;
