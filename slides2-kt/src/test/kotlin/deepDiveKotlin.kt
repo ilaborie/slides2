@@ -30,7 +30,7 @@ fun main() {
     SlideEngine
         .use(CheckContentPlugin)
         .use(TocPlugin, NavigatePlugin)
-        .use(PrismJsPlugin(showLines = true, languages = listOf("kotlin", "java")))
+        .use(PrismJsPlugin(showLines = false, languages = listOf("kotlin", "java")))
         .use(CatnipPlugin(), deepDiveKotlinPlugin, MathJaxPlugin())
         .run(config, deepDiveKotlin, listOf(rivieraDev19))
 
@@ -324,7 +324,7 @@ val deepDiveKotlin = pres(
         slide("billion-dollar mistake".em, setOf("contrast", "manu")) {
             quote(
                 author = "Tony Hoare (C.A.R. Hoare)", quote =
-                "I call it my billion-dollar mistake. It was the invention of the <code>null</code> reference in 1965. [...]. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years."
+                "I call it my billion-dollar mistake. It was the invention of the <code>null</code> reference in 1965. [...] This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years."
             )
             link(
                 "https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare",
