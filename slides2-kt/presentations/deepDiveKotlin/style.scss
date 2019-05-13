@@ -25,6 +25,9 @@ body > header {
   font-size: 60%;
 }
 
+#MathJax_Message {
+  display: none;
+}
 
 section article {
   figure figcaption, table caption, .caption {
@@ -539,9 +542,10 @@ section#historique article {
     grid-template-columns: 1fr auto;
     align-items: flex-end;
     grid-gap: 1em 1ch;
-
+    padding-left: 0;
 
     .stack {
+      padding-left: 0;
       display: grid;
       grid-auto-rows: 1rem;
       justify-items: center;

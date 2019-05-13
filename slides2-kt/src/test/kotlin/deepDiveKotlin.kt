@@ -8,6 +8,7 @@ import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.rivieraDev19
 import io.github.ilaborie.slides2.kt.engine.contents.*
+import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Tips
 import io.github.ilaborie.slides2.kt.engine.plugins.*
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 
@@ -63,7 +64,7 @@ fun main() {
                         else                                               -> "[EV-IL]"
                     }
 
-                    """$prefix [${i+1}] ${render(Renderer.Companion.RenderMode.Text, slide.title)} $suffix
+                    """$prefix [${i + 1}] ${render(Renderer.Companion.RenderMode.Text, slide.title)} $suffix
                       |${slide.notes ?: "Pas de notes"}
                       |---""".trimMargin()
                 }.joinToString("\n")
@@ -190,7 +191,7 @@ val deepDiveKotlin = pres(
         }
         slide("Bilan HelloWorld.kt", setOf("bilan", "contrast", "manu")) {
             ul(steps = true) {
-                html { "👮‍♂️️ Kotlin ajoute des contrôles" }
+                html { "Kotlin ajoute du contenu" }
                 html { "du coup, on a besoin de JARs en plus" }
             }
             table(
@@ -403,7 +404,6 @@ val deepDiveKotlin = pres(
             sourceCode("fonction/lib.java")
         }
         slide("Kotlin c'est fun !", setOf("bilan", "contrast", "igor"), id = "fun-bilan") {
-            h4("✨ Conseils", setOf("step"))
             ul(steps = true) {
                 html { "Toujours typer le retour de vos fonctions" }
                 markdown { "(sauf si c'est évident et une surcharge comme le `toString`)" }
@@ -412,10 +412,6 @@ val deepDiveKotlin = pres(
                     markdown { "Sautez une ligne après le `=`" }
                     html { "Utilisez le passage des arguments par nom quand ça lève des ambiguïtés" }
                 }
-            }
-            h4("📝 Note", setOf("step"))
-            ul(steps = true) {
-                html { "Le passage des arguments par nom, ne marche pas sur les appels de code Java" }
             }
         }
     }
@@ -643,11 +639,10 @@ val deepDiveKotlin = pres(
                     markdown { "une expression" }
                     markdown { "avec `is` et un type (avec un 'smart cast')" }
                 }
-            }
-            h4("✨ Tips", setOf("step"))
-            ul(steps = true) {
-                markdown { "privilégier les <code>when</code> si vous avez plus de 2 cas" }
-                markdown { "si vous faites des fonctions récursives, faites les <code>tailrec</code>" }
+                notice(Tips) {
+                    markdown { "privilégier les <code>when</code> si vous avez plus de 2 cas" }
+                    markdown { "si vous faites des fonctions récursives, faites les <code>tailrec</code>" }
+                }
             }
         }
     }
@@ -696,7 +691,7 @@ val deepDiveKotlin = pres(
         }
         slide("sequence.kt", setOf("code", "kotlin", "manu", "live-code")) {
             sourceCode("collection/sequence.kt")
-            notes ="* ajout du `asSequence()`, y compris dans le `flatMap`"
+            notes = "* ajout du `asSequence()`, y compris dans le `flatMap`"
         }
         slide("Performance des séquences 1/2", setOf("measure", "contrast", "manu"), id = "performance_des_sequences") {
             jmh(
@@ -839,11 +834,11 @@ val deepDiveKotlin = pres(
             sourceCode("inline/geoloc.class.txt")
         }
         slide("Bilan inline", setOf("details", "contrast", "igor")) {
-            ul(steps=true) {
+            ul(steps = true) {
                 markdown { "⚠️ les `inline`, `reified`, ... sont à manier avec précaution" }
-                markdown {"[Inline Functions](https://kotlinlang.org/docs/reference/inline-functions.html)"}
+                markdown { "[Inline Functions](https://kotlinlang.org/docs/reference/inline-functions.html)" }
                 markdown { "⚠️ les `inline class` sont encore expérimentales" }
-                markdown {"[Inline classes](https://kotlinlang.org/docs/reference/inline-classes.html)"}
+                markdown { "[Inline classes](https://kotlinlang.org/docs/reference/inline-classes.html)" }
             }
         }
     }
@@ -931,6 +926,7 @@ La réponse c’est les coroutines.""".trimIndent()
             ul {
                 html { "Partager du code commun" }
                 markdown { "[Use Kotlin with npm, webpack and react](https://blog.jetbrains.com/kotlin/2017/04/use-kotlin-with-npm-webpack-and-react/)" }
+                markdown { "De l'espoire avec [dukat](https://github.com/Kotlin/dukat)" }
             }
             h4("Natif")
             ul {
@@ -949,7 +945,7 @@ La réponse c’est les coroutines.""".trimIndent()
         }
         slide("Tendance", setOf("contrast", "trends", "igor", "manu")) {
             figure("conclusion/trends.svg", "Tendance")
-            markdown {"[Stackoverflow trends](https://insights.stackoverflow.com/trends?tags=kotlin%2Cscala%2Cgroovy%2Cclojure), et [Stackoverflow insights](https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted)"}
+            markdown { "[Stackoverflow trends](https://insights.stackoverflow.com/trends?tags=kotlin%2Cscala%2Cgroovy%2Cclojure), et [Stackoverflow insights](https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted)" }
             link("https://octoverse.github.com/projects#languages", "The State of the Octoverse")
         }
         slide("Kotlin vs Java", setOf("contrast", "manu", "igor"), id = "kotlin_vs_java") {
