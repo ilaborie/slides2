@@ -145,7 +145,7 @@ val deepDiveKotlin = pres(
 * [Introduction to Java Bytecode](https://mahmoudanouti.wordpress.com/2018/03/20/introduction-to-java-bytecode/)
 * [The Java® Virtual Machine Specification](https://docs.oracle.com/javase/specs/jvms/se10/html/index.html)
 * [The Java Virtual Machine Instruction Set](https://docs.oracle.com/javase/specs/jvms/se10/html/jvms-6.html)
-* [Suivez le lapin blanc : Exploration au coeur de la JVM](https://www.youtube.com/watch?v=rB0ElXf05nU)
+* [Que se passe-t-il sous le capot ? Exploration au coeur de la JVM (Sylvain Wallez)](https://www.youtube.com/watch?v=2dhi1ezcdNc)
 * [Byte Buddy](http://bytebuddy.net/#/)
 * [asm](http://asm.ow2.org/)
 

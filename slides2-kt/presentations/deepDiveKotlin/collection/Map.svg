@@ -9,22 +9,10 @@
               fill="#d5e8d4" stroke="#82b366" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
               stroke-miterlimit="10" pointer-events="none"/>
         <g transform="translate(46.5,28.5)">
-            <switch>
-                <foreignObject style="overflow:visible;" pointer-events="all" width="79" height="27"
-                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml"
-                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;">
-                        <div xmlns="http://www.w3.org/1999/xhtml"
-                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">«interface»
-                            <br/>
-                            <b>Map&lt;K,V&gt;</b>
-                        </div>
-                    </div>
-                </foreignObject>
-                <text x="40" y="20" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code">[Not
-                    supported by viewer]
+                <text x="40" y="20" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code">
+                    <tspan x="44px" y="0.8em">«interface»</tspan>
+                    <tspan x="44px" dy="1.2em">Map&lt;K,V&gt;</tspan>
                 </text>
-            </switch>
         </g>
         <path d="M 316 42.5 L 316 42.42 L 305.7 43.13 L 295.4 41.92 L 285.11 41.84 L 274.81 43.23 L 264.51 42.78 L 254.21 42.81 L 243.92 43 L 233.62 42.28 L 223.32 42.63 L 213.02 42.96 L 202.72 43.18 L 192.43 42.01 L 182.13 42.72 L 171.83 41.91 L 161.53 42.97 L 151.24 42.5"
               fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
@@ -39,22 +27,10 @@
               fill="#e1d5e7" stroke="#9673a6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
               stroke-miterlimit="10" pointer-events="none"/>
         <g transform="translate(321.5,28.5)">
-            <switch>
-                <foreignObject style="overflow:visible;" pointer-events="all" width="108" height="27"
-                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml"
-                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;">
-                        <div xmlns="http://www.w3.org/1999/xhtml"
-                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">«interface»
-                            <br/>
-                            <b>MutableMap&lt;K,V&gt;</b>
-                        </div>
-                    </div>
-                </foreignObject>
                 <text x="54" y="20" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code">
-                    «interface»&lt;br&gt;&lt;b&gt;MutableMap&lt;K,V&gt;&lt;/b&gt;
+                    <tspan x="57px" y="0.8em">«interface»</tspan>
+                    <tspan x="57px" dy="1.2em">MutableMap&lt;K,V&gt;</tspan>
                 </text>
-            </switch>
         </g>
         <path d="M 86 127.5 L 86.5 127.5 L 85.7 117.65 L 85.8 107.79 L 86.54 97.94 L 86.56 88.09 L 86 78.24" fill="none"
               stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10"
@@ -69,22 +45,10 @@
               fill="#d5e8d4" stroke="#82b366" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
               stroke-miterlimit="10" pointer-events="none"/>
         <g transform="translate(17.5,138.5)">
-            <switch>
-                <foreignObject style="overflow:visible;" pointer-events="all" width="137" height="27"
-                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml"
-                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;">
-                        <div xmlns="http://www.w3.org/1999/xhtml"
-                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">«interface»
-                            <br/>
-                            <b>MapWithDefault&lt;K,V&gt;</b>
-                        </div>
-                    </div>
-                </foreignObject>
                 <text x="69" y="20" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code">
-                    «interface»&lt;br&gt;&lt;b&gt;MapWithDefault&lt;K,V&gt;&lt;/b&gt;
+                    <tspan x="71px" y="0.8em">«interface»</tspan>
+                    <tspan x="71px" dy="1.2em">MapWithDefault&lt;K,V&gt;</tspan>
                 </text>
-            </switch>
         </g>
         <path d="M 376 127.5 L 375.7 127.5 L 375.66 117.65 L 375.43 107.79 L 376.41 97.94 L 375.94 88.09 L 376 78.24"
               fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
@@ -105,22 +69,10 @@
               fill="#e1d5e7" stroke="#9673a6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
               stroke-miterlimit="10" pointer-events="none"/>
         <g transform="translate(282.5,138.5)">
-            <switch>
-                <foreignObject style="overflow:visible;" pointer-events="all" width="187" height="27"
-                               requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
-                    <div xmlns="http://www.w3.org/1999/xhtml"
-                         style="display: inline-block; font-size: 12px; font-family: &quot;Fira Code&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;">
-                        <div xmlns="http://www.w3.org/1999/xhtml"
-                             style="display:inline-block;text-align:inherit;text-decoration:inherit;">«interface»
-                            <br/>
-                            <b>MutableMapWithDefault&lt;K,V&gt;</b>
-                        </div>
-                    </div>
-                </foreignObject>
                 <text x="94" y="20" fill="#000000" text-anchor="middle" font-size="12px" font-family="Fira Code">
-                    «interface»&lt;br&gt;&lt;b&gt;MutableMapWithDefault&lt;K,V&gt;&lt;/b&gt;
+                    <tspan x="96px" y="0.8em">«interface»</tspan>
+                    <tspan x="96px" dy="1.2em">MutableMapWithDefault&lt;K,V&gt;</tspan>
                 </text>
-            </switch>
         </g>
         <path d="M 406 18 L 406 18" fill="none" stroke="#808080" stroke-width="2" stroke-linejoin="round"
               stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="6 6" pointer-events="none"/>
