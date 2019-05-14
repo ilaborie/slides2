@@ -43,6 +43,18 @@ fun main() {
 val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "style") {
     part("Introduction", skipHeader = true) {
         slide("Speakers", setOf("header-hidden")) {
+            html {
+                """
+<!--
+         \
+         _\,,
+        "-=\~     _
+            \\~___( ~
+          _|/---\\_
+          \        \
+-->
+                """
+            }
             speaker(
                 fullName = "Igor Laborie",
                 classes = setOf("monkeyPatch"),

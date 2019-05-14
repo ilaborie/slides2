@@ -12,6 +12,7 @@ main > section > article {
     img {
       margin: 0;
       object-fit: contain;
+      object-position: center;
       max-height: calc(100% - 2em);
       max-width: 100%;
     }
