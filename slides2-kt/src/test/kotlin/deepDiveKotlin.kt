@@ -926,7 +926,7 @@ La réponse c’est les coroutines.""".trimIndent()
             ul {
                 html { "Partager du code commun" }
                 markdown { "[Use Kotlin with npm, webpack and react](https://blog.jetbrains.com/kotlin/2017/04/use-kotlin-with-npm-webpack-and-react/)" }
-                markdown { "De l'espoire avec [dukat](https://github.com/Kotlin/dukat)" }
+                markdown { "De l'espoir avec [dukat](https://github.com/Kotlin/dukat)" }
             }
             h4("Natif")
             ul {

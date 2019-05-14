@@ -591,6 +591,15 @@ section#historique article {
   }
 }
 
+#suspend article {
+  pre code {
+    .token.keyword:first-child {
+      background-color: yellow;
+      color: #010101;
+    }
+  }
+}
+
 #continuation article {
   pre.language-java {
     max-height: 50vh;
