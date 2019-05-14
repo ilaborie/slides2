@@ -78,7 +78,7 @@ section.code.live-code, section.code.play, section.blur {
     position: relative;
 
     & > * {
-      filter: blur(8px);
+      opacity: .25;
     }
 
     &::after {
@@ -93,7 +93,7 @@ section.code.live-code, section.code.play, section.blur {
       right: 0;
       bottom: 0;
       border-radius: 100%;
-      filter: drop-shadow(0 0 1rem white);
+      //filter: drop-shadow(0 0 1rem white);
     }
   }
 }

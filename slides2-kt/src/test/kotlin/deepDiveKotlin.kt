@@ -9,6 +9,7 @@ import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
 import io.github.ilaborie.slides2.kt.engine.Theme.Companion.rivieraDev19
 import io.github.ilaborie.slides2.kt.engine.contents.*
 import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Tips
+import io.github.ilaborie.slides2.kt.engine.contents.NoticeKind.Warning
 import io.github.ilaborie.slides2.kt.engine.plugins.*
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
 
@@ -180,10 +181,10 @@ val deepDiveKotlin = pres(
         slide("kotlinc", setOf("diagram", "manu")) {
             inlineFigure("introduction_kotlin/Compile Kotlin.svg", "kotlinc")
         }
-        slide("hexdump", setOf("code", "hex", "manu")) {
+        slide("hexdump", setOf("code", "hex", "manu", "live-code")) {
             sourceCode("introduction_kotlin/HelloWorldKt.class.hex")
         }
-        slide("Java ByteCode", setOf("code", "bytecode", "manu")) {
+        slide("Java ByteCode", setOf("code", "bytecode", "manu", "live-code")) {
             sourceCode("introduction_kotlin/HelloWorldKt.class.txt")
         }
         slide("HelloWorld-java", setOf("code", "java", "manu")) {
@@ -407,8 +408,9 @@ val deepDiveKotlin = pres(
             ul(steps = true) {
                 html { "Toujours typer le retour de vos fonctions" }
                 markdown { "(sauf si c'est évident et une surcharge comme le `toString`)" }
-                html { "Kotlin est plus concis que Java => évitez de faire des fonctions trop longues" }
-                ul(steps = true, classes = setOf("bullet")) {
+                html { "Kotlin est plus concis que Java" }
+                html { "=> évitez de faire des fonctions trop longues" }
+                notice(Tips) {
                     markdown { "Sautez une ligne après le `=`" }
                     html { "Utilisez le passage des arguments par nom quand ça lève des ambiguïtés" }
                 }
@@ -798,18 +800,22 @@ val deepDiveKotlin = pres(
         slide("observable.kt", setOf("code", "kotlin", "manu", "play")) {
             sourceCode("delegate/observables.kt")
         }
-        slide("lateinit.kt", setOf("code", "kotlin", "manu")) {
+        slide("lateinit.kt", setOf("code", "kotlin", "manu", "live-code")) {
             sourceCode("delegate/lateinit.kt")
         }
         slide("Delegate", setOf("details", "contrast", "manu")) {
             ul(steps = true, classes = setOf("bullet")) {
                 markdown {
-                    """`Lazy` : utile pour les propriétés qui ne sont pas systématiquement utilisées.<br>
-                ⚠️ À manipuler avec précaution dans les activités Android ( avec le cycle de vie, cela peut référencer une ancienne instance)"""
+                    """`Lazy` : utile pour les propriétés qui ne sont pas systématiquement utilisées."""
+                }
+                notice(Warning) {
+                    markdown {"À manipuler avec précaution dans les activités Android ( avec le cycle de vie, cela peut référencer une ancienne instance)"}
                 }
                 markdown { "`Delegate` : Observable, Not null, ..." }
                 markdown { "`lateinit` : évite les _null check_ pour les propriétés qui ne peuvent être initialisées immédiatement (ex: référence de vues sur `Activity`, `Fragment`)." }
-                markdown { "* Ne peut pas être utilisé avec les types primitifs" }
+                notice(Warning) {
+                    markdown { "Ne peut pas être utilisé avec les types primitifs" }
+                }
             }
         }
     }
