@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 
+const timeoutInSeconds = 5;
 const pdfOptions = {
     printBackground: true,
     format: 'A4'
@@ -20,7 +21,7 @@ async function generate() {
             await page.goto(url, {
                 waitUntil: 'networkidle2'
             });
-            await page.waitFor(20 * 1000); // 10s
+            await page.waitFor(timeoutInSeconds * 1000);
             await screenshot(page, base);
             await printPdf(page, base);
         }
