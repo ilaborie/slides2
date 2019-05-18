@@ -11,10 +11,10 @@
 	border-radius: 50%;
 
 	box-shadow:
-			.05em .05em .1em rgba(0, 0, 0, .5),
-			inset 0 0 0 .02em white,
-			inset .05em .05em .1em rgba(0, 0, 0, .5),
-			inset .5em .5em 1em rgba(0, 0, 0, .1);
+		.05em .05em .1em rgba(0, 0, 0, .5),
+		inset 0 0 0 .02em white,
+		inset .05em .05em .1em rgba(0, 0, 0, .5),
+		inset .5em .5em 1em rgba(0, 0, 0, .1);
 
 	counter-reset: tick;
 }
@@ -105,7 +105,8 @@
 	left: 50%;
 	height: .4em;
 	transform-origin: top center;
-	transform: rotate(calc(.5turn + 1turn / 12 * var(--count)));
+	--angle: calc(.5turn + 1turn / 12 * var(--count));
+	transform: rotate(var(--angle));
 
 	counter-increment: tick;
 }

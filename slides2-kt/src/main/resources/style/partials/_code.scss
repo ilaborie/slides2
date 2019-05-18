@@ -1,5 +1,26 @@
 main > section > article {
 
+  code[class*="language-"], code[class*="raw-"],
+  pre[class*="language-"], pre[class*="raw-"] {
+    font-family: var(--font-mono);
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    line-height: 1.5;
+
+    tab-size: 4;
+
+    hyphens: none;
+    text-shadow: none;
+  }
+
+  pre[class*="language-"]:not(.language-sh), pre[class*="raw-"] {
+    background-image: linear-gradient(transparent 50%, rgba(0,0,0,.025) 0);
+    background-size: auto 3em;
+    background-attachment: local;
+  }
 
   code:not([class*=language-]):not([class*=raw-]) {
     background: rgba(127, 0, 0, .1);

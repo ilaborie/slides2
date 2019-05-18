@@ -27,7 +27,7 @@
 	--width: .02em;
 	--height: .4em;
 	/* 37 minutes */
-	--angle: calc(1turn / 60 * 37 - .5turn);
+	--angle: calc(.5turn + 1turn / 60 * 37);
 
 	width: var(--width);
 	height: var(--height);

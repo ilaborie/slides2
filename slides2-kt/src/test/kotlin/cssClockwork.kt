@@ -42,19 +42,7 @@ fun main() {
 
 val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "style") {
     part("Introduction", skipHeader = true) {
-        slide("Speakers", setOf("header-hidden")) {
-            html {
-                """
-<!--
-         \
-         _\,,
-        "-=\~     _
-            \\~___( ~
-          _|/---\\_
-          \        \
--->
-                """
-            }
+        slide("Speakers", setOf("header-hidden", "steps")) {
             speaker(
                 fullName = "Igor Laborie",
                 classes = setOf("monkeyPatch"),
@@ -66,10 +54,13 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
                 )
             )
             figure("logos/monkeypatch.svg", "MonkeyPatch")
+            html { "<h4 class=\"designer step\">I'm not a designer <span class=\"blink step\">!</span></h4>" }
         }
         slide("CSS is Awesome!") {
+            quote(classes = setOf("step")) {
+                markdown { "The [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html) suggests choosing the least powerful language suitable for a given purpose" }
+            }
             ul(steps = true) {
-                markdown { "> The [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html) suggests choosing the least powerful language suitable for a given purpose" }
                 markdown { "Bien connaître les [sélecteurs](https://developer.mozilla.org/fr/docs/Web/CSS/S%C3%A9lecteurs_CSS), et les [unités](https://developer.mozilla.org/fr/docs/Web/CSS/length)" }
 
                 markdown { "Évitez trop d'adhérences aux pré-processeurs" }
@@ -110,12 +101,13 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
         }
         slide("La cadre - liens") {
             ul {
-                markdown { "[L'élément `<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time) existe !" }
-                markdown { "[`currentColor`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentColor_keyword)" }
-                markdown { "[`border-radius`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius)" }
-                markdown { "[`box-sizing`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)" }
-                markdown { "[`box-shadow`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow)" }
-
+                ul {
+                    markdown { "[L'élément `<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time) existe !" }
+                    markdown { "[`currentColor`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentColor_keyword)" }
+                    markdown { "[`border-radius`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius)" }
+                    markdown { "[`box-sizing`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)" }
+                    markdown { "[`box-shadow`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow)" }
+                }
                 notice(Tips) {
                     markdown { "`currentColor` et `em` peuvent être utilisés comme des variables." }
                 }
@@ -126,6 +118,7 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
         slide("Une aiguille", setOf("live-code")) {
             demo(2, data = mapOf("line" to "2,20-33"))
 
+            // FIXME est-ce que je dois faire un rappel position relative/absolute ?
             notes = """
                       | * `::before`
                       | * `width: .02em`
@@ -148,7 +141,7 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
 
         // Step 3
         slide("La rotation", setOf("live-code")) {
-            demo(3, data = mapOf("line" to "27-33,37-40"))
+            demo(3, data = mapOf("line" to "27-33,39-40"))
 
             notes = """
                       | * use var width, height
@@ -189,7 +182,7 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
 
         // Step 5
         slide("La trotteuse", setOf("live-code")) {
-            demo(5, data = mapOf("line" to "21,37-38,41-61,64-65,72-73,79-84")) {
+            demo(5, data = mapOf("line" to "21,37-38,41-84")) {
                 """
                   |  <span class="pin hourhand"></span>
                   |  <span class="pin minutehand"></span>
@@ -208,7 +201,7 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
 
         // Step 6
         slide("Les animations", setOf("live-code")) {
-            demo(6) {
+            demo(6, data = mapOf("line" to "21-29,49-51")) {
                 """
                   |  <span class="pin hourhand"></span>
                   |  <span class="pin minutehand"></span>
@@ -236,13 +229,14 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
             ul {
                 markdown { "[Using CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)" }
                 markdown { "[`@keyframes`](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes)" }
-                markdown { "[_timing-function_](https://developer.mozilla.org/en-US/docs/Web/CSS/timing-function), [`cubic-bezier`](https://cubic-bezier.com/)" }
+                markdown { "[_timing-function_](https://developer.mozilla.org/en-US/docs/Web/CSS/timing-function)" }
+                markdown { "[`cubic-bezier`](https://cubic-bezier.com/)" }
             }
         }
 
         // Step 7
         slide("Les marqueurs", setOf("live-code")) {
-            demo(7, data = mapOf("line" to "19,101-130")) {
+            demo(7, data = mapOf("line" to "19,101-131")) {
                 """${(1..12).joinToString("\n  ") { "  <span class=\"tick\" style=\"--count: $it\"></span>\n" }}
                   |
                   |  <span class="pin hourhand"></span>
@@ -287,9 +281,11 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
         }
         slide("Les marqueurs - liens") {
             ul {
+                markdown { "[Emmet](https://docs.emmet.io/cheat-sheet/)" }
+                markdown { "[Pseudo-class `:nth-child()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child)" }
                 markdown { "[Using CSS counters](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters)" }
                 markdown { "[`@counter-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style) (que sur Firefox)" }
-                markdown { "[Emmet](https://docs.emmet.io/cheat-sheet/)" }
+                markdown { "[Voir sur codepen](https://codepen.io/ilaborie/pen/wRpoJy)" }
 
                 notice(Warning) {
                     markdown { "[enable the use of `counter()` inside `calc()`](https://github.com/w3c/csswg-drafts/issues/1026)" }
@@ -327,6 +323,7 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
         }
 
         slide("Les moments 'WTF'") {
+            // FIXME use gif
             html { """<video autoplay loop src="css-wtf.mp4" type="video/mp4"></video>""" }
         }
 

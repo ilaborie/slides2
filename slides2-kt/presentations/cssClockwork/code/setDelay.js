@@ -9,4 +9,4 @@ const currentTime = () => {
 const { h, min, sec } = currentTime();
 const delay = 60 * (min + 60 * h) + sec;
 
-document.style.setProperty("--delay", "" + delay);
+document.body.style.setProperty("--delay", "" + delay);

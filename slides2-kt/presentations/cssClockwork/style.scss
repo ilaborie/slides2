@@ -32,22 +32,6 @@ body > header {
 }
 
 
-main > section > nav.previous {
-  background: rgba(0, 0, 0, 0.05);
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.1);
-  }
-}
-
-main > section.part > nav.previous {
-  background: rgba(0, 0, 0, 0);
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.05);
-  }
-}
-
 section > article {
 
   pre {
@@ -116,12 +100,6 @@ section > article {
 #speakers {
   background: var(--monkeyBof);
 
-  .previous, .next {
-    @extend .monkeyPatch;
-    // Fix a glitch
-    box-shadow: 0 0 0 1px var(--monkeyBof);
-  }
-
   footer {
     display: none;
   }
@@ -145,6 +123,27 @@ section > article {
         display: none;
       }
     }
+  }
+
+  .designer {
+    font-size: 250%;
+    font-family: "Comic Sans MS", sans-serif;
+    font-style: italic;
+    color: #FFFF66;
+
+    .blink {
+      animation: blinker .8s step-end infinite;
+    }
+  }
+
+  .step-done {
+    opacity: 1;
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
   }
 }
 

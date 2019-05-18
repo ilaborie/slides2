@@ -39,12 +39,12 @@
 .clock-step4::before {
 	--width: .035em;
 	--height: .2em;
-	--angle: calc(1turn / 12 * var(--hour) - .5turn);
+	--angle: calc(.5turn + 1turn / 12 * var(--hour));
 }
 
 /* minute pin */
 .clock-step4::after {
 	--width: .02em;
 	--height: .3em;
-	--angle: calc(1turn / 60 * var(--minute) - .5turn);
+	--angle: calc(.5turn + 1turn / 60 * var(--minute));
 }

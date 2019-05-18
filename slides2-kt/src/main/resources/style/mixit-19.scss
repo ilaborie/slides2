@@ -1,4 +1,5 @@
 @import "base";
+//@import "partials/code-darcula";
 
 :root {
 
@@ -31,7 +32,11 @@ section.part footer {
   padding: .1em;
 }
 
+main > section > article {
+  background: transparent;
+}
+
 main > section > article code:not([class*="language-"]):not([class*="raw-"]) {
   background: var(--col5);
-  border: thin solid rgba(0,0,0,.25);
+  border: thin solid rgba(0, 0, 0, .25);
 }
