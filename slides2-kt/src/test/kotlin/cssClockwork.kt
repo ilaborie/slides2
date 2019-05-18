@@ -30,7 +30,7 @@ fun main() {
     val outputDir = config.output / id
     // Copy video
     val videoDir = config.input / "video"
-    listOf("css-wtf.mp4").forEach {
+    listOf("giphy.mp4").forEach {
         videoDir.copyOrUpdate(it, outputDir)
     }
     // Copy script
@@ -117,8 +117,6 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
         // Step 2
         slide("Une aiguille", setOf("live-code")) {
             demo(2, data = mapOf("line" to "2,20-33"))
-
-            // FIXME est-ce que je dois faire un rappel position relative/absolute ?
             notes = """
                       | * `::before`
                       | * `width: .02em`
@@ -310,6 +308,7 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
                 figure("logos/ie.svg", "😡 Pas sur IE")
                 markdown { "Alternative statique: [postcss-preset-env](https://preset-env.cssdb.org/)" }
                 markdown { "Alternative dynamique: JavaScript" }
+                markdown { "Polyfill: [css-vars-ponyfill](https://jhildenbiddle.github.io/css-vars-ponyfill)" }
             }
         }
     }
@@ -317,19 +316,19 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
     part("Conclusion") {
         slide("À quoi ça sert ?") {
             ul(steps = true) {
-                //                file("code/clock-unicorn.html")
                 markdown { "À rien." }
+                //                file("code/clock-unicorn.html")
             }
         }
 
         slide("Les moments 'WTF'") {
-            // FIXME use gif
-            html { """<video autoplay loop src="css-wtf.mp4" type="video/mp4"></video>""" }
+            html { """<video autoplay loop src="giphy.mp4" type="video/mp4"></video>""" }
         }
 
         slide("Pourquoi en est on là ?") {
             ul(steps = true) {
                 markdown { "🕳 <del>Incompatibilité</del>" }
+                markdown { "📄 <del>Documentation</del> voir [MDN](https://developer.mozilla.org/en-US/)" }
                 markdown { "🚫 pas de cours CSS" }
                 markdown { "⌛️ Pas le temps sur les projets" }
                 markdown { "😡 technologie mésestimée" }
