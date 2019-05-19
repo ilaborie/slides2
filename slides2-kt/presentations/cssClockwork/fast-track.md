@@ -2,10 +2,17 @@ Fast Track
 
 # Step 1 - Le cadre
 # Step 2 - Une aiguille
+
+```css
+    border-bottom-left-radius: 100% 80%;
+    border-bottom-right-radius: 100% 80%;
+    border:.001em solid rgba(0, 0, 0, .1);
+    box-shadow: 0 0 .005em rgba(0, 0, 0, .1);
+```
+
 # Step 3 - La rotation
+
 # Step 4 - Heure et minutes
-
-
 
 # Step 5 - La trotteuse
 

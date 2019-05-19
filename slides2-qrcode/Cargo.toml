@@ -1,12 +1,12 @@
 [package]
-name = "slides2-md-to-str"
+name = "slides2-qrcode"
 version = "0.1.0"
 authors = ["Igor Laborie <ilaborie@gmail.com>"]
 edition = "2018"
 
 [dependencies]
 jni = "0.12"
-pulldown-cmark = "0.5"
+qrcode = "0.10"
 
 [lib]
-crate_type = ["lib", "cdylib"]
+crate_type = ["cdylib"]

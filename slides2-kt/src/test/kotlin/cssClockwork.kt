@@ -22,8 +22,13 @@ fun main() {
 
     SlideEngine
         .use(CheckContentPlugin)
-        .use(TocPlugin, NavigatePlugin)
-        .use(PrismJsPlugin(showLines = false, lineHighlight = true), MathJaxPlugin(), cssClockworkPlugin)
+        .use(
+            TocPlugin,
+            NavigatePlugin,
+            PrismJsPlugin(showLines = false, lineHighlight = true),
+            MathJaxPlugin(),
+            cssClockworkPlugin
+        )
         .run(config, cssClockwork, listOf(Theme.mixit19))
 
 
@@ -220,9 +225,6 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
                       | * remove play-state;
                       |""".trimMargin()
         }
-        slide("Encore du JavaScript") {
-            sourceCode("code/setDelay.js")
-        }
         slide("Les animations - liens") {
             ul {
                 markdown { "[Using CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)" }
@@ -364,8 +366,11 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
         }
 
         slide("Merci") {
-            h4("Questions ?")
-            em { html { "(les retours sont bienvenus)" } }
+            ul {
+                h4("Questions ?")
+                em { html { "(les retours sont bienvenus)" } }
+            }
+            qrCode("https://ilaborie.github.io/slides2/cssClockwork/index-mixit-19.html")
         }
     }
 }

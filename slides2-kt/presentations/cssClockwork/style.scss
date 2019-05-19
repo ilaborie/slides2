@@ -289,5 +289,9 @@ section.live-code article {
   .mjx-chtml {
     margin-top: 1em;
   }
+}
 
+#merci article {
+  flex-direction: row;
+  justify-content: space-evenly;
 }

@@ -77,3 +77,8 @@ task("deepDiveKotlin", type = JavaExec::class) {
     main = "DeepDiveKotlinKt"
 }
 
+task("cssClockwork", type = JavaExec::class) {
+    dependsOn("assemble")
+    classpath = sourceSets["test"].runtimeClasspath
+    main = "CssClockworkKt"
+}

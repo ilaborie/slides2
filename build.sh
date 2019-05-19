@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 declare -a RUST_LIBS=("slides2-md-to-str"
-                      "slides2-compile-scss")
+                      "slides2-compile-scss"
+                      "slides2-qrcode")
 
 # Rust libs
 for RUST_LIB in "${RUST_LIBS[@]}"
@@ -16,10 +17,16 @@ done
 # Generate slides
 pushd slides2-kt
 ./gradlew assemble
+
+# CSS Clockwork
+./gradlew cssClockwork
+
 # WebComponent
-./gradlew deepDiveKotlin
+# ./gradlew deepDiveKotlin
+
 # Refactoring Loop
 # ./gradlew refactoringLoop
+
 popd
 
 # Build web & publish
