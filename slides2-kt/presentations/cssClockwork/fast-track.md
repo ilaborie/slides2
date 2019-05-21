@@ -42,10 +42,6 @@ Fast Track
 
 # Step 6 - Les animations
 
-```javascript
-const delay = 60 * (min + 60 * h) + sec;
-document.body.style.setProperty("--delay", "" + delay);
-```
 
 # Step 7 - Les marqueurs
 
