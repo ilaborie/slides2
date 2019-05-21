@@ -244,7 +244,7 @@ section.live-code article {
 
 #un_peu_de_javascript article {
   pre {
-    font-size: 66%;
+    font-size: 50%;
   }
 }
 
@@ -301,7 +301,7 @@ section.live-code article {
     &::before {
       position: absolute;
       display: block;
-      font-size: 6ch;
+      font-size: 8ch;
       width: 1em;
       height: 1em;
       content: '🦄';
