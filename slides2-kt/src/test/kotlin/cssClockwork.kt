@@ -163,8 +163,10 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
                 markdown { "[CSS transforms](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transforms/Using_CSS_transforms)" }
 
                 notice(Tips) {
-                    markdown { "Les _custom properties_ sont héritées !" }
-                    markdown { "Très utile dans les Web Components avec le _Shadow DOM_" }
+                    markdown {
+                        """Les _custom properties_ sont héritées, <br>
+                        |très utile dans les _Web Components_ avec le _Shadow DOM_""".trimMargin()
+                    }
                     markdown { "L'unité `turn` est souvent plus intuitive que les autres unités d'angles." }
                 }
             }
