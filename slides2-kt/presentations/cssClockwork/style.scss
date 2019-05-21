@@ -294,4 +294,22 @@ section.live-code article {
 #merci article {
   flex-direction: row;
   justify-content: space-evenly;
+
+  .qrcode {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      display: block;
+      font-size: 6ch;
+      width: 1em;
+      height: 1em;
+      content: '🦄';
+      background: white;
+      top: calc(50% - .5em);
+      left: calc(50% - .5em);
+      box-shadow: 0 0 0 .15ch white;
+    }
+  }
+
 }
