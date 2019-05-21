@@ -274,7 +274,8 @@
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transforms/Using_CSS_transforms">CSS transforms</a></p> </li>
 <li>
 <div class="notice notice-tips"> <div class="notice-body">
-<p>Les <em>custom properties</em> sont héritées !</p> <p>Très utile dans les Web Components avec le <em>Shadow DOM</em></p> <p>L'unité <code>turn</code> est souvent plus intuitive que les autres unités d'angles.</p> </div>
+<p>Les <em>custom properties</em> sont héritées, <br>
+très utile dans les <em>Web Components</em> avec le <em>Shadow DOM</em></p> <p>L'unité <code>turn</code> est souvent plus intuitive que les autres unités d'angles.</p> </div>
 </div>
 </li>
 </ul> </article>
@@ -352,18 +353,21 @@
     const h = now.getHours();
     const min = now.getMinutes();
     const sec = now.getSeconds();
-    return {h, min, sec};
+    return { h, min, sec };
 };
 
 // Set --hour, --minute and --second
-const setHourMinuteSecond = (elt) =&gt; () =&gt; {
-    const {h, min, sec} = currentTime();
+const setHourMinuteSecond = (elt) =&gt; {
+    const { h, min, sec } = currentTime();
     elt.style.setProperty("--hour", "" + h);
     elt.style.setProperty("--minute", "" + min);
     elt.style.setProperty("--second", "" + sec);
 };
 
-setInterval(setHourMinuteSecond(document.body), 1000 /* 1s */);</code>
+setHourMinuteSecond(document.body);
+setInterval(() =&gt;
+        setHourMinuteSecond(document.body),
+    1000); /* 1s */</code>
 </pre> </article>
 <nav class="next"> <a href="#la_trotteuse" aria-label="next slide"></a>
 </nav> <footer></footer>
