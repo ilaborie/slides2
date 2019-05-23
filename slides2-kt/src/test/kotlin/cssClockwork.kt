@@ -140,7 +140,7 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
 //                markdown { "[Fluent 2014: Lea Verou, \"The Humble Border-Radius\"](https://www.youtube.com/watch?v=JSaMl2OKjfQ)" }
                 markdown { "[`calc`](https://developer.mozilla.org/en-US/docs/Web/CSS/calc)" }
                 notice(Tips) {
-                    markdown { "On retrouve souvent le positionement `absolute` avec les pseudo-éléments" }
+                    markdown { "On retrouve souvent le positionnement `absolute` avec les pseudo-éléments" }
                 }
             }
         }
@@ -165,7 +165,7 @@ val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "sty
                 notice(Tips) {
                     markdown {
                         """Les _custom properties_ sont héritées, <br>
-                        |très utile dans les _Web Components_ avec le _Shadow DOM_""".trimMargin()
+                        |très utiles dans les _Web Components_ avec le _Shadow DOM_""".trimMargin()
                     }
                     markdown { "L'unité `turn` est souvent plus intuitive que les autres unités d'angles." }
                 }
