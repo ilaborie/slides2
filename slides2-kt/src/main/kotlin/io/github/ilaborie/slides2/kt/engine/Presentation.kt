@@ -14,7 +14,8 @@ data class Presentation(
     val theme: Theme = base,
     val extraStyle: String? = null,
     val parts: List<Part> = emptyList(),
-    val lang: String = "en"
+    val lang: String = "en",
+    val favicon: Boolean = false
 ) : Content {
 
     val coverSlide: Slide = Slide(

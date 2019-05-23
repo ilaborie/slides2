@@ -45,7 +45,11 @@ fun main() {
     }
 }
 
-val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "style") {
+val cssClockwork = pres(
+    id = id,
+    title = "⏰ CSS Clockworks",
+    extraStyle = "style",
+    favicon = true) {
     part("Introduction", skipHeader = true) {
         slide("Speakers", setOf("header-hidden", "steps")) {
             speaker(

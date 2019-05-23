@@ -41,14 +41,22 @@ class PresentationBuilder(internal val input: Folder) {
         })
     }
 
-    fun build(id: Id, title: Content, theme: Theme, extraStyle: String?, lang: String): Presentation =
+    fun build(
+        id: Id,
+        title: Content,
+        theme: Theme,
+        extraStyle: String?,
+        lang: String,
+        favicon: Boolean = false
+    ): Presentation =
         Presentation(
             id = id,
             title = title,
             theme = theme,
             extraStyle = extraStyle,
             parts = parts.map { it.builder() },
-            lang = lang
+            lang = lang,
+            favicon = favicon
         )
 
 }

@@ -40,6 +40,7 @@ fun pres(
     theme: Theme = Theme.base,
     extraStyle: String? = null,
     lang: String = "en",
+    favicon:Boolean = false,
     block: PresentationBuilder.() -> Unit
 ): PresentationDsl = object : PresentationDsl {
     override fun invoke(input: Folder): Presentation =
@@ -50,7 +51,8 @@ fun pres(
                 title = ContainerBuilder(input).compound(title),
                 theme = theme,
                 extraStyle = extraStyle,
-                lang = lang
+                lang = lang,
+                favicon = favicon
             )
 }
 
@@ -61,6 +63,7 @@ fun pres(
     theme: Theme = Theme.base,
     extraStyle: String? = null,
     lang: String = "en",
+    favicon:Boolean = false,
     block: PresentationBuilder.() -> Unit
 ): PresentationDsl =
     pres(
@@ -69,5 +72,6 @@ fun pres(
         theme = theme,
         extraStyle = extraStyle,
         lang = lang,
+        favicon = favicon,
         block = block
     )

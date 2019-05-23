@@ -125,8 +125,13 @@ object SlideEngine {
                     writePresentationStylesheets(config)
                     writePresentationScripts(config)
 
-                    PresentationOutputInstance(theme.name, id.id, metadata)
+                    // favicon
+                    if (favicon) {
+                        info("⚙️") { highlight("favicon") }
+                        config.input.copyOrUpdate("favicon.ico", folder)
+                    }
 
+                    PresentationOutputInstance(theme.name, id.id, metadata)
                 } ?: throw IllegalStateException("No Html renderer found for $this")
         }
 
