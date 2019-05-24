@@ -1,6 +1,15 @@
 Fast Track
 
 # Step 1 - Le cadre
+
+```css
+    box-shadow:
+        .05em .05em .1em rgba(0, 0, 0, .5),
+        inset 0 0 0 .025em white;
+        inset .05em .05em .1em rgba(0, 0, 0, .5),
+        inset .5em .5em 1em rgba(0, 0, 0, .1);
+```
+
 # Step 2 - Une aiguille
 
 ```css
