@@ -19,24 +19,24 @@ Fast Track
 ```css
 .pin::before,
 .pin::after {
-....position: absolute;
-....display: block;
-....content: '';
-....background-color: inherit;
-....border-radius: 50%;
+    position: absolute;
+    display: block;
+    content: '';
+    background-color: inherit;
+    border-radius: 50%;
 }
 
 .pin::before {
-....width: calc(2 * var(--width));
-....height: calc(2 * var(--width));
-....top: calc(-1 * var(--width));
-....left: calc(-.5 * var(--width));
+    width: calc(2 * var(--width));
+    height: calc(2 * var(--width));
+    top: calc(-1 * var(--width));
+    left: calc(-.5 * var(--width));
 }
 
 .pin::after {
-....width: 100%;
-....height: calc(2 * var(--width));
-....top: calc(-2 * var(--width));
+    width: 100%;
+    height: calc(2 * var(--width));
+    top: calc(-2 * var(--width));
 }
 ```
 
