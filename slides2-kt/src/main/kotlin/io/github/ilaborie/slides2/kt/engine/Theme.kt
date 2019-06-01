@@ -12,10 +12,14 @@ data class Theme(val name: String) {
 
     companion object {
 
-         val all: Map<String, Theme> = listOf(
+        val all: Map<String, Theme> = listOf(
             "base",
             "jug-tls",
-            "devoxxfr-19", "mixit-19", "sunnytech-19", "rivieradev-19"
+            "devoxxfr-19",
+            "voxxed-lux-19",
+            "mixit-19",
+            "sunnytech-19",
+            "rivieradev-19"
         )
             .map { it to Theme(it) }
             .toMap()
@@ -26,6 +30,7 @@ data class Theme(val name: String) {
         val base = get("base")
         val jugTls = get("jug-tls")
         val devoxxFr19 = get("devoxxfr-19")
+        val voxxedLux19 = get("voxxed-lux-19")
         val mixit19 = get("mixit-19")
         val sunnyTech19 = get("sunnytech-19")
         val rivieraDev19 = get("rivieradev-19")

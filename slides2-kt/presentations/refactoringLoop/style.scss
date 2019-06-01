@@ -449,8 +449,9 @@ label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin__
         .token.function, .token.number, .token.string, .token.class-name, .token.keyword {
           color: black;
         }
+
         .token.operator, .token.punctuation {
-          color: rgba(0,0,0,.5);
+          color: rgba(0, 0, 0, .5);
         }
       }
 
@@ -461,6 +462,7 @@ label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin__
         .token.function {
           color: #a9b7c6;
         }
+
         .token.operator, .token.punctuation {
           color: rgba(169, 183, 198, 0.5);
         }
@@ -556,6 +558,45 @@ label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin__
   #montecarlo___performance_10m_points {
     article .math-ascii {
       font-size: 80%;
+    }
+  }
+}
+
+.sunnytech-19 {
+  --footerText: '@ilaborie @sunnytech_mtp #SeaTechAndSun #flatmap';
+
+  main > section > article {
+    justify-content: space-evenly;
+  }
+
+  #recursion_non_terminale article > ul .stack, #recursion_terminale article > ul .stack {
+    background: rgba(255, 154, 68, .5);
+    color: black;
+
+    .mjx-chtml span {
+      text-shadow: 1px 1px 0 hsla(1, 100%, 100%, .5);
+    }
+  }
+
+  main > section#cssClockwork_cover.cover {
+    article {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        top: 2vh;
+        right: 0;
+        content: '2018-06-27';
+      }
+    }
+  }
+
+  #recursion_terminale___java {
+    header, footer {
+      display: none;
+    }
+    article {
+      grid-row: 1 / -1;
     }
   }
 }

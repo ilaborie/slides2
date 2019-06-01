@@ -14,7 +14,6 @@ import io.github.ilaborie.slides2.kt.engine.contents.barChart
 import io.github.ilaborie.slides2.kt.engine.contents.inlineFigure
 import io.github.ilaborie.slides2.kt.engine.contents.speaker
 import io.github.ilaborie.slides2.kt.engine.plugins.*
-import io.github.ilaborie.slides2.kt.jvm.extra.CanIUse.Companion.CanIUsePlugin
 import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.TweetPlugin
 import io.github.ilaborie.slides2.kt.jvm.extra.Tweet.Companion.tweet
 import io.github.ilaborie.slides2.kt.jvm.jvmConfig
@@ -26,9 +25,9 @@ fun main() {
 
     SlideEngine
         .use(CheckContentPlugin)
-        .use(TocPlugin, NavigatePlugin, GridPlugin)
-        .use(TweetPlugin, CanIUsePlugin)
-        .use(PrismJsPlugin(showLines = true, languages = listOf("java", "scala", "kotlin")))
+        .use(TocPlugin, NavigatePlugin)
+        .use(TweetPlugin)
+        .use(PrismJsPlugin(showLines = false, languages = listOf("java", "scala", "kotlin")))
         .use(MathJaxPlugin())
         .use(monteCarloPlugin)
         .run(config, refactoringLoop, listOf(Theme.sunnyTech19))
@@ -60,43 +59,11 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
 //        Cette structure de controle permet de remplacer le `GOTO`, par exemple en Java.
 
 
-        slide("Speaker", setOf("header-hidden")) {
-            speaker(
-                fullName = "Igor Laborie",
-                classes = setOf("monkeyPatch"),
-                src = "speakers/igor.jpg",
-                info = "Expert Web & Java",
-                links = mapOf(
-                    "@ilaborie" to "https://twitter.com/ilaborie",
-                    "igor@monkeypatch.io" to "mailto:igor@monkeypatch.io"
-                )
-            )
-            inlineFigure("logos/monkeypatch.svg", "MonkeyPatch")
-        }
-        roadmap("Plan")
         slide("Back to Basics", styles = setOf("header-hidden")) {
             strong("#backToBasics")
             quote("Les frameworks et bibliothèques naissent et meurent, les bases restent.")
         }
-//        slide("Quizz 1", styles = setOf("header-hidden")) {
-//            h4("En quel langage est écrit ce code ?")
-//            ul(steps = true) {
-//                sourceCode("code/quizz1.java")
-//                p("Java, JavaScript, C++, C, ?")
-//            }
-//        }
-//        slide("Quizz", styles = setOf("header-hidden", "two-columns")) {
-//            markdown { "#### Existe-il des langages de programmation sans `for` ?" }
-//            ul(steps = true) {
-//                html { "Haskell" }
-//                html { "Scala <sup>*</sup>" }
-//                html { "Erlang" }
-//                html { "Clojure <sup>*</sup>" }
-//                html { "Assembleur" }
-//                html { "ByteCode Java" }
-//                html { "..." }
-//            }
-//        }
+        roadmap("Plan")
     }
     part("🔬 Anatomie d'une boucle") {
         slide("Transformation - Java 1.4") {
@@ -105,12 +72,6 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         slide("Transformation - Java 5") {
             sourceCode("code/loop/transformation2.java")
         }
-        slide("Transformation - Java 8") {
-            sourceCode("code/loop/transformation3.java")
-        }
-//        slide("Transformation - Java 10+") {
-//            sourceCode("code/loop/transformation4.java")
-//        }
         slide("Filtre") {
             sourceCode("code/loop/filter.java")
         }
@@ -128,28 +89,13 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         slide("Parcours - Java") {
             sourceCode("code/recursion/transform.java")
         }
-//        slide("Parcours - Kotlin 1") {
-//            sourceCode("code/recursion/transform.kt")
-//        }
-        // FIXME merge kt, scala
-        slide("Parcours - Kotlin") {
+        slide("Parcours - Kotlin & Scala") {
             sourceCode("code/recursion/transform2.kt")
-        }
-//        slide("Parcours - Scala 1") {
-//            sourceCode("code/recursion/transform.scala")
-//        }
-        slide("Parcours - Scala") {
             sourceCode("code/recursion/transform2.scala")
         }
         slide("Filtre & Sortie rapide - Java") {
             sourceCode("code/recursion/find.java")
         }
-//        slide("Filtre & Sortie rapide - Kotlin") {
-//            sourceCode("code/recursion/find.kt")
-//        }
-//        slide("Filtre & Sortie rapide - Scala") {
-//            sourceCode("code/recursion/find.scala")
-//        }
         slide("Récursion non terminale") {
             asciiMath { "x! = x xx (x-1) xx ... xx 2 xx 1" }
             asciiMath { "1! = 0!  = 1" }
@@ -714,6 +660,19 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 html { "🔪 Aiguisez votre esprit critique !" }
                 html { "🗣 Partagez vos questionnements, vos solutions, vos idées farfelues !" }
             }
+        }
+        slide("Speaker", setOf("header-hidden")) {
+            speaker(
+                fullName = "Igor Laborie",
+                classes = setOf("monkeyPatch"),
+                src = "speakers/igor.jpg",
+                info = "Expert Web & Java",
+                links = mapOf(
+                    "@ilaborie" to "https://twitter.com/ilaborie",
+                    "igor@monkeypatch.io" to "mailto:igor@monkeypatch.io"
+                )
+            )
+            inlineFigure("logos/monkeypatch.svg", "MonkeyPatch")
         }
         // FIXME flamy
         slide("Fin", styles = setOf("header-hidden")) {

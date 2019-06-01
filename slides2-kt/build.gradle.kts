@@ -65,10 +65,16 @@ task("webComponent19", type = JavaExec::class) {
     main = "WebcomponentsKt"
 }
 
+//task("refactoringLoop", type = JavaExec::class) {
+//    dependsOn("assemble")
+//    classpath = sourceSets["test"].runtimeClasspath
+//    main = "RefactoringLoopKt"
+//}
+
 task("refactoringLoop", type = JavaExec::class) {
     dependsOn("assemble")
     classpath = sourceSets["test"].runtimeClasspath
-    main = "RefactoringLoopKt"
+    main = "RefactoringLoop_sunnyKt"
 }
 
 task("deepDiveKotlin", type = JavaExec::class) {
@@ -77,8 +83,14 @@ task("deepDiveKotlin", type = JavaExec::class) {
     main = "DeepDiveKotlinKt"
 }
 
+//task("cssClockwork", type = JavaExec::class) {
+//    dependsOn("assemble")
+//    classpath = sourceSets["test"].runtimeClasspath
+//    main = "CssClockworkKt"
+//}
+
 task("cssClockwork", type = JavaExec::class) {
     dependsOn("assemble")
     classpath = sourceSets["test"].runtimeClasspath
-    main = "CssClockworkKt"
+    main = "CssClockwork_luxKt"
 }

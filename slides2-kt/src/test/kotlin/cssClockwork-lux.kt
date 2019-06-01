@@ -1,5 +1,4 @@
 import io.github.ilaborie.slides2.kt.SlideEngine
-import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Theme
@@ -29,7 +28,7 @@ fun main() {
             MathJaxPlugin(),
             cssClockworkPlugin
         )
-        .run(config, cssClockwork, listOf(Theme.mixit19))
+        .run(config, cssClockwork, listOf(Theme.voxxedLux19))
 
 
     val outputDir = config.output / id
@@ -45,7 +44,11 @@ fun main() {
     }
 }
 
-private val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyle = "style") {
+private val cssClockwork = pres(
+    id = id,
+    title = "⏰ CSS Clockworks",
+    extraStyle = "style"
+) {
     part("Introduction", skipHeader = true) {
         slide("Speakers", setOf("header-hidden", "steps")) {
             speaker(
@@ -206,6 +209,20 @@ private val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyl
                       | *    `::after` `width: 100%`, `height: 2*width`, `top: -1 width`, `left: -1/2 width`
                       | * Issue, not very pleased by the setInterval
                       |""".trimMargin()
+        }
+        slide("La trotteuse - liens") {
+            ul {
+                markdown { "Les [fonctions trigonometriques du CSS](https://github.com/w3c/csswg-drafts/issues/2331#issuecomment-467990627) ne sont pas encore disponibles" }
+
+                notice(Tips) {
+                    markdown {
+                        """On peut utiliser un pre-processeur, ou du JS, pour remplacer ces fonctions""".trimMargin()
+                    }
+                    markdown {
+                        """🤓 Ou les formules [Taylor / Maclaurin](https://fr.wikipedia.org/wiki/S%C3%A9rie_de_Taylor) avec des _custom properties_, voir cet [exemple](https://gist.github.com/stereokai/7666bfe93929b14c2dced148c79e0e97)."""
+                    }
+                }
+            }
         }
 
         // Step 6
@@ -376,20 +393,7 @@ private val cssClockwork = pres(id = id, title = "⏰ CSS Clockworks", extraStyl
                 h4("Questions ?")
                 em { html { "(les retours sont bienvenus)" } }
             }
-            qrCode("https://ilaborie.github.io/slides2/cssClockwork/index-mixit-19.html")
+            qrCode("https://ilaborie.github.io/slides2/cssClockwork/index-voxxed-lux-19.html")
         }
-    }
-}
-
-fun ContainerBuilder.demo(
-    step: Int,
-    data: Map<String, String> = emptyMap(),
-    inner: () -> String = { "" }
-) {
-    sourceCode("code/step$step.css", classes = setOf("line-numbers"), data = data)
-    html {
-        """<div class="demo">
-             |  <div class="clock-step$step">${inner()}</div>
-             |</div>""".trimMargin()
     }
 }
