@@ -2,7 +2,7 @@ String[] data = "lorem ... amet".split(" ");
 Stream<String> stream = Arrays.stream(data)
     .map(s -> {
         System.out.print(s + ",");
-            return s.toUpperCase();
+        return s.toUpperCase();
     }).filter(s -> {
         System.out.print(s + ",");
         return s.startsWith("A");
