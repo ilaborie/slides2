@@ -90,8 +90,10 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
             sourceCode("code/recursion/transform.java")
         }
         slide("Parcours - Kotlin & Scala") {
-            sourceCode("code/recursion/transform2.kt")
-            sourceCode("code/recursion/transform2.scala")
+            ul {
+                sourceCode("code/recursion/transform2.kt")
+                sourceCode("code/recursion/transform2.scala")
+            }
         }
         slide("Filtre & Sortie rapide - Java") {
             sourceCode("code/recursion/find.java")
@@ -123,58 +125,42 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
             }
         }
         slide("Principe récursion terminale") {
-            code("javascript") {
-                """tailRecFunc(scope, state) =
+            ul {
+                code("javascript") {
+                    """tailRecFunc(scope, state) =
                   |  if (isFinish(scope)) computeResult(state)
                   |  else
                   |    (head, subScope) := scope
                   |    newState := reduce(state, head)
                   |    tailRecFunc(subScope, newState)
                 """.trimMargin()
-                // TODO link accumulateur
-                // TODO also speak about trampoline
+                }
+
+                sourceCode("code/loop/accumulate.java")
             }
+
+            notes = """Lien accumulateur"""
         }
         slide("Récursion terminale - Java") {
             h4("Game Over")
             span("Insert Kotlin or Scala<br>To continue")
         }
-        // FIXME merge kt, scala
-        slide("Récursion terminale - Kotlin") {
-            sourceCode("code/recursion/tailrec.kt")
+        slide("Récursion terminale - Kotlin & Scala") {
+            ul {
+                sourceCode("code/recursion/tailrec.kt")
+                sourceCode("code/recursion/tailrec.scala")
+            }
         }
-        slide("Récursion terminale - Scala") {
-            sourceCode("code/recursion/tailrec.scala")
-        }
-//        slide("Bilan récusion") {
-//            ul {
-//                html { "🧩 découpage en petites tâches" }
-//                html { "🤯 lisibilité" }
-//                html { "✋ contrôle de l'arrêt" }
-//                html { "📚 ATTENTION aux <code>StackOverflowError</code>" }
-//            }
-//        }
     }
     part(partTitle = { markdown { "## 🌊 `Stream`" } }, id = "stream") {
-        // FIXME idée, before -> after slides
-        // FIXME merge creation
-        slide("Création 1/2") {
-            sourceCode("code/stream/create1.java")
+        slide("filter, map, & flatMap") {
+            ul(steps = true) {
+                sourceCode("code/stream/ex-for.java")
+                sourceCode("code/stream/ex-stream.java")
+            }
         }
-        slide("Création 2/2") {
-            sourceCode("code/stream/create2.java")
-        }
-        // FIXME merge map, filter, flatMap
-        slide("Transformation - map") {
-            sourceCode("code/stream/map.java")
-        }
-        slide("Filtre - filter") {
-            sourceCode("code/stream/filter.java")
-        }
-        slide("Imbrication - flatMap 1/2") {
-            sourceCode("code/stream/flatmap.java")
-        }
-        slide("Imbrication - flatMap 2/2", setOf("header-hidden")) {  // TODO keep
+
+        slide("Imbrication - flatMap 2/2", setOf("header-hidden")) {
             ul(steps = true) {
                 (0..6).forEach {
                     file("anim/flatmap-$it.html")
@@ -209,47 +195,28 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 }
             }
         }
-//        slide("Parallèle") {
-//            markdown { "Les `Stream` peuvent être exécutées en parallèle, via le `ForkJoinPool`" }
-//            notice(Tips) {
-//                markdown { "On peut utiliser `Stream#sequential()` ou `Stream#parallel()` pour basculer vers une exécution séquentielle, ou parallèle." }
-//            }
-//        }
-        // FIXME merge reduce
-        slide("Accumulation - Reduce 1/2") {
+        slide("Accumulation - Reduce") {
             sourceCode("code/stream/reduce1.java")
-        }
-        slide("Accumulation - Reduce 2/2") {
             notice(Tips, title = "Cas particulier") {
-                markdown { "Si `Element == Accumulator`, on peut utiliser un `reduce`" }
+                markdown { "Si `Element == Accumulator`, le `accumulate` peut servir de `merge`" }
                 markdown { "Les `count`, `min`, `max`, `sum`, ... sont des réductions particulières" }
             }
-            sourceCode("code/stream/reduce2.java")
-//            notice(Info) {
-//                markdown { "On appelle souvent cette méthode `foldLeft`" }
-//            }
         }
         slide("Accumulation - collect & Collectors") {
-            markdown { "Les `Stream#collect` sont justes une généralisation du `reduce`" }
             sourceCode("code/stream/collect.java")
-        }
-        slide("Collectors classiques") {
-            markdown { "Dans `java.util.stream.Collectors`" }
-            ul {
-                markdown { "`toSet`, `toList` pour construire une collection" }
-                markdown { "`toMap` pour construire un `Map`" }
-                markdown { "`groupBy` pour grouper en une `Map<K,List<V>>`" }
-                markdown { "`joining` pour construire une `String`" }
-                markdown { "`summarizingInt`, `summarizingDouble`, `summarizingLong` pour les statistiques" }
-                html { "..." }
+
+            notice(Tips, title = "java.util.stream.Collectors") {
+                markdown {
+                    """`toSet`, `toList`, `toMap`, `groupBy`, `joining`,
+                      |`summarizingInt`, `summarizingDouble`, `summarizingLong`,
+                      |...""".trimMargin()
+                }
             }
+
+            notes = """Les `Stream#collect` sont justes une généralisation du `reduce`"""
         }
-//        slide("Illustration Java", setOf("header-hidden")) {
-//            sourceCode("code/stream/exemple.java")
-//        }
-        slide("Et l'index ?") {
-            markdown { "Et si j'ai besoin de l'_index_ ?" }
-            ul {
+        slide("Et si j'ai besoin de l'index ?") {
+            ul(steps = true) {
                 markdown { "😢 pas faisable facilement et _proprement_ en Java" }
                 markdown { "✌️ mais il y a Kotlin et Scala..." }
             }
@@ -277,17 +244,19 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         }
         slide("Bilan Stream") {
             h4("🤗")
-            notice(Danger, title = "À proscrire") {
-                markdown { "Les effets de bord ! (on tolère les _logs_ dans le `peek`)" }
-                markdown { "Les opérations non associatives dans des `Stream` parallèles" }
-                markdown { "Les streams sur des `Integer`, `Double`, `Long`" }
-            }
-            notice(Warning) {
-                markdown { "Sans bonne raison, ne faites pas de `Stream` parallèle" }
-                markdown { "La lisibilité est importante" }
-            }
-            notice(Tips) {
-                markdown { "On peut utiliser intelligemment les aspects paresseux" }
+            ul(steps = true) {
+                notice(Danger, title = "À proscrire") {
+                    markdown { "Les effets de bord ! (on tolère les _logs_ dans le `peek`)" }
+                    markdown { "Les opérations non associatives dans des `Stream` parallèles" }
+                    markdown { "Les streams sur des `Integer`, `Double`, `Long`" }
+                }
+                notice(Warning) {
+                    markdown { "Sans bonne raison, ne faites pas de `Stream` parallèle" }
+                    markdown { "La lisibilité est importante" }
+                }
+                notice(Tips) {
+                    markdown { "On peut utiliser intelligemment les aspects paresseux" }
+                }
             }
         }
         slide("Bilan Stream - Java") {
@@ -300,12 +269,6 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 markdown { "Des 🐛 dans le _lazy_ du `flatMap`, voir [Java Stream API was Broken Before JDK10](https://4comprehension.com/java-stream-api-was-broken-before-jdk10/)" }
             }
         }
-//        slide("Kotlin 1/3") {
-//            sourceCode("code/stream/exemple1.kt")
-//        }
-//        slide("Kotlin 2/3") {
-//            sourceCode("code/stream/exemple2.kt")
-//        }
         slide("Bilan Stream - Kotlin") {
             h4("😍")
             ul(steps = true) {
@@ -314,12 +277,6 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 markdown { "🎭 utilise juste les classes de Java" }
             }
         }
-//        slide("Scala 1/4") {
-//            sourceCode("code/stream/exemple1.scala")
-//        }
-//        slide("Scala 2/4") {
-//            sourceCode("code/stream/exemple2.scala")
-//        }
         slide("Bilan Stream - Scala") {
             h4("😻")
             ul(steps = true) {
@@ -331,18 +288,12 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 notice(Info) {
                     markdown { "De gros changements arrivent dans la [2.13](https://www.scala-lang.org/blog/2018/06/13/scala-213-collections.html)" }
                 }
+                notice(Tips) {
+                    markdown { "Le `for` de Scala est du sucre syntaxique qui produit des `map`, `filter`, `flatMap`" }
+                    markdown { "Du coup on peut l'utiliser sur d'autre objects qui ont `map`, `filter`, `flatMap`" }
+                }
             }
         }
-        // FIXME Juste une note
-        slide("Scala for") {
-            h4("🤢")
-            sourceCode("code/stream/exemple-for.scala")
-            ul {
-                markdown { "Le `for` de Scala est du sucre syntaxique qui produit des `map`, `filter`, `flatMap`" }
-                markdown { "Du coup on peut l'utiliser sur d'autre objects qui ont `map`, `filter`, `flatMap`" }
-            }
-        }
-//        slide("foldLeft vs foldRight") {}
     }
     part("🏆 Qui est le meilleur ?") {
         slide("Relation d'ordre") {
@@ -590,21 +541,21 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         slide("Prédisposition aux 🐛 dangereux") {
             sourceCode("code/loop/transformation3.java")
         }
-        slide("Pas tous du même avis") {
-            link("https://www.javacodegeeks.com/2015/12/3-reasons-shouldnt-replace-loops-stream-foreach.html") {
-                html { "3 Reasons why You Shouldn’t Replace Your for-loops by Stream forEach" }
-            }
-        }
-        slide("Exemple colonnes d'Excel - for") {
-            span("<code>A</code>, <code>B</code>, ..., <code>Z</code>, <code>AA</code>, <code>AB</code>, ..., <code>ZZ</code>, <code>AAA</code>, ...")
-            sourceCode("code/excel/for.kt")
-        }
-        slide("Exemple colonnes d'Excel - récursif") {
-            sourceCode("code/excel/recursion.kt")
-        }
-        slide("Exemple colonnes d'Excel - séquence") {
-            sourceCode("code/excel/seq.kt")
-        }
+//        slide("Pas tous du même avis") {
+//            link("https://www.javacodegeeks.com/2015/12/3-reasons-shouldnt-replace-loops-stream-foreach.html") {
+//                html { "3 Reasons why You Shouldn’t Replace Your for-loops by Stream forEach" }
+//            }
+//        }
+//        slide("Exemple colonnes d'Excel - for") {
+//            span("<code>A</code>, <code>B</code>, ..., <code>Z</code>, <code>AA</code>, <code>AB</code>, ..., <code>ZZ</code>, <code>AAA</code>, ...")
+//            sourceCode("code/excel/for.kt")
+//        }
+//        slide("Exemple colonnes d'Excel - récursif") {
+//            sourceCode("code/excel/recursion.kt")
+//        }
+//        slide("Exemple colonnes d'Excel - séquence") {
+//            sourceCode("code/excel/seq.kt")
+//        }
     }
     part("Conclusion") {
         slide("Bilan") {
@@ -631,10 +582,6 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 html { "Pas d'effet de bord" }
                 html { "Immutablilté" }
                 html { """<span class="math-ascii">`=>`</span> Ceci est une présentation sur la programmation fonctionnelle""" }
-                figure(
-                    "img/functional.png", "Functional",
-                    copyrightBlock = "[https://xkcd.com/1270/](https://xkcd.com/1270/)".markdown
-                )
             }
         }
         slide("FP 🍌") {
@@ -674,11 +621,12 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
             )
             inlineFigure("logos/monkeypatch.svg", "MonkeyPatch")
         }
-        // FIXME flamy
-        slide("Fin", styles = setOf("header-hidden")) {
-            markdown {
-                """### 🍕 ou ❓"""
+        slide("Merci") {
+            ul {
+                h4("Questions ?")
+                em { html { "(les retours sont bienvenus)" } }
             }
+            qrCode("https://ilaborie.github.io/slides2/refactoringLoop/index-sunnytech-19.html")
         }
     }
 }
