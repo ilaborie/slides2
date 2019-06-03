@@ -110,7 +110,7 @@ private val cssClockwork = pres(
         slide("La cadre - liens") {
             ul {
                 ul {
-                    markdown { "[L'élément `<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time) existe !" }
+                    markdown { "L'élément [`<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time) existe !" }
                     markdown { "[`currentColor`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentColor_keyword)" }
                     markdown { "[`border-radius`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius)" }
                     markdown { "[`box-sizing`](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)" }

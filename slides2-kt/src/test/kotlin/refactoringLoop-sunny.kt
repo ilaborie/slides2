@@ -125,7 +125,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
             }
         }
         slide("Principe récursion terminale") {
-            ul {
+            ul(steps = true) {
                 code("javascript") {
                     """tailRecFunc(scope, state) =
                   |  if (isFinish(scope)) computeResult(state)
