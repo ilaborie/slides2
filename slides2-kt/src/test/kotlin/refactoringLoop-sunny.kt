@@ -1,6 +1,5 @@
 import io.github.ilaborie.slides2.kt.SlideEngine
 import io.github.ilaborie.slides2.kt.dsl.ContainerBuilder
-import io.github.ilaborie.slides2.kt.dsl.markdown
 import io.github.ilaborie.slides2.kt.dsl.pres
 import io.github.ilaborie.slides2.kt.engine.Script
 import io.github.ilaborie.slides2.kt.engine.Script.Companion.script
@@ -45,20 +44,6 @@ private val monteCarloPlugin = object : WebPlugin {
 
 private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refactoringLoopTitle() }) {
     part("Introduction", skipHeader = true) {
-        // IDEA: start with Star War Episode II
-        // https://codepen.io/geoffgraham/pen/BpwqOE
-
-        // After Edgar Dijkstra: Go To Statement Considered Harmful - https://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf
-//        Histoire
-//        En 57, on utilise des boucles avec le `DO` de [FORTRAN](https://en.wikipedia.org/wiki/Fortran)
-//        À partir de 58 avec [ALGOL](https://en.wikipedia.org/wiki/ALGOL) le mot clef `for` apparait, popularisé par ALGOL 60.
-//        C'est la traduction directe de l'ancien allemand `für`, utilisé dans Superplan (1949-1951) par Heinz Rutishauser, qui a également été impliqué dans la définition de ALGOL 58 et ALGOL 60.
-//
-//        En 72, la forme `for (initialization; condition; increment/decrement)` arrive avec le C
-//
-//        Cette structure de controle permet de remplacer le `GOTO`, par exemple en Java.
-
-
         slide("Back to Basics", styles = setOf("header-hidden")) {
             strong("#backToBasics")
             quote("Les frameworks et bibliothèques naissent et meurent, les bases restent.")
@@ -66,10 +51,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         roadmap("Plan")
     }
     part("🔬 Anatomie d'une boucle") {
-        slide("Transformation - Java 1.4") {
-            sourceCode("code/loop/transformation1.java")
-        }
-        slide("Transformation - Java 5") {
+        slide("Transformation") {
             sourceCode("code/loop/transformation2.java")
         }
         slide("Filtre") {
