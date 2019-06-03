@@ -403,12 +403,12 @@ public List&lt;Result&gt; transform(List&lt;Element&gt; input) {
 <nav class="next"> <a href="#principe_recursion_terminale" aria-label="next slide"></a>
 </nav> <footer></footer>
 </section>
-<section id="principe_recursion_terminale"> <header>
+<section id="principe_recursion_terminale" class="steps"> <header>
 <h3>Principe récursion terminale</h3> </header>
 <nav class="previous"> <a href="#recursion_terminale" aria-label="previous slide"></a>
 </nav> <article>
 <ul>
-<li>
+<li class="step">
 <pre>
 <code class="lang-javascript">tailRecFunc(scope, state) =
   if (isFinish(scope)) computeResult(state)
@@ -418,7 +418,7 @@ public List&lt;Result&gt; transform(List&lt;Element&gt; input) {
     tailRecFunc(subScope, newState)</code>
 </pre>
 </li>
-<li>
+<li class="step">
 <pre>
 <code class="lang-java">public Accumulator compute(List&lt;Element&gt; input) {
     Accumulator accumulator = initialValue;
