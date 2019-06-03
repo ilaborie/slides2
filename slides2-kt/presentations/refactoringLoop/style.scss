@@ -226,9 +226,11 @@ main > section > header::after {
 
 #sloth {
   position: relative;
+
   header, footer {
     display: none;
   }
+
   &::before {
     content: '';
     position: absolute;
@@ -240,13 +242,14 @@ main > section > header::after {
     background-repeat: no-repeat;
     filter: blur(16px);
   }
+
   article {
     grid-row: 1 / -1;
     background: url('sloth.jpg');
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
-    z-index: 1 ;
+    z-index: 1;
   }
 }
 
@@ -454,6 +457,25 @@ label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin__
   text-decoration: double underline;
 }
 
+#splittablerandom article {
+  pre.language-java {
+    font-size: 50%;
+
+    .line-highlight[data-range="11"] {
+      background: #ab0000;
+      margin-top: 1.5em;
+      //margin-left: -.5em;
+      width: .5em;
+    }
+
+    .line-highlight[data-range="12"] {
+      background: #39703f;
+      margin-top: 1.5em;
+      //margin-left: -.5em;
+      width: .5em;
+    }
+  }
+}
 
 #separation_of_concerns article {
   .compare {
@@ -488,19 +510,19 @@ label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin__
       }
 
       .cls2 {
-        background-color: rgba(200, 200, 0, 1);
+        background-color: rgb(232, 240, 143);
       }
 
       .cls3 {
-        background-color: rgba(200, 0, 200, 1);
+        background-color: rgb(200, 139, 200);
       }
 
       .cls4 {
-        background-color: rgba(0, 200, 200, 1);
+        background-color: rgb(145, 184, 200);
       }
 
       .cls5 {
-        background-color: rgba(0, 200, 0, 1);
+        background-color: rgb(125, 200, 137);
       }
     }
 
@@ -625,6 +647,7 @@ label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin__
       justify-content: space-evenly;
     }
   }
+
   #recursion_terminale___kotlin___scala article {
     pre {
       font-size: 66%;
@@ -638,6 +661,12 @@ label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin__
 
     article {
       grid-row: 1 / -1;
+    }
+  }
+
+  #wat__ article {
+    figcaption {
+      display: none;
     }
   }
 

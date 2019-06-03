@@ -72,7 +72,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
             sourceCode("code/recursion/transform.java")
         }
         slide("Parcours - Kotlin & Scala") {
-            ul {
+            ul(steps = true) {
                 sourceCode("code/recursion/transform2.kt")
                 sourceCode("code/recursion/transform2.scala")
             }
@@ -128,7 +128,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
             span("Insert Kotlin or Scala<br>To continue")
         }
         slide("Récursion terminale - Kotlin & Scala") {
-            ul {
+            ul(steps = true) {
                 sourceCode("code/recursion/tailrec.kt")
                 sourceCode("code/recursion/tailrec.scala")
             }
@@ -463,6 +463,9 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
             )
             markdown { "😱 le code parallèle" }
         }
+        slide("WAT !") {
+            figure("img/wat.jpg", "Wat ?")
+        }
         slide("MonteCarlo - performance parallèle 2", styles = setOf("header-hidden")) {
             barChart(
                 "10_000_000 points sur OpenJDK (HotSpot) 8.0.202",
@@ -496,8 +499,11 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
             )
         }
         slide("SplittableRandom") {
-            markdown {
-                "🎲 depuis Java 8 [`SplittableRandom`](https://docs.oracle.com/javase/8/docs/api/java/util/SplittableRandom.html)"
+            ul(steps = true) {
+                markdown {
+                    "🎲 depuis Java 8 [`SplittableRandom`](https://docs.oracle.com/javase/8/docs/api/java/util/SplittableRandom.html)"
+                }
+                sourceCode("code/montecarlo/point2.java", data = mapOf("line" to "11,12"))
             }
         }
         slide("Separation of Concerns") {
