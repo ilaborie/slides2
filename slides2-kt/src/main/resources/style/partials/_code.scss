@@ -17,9 +17,12 @@ main > section > article {
   }
 
   pre[class*="language-"]:not(.language-sh), pre[class*="raw-"] {
-    background-image: linear-gradient(transparent 50%, rgba(0,0,0,.025) 0);
-    background-size: auto 3em;
-    background-attachment: local;
+    background-image:
+            linear-gradient(rgba(0,0,0,.125) 50%, transparent 0),
+            linear-gradient(transparent 50%, rgba(0,0,0,.025) 0);
+    background-size:  auto 3em, auto 3em;
+    background-attachment: local, local;
+    background-repeat: no-repeat, repeat-y;
   }
 
   code:not([class*=language-]):not([class*=raw-]) {

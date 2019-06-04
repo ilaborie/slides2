@@ -498,7 +498,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 )
             )
         }
-        slide("SplittableRandom") {
+        slide("Ce qui change") {
             ul(steps = true) {
                 markdown {
                     "🎲 depuis Java 8 [`SplittableRandom`](https://docs.oracle.com/javase/8/docs/api/java/util/SplittableRandom.html)"
