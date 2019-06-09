@@ -1,5 +1,5 @@
 [package]
-name = "slides2-md-to-str"
+name = "slides2-rust"
 version = "0.1.0"
 authors = ["Igor Laborie <ilaborie@gmail.com>"]
 edition = "2018"
@@ -7,6 +7,8 @@ edition = "2018"
 [dependencies]
 jni = "0.12"
 pulldown-cmark = "0.5"
+qrcode = "0.10"
+sass-rs = "0.2"
 
 [lib]
 crate_type = ["lib", "cdylib"]

@@ -1,11 +1,11 @@
 package io.github.ilaborie.slides2.kt.engine
 
-import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss
+import io.github.ilaborie.slides2.kt.jvm.tools.Natives
 
 
 data class Theme(val name: String) {
     val compiled: String by lazy {
-        ScssToCss.scssFileToCss("src/main/resources/style/$name.scss")
+        Natives.scssFileToCss("src/main/resources/style/$name.scss")
     }
 
     override fun toString(): String = name

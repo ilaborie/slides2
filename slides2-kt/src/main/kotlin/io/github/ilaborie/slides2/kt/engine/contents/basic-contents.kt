@@ -3,7 +3,7 @@ package io.github.ilaborie.slides2.kt.engine.contents
 import io.github.ilaborie.slides2.kt.engine.ContainerContent
 import io.github.ilaborie.slides2.kt.engine.Content
 import io.github.ilaborie.slides2.kt.engine.SingleContent
-import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml.markdownToHtml
+import io.github.ilaborie.slides2.kt.jvm.tools.Natives.markdownToHtml
 
 data class TextContent(
     val text: String,

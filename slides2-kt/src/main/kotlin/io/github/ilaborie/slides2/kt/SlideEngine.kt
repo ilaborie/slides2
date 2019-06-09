@@ -11,7 +11,7 @@ import io.github.ilaborie.slides2.kt.engine.plugins.Plugin
 import io.github.ilaborie.slides2.kt.engine.plugins.RendererPlugin
 import io.github.ilaborie.slides2.kt.engine.plugins.WebPlugin
 import io.github.ilaborie.slides2.kt.engine.renderers.*
-import io.github.ilaborie.slides2.kt.jvm.tools.ScssToCss.scssFileToCss
+import io.github.ilaborie.slides2.kt.jvm.tools.Natives.scssFileToCss
 import io.github.ilaborie.slides2.kt.term.Notifier.info
 import io.github.ilaborie.slides2.kt.term.Notifier.time
 import io.github.ilaborie.slides2.kt.term.Styles.highlight

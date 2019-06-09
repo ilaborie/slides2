@@ -9,7 +9,7 @@ import io.github.ilaborie.slides2.kt.engine.contents.StyledText
 import io.github.ilaborie.slides2.kt.engine.contents.TextContent
 import io.github.ilaborie.slides2.kt.engine.contents.TextStyle
 import io.github.ilaborie.slides2.kt.jvm.asKey
-import io.github.ilaborie.slides2.kt.jvm.tools.MarkdownToHtml
+import io.github.ilaborie.slides2.kt.jvm.tools.Natives
 
 
 @DslMarker
@@ -29,7 +29,7 @@ val String.raw: TextContent
     get() = TextContent(this, escape = false)
 
 val String.markdown: TextContent
-    get() = TextContent(MarkdownToHtml.markdownToHtml(this), escape = false)
+    get() = TextContent(Natives.markdownToHtml(this), escape = false)
 
 val String.em: StyledText
     get() = StyledText(TextStyle.Emphasis, this.raw, emptySet())
