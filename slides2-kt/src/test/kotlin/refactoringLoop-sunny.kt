@@ -262,13 +262,13 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         slide("Bilan Stream - Scala") {
             h4("😻")
             ul(steps = true) {
-                markdown { "API _lazy_ avec les `Stream` ou non directement sur les collections" }
+                markdown { "API _lazy_ avec les `Stream`/`LazyList` ou non directement sur les collections" }
                 markdown { "API collection **immutable** ou mutable" }
                 markdown { "Pas de réutilisation de Java" }
-                markdown { "API de [`Stream`](https://www.scala-lang.org/api/2.12.3/scala/collection/immutable/Stream.html) avec la possibilité de construction récursive" }
+                markdown { "API de [`Stream`](https://www.scala-lang.org/api/2.12.8/scala/collection/immutable/Stream.html) et [LazyList](https://www.scala-lang.org/api/2.13.x/scala/collection/immutable/LazyList.html) avec la possibilité de construction récursive" }
 
                 notice(Info) {
-                    markdown { "De gros changements arrivent dans la [2.13](https://www.scala-lang.org/blog/2018/06/13/scala-213-collections.html)" }
+                    markdown { "De gros changements dans la [2.13](https://www.scala-lang.org/blog/2018/06/13/scala-213-collections.html)" }
                 }
                 notice(Tips) {
                     markdown { "Le `for` de Scala est du sucre syntaxique qui produit des `map`, `filter`, `flatMap`" }
@@ -344,7 +344,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         slide("MonteCarlo - Kotlin séquence") {
             sourceCode("code/montecarlo/stream.kt")
         }
-        slide("MonteCarlo - Kotlin séquence parallèle") {
+        slide("MonteCarlo - Kotlin séquence parallèle *") {
             sourceCode("code/montecarlo/streamP.kt")
         }
         slide("MonteCarlo - Scala for") {
@@ -364,7 +364,16 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         }
         slide("Disclaimer", styles = setOf("header-hidden")) {
             markdown {
-                """#### Disclaimer
+                """
+                  |Java 11,
+                  |Kotlin v1.3.31,
+                  |Scala v2.13.0
+                  |
+                  |Sur iMac13.2, avec un Intel core i7 3.4GHz, 4 cores
+                  |
+                  |Et le JRE HotSpot 11.0.3 AdoptOpenJDK
+                  |
+                  |#### Disclaimer
                   |
                   |>REMEMBER: The numbers below are just data. To gain reusable insights,
                   |you need to follow up on why the numbers are the way they are.
@@ -376,87 +385,91 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                   |""".trimMargin()
             }
             html {
-                """<span class="math-ascii">`=>`</span> 🎳 venez lire, tester, critiquer, proposer des PR sur le <a href="https://github.com/ilaborie/refactorLoops">dépôt Github</a>"""
+                """🎳 venez lire, tester, critiquer, proposer des PR sur le <a href="https://github.com/ilaborie/refactorLoops">dépôt Github</a>"""
             }
         }
         slide("MonteCarlo - performance 1000 points") {
             barChart(
                 "1_000 points sur OpenJDK (HotSpot) 8.0.202",
                 values = mapOf(
-                    "<span class=\"kotlin\"></span> tailrec" to 24803, //
-                    "<span class=\"scala\"></span> tailrec" to 24801,
-                    "<span class=\"scala\"></span> for" to 23318,
-                    "<span class=\"kotlin\"></span> for" to 23123,
-                    "<span class=\"java\"></span> for" to 21267, //
-                    "<span class=\"java\"></span> stream" to 20108,
-                    "<span class=\"scala\"></span> collection" to 18195, //
-                    "<span class=\"kotlin\"></span> sequence" to 17943,
-                    "<span class=\"kotlin\"></span> collection" to 17287,
-                    "<span class=\"scala\"></span> stream" to 11082
+                    "<span class=\"kotlin\"></span> tailrec" to 24345, //
+                    "<span class=\"kotlin\"></span> for" to 24335,
+                    "<span class=\"scala\"></span> tailrec" to 24325,
+                    "<span class=\"java\"></span> for" to 24241, //
+                    "<span class=\"scala\"></span> for" to 23606,
+                    "<span class=\"kotlin\"></span> sequence" to 20876,
+                    "<span class=\"kotlin\"></span> collection" to 20850,
+                    "<span class=\"java\"></span> stream" to 20046,
+                    "<span class=\"scala\"></span> collection" to 19711, //
+//                    "<span class=\"scala\"></span> LazyList" to 12427, //
+                    "<span class=\"scala\"></span> stream" to 10953
                 ),
                 factor = { it },
                 infoFn = { "$it ops/s" },
                 mode = BarChart.Companion.BarChartCustom(
                     min = 0,
-                    max = 24803,
+                    max = 24345,
                     low = 19000,
                     high = 22000,
-                    optimum = 24803
+                    optimum = 24345
                 )
             )
-            asciiMath { """"tailrec" ~~ 40.3mus > "for" ~~ 47.0mus > "stream" ~~ 49.7mus > "collection" ~~ 55.0mus""" }
+            asciiMath { """"tailrec" ~~ 41.1mus > "for" ~~ 41.3mus > "collection" ~~ 48.0mus > "stream" ~~ 49.9mus""" }
         }
         slide("MonteCarlo - performance 10M points") {
             barChart(
                 "10_000_000 points sur OpenJDK (HotSpot) 8.0.202",
                 values = mapOf(
-                    "<span class=\"scala\"></span> tailrec" to 2.482, // 403ms
-                    "<span class=\"kotlin\"></span> tailrec" to 2.472,
-                    "<span class=\"kotlin\"></span> for" to 2.310,
-                    "<span class=\"scala\"></span> for" to 2.278,
-                    "<span class=\"java\"></span> for" to 2.111, // 474ms
-                    "<span class=\"kotlin\"></span> sequence" to 1.987,
-                    "<span class=\"java\"></span> stream" to 1.967,
-                    "<span class=\"scala\"></span> collection" to 1.664, // 601ms
-                    "<span class=\"kotlin\"></span> collection" to 1.634,
-                    "<span class=\"scala\"></span> stream" to 0.277
+                    "<span class=\"kotlin\"></span> tailrec" to 2.434,
+                    "<span class=\"kotlin\"></span> for" to 2.432,
+                    "<span class=\"scala\"></span> tailrec" to 2.431, // 403ms
+                    "<span class=\"java\"></span> for" to 2.403, // 474ms
+                    "<span class=\"java\"></span> stream" to 2.361,
+                    "<span class=\"scala\"></span> for" to 2.355,
+                    "<span class=\"kotlin\"></span> sequence" to 2.078,
+                    "<span class=\"scala\"></span> collection" to 1.835, // 601ms
+                    "<span class=\"kotlin\"></span> collection" to 1.233,
+                    "<span class=\"scala\"></span> stream" to 0.360
+//                    "<span class=\"scala\"></span> LazyList" to 0.252
                 ),
                 factor = { (it * 1000).toInt() },
                 infoFn = { "$it ops/s" },
                 mode = BarChart.Companion.BarChartCustom(
                     min = 0,
-                    max = 2482,
+                    max = 2434,
                     low = 1800,
                     high = 2000,
-                    optimum = 2482
+                    optimum = 2434
                 )
             )
-            asciiMath { """"tailrec" ~~ 403ms > "for" ~~ 474ms > "stream" ~~ 508ms > "collection" ~~ 601ms""" }
+            asciiMath { """"tailrec" ~~ 411ms > "for" ~~ 416ms > "stream" ~~ 424ms > "collection" ~~ 545ms""" }
         }
         slide("MonteCarlo - performance parallèle") {
             barChart(
                 "10_000_000 points sur OpenJDK (HotSpot) 8.0.202",
                 values = mapOf(
-                    "<span class=\"scala\"></span> tailrec" to 2.482, // 403ms
-                    "<span class=\"kotlin\"></span> tailrec" to 2.472,
-                    "<span class=\"kotlin\"></span> for" to 2.310,
-                    "<span class=\"scala\"></span> for" to 2.278,
-                    "<span class=\"java\"></span> for" to 2.111, // 474ms
-                    "<span class=\"kotlin\"></span> sequence" to 1.987,
-                    "<span class=\"java\"></span> stream" to 1.967,
-                    "<span class=\"scala\"></span> collection" to 1.664, // 601ms
-                    "<span class=\"kotlin\"></span> collection" to 1.634,
+                    "<span class=\"kotlin\"></span> tailrec" to 2.434,
+                    "<span class=\"kotlin\"></span> for" to 2.432,
+                    "<span class=\"scala\"></span> tailrec" to 2.430, // 403ms
+                    "<span class=\"java\"></span> for" to 2.403, // 474ms
+                    "<span class=\"java\"></span> stream" to 2.361,
+                    "<span class=\"scala\"></span> for" to 2.355,
+                    "<span class=\"kotlin\"></span> sequence" to 2.078,
+                    "<span class=\"scala\"></span> collection" to 1.835, // 601ms
                     "<span class=\"kotlin\"></span> sequence ∥" to 1.571,
+                    "<span class=\"kotlin\"></span> collection" to 1.233,
                     "<span class=\"scala\"></span> stream ∥" to 0.468,
-                    "<span class=\"scala\"></span> stream" to 0.277,
-                    "<span class=\"java\"></span> stream ∥" to 0.194
+                    "<span class=\"scala\"></span> stream" to 0.360,
+//                    "<span class=\"scala\"></span> LazyList ∥" to 0.305,
+//                    "<span class=\"scala\"></span> LazyList" to 0.252,
+                    "<span class=\"java\"></span> stream ∥" to 0.249
                 ),
                 factor = { (it * 1000).toInt() },
                 infoFn = { "$it ops/s" },
                 mode = BarChart.Companion.BarChartCustom(
                     min = 0,
-                    max = 2482,
-                    low = 1800,
+                    max = 2434,
+                    low = 1500,
                     high = 2000,
                     optimum = 2482
                 )
@@ -466,35 +479,32 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         slide("WAT !") {
             figure("img/wat.jpg", "Wat ?")
         }
-        slide("MonteCarlo - performance parallèle 2", styles = setOf("header-hidden")) {
+        slide("MonteCarlo - performance parallèle 2") {
             barChart(
                 "10_000_000 points sur OpenJDK (HotSpot) 8.0.202",
                 values = mapOf(
-                    "<span class=\"java\"></span> stream ∥ 2" to 7.654,
-                    "<span class=\"kotlin\"></span> sequence ∥ 2" to 7.224,
-                    "<span class=\"scala\"></span> tailrec" to 2.482, // 403ms
-                    "<span class=\"kotlin\"></span> tailrec" to 2.472,
-                    "<span class=\"kotlin\"></span> for" to 2.310,
-                    "<span class=\"scala\"></span> for" to 2.278,
-                    "<span class=\"java\"></span> for" to 2.111, // 474ms
-                    "<span class=\"kotlin\"></span> sequence" to 1.987,
-                    "<span class=\"java\"></span> stream" to 1.967,
-                    "<span class=\"scala\"></span> collection" to 1.664, // 601ms
-                    "<span class=\"kotlin\"></span> collection" to 1.634,
-                    "<span class=\"kotlin\"></span> sequence ∥" to 1.571,
-                    "<span class=\"scala\"></span> stream ∥ 2" to 0.598,
-                    "<span class=\"scala\"></span> stream ∥" to 0.468,
-                    "<span class=\"scala\"></span> stream" to 0.277,
-                    "<span class=\"java\"></span> stream ∥" to 0.194
+                    "<span class=\"java\"></span> stream ∥ 2" to 8.132,
+                    "<span class=\"kotlin\"></span> sequence ∥ 2" to 6.171,
+                    "<span class=\"kotlin\"></span> tailrec" to 2.434,
+                    "<span class=\"kotlin\"></span> for" to 2.432,
+                    "<span class=\"scala\"></span> tailrec" to 2.430, // 403ms
+                    "<span class=\"java\"></span> for" to 2.403, // 474ms
+                    "<span class=\"java\"></span> stream" to 2.361,
+                    "<span class=\"scala\"></span> for" to 2.355,
+                    "<span class=\"kotlin\"></span> sequence" to 2.078,
+                    "<span class=\"scala\"></span> collection" to 1.835, // 601ms
+                    "<span class=\"kotlin\"></span> collection" to 1.233,
+                    "<span class=\"scala\"></span> stream" to 0.360,
+                    "<span class=\"scala\"></span> LazyList" to 0.252
                 ),
                 factor = { (it * 1000).toInt() },
                 infoFn = { "$it ops/s" },
                 mode = BarChart.Companion.BarChartCustom(
                     min = 0,
-                    max = 7654,
-                    low = 6000,
+                    max = 8132,
+                    low = 5000,
                     high = 7000,
-                    optimum = 7654
+                    optimum = 8132
                 )
             )
         }
@@ -512,12 +522,6 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 file("code/soc/stream.html")
             }
             ul {
-                //                figure(
-//                    "img/SoC-MarioFusco.jpg",
-//                    "Separation of Concerns",
-//                    copyrightBlock = "[**@mariofusco**](https://twitter.com/mariofusco/status/571999216039542784)".markdown
-//                )
-
                 markdown { "[**@mariofusco**](https://twitter.com/mariofusco/status/571999216039542784)" }
                 link("https://www.youtube.com/watch?v=84MfG4tp30s", "Lazy Java par Mario Fusco")
             }
@@ -529,21 +533,6 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         slide("Prédisposition aux 🐛 dangereux") {
             sourceCode("code/loop/transformation3.java")
         }
-//        slide("Pas tous du même avis") {
-//            link("https://www.javacodegeeks.com/2015/12/3-reasons-shouldnt-replace-loops-stream-foreach.html") {
-//                html { "3 Reasons why You Shouldn’t Replace Your for-loops by Stream forEach" }
-//            }
-//        }
-//        slide("Exemple colonnes d'Excel - for") {
-//            span("<code>A</code>, <code>B</code>, ..., <code>Z</code>, <code>AA</code>, <code>AB</code>, ..., <code>ZZ</code>, <code>AAA</code>, ...")
-//            sourceCode("code/excel/for.kt")
-//        }
-//        slide("Exemple colonnes d'Excel - récursif") {
-//            sourceCode("code/excel/recursion.kt")
-//        }
-//        slide("Exemple colonnes d'Excel - séquence") {
-//            sourceCode("code/excel/seq.kt")
-//        }
     }
     part("Conclusion") {
         slide("Bilan") {

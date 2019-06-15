@@ -10,7 +10,7 @@
 }
 
 .voxxed-lux-19 {
-  --footerText: '@voxxed_lu @ilaborie #CSS #⏰';
+  --footerText: '@voxxed_lu #voxxed_lu @ilaborie #CSS #⏰';
 }
 
 .monkeyPatch {
@@ -130,6 +130,9 @@ section > article {
   }
 }
 
+.voxxed-lux-19 section > article .demo {
+  color: #325666;
+}
 
 
 #speakers {

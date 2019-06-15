@@ -557,6 +557,11 @@ label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin__
   li:last-child {
     display: flex;
     justify-content: center;
+
+    twitter-article {
+      transform: scale(1.5);
+      margin-top: 2em;
+    }
   }
 
   blockquote {
