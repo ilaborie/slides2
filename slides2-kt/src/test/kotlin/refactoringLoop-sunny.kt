@@ -104,6 +104,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 asciiMath { "fact(... , x xx (x-1) xx (x-2) xx ...)" }
                 asciiMath { "fact(1, x xx (x-1) xx (x-2) xx ... xx 2)" }
                 markdown { "⚠️ Nécessite une optimisation par le compilateur" }
+                link("https://www.youtube.com/watch?v=-PX0BV9hGZY", "!!Con 2019- Tail Call Optimization: The Musical!! by Anjana Vakil & Natalia Margolis")
             }
         }
         slide("Principe récursion terminale") {
