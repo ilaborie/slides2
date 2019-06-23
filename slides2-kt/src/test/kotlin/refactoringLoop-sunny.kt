@@ -229,17 +229,17 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         slide("Bilan Stream") {
             h4("🤗")
             ul(steps = true) {
-                notice(Danger, title = "À proscrire") {
-                    markdown { "Les effets de bord ! (on tolère les _logs_ dans le `peek`)" }
-                    markdown { "Les opérations non associatives dans des `Stream` parallèles" }
-                    markdown { "Les streams sur des `Integer`, `Double`, `Long`" }
+                notice(Tips) {
+                    markdown { "On peut utiliser intelligemment les aspects paresseux" }
                 }
                 notice(Warning) {
                     markdown { "Sans bonne raison, ne faites pas de `Stream` parallèle" }
                     markdown { "La lisibilité est importante" }
                 }
-                notice(Tips) {
-                    markdown { "On peut utiliser intelligemment les aspects paresseux" }
+                notice(Danger, title = "À proscrire") {
+                    markdown { "Les effets de bord ! (on tolère les _logs_ dans le `peek`)" }
+                    markdown { "Les opérations non associatives dans des `Stream` parallèles" }
+                    markdown { "Les streams sur des `Integer`, `Double`, `Long`" }
                 }
             }
         }
@@ -267,7 +267,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 markdown { "API _lazy_ avec les `Stream`/`LazyList` ou non directement sur les collections" }
                 markdown { "API collection **immutable** ou mutable" }
                 markdown { "Pas de réutilisation de Java" }
-                markdown { "API de [`Stream`](https://www.scala-lang.org/api/2.12.8/scala/collection/immutable/Stream.html) et [LazyList](https://www.scala-lang.org/api/2.13.x/scala/collection/immutable/LazyList.html) avec la possibilité de construction récursive" }
+                markdown { "API de [`Stream`](https://www.scala-lang.org/api/2.12.8/scala/collection/immutable/Stream.html) et [`LazyList`](https://www.scala-lang.org/api/2.13.x/scala/collection/immutable/LazyList.html) avec la possibilité de construction récursive" }
 
                 notice(Info) {
                     markdown { "De gros changements dans la [2.13](https://www.scala-lang.org/blog/2018/06/13/scala-213-collections.html)" }
@@ -325,9 +325,6 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         slide("MonteCarlo - Java for") {
             sourceCode("code/montecarlo/for.java")
         }
-//        slide("MonteCarlo - Java 3") {
-//            sourceCode("code/montecarlo/recursion.java")
-//        }
         slide("MonteCarlo - Java stream") {
             sourceCode("code/montecarlo/stream.java")
         }
