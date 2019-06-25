@@ -1103,16 +1103,15 @@ interface Collector&lt;T,A,R&gt; {
 <nav class="next"> <a href="#disclaimer" aria-label="next slide"></a>
 </nav> <footer></footer>
 </section>
-<section id="disclaimer" class="header-hidden"> <header>
+<section id="disclaimer"> <header>
 <h3>Disclaimer</h3> </header>
 <nav class="previous"> <a href="#montecarlo___scala_stream_parallele" aria-label="previous slide"></a>
 </nav> <article>
-<p>Java 11,
+<p>Avec Java 11,
 Kotlin v1.3.31,
-Scala v2.13.0</p>
-<p>Sur iMac13.2, avec un Intel core i7 3.4GHz, 4 cores</p>
-<p>Et le JRE HotSpot 11.0.3 AdoptOpenJDK</p>
-<h4>Disclaimer</h4>
+Scala v2.13.0,
+sur un iMac13.2, avec un Intel core i7 3.4GHz - 4 cores,
+et le JRE HotSpot 11.0.3 AdoptOpenJDK</p>
 <blockquote>
 <p>REMEMBER: The numbers below are just data. To gain reusable insights,
 you need to follow up on why the numbers are the way they are.
@@ -1129,36 +1128,36 @@ make sure the benchmarking environment is safe on JVM/OS/HW level,
 <h3>MonteCarlo - performance 1000 points</h3> </header>
 <nav class="previous"> <a href="#disclaimer" aria-label="previous slide"></a>
 </nav> <article>
-<div class="charts bar"> <div class="body"><label for="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__tailrec"><span class="kotlin"></span> tailrec</label>
-<meter id="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__tailrec" min="0" low="19000" high="22000" max="24345" optimum="24345" value="24345">24345 ops/s</meter>
+<div class="charts bar"> <div class="body"><label for="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__tailrec"><span class="kotlin"></span> tailrec</label>
+<meter id="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__tailrec" min="0" low="19000" high="22000" max="24345" optimum="24345" value="24345">24345 ops/s</meter>
 <div class="info">24345 ops/s</div>
-<label for="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__for"><span class="kotlin"></span> for</label>
-<meter id="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__for" min="0" low="19000" high="22000" max="24345" optimum="24345" value="24335">24335 ops/s</meter>
+<label for="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__for"><span class="kotlin"></span> for</label>
+<meter id="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__for" min="0" low="19000" high="22000" max="24345" optimum="24345" value="24335">24335 ops/s</meter>
 <div class="info">24335 ops/s</div>
-<label for="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__tailrec"><span class="scala"></span> tailrec</label>
-<meter id="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__tailrec" min="0" low="19000" high="22000" max="24345" optimum="24345" value="24325">24325 ops/s</meter>
+<label for="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__tailrec"><span class="scala"></span> tailrec</label>
+<meter id="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__tailrec" min="0" low="19000" high="22000" max="24345" optimum="24345" value="24325">24325 ops/s</meter>
 <div class="info">24325 ops/s</div>
-<label for="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__for"><span class="java"></span> for</label>
-<meter id="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__for" min="0" low="19000" high="22000" max="24345" optimum="24345" value="24241">24241 ops/s</meter>
+<label for="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__for"><span class="java"></span> for</label>
+<meter id="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__for" min="0" low="19000" high="22000" max="24345" optimum="24345" value="24241">24241 ops/s</meter>
 <div class="info">24241 ops/s</div>
-<label for="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__for"><span class="scala"></span> for</label>
-<meter id="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__for" min="0" low="19000" high="22000" max="24345" optimum="24345" value="23606">23606 ops/s</meter>
+<label for="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__for"><span class="scala"></span> for</label>
+<meter id="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__for" min="0" low="19000" high="22000" max="24345" optimum="24345" value="23606">23606 ops/s</meter>
 <div class="info">23606 ops/s</div>
-<label for="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence"><span class="kotlin"></span> sequence</label>
-<meter id="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence" min="0" low="19000" high="22000" max="24345" optimum="24345" value="20876">20876 ops/s</meter>
+<label for="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__sequence"><span class="kotlin"></span> sequence</label>
+<meter id="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__sequence" min="0" low="19000" high="22000" max="24345" optimum="24345" value="20876">20876 ops/s</meter>
 <div class="info">20876 ops/s</div>
-<label for="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__collection"><span class="kotlin"></span> collection</label>
-<meter id="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__collection" min="0" low="19000" high="22000" max="24345" optimum="24345" value="20850">20850 ops/s</meter>
+<label for="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__collection"><span class="kotlin"></span> collection</label>
+<meter id="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__collection" min="0" low="19000" high="22000" max="24345" optimum="24345" value="20850">20850 ops/s</meter>
 <div class="info">20850 ops/s</div>
-<label for="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream"><span class="java"></span> stream</label>
-<meter id="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream" min="0" low="19000" high="22000" max="24345" optimum="24345" value="20046">20046 ops/s</meter>
+<label for="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__stream"><span class="java"></span> stream</label>
+<meter id="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__stream" min="0" low="19000" high="22000" max="24345" optimum="24345" value="20046">20046 ops/s</meter>
 <div class="info">20046 ops/s</div>
-<label for="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__collection"><span class="scala"></span> collection</label>
-<meter id="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__collection" min="0" low="19000" high="22000" max="24345" optimum="24345" value="19711">19711 ops/s</meter>
+<label for="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__collection"><span class="scala"></span> collection</label>
+<meter id="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__collection" min="0" low="19000" high="22000" max="24345" optimum="24345" value="19711">19711 ops/s</meter>
 <div class="info">19711 ops/s</div>
-<label for="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream"><span class="scala"></span> stream</label>
-<meter id="1_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream" min="0" low="19000" high="22000" max="24345" optimum="24345" value="10953">10953 ops/s</meter>
-<div class="info">10953 ops/s</div></div> <div class="caption">1_000 points sur OpenJDK (HotSpot) 8.0.202</div>
+<label for="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__stream"><span class="scala"></span> stream</label>
+<meter id="1_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__stream" min="0" low="19000" high="22000" max="24345" optimum="24345" value="10953">10953 ops/s</meter>
+<div class="info">10953 ops/s</div></div> <div class="caption">1_000 points sur JRE 11.0.3 hs-adpt</div>
 </div>
 <span class="math-ascii">`"tailrec" ~~ 41.1mus > "for" ~~ 41.3mus > "collection" ~~ 48.0mus > "stream" ~~ 49.9mus`</span> </article>
 <nav class="next"> <a href="#montecarlo___performance_10m_points" aria-label="next slide"></a>
@@ -1168,36 +1167,36 @@ make sure the benchmarking environment is safe on JVM/OS/HW level,
 <h3>MonteCarlo - performance 10M points</h3> </header>
 <nav class="previous"> <a href="#montecarlo___performance_1000_points" aria-label="previous slide"></a>
 </nav> <article>
-<div class="charts bar"> <div class="body"><label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__tailrec"><span class="kotlin"></span> tailrec</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__tailrec" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2434">2.434 ops/s</meter>
+<div class="charts bar"> <div class="body"><label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__tailrec"><span class="kotlin"></span> tailrec</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__tailrec" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2434">2.434 ops/s</meter>
 <div class="info">2.434 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__for"><span class="kotlin"></span> for</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__for" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2432">2.432 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__for"><span class="kotlin"></span> for</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__for" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2432">2.432 ops/s</meter>
 <div class="info">2.432 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__tailrec"><span class="scala"></span> tailrec</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__tailrec" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2431">2.431 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__tailrec"><span class="scala"></span> tailrec</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__tailrec" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2431">2.431 ops/s</meter>
 <div class="info">2.431 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__for"><span class="java"></span> for</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__for" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2403">2.403 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__for"><span class="java"></span> for</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__for" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2403">2.403 ops/s</meter>
 <div class="info">2.403 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream"><span class="java"></span> stream</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2361">2.361 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__stream"><span class="java"></span> stream</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__stream" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2361">2.361 ops/s</meter>
 <div class="info">2.361 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__for"><span class="scala"></span> for</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__for" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2355">2.355 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__for"><span class="scala"></span> for</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__for" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2355">2.355 ops/s</meter>
 <div class="info">2.355 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence"><span class="kotlin"></span> sequence</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2078">2.078 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__sequence"><span class="kotlin"></span> sequence</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__sequence" min="0" low="1800" high="2000" max="2434" optimum="2434" value="2078">2.078 ops/s</meter>
 <div class="info">2.078 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__collection"><span class="scala"></span> collection</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__collection" min="0" low="1800" high="2000" max="2434" optimum="2434" value="1835">1.835 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__collection"><span class="scala"></span> collection</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__collection" min="0" low="1800" high="2000" max="2434" optimum="2434" value="1835">1.835 ops/s</meter>
 <div class="info">1.835 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__collection"><span class="kotlin"></span> collection</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__collection" min="0" low="1800" high="2000" max="2434" optimum="2434" value="1233">1.233 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__collection"><span class="kotlin"></span> collection</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__collection" min="0" low="1800" high="2000" max="2434" optimum="2434" value="1233">1.233 ops/s</meter>
 <div class="info">1.233 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream"><span class="scala"></span> stream</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream" min="0" low="1800" high="2000" max="2434" optimum="2434" value="360">0.36 ops/s</meter>
-<div class="info">0.36 ops/s</div></div> <div class="caption">10_000_000 points sur OpenJDK (HotSpot) 8.0.202</div>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__stream"><span class="scala"></span> stream</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__stream" min="0" low="1800" high="2000" max="2434" optimum="2434" value="360">0.36 ops/s</meter>
+<div class="info">0.36 ops/s</div></div> <div class="caption">10_000_000 points sur JRE 11.0.3 hs-adpt</div>
 </div>
 <span class="math-ascii">`"tailrec" ~~ 411ms > "for" ~~ 416ms > "stream" ~~ 424ms > "collection" ~~ 545ms`</span> </article>
 <nav class="next"> <a href="#montecarlo___performance_parallele" aria-label="next slide"></a>
@@ -1207,45 +1206,45 @@ make sure the benchmarking environment is safe on JVM/OS/HW level,
 <h3>MonteCarlo - performance parallèle</h3> </header>
 <nav class="previous"> <a href="#montecarlo___performance_10m_points" aria-label="previous slide"></a>
 </nav> <article>
-<div class="charts bar"> <div class="body"><label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__tailrec"><span class="kotlin"></span> tailrec</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__tailrec" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2434">2.434 ops/s</meter>
+<div class="charts bar"> <div class="body"><label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__tailrec"><span class="kotlin"></span> tailrec</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__tailrec" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2434">2.434 ops/s</meter>
 <div class="info">2.434 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__for"><span class="kotlin"></span> for</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__for" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2432">2.432 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__for"><span class="kotlin"></span> for</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__for" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2432">2.432 ops/s</meter>
 <div class="info">2.432 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__tailrec"><span class="scala"></span> tailrec</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__tailrec" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2430">2.43 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__tailrec"><span class="scala"></span> tailrec</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__tailrec" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2430">2.43 ops/s</meter>
 <div class="info">2.43 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__for"><span class="java"></span> for</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__for" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2403">2.403 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__for"><span class="java"></span> for</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__for" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2403">2.403 ops/s</meter>
 <div class="info">2.403 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream"><span class="java"></span> stream</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2361">2.361 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__stream"><span class="java"></span> stream</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__stream" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2361">2.361 ops/s</meter>
 <div class="info">2.361 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__for"><span class="scala"></span> for</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__for" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2355">2.355 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__for"><span class="scala"></span> for</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__for" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2355">2.355 ops/s</meter>
 <div class="info">2.355 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence"><span class="kotlin"></span> sequence</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2078">2.078 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__sequence"><span class="kotlin"></span> sequence</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__sequence" min="0" low="1500" high="2000" max="2434" optimum="2482" value="2078">2.078 ops/s</meter>
 <div class="info">2.078 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__collection"><span class="scala"></span> collection</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__collection" min="0" low="1500" high="2000" max="2434" optimum="2482" value="1835">1.835 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__collection"><span class="scala"></span> collection</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__collection" min="0" low="1500" high="2000" max="2434" optimum="2482" value="1835">1.835 ops/s</meter>
 <div class="info">1.835 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence_"><span class="kotlin"></span> sequence ∥</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence_" min="0" low="1500" high="2000" max="2434" optimum="2482" value="1571">1.571 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__sequence_"><span class="kotlin"></span> sequence ∥</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__sequence_" min="0" low="1500" high="2000" max="2434" optimum="2482" value="1571">1.571 ops/s</meter>
 <div class="info">1.571 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__collection"><span class="kotlin"></span> collection</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__collection" min="0" low="1500" high="2000" max="2434" optimum="2482" value="1233">1.233 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__collection"><span class="kotlin"></span> collection</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__collection" min="0" low="1500" high="2000" max="2434" optimum="2482" value="1233">1.233 ops/s</meter>
 <div class="info">1.233 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream_"><span class="scala"></span> stream ∥</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream_" min="0" low="1500" high="2000" max="2434" optimum="2482" value="468">0.468 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__stream_"><span class="scala"></span> stream ∥</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__stream_" min="0" low="1500" high="2000" max="2434" optimum="2482" value="468">0.468 ops/s</meter>
 <div class="info">0.468 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream"><span class="scala"></span> stream</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream" min="0" low="1500" high="2000" max="2434" optimum="2482" value="360">0.36 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__stream"><span class="scala"></span> stream</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__stream" min="0" low="1500" high="2000" max="2434" optimum="2482" value="360">0.36 ops/s</meter>
 <div class="info">0.36 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream_"><span class="java"></span> stream ∥</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream_" min="0" low="1500" high="2000" max="2434" optimum="2482" value="249">0.249 ops/s</meter>
-<div class="info">0.249 ops/s</div></div> <div class="caption">10_000_000 points sur OpenJDK (HotSpot) 8.0.202</div>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__stream_"><span class="java"></span> stream ∥</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__stream_" min="0" low="1500" high="2000" max="2434" optimum="2482" value="249">0.249 ops/s</meter>
+<div class="info">0.249 ops/s</div></div> <div class="caption">10_000_000 points sur JRE 11.0.3 hs-adpt</div>
 </div>
 <p>😱 le code parallèle</p> </article>
 <nav class="next"> <a href="#wat__" aria-label="next slide"></a>
@@ -1264,45 +1263,42 @@ make sure the benchmarking environment is safe on JVM/OS/HW level,
 <h3>MonteCarlo - performance parallèle 2</h3> </header>
 <nav class="previous"> <a href="#wat__" aria-label="previous slide"></a>
 </nav> <article>
-<div class="charts bar"> <div class="body"><label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream__2"><span class="java"></span> stream ∥ 2</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream__2" min="0" low="5000" high="7000" max="8132" optimum="8132" value="8132">8.132 ops/s</meter>
+<div class="charts bar"> <div class="body"><label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__stream__2"><span class="java"></span> stream ∥ 2</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__stream__2" min="0" low="5000" high="7000" max="8132" optimum="8132" value="8132">8.132 ops/s</meter>
 <div class="info">8.132 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence__2"><span class="kotlin"></span> sequence ∥ 2</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence__2" min="0" low="5000" high="7000" max="8132" optimum="8132" value="6171">6.171 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__sequence__2"><span class="kotlin"></span> sequence ∥ 2</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__sequence__2" min="0" low="5000" high="7000" max="8132" optimum="8132" value="6171">6.171 ops/s</meter>
 <div class="info">6.171 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__tailrec"><span class="kotlin"></span> tailrec</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__tailrec" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2434">2.434 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__tailrec"><span class="kotlin"></span> tailrec</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__tailrec" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2434">2.434 ops/s</meter>
 <div class="info">2.434 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__for"><span class="kotlin"></span> for</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__for" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2432">2.432 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__for"><span class="kotlin"></span> for</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__for" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2432">2.432 ops/s</meter>
 <div class="info">2.432 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__tailrec"><span class="scala"></span> tailrec</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__tailrec" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2430">2.43 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__tailrec"><span class="scala"></span> tailrec</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__tailrec" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2430">2.43 ops/s</meter>
 <div class="info">2.43 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__for"><span class="java"></span> for</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__for" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2403">2.403 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__for"><span class="java"></span> for</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__for" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2403">2.403 ops/s</meter>
 <div class="info">2.403 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream"><span class="java"></span> stream</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__java____span__stream" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2361">2.361 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__stream"><span class="java"></span> stream</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__java____span__stream" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2361">2.361 ops/s</meter>
 <div class="info">2.361 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__for"><span class="scala"></span> for</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__for" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2355">2.355 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__for"><span class="scala"></span> for</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__for" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2355">2.355 ops/s</meter>
 <div class="info">2.355 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence"><span class="kotlin"></span> sequence</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__sequence" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2078">2.078 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__sequence"><span class="kotlin"></span> sequence</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__sequence" min="0" low="5000" high="7000" max="8132" optimum="8132" value="2078">2.078 ops/s</meter>
 <div class="info">2.078 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__collection"><span class="scala"></span> collection</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__collection" min="0" low="5000" high="7000" max="8132" optimum="8132" value="1835">1.835 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__collection"><span class="scala"></span> collection</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__collection" min="0" low="5000" high="7000" max="8132" optimum="8132" value="1835">1.835 ops/s</meter>
 <div class="info">1.835 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__collection"><span class="kotlin"></span> collection</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin____span__collection" min="0" low="5000" high="7000" max="8132" optimum="8132" value="1233">1.233 ops/s</meter>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__collection"><span class="kotlin"></span> collection</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__kotlin____span__collection" min="0" low="5000" high="7000" max="8132" optimum="8132" value="1233">1.233 ops/s</meter>
 <div class="info">1.233 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream"><span class="scala"></span> stream</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__stream" min="0" low="5000" high="7000" max="8132" optimum="8132" value="360">0.36 ops/s</meter>
-<div class="info">0.36 ops/s</div>
-<label for="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__lazylist"><span class="scala"></span> LazyList</label>
-<meter id="10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__scala____span__lazylist" min="0" low="5000" high="7000" max="8132" optimum="8132" value="252">0.252 ops/s</meter>
-<div class="info">0.252 ops/s</div></div> <div class="caption">10_000_000 points sur OpenJDK (HotSpot) 8.0.202</div>
+<label for="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__stream"><span class="scala"></span> stream</label>
+<meter id="10_000_000_points_sur_jre_11_0_3_hs_adpt__span_class__scala____span__stream" min="0" low="5000" high="7000" max="8132" optimum="8132" value="360">0.36 ops/s</meter>
+<div class="info">0.36 ops/s</div></div> <div class="caption">10_000_000 points sur JRE 11.0.3 hs-adpt</div>
 </div> </article>
 <nav class="next"> <a href="#ce_qui_change" aria-label="next slide"></a>
 </nav> <footer></footer>
