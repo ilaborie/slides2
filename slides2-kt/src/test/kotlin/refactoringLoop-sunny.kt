@@ -361,18 +361,15 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         slide("MonteCarlo - Scala stream parallèle") {
             sourceCode("code/montecarlo/streamP.scala")
         }
-        slide("Disclaimer", styles = setOf("header-hidden")) {
+        slide("Disclaimer") {
             markdown {
                 """
-                  |Java 11,
+                  |Avec Java 11,
                   |Kotlin v1.3.31,
-                  |Scala v2.13.0
+                  |Scala v2.13.0,
+                  |sur un iMac13.2, avec un Intel core i7 3.4GHz - 4 cores,
+                  |et le JRE HotSpot 11.0.3 AdoptOpenJDK
                   |
-                  |Sur iMac13.2, avec un Intel core i7 3.4GHz, 4 cores
-                  |
-                  |Et le JRE HotSpot 11.0.3 AdoptOpenJDK
-                  |
-                  |#### Disclaimer
                   |
                   |>REMEMBER: The numbers below are just data. To gain reusable insights,
                   |you need to follow up on why the numbers are the way they are.
@@ -389,7 +386,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         }
         slide("MonteCarlo - performance 1000 points") {
             barChart(
-                "1_000 points sur OpenJDK (HotSpot) 8.0.202",
+                "1_000 points sur JRE 11.0.3 hs-adpt",
                 values = mapOf(
                     "<span class=\"kotlin\"></span> tailrec" to 24345, //
                     "<span class=\"kotlin\"></span> for" to 24335,
@@ -400,7 +397,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                     "<span class=\"kotlin\"></span> collection" to 20850,
                     "<span class=\"java\"></span> stream" to 20046,
                     "<span class=\"scala\"></span> collection" to 19711, //
-//                    "<span class=\"scala\"></span> LazyList" to 12427, //
+//                    "<span class=\"scala\"></span> LazyList" to 12427 //
                     "<span class=\"scala\"></span> stream" to 10953
                 ),
                 factor = { it },
@@ -417,7 +414,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         }
         slide("MonteCarlo - performance 10M points") {
             barChart(
-                "10_000_000 points sur OpenJDK (HotSpot) 8.0.202",
+                "10_000_000 points sur JRE 11.0.3 hs-adpt",
                 values = mapOf(
                     "<span class=\"kotlin\"></span> tailrec" to 2.434,
                     "<span class=\"kotlin\"></span> for" to 2.432,
@@ -445,7 +442,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         }
         slide("MonteCarlo - performance parallèle") {
             barChart(
-                "10_000_000 points sur OpenJDK (HotSpot) 8.0.202",
+                "10_000_000 points sur JRE 11.0.3 hs-adpt",
                 values = mapOf(
                     "<span class=\"kotlin\"></span> tailrec" to 2.434,
                     "<span class=\"kotlin\"></span> for" to 2.432,
@@ -480,7 +477,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         }
         slide("MonteCarlo - performance parallèle 2") {
             barChart(
-                "10_000_000 points sur OpenJDK (HotSpot) 8.0.202",
+                "10_000_000 points sur JRE 11.0.3 hs-adpt",
                 values = mapOf(
                     "<span class=\"java\"></span> stream ∥ 2" to 8.132,
                     "<span class=\"kotlin\"></span> sequence ∥ 2" to 6.171,
@@ -493,8 +490,8 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                     "<span class=\"kotlin\"></span> sequence" to 2.078,
                     "<span class=\"scala\"></span> collection" to 1.835, // 601ms
                     "<span class=\"kotlin\"></span> collection" to 1.233,
-                    "<span class=\"scala\"></span> stream" to 0.360,
-                    "<span class=\"scala\"></span> LazyList" to 0.252
+                    "<span class=\"scala\"></span> stream" to 0.360
+//                    "<span class=\"scala\"></span> LazyList" to 0.252
                 ),
                 factor = { (it * 1000).toInt() },
                 infoFn = { "$it ops/s" },
