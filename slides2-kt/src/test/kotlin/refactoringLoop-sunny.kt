@@ -474,6 +474,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
         }
         slide("WAT !") {
             figure("img/wat.jpg", "Wat ?")
+            link("https://www.liquor.com/recipes/pink-flamingo/#gs.ll28ts", "🔞 Pink Flamingo cocktail")
         }
         slide("MonteCarlo - performance parallèle 2") {
             barChart(
@@ -522,7 +523,6 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
                 link("https://www.youtube.com/watch?v=84MfG4tp30s", "Lazy Java par Mario Fusco")
             }
         }
-        // FIXME slide
         slide("Prédisposition aux 🐛") {
             sourceCode("code/loop/transformation1.java")
         }
@@ -548,7 +548,6 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
             }
             link("http://www.flatmapthatshit.com/", "Si vous avez du mal à choisir")
         }
-        // TODO https://twitter.com/spf13/status/1120720001676271616
         slide("FP") {
             ul(steps = true) {
                 html { "Lambda et fonctions d'ordre supérieur" }
