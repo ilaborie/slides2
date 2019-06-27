@@ -552,7 +552,7 @@ private val refactoringLoop = pres(id = id, extraStyle = "style", title = { refa
             ul(steps = true) {
                 html { "Lambda et fonctions d'ordre supérieur" }
                 html { "Pas d'effet de bord" }
-                html { "Immutablilté" }
+                html { "immutabilité" }
                 html { """<span class="math-ascii">`=>`</span> Ceci est une présentation sur la programmation fonctionnelle""" }
             }
         }
