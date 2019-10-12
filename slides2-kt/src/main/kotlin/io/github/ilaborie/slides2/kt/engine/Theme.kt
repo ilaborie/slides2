@@ -15,6 +15,7 @@ data class Theme(val name: String) {
         val all: Map<String, Theme> = listOf(
             "base",
             "jug-tls",
+            "gdg-tls",
             "devoxxfr-19",
             "voxxed-lux-19",
             "mixit-19",
@@ -29,12 +30,13 @@ data class Theme(val name: String) {
 
         val base = get("base")
         val jugTls = get("jug-tls")
+        val gdgTls = get("gdg-tls")
         val devoxxFr19 = get("devoxxfr-19")
         val voxxedLux19 = get("voxxed-lux-19")
         val mixit19 = get("mixit-19")
         val sunnyTech19 = get("sunnytech-19")
         val rivieraDev19 = get("rivieradev-19")
 
-        // tlsGdg, voxxedXXyy, ...
+        // voxxedXXyy, ...
     }
 }

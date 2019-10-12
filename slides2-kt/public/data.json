@@ -3,17 +3,8 @@
     "title": "cssClockwork",
     "instances": [
       {
-        "label": "voxxed-lux-19",
+        "label": "gdg-tls",
         "path": "cssClockwork",
-        "metadata": {}
-      }
-    ]
-  }, {
-    "title": "refactoringLoop",
-    "instances": [
-      {
-        "label": "sunnytech-19",
-        "path": "refactoringLoop",
         "metadata": {}
       }
     ]

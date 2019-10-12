@@ -4,19 +4,19 @@ Fast Track
 
 ```css
 box-shadow:
-.05em .05em .1em rgba(0, 0, 0, .5),
-inset 0 0 0 .025em white;
-inset .05em .05em .1em rgba(0, 0, 0, .5),
-inset .5em .5em 1em rgba(0, 0, 0, .1);
+    .05em .05em .1em rgba(0, 0, 0, .5),
+    inset 0 0 0 .025em white;
+    inset .05em .05em .1em rgba(0, 0, 0, .5),
+    inset .5em .5em 1em rgba(0, 0, 0, .1);
 ```
 
 # Step 2 - Une aiguille
 
 ```css
-    border-bottom-left-radius: 100% 80%;
-    border-bottom-right-radius: 100% 80%;
-    border:.001em solid rgba(0, 0, 0, .1);
-    box-shadow: 0 0 .05em rgba(0, 0, 0, .1);
+border-bottom-left-radius: 100% 80%;
+border-bottom-right-radius: 100% 80%;
+border:.001em solid rgba(0, 0, 0, .5);
+box-shadow: 0 0 .05em rgba(0, 0, 0, .5);
 ```
 
 # Step 3 - La rotation

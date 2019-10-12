@@ -1,4 +1,10 @@
 const puppeteer = require('puppeteer');
+const {Logger, LogLevel} = require('plop-logger');
+const {colorEmojiConfig} = require('plop-logger/lib/extra/colorEmojiConfig');
+
+Logger.config = colorEmojiConfig;
+const logger = Logger.getLogger('postprocess');
+logger.level = LogLevel.All;
 
 const timeoutInSeconds = 5;
 const pdfOptions = {
@@ -9,15 +15,17 @@ const pdfOptions = {
 const data = require('./slides2-kt/public/data.json');
 
 async function generate() {
+    logger.info('start puppeteer');
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     // console.log({data});
     for (const pres of data) {
         for (const instance of pres.instances) {
+            logger.info('handle', instance.path);
             // console.log({instance});
             const base = `slides2-kt/public/${instance.path}/index-${instance.label}`;
             const url = `http://localhost:1234/${instance.path}/index-${instance.label}.html`;
-            console.log('🔗', url);
+            logger.debug('url', url);
             await page.goto(url, {
                 waitUntil: 'networkidle2'
             });
@@ -35,9 +43,9 @@ async function screenshot(page, base) {
         await page.screenshot({
             path
         });
-        console.log('📸', path);
+        logger.info('📸', path);
     } catch (e) {
-        console.error(e);
+        logger.error(e);
     }
 }
 
@@ -48,9 +56,9 @@ async function printPdf(page, base) {
             ...pdfOptions,
             path
         });
-        console.log('📇', path)
+        logger.info('📇', path)
     } catch (e) {
-        console.error(e);
+        logger.error(e);
     }
 }
 

@@ -48,7 +48,11 @@
 
 	animation: rotatePin var(--duration) linear infinite;
 	/* animation-play-state: paused; */
-	--delay : calc(var(--second) + 60 * var(--minute) + 3600 * var(--hour));
+	--delay : calc(
+		var(--second) +
+		60 * var(--minute) +
+		3600 * var(--hour)
+	);
 	animation-delay: calc(-1s * var(--delay));
 }
 

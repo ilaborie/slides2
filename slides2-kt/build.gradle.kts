@@ -8,12 +8,12 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.github.jengelman.gradle.plugins:shadow:5.0.0")
+        classpath("com.github.jengelman.gradle.plugins:shadow:5.1.0")
     }
 }
 
 plugins {
-    kotlin("jvm") version "1.3.40"
+    kotlin("jvm") version "1.3.50"
     id("com.github.johnrengelman.shadow") version "5.0.0"
     application
 }
@@ -43,7 +43,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("script-util"))
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$vJackson")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
 }
 
 tasks.withType<KotlinCompile> {
@@ -59,11 +59,11 @@ tasks.withType<Assemble> {
     dependsOn(shadowJar)
 }
 
-task("webComponent19", type = JavaExec::class) {
-    dependsOn("assemble")
-    classpath = sourceSets["test"].runtimeClasspath
-    main = "WebcomponentsKt"
-}
+//task("webComponent19", type = JavaExec::class) {
+//    dependsOn("assemble")
+//    classpath = sourceSets["test"].runtimeClasspath
+//    main = "WebcomponentsKt"
+//}
 
 //task("refactoringLoop", type = JavaExec::class) {
 //    dependsOn("assemble")
@@ -71,17 +71,17 @@ task("webComponent19", type = JavaExec::class) {
 //    main = "RefactoringLoopKt"
 //}
 
-task("refactoringLoop", type = JavaExec::class) {
-    dependsOn("assemble")
-    classpath = sourceSets["test"].runtimeClasspath
-    main = "RefactoringLoop_sunnyKt"
-}
+//task("refactoringLoop", type = JavaExec::class) {
+//    dependsOn("assemble")
+//    classpath = sourceSets["test"].runtimeClasspath
+//    main = "RefactoringLoop_sunnyKt"
+//}
 
-task("deepDiveKotlin", type = JavaExec::class) {
-    dependsOn("assemble")
-    classpath = sourceSets["test"].runtimeClasspath
-    main = "DeepDiveKotlinKt"
-}
+//task("deepDiveKotlin", type = JavaExec::class) {
+//    dependsOn("assemble")
+//    classpath = sourceSets["test"].runtimeClasspath
+//    main = "DeepDiveKotlinKt"
+//}
 
 //task("cssClockwork", type = JavaExec::class) {
 //    dependsOn("assemble")
@@ -92,5 +92,5 @@ task("deepDiveKotlin", type = JavaExec::class) {
 task("cssClockwork", type = JavaExec::class) {
     dependsOn("assemble")
     classpath = sourceSets["test"].runtimeClasspath
-    main = "CssClockwork_luxKt"
+    main = "CssClockwork_tlsKt"
 }
