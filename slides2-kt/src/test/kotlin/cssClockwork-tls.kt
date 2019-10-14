@@ -85,9 +85,9 @@ private val cssClockwork = pres(
                 link("http://www.monkeypatch.io/blog/2017/2017-05-02-makingof_css_is_awesome/", "Blog  Making Of")
             }
         }
-        slide("🦄 forever") {
-            file("code/unicorn.html")
-        }
+//        slide("🦄 forever") {
+//            file("code/unicorn.html")
+//        }
     }
 
     part("Live-coding") {
@@ -304,13 +304,13 @@ private val cssClockwork = pres(
         slide("Les marqueurs - liens") {
             ul {
                 markdown { "[Emmet](https://docs.emmet.io/cheat-sheet/)" }
-                markdown { "[Pseudo-class `:nth-child()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child)" }
+                markdown { "[Pseudo-classe `:nth-child()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child)" }
                 markdown { "[Using CSS counters](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters)" }
                 markdown { "[`@counter-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style) (que sur Firefox)" }
                 markdown { "[Voir sur codepen](https://codepen.io/ilaborie/pen/wRpoJy)" }
 
                 notice(Warning) {
-                    markdown { "[enable the use of `counter()` inside `calc()`](https://github.com/w3c/csswg-drafts/issues/1026)" }
+                    markdown { "[Enable the use of `counter()` inside `calc()`](https://github.com/w3c/csswg-drafts/issues/1026)" }
                 }
             }
         }
@@ -322,17 +322,17 @@ private val cssClockwork = pres(
             link("http://caniuse.com")
             ul(steps = true) {
                 markdown { "`currentColor`, `border-radius`, `box-shadow`, `box-sizing`," }
-                markdown { "CSS Generated content for pseudo-elements, `calc`," }
-                markdown { "CSS3 2D Transforms, CSS Animation" }
+                markdown { "_CSS Generated content for pseudo-elements_, `calc`," }
+                markdown { "_CSS3 2D Transforms_, _CSS Animation_" }
             }
         }
         slide("Ça sur les navigateurs modernes") {
             ul(steps = true) {
-                markdown { "CSS Variables (Custom Properties)" }
+                markdown { "_CSS Variables (Custom Properties)_" }
                 figure("logos/ie.svg", "😡 Pas sur IE")
                 markdown { "Alternative statique: [postcss-preset-env](https://preset-env.cssdb.org/)" }
                 markdown { "Alternative dynamique: JavaScript" }
-                markdown { "Polyfill: [css-vars-ponyfill](https://jhildenbiddle.github.io/css-vars-ponyfill)" }
+                markdown { "_Polyfill_: [css-vars-ponyfill](https://jhildenbiddle.github.io/css-vars-ponyfill)" }
             }
         }
     }
@@ -353,8 +353,8 @@ private val cssClockwork = pres(
             ul(steps = true) {
                 markdown { "🕳 <del>Incompatibilité</del>" }
                 markdown { "📄 <del>Documentation</del> voir [MDN](https://developer.mozilla.org/en-US/)" }
-                markdown { "🚫 pas de cours CSS" }
                 markdown { "⌛️ Pas le temps sur les projets" }
+                markdown { "🚫 pas de cours CSS" }
                 markdown { "😡 technologie mésestimée" }
                 markdown { "🛑 **Il faut changer cela !**" }
             }
@@ -362,7 +362,7 @@ private val cssClockwork = pres(
 
         slide("Comment apprendre") {
             ul(steps = true) {
-                markdown { "🤹‍♂️ regardez des présentations" }
+                markdown { "🤹‍♀️️ regardez des présentations 🤹‍♂️" }
                 markdown { "🎓 mentoring" }
                 markdown { "📚 livres, par exemple [CSS Secrets](http://www.amazon.com/CSS-Secrets-Lea-Verou/dp/1449372635?tag=leaverou-20)" }
                 markdown { "... les _side-projects_" }
@@ -372,7 +372,7 @@ private val cssClockwork = pres(
 
         slide("Passé, présent et future") {
             ul(steps = true) {
-                markdown { "🔮 Que sera le web demain ?" }
+                markdown { "🔮 Que sera le _web_ demain ?" }
                 quote("Lorsque tu ne sais pas où tu vas, regarde d'où tu viens.")
                 markdown { "🧱 Donnez-vous du temps pour les bases: HTML, CSS, JS" }
             }
