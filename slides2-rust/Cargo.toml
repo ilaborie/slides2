@@ -5,7 +5,7 @@ authors = ["Igor Laborie <ilaborie@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-jni = "0.13"
+jni = "0.14"
 pulldown-cmark = "0.6"
 qrcode = "0.11"
 sass-rs = "0.2"

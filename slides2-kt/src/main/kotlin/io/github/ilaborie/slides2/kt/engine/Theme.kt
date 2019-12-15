@@ -20,7 +20,8 @@ data class Theme(val name: String) {
             "voxxed-lux-19",
             "mixit-19",
             "sunnytech-19",
-            "rivieradev-19"
+            "rivieradev-19",
+            "tnt"
         )
             .map { it to Theme(it) }
             .toMap()
@@ -36,6 +37,7 @@ data class Theme(val name: String) {
         val mixit19 = get("mixit-19")
         val sunnyTech19 = get("sunnytech-19")
         val rivieraDev19 = get("rivieradev-19")
+        val tnt = get("tnt")
 
         // voxxedXXyy, ...
     }

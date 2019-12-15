@@ -17,5 +17,5 @@ pushd slides2-kt
     # ./gradlew deepDiveKotlin
 
     # Refactoring Loop
-    # ./gradlew refactoringLoop
+    ./gradlew refactoringLoop
 popd

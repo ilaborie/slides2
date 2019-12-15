@@ -1,20 +1,7 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-buildscript {
-
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("com.github.jengelman.gradle.plugins:shadow:5.1.0")
-    }
-}
-
 plugins {
-    kotlin("jvm") version "1.3.50"
-    id("com.github.johnrengelman.shadow") version "5.0.0"
+    kotlin("jvm") version "1.3.61"
     application
 }
 
@@ -29,7 +16,6 @@ repositories {
     mavenCentral()
 }
 
-
 val test by tasks.getting(Test::class) {
     useJUnitPlatform { }
 }
@@ -38,12 +24,13 @@ val test by tasks.getting(Test::class) {
 val vKotlintest: String by project
 val vClikt: String by project
 val vJackson: String by project
+val vKtCoroutine: String by project
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("script-util"))
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$vJackson")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$vKtCoroutine")
 }
 
 tasks.withType<KotlinCompile> {
@@ -53,11 +40,24 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-val shadowJar: ShadowJar by tasks
-
-tasks.withType<Assemble> {
-    dependsOn(shadowJar)
+// Fat Jar
+tasks.register<Jar>("fatJar") {
+    archiveBaseName.set("slides2-full")
+    manifest {
+        attributes["Main-class"] = application.mainClassName
+    }
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it)})
+    with(tasks.jar.get())
 }
+
+// Download  dependencies
+tasks.register("downloadDependencies") {
+    println("Download dependencies...")
+    configurations.testRuntimeClasspath.get().files
+}
+
+
+///
 
 //task("webComponent19", type = JavaExec::class) {
 //    dependsOn("assemble")
@@ -65,17 +65,11 @@ tasks.withType<Assemble> {
 //    main = "WebcomponentsKt"
 //}
 
-//task("refactoringLoop", type = JavaExec::class) {
-//    dependsOn("assemble")
-//    classpath = sourceSets["test"].runtimeClasspath
-//    main = "RefactoringLoopKt"
-//}
-
-//task("refactoringLoop", type = JavaExec::class) {
-//    dependsOn("assemble")
-//    classpath = sourceSets["test"].runtimeClasspath
-//    main = "RefactoringLoop_sunnyKt"
-//}
+task("refactoringLoop", type = JavaExec::class) {
+    dependsOn("assemble")
+    classpath = sourceSets["test"].runtimeClasspath
+    main = "RefactoringLoop_tntKt"
+}
 
 //task("deepDiveKotlin", type = JavaExec::class) {
 //    dependsOn("assemble")
@@ -83,14 +77,9 @@ tasks.withType<Assemble> {
 //    main = "DeepDiveKotlinKt"
 //}
 
-//task("cssClockwork", type = JavaExec::class) {
-//    dependsOn("assemble")
-//    classpath = sourceSets["test"].runtimeClasspath
-//    main = "CssClockworkKt"
-//}
 
 task("cssClockwork", type = JavaExec::class) {
     dependsOn("assemble")
     classpath = sourceSets["test"].runtimeClasspath
-    main = "CssClockwork_tlsKt"
+    main = "CssClockwork_tntKt"
 }

@@ -1,0 +1,74 @@
+:root {
+
+  // Companies
+  --monkeyBof: #00b0ff;
+}
+
+.jug-tls {
+  // Footer
+  --footerText: '@ToulouseJug @ilaborie';
+}
+
+.monkeyPatch {
+  background: var(--monkeyBof);
+  color: white;
+}
+
+#MathJax_Message {
+  display: none;
+}
+
+.list-inline li > figure > img {
+  height: 4em;
+}
+
+
+table thead figure {
+  font-size: 67%;
+}
+
+body > header {
+  font-size: 60%;
+}
+
+
+section > article {
+
+  pre {
+    max-height: 75vh;
+    overflow: auto;
+  }
+
+  pre.language-css code {
+    .token.string {
+      background: transparent;
+    }
+  }
+
+  ul .notice {
+    margin-top: 1em;
+  }
+}
+
+
+@media print {
+  main > section > article {
+    grid-column: 1 / -1;
+  }
+
+  main > section > nav.previous {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  section {
+    font-size: .9rem;
+  }
+  section {
+    pre code {
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+}
+
+// Slides

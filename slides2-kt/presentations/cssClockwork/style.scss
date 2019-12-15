@@ -17,6 +17,10 @@
   // Footer
   --footerText: '@ToulouseJS @ilaborie #CSS #⏰';
 }
+.tnt {
+  // Footer
+  --footerText: '@tourainetech @ilaborie #CSS #⏰';
+}
 
 
 .monkeyPatch {
@@ -119,6 +123,20 @@ section > article {
       top: 2vh;
       right: 0;
       content: '2019-05-24';
+    }
+  }
+}
+
+.tnt main > section#cssClockwork_cover.cover {
+
+  article {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      top: 2vh;
+      right: 0;
+      content: '2020-01-31';
     }
   }
 }
@@ -362,6 +380,39 @@ section.live-code article {
 
 .gdg-tls main > section > article a {
   background-image: linear-gradient(to right, var(--col5) 50%, transparent 0);
+}
+
+.gdg-tls #_forever article {
+  .embedded-css-edit {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+
+    style#editme {
+      display: block;
+      -webkit-user-modify: read-write-plaintext-only;
+      white-space: pre-wrap;
+      box-shadow: 0.25em 0.25em 0.5em rgba(0,0,0,0.5);
+      padding: 1.5em .5em .5em .5em;
+      border-radius: .25em;
+      color: #a9b7c6;
+      background-image: linear-gradient(transparent 50%, rgba(255,255,255,0.025) 0);
+      background-size: auto 3em;
+      line-height: 1.5;
+      background-color: #2b2b2b;
+      font-size: 50%;
+      font-family: var(--font-mono);
+      max-height: 50vh;
+      overflow: auto;
+    }
+
+
+    .demo svg {
+      max-height: 50vh;
+      max-width: 50vw;
+    }
+
+  }
 }
 
 

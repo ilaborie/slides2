@@ -3,8 +3,17 @@
     "title": "cssClockwork",
     "instances": [
       {
-        "label": "gdg-tls",
+        "label": "tnt",
         "path": "cssClockwork",
+        "metadata": {}
+      }
+    ]
+  }, {
+    "title": "refactoringLoop",
+    "instances": [
+      {
+        "label": "tnt",
+        "path": "refactoringLoop",
         "metadata": {}
       }
     ]

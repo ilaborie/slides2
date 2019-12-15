@@ -609,6 +609,94 @@ label[for='10_000_000_points_sur_openjdk__hotspot__8_0_202__span_class__kotlin__
 }
 
 
+.tnt {
+  --footerText: '@ilaborie @tourainetech #flatmap';
+
+  #recursion_non_terminale article > ul .stack, #recursion_terminale article > ul .stack {
+    background: var(--col5);
+    color: black;
+
+    .mjx-chtml span {
+      text-shadow: 1px 1px 0 hsla(1, 100%, 100%, .5);
+    }
+  }
+
+  main > section.cover {
+    article {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        top: 2vh;
+        right: 0;
+        content: '2020-01-31';
+      }
+    }
+  }
+
+  #plan article {
+    li:first-child, li:last-child {
+      display: none;
+    }
+  }
+
+  #parcours___kotlin___scala article, #recursion_terminale___kotlin___scala article {
+    ul {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+  }
+
+  #recursion_terminale___kotlin___scala article {
+    pre {
+      font-size: 66%;
+    }
+  }
+
+  #recursion_terminale___java {
+    header, footer {
+      display: none;
+    }
+
+    article {
+      grid-row: 1 / -1;
+    }
+  }
+
+  #wat__ article {
+    img {
+      max-height: 70vh;
+    }
+    figcaption {
+      display: none;
+    }
+  }
+
+  #merci article {
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    .qrcode {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        display: block;
+        font-size: 10ch;
+        width: 1em;
+        height: 1em;
+        content: '🦄';
+        background: white;
+        background-size: 1em;
+        top: calc(50% - .5em);
+        left: calc(50% - .5em);
+      }
+    }
+  }
+}
+
 .sunnytech-19 {
   --footerText: '@ilaborie @sunnytech_mtp #SeaTechAndSun #flatmap';
 
