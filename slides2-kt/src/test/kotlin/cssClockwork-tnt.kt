@@ -16,7 +16,10 @@ fun main() {
     val cssClockworkPlugin = object : WebPlugin {
         override val name: String = "CssClockworkPlugin"
         override fun scripts(): List<Script> =
-            listOf(Script.script("cssClockwork.js"))
+            listOf(
+                Script.script("cssClockwork.js"),
+                Script.script("player.js")
+            )
     }
 
     SlideEngine
@@ -39,7 +42,7 @@ fun main() {
     }
     // Copy script
     val scriptDir = config.input / "script"
-    listOf("cssClockwork.js").forEach {
+    listOf("cssClockwork.js", "player.js").forEach {
         scriptDir.copyOrUpdate(it, outputDir)
     }
     // Copy img
@@ -55,6 +58,18 @@ private val cssClockwork = pres(
     extraStyle = "style"
 ) {
     part("Introduction", skipHeader = true) {
+        slide("Safety Last - 1923", id = "safetylast") {
+            html {
+                """
+                 <div id="player"></div>
+                 <div class="message">
+                    <p>Ce live-coding est réalisé par un professionnel, 
+                       il est chaudement recommandé de <strong>reproduire</strong> ce type de code chez vous !</p>
+                 </div>
+                 <script src="https://www.youtube.com/iframe_api"></script> 
+                 """.trimIndent()
+            }
+        }
         slide("Speakers", setOf("header-hidden", "steps")) {
             speaker(
                 fullName = "Igor Laborie",

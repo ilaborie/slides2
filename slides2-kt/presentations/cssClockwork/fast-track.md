@@ -1,14 +1,5 @@
 Fast Track
 
-YT: https://www.youtube.com/watch?v=VFBYJNAapyk
-Harold Lloyd
-Safety Last (1923)
-
-https://youtu.be/VFBYJNAapyk?t=116
-https://youtu.be/VFBYJNAapyk?t=152
-
-"Ce live-coding est réalisé par un professionel, il est chaudement recommander de reproduire ce type de code chez vous !"
-
 # Step 1 - Le cadre
 
 ```css

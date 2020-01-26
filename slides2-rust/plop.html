@@ -1,0 +1,26 @@
+<head><title>../slides2-kt/src/main/java/io/github/ilaborie/slides2/kt/jvm/tools/Natives.java</title><style>
+        pre {
+            font-size:13px;
+            font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }</style></head>
+<body style="background-color:#2b303b;">
+
+<pre style="background-color:#2b303b;">
+<span style="color:#b48ead;">package </span><span style="color:#c0c5ce;">io.github.ilaborie.slides2.kt.jvm.tools;
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#b48ead;">import static </span><span style="color:#96b5b4;">io.github.ilaborie.slides2.kt.jvm.tools.NativeUtils.loadLib</span><span style="color:#c0c5ce;">;
+</span><span style="color:#c0c5ce;">
+</span><span style="color:#b48ead;">public class </span><span style="color:#ebcb8b;">Natives </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">static </span><span style="color:#eff1f5;">{
+</span><span style="color:#eff1f5;">        </span><span style="color:#8fa1b3;">loadLib</span><span style="color:#eff1f5;">(</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">slides2_rust</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    }
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">public static native </span><span style="color:#ebcb8b;">String </span><span style="color:#8fa1b3;">scssFileToCss</span><span style="color:#eff1f5;">(</span><span style="color:#ebcb8b;">String </span><span style="color:#bf616a;">file</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">public static native </span><span style="color:#ebcb8b;">String </span><span style="color:#8fa1b3;">qrCode</span><span style="color:#eff1f5;">(</span><span style="color:#ebcb8b;">String </span><span style="color:#bf616a;">data</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">    </span><span style="color:#b48ead;">public static native </span><span style="color:#ebcb8b;">String </span><span style="color:#8fa1b3;">markdownToHtml</span><span style="color:#eff1f5;">(</span><span style="color:#ebcb8b;">String </span><span style="color:#bf616a;">markdown</span><span style="color:#eff1f5;">);
+</span><span style="color:#eff1f5;">
+</span><span style="color:#eff1f5;">}
+</span></pre>
+
+</body>

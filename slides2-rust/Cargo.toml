@@ -9,6 +9,7 @@ jni = "0.14"
 pulldown-cmark = "0.6"
 qrcode = "0.11"
 sass-rs = "0.2"
+syntect = "3.3"
 
 [lib]
 crate_type = ["lib", "cdylib"]
