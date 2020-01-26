@@ -1,9 +1,10 @@
 main > section > article {
   .qrcode {
+
     font-size: 50%;
     display: grid;
-    grid-template-columns: repeat(45, 1fr);
-    grid-template-rows: repeat(45, 1fr);
+    grid-template-columns: repeat(var(--qrsize, 45), 1fr);
+    grid-template-rows: repeat(var(--qrsize, 45), 1fr);
 
     .light, .dark {
       display: block;

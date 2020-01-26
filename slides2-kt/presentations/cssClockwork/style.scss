@@ -434,3 +434,7 @@ section.live-code article {
   display: flex;
   align-items: center;
 }
+
+.tnt .qrcode {
+  --qrsize: 41;
+}
