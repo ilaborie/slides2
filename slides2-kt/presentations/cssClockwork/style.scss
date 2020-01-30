@@ -481,3 +481,15 @@ section#safetylast {
   }
 
 }
+
+section#rappel_accessibilite article {
+  figure {
+    max-height: 40vh;
+  }
+
+  mark {
+    padding: 0 .25em;
+    background: linear-gradient(to bottom, transparent, transparent 60%, var(--col3) 0%);
+  }
+
+}
