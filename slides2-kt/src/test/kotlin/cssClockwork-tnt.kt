@@ -355,7 +355,7 @@ private val cssClockwork = pres(
                 figure("imgs/support-custom-properties.png", "https://caniuse.com/#feat=css-variables")
                 markdown { "Utilisateurs de IE 11 en France: <mark>0,84%</mark>" }
                 markdown { "Personnes atteintes d'un trouble de la vision en France: <mark>2,5%</mark>" }
-                markdown { "Rendre accessibles vos sites c'est traité ces 2 situations" }
+                markdown { "Rendre accessibles vos sites c'est traiter ces 2 situations" }
                 notice(Warning) {
                     markdown { "️ **Revoyez vos priorités** ❗️" }
                     markdown { "<small>Voir [Quelques chiffres sur la déficience visuelle](https://www.aveuglesdefrance.org/quelques-chiffres-sur-la-deficience-visuelle)</small>" }
